@@ -1,76 +1,177 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>IdolVerse</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #1e1b4b, #312e81);
-      color: white;
-    }
-    header {
-      padding: 20px;
-      text-align: center;
-      font-size: 26px;
-      font-weight: bold;
-    }
-    .card {
-      background: rgba(255,255,255,0.08);
-      margin: 20px;
-      padding: 20px;
-      border-radius: 16px;
-      text-align: center;
-    }
-    .price {
-      color: #22d3ee;
-      font-size: 20px;
-      margin: 10px 0;
-    }
-    button {
-      background: #a855f7;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 20px;
-      color: white;
-      font-size: 16px;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 12px;
-      opacity: 0.7;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IdolVerse • Photocards</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#1e1e2f,#3a3a6a);
+  color: #fff;
+  margin: 0;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 15px;
+}
+
+.card {
+  background: #2b2b4f;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.price {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+button {
+  background: #ff4fd8;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.cart {
+  background: #1c1c3a;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: none;
+}
+
+#popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background: rgba(0,0,0,.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#popup div {
+  background: #fff;
+  color: #000;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  animation: zoom .4s ease;
+}
+
+@keyframes zoom {
+  from {transform: scale(.5); opacity:0}
+  to {transform: scale(1); opacity:1}
+}
+</style>
 </head>
+
 <body>
 
-<header>Photocards em Destaque</header>
+<header>✨ IdolVerse ✨</header>
+
+<div class="container">
 
 <div class="card">
-  <h2>Photocard BTS</h2>
-  <p>Original • Alta qualidade</p>
-  <div class="price">R$ 25,00</div>
-  <button>Comprar</button>
+<img src="https://i.imgur.com/6XyRZ9X.jpg">
+<h3>Photocard BTS</h3>
+<p class="price">R$ 19,90</p>
+<button onclick="add('BTS',19.9)">Adicionar</button>
 </div>
 
 <div class="card">
-  <h2>Photocard BLACKPINK</h2>
-  <p>Edição especial</p>
-  <div class="price">R$ 30,00</div>
-  <button>Comprar</button>
+<img src="https://i.imgur.com/e3YFZ5H.jpg">
+<h3>Photocard BLACKPINK</h3>
+<p class="price">R$ 21,90</p>
+<button onclick="add('BLACKPINK',21.9)">Adicionar</button>
 </div>
 
 <div class="card">
-  <h2>Photocard STRAY KIDS</h2>
-  <p>Fanmade premium</p>
-  <div class="price">R$ 20,00</div>
-  <button>Comprar</button>
+<img src="https://i.imgur.com/DJtK1Xh.jpg">
+<h3>🔥 Combo 2 – 3 Photocards</h3>
+<p class="price">R$ 49,90</p>
+<button onclick="add('COMBO 2',49.9)">Adicionar</button>
 </div>
 
-<footer>© 2026 IdolVerse</footer>
+<div class="cart">
+<h3>🛒 Carrinho</h3>
+<p id="cartItems">Nenhum item</p>
+<p id="total">Total: R$ 0,00</p>
+
+<h4>📦 Endereço</h4>
+<input placeholder="Nome completo">
+<input placeholder="Rua e número">
+<input placeholder="Cidade">
+<input placeholder="CEP">
+
+<br><br>
+
+<button onclick="finalizar()">Finalizar Compra</button>
+</div>
+
+</div>
+
+<div id="popup">
+  <div>
+    <h2>🎉 Obrigado pela compra!</h2>
+    <p>Seu pedido foi registrado com sucesso 💖</p>
+    <p>Finalize o pagamento pelo Mercado Pago</p>
+    <br>
+    <a href="https://link.mercadopago.com.br/SEULINKAQUI" target="_blank">
+      <button>Pagar agora</button>
+    </a>
+    <br><br>
+    <button onclick="fechar()">Fechar</button>
+  </div>
+</div>
+
+<script>
+let cart = [];
+let total = 0;
+
+function add(nome, preco) {
+  cart.push(nome);
+  total += preco;
+  document.getElementById("cartItems").innerText = cart.join(", ");
+  document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
+}
+
+function finalizar() {
+  document.getElementById("popup").style.display = "flex";
+}
+
+function fechar() {
+  document.getElementById("popup").style.display = "none";
+}
+</script>
 
 </body>
 </html>

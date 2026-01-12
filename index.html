@@ -3,268 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>✨ IdolVerse ✨</title>
+<title>IdolVerse • Photocards</title>
 
 <style>
-:root{
-  --bg:#1e1e2f;
-  --card:#2b2b4f;
-  --pink:#ff4fd8;
-  --text:#fff;
-}
-.light{
-  --bg:#f5f5ff;
-  --card:#ffffff;
-  --text:#111;
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#1e1e2f,#3a3a6a);
+  color: #fff;
+  margin: 0;
 }
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:var(--bg);
-  color:var(--text);
+/* HEADER FIXO */
+header {
+  position: sticky;
+  top: 0;
+  background: #1c1c3a;
+  padding: 15px;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 10;
 }
 
-/* HEADER */
-header{
-  position:sticky;
-  top:0;
-  z-index:10;
-  background:linear-gradient(135deg,#1e1e2f,#3a3a6a);
-  padding:15px;
-  text-align:center;
-}
-header h1{margin:5px 0}
-.toggle{
-  background:var(--pink);
-  border:none;
-  padding:8px 14px;
-  border-radius:20px;
-  color:#fff;
-  cursor:pointer;
+/* CONTAINER */
+.container {
+  padding: 15px;
 }
 
-/* SLIDER */
-.slider{
-  display:flex;
-  overflow-x:auto;
-  gap:10px;
-  padding:15px;
-}
-.slider img{
-  width:260px;
-  border-radius:15px;
-  flex-shrink:0;
+/* PESQUISA */
+.search input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  margin-bottom: 20px;
 }
 
-/* SEARCH */
-.search{
-  padding:15px;
-}
-.search input{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:none;
-  font-size:16px;
+/* 👉 GRADE DE PRODUTOS (O PRINCIPAL) */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 15px;
 }
 
-/* LAYOUT */
-.main{
-  display:flex;
-}
-aside{
-  width:160px;
-  padding:15px;
-}
-aside button{
-  width:100%;
-  margin-bottom:8px;
-  padding:8px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
+/* CARD */
+.card {
+  background: #2b2b4f;
+  border-radius: 15px;
+  padding: 12px;
+  text-align: center;
+  transition: transform .2s;
 }
 
-.products{
-  flex:1;
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-  gap:15px;
-  padding:15px;
+.card:hover {
+  transform: scale(1.03);
 }
 
-.card{
-  background:var(--card);
-  border-radius:15px;
-  padding:10px;
-  text-align:center;
-}
-.card img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
-  border-radius:10px;
-}
-.card button{
-  background:var(--pink);
-  border:none;
-  padding:8px;
-  border-radius:8px;
-  color:#fff;
-  cursor:pointer;
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-/* CART */
-.cart{
-  padding:15px;
-  background:var(--card);
-  margin:15px;
-  border-radius:15px;
+.card h3 {
+  font-size: 16px;
+  margin: 8px 0;
 }
 
-/* PIX */
-.pix{
-  text-align:center;
-}
-.pix img{
-  width:200px;
-  border-radius:10px;
+.price {
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: #ffb3f0;
 }
 
-/* WHATSAPP */
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25d366;
-  color:#fff;
-  padding:12px 16px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:bold;
+button {
+  background: #ff4fd8;
+  border: none;
+  padding: 8px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* CARRINHO */
+.cart {
+  background: #1c1c3a;
+  padding: 15px;
+  border-radius: 15px;
+  margin-top: 25px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
+.remove {
+  background: #ff3b3b;
+  font-size: 12px;
+  padding: 2px 6px;
+}
+
+/* BOTÃO TOPO */
+#topo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff4fd8;
+  border-radius: 50%;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+/* POPUP */
+#popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#popup div {
+  background: #fff;
+  color: #000;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>✨ IdolVerse ✨</h1>
-  <button class="toggle" onclick="toggleMode()">🌙 Modo Escuro</button>
-</header>
+<header>✨ IdolVerse ✨</header>
 
-<!-- SLIDER -->
-<div class="slider">
-  <img src="banner1.jpg">
-  <img src="banner2.jpg">
-</div>
+<div class="container">
 
-<!-- SEARCH -->
 <div class="search">
-  <input type="text" placeholder="🔍 Buscar photocard..." onkeyup="buscar(this.value)">
+  <input type="text" placeholder="🔍 Buscar BTS, BLACKPINK, Neymar, Stranger Things..."
+  onkeyup="buscar(this.value)">
 </div>
 
-<div class="main">
+<!-- 🔥 PRODUTOS LADO A LADO -->
+<div class="products">
 
-<!-- FILTROS -->
-<aside>
-  <button onclick="filtrar('all')">Todos</button>
-  <button onclick="filtrar('kpop')">K-Pop</button>
-  <button onclick="filtrar('famosos')">Famosos</button>
-  <button onclick="filtrar('series')">Séries</button>
-</aside>
-
-<!-- PRODUTOS -->
-<div class="products" id="produtos">
-
-  <div class="card produto kpop" data-nome="blackpink">
-    <img src="blackpink.jpg">
-    <h4>BLACKPINK</h4>
-    <p>R$ 21,90</p>
-    <button onclick="add('BLACKPINK',21.9)">Comprar</button>
-  </div>
-
-  <div class="card produto kpop" data-nome="bts">
-    <img src="bts.jpg">
-    <h4>BTS</h4>
-    <p>R$ 19,90</p>
-    <button onclick="add('BTS',19.9)">Comprar</button>
-  </div>
-
-  <div class="card produto famosos" data-nome="neymar">
-    <img src="neymar.jpg">
-    <h4>Neymar Jr</h4>
-    <p>R$ 24,90</p>
-    <button onclick="add('Neymar',24.9)">Comprar</button>
-  </div>
-
-  <div class="card produto series" data-nome="stranger things">
-    <img src="stranger.jpg">
-    <h4>Stranger Things</h4>
-    <p>R$ 29,90</p>
-    <button onclick="add('Stranger Things',29.9)">Comprar</button>
-  </div>
-
+<div class="card produto" data-nome="bts kpop">
+  <img src="6153704aed21a7b0529cadeb390a2837.jpg">
+  <h3>BTS</h3>
+  <p class="price">R$ 19,90</p>
+  <button onclick="add('BTS',19.9)">Comprar</button>
 </div>
+
+<div class="card produto" data-nome="blackpink kpop">
+  <img src="228d29ff27373760144509f828c87bbf.jpg">
+  <h3>BLACKPINK</h3>
+  <p class="price">R$ 21,90</p>
+  <button onclick="add('BLACKPINK',21.9)">Comprar</button>
+</div>
+
+<div class="card produto" data-nome="neymar futebol">
+  <img src="neymar.jpg">
+  <h3>Neymar Jr</h3>
+  <p class="price">R$ 24,90</p>
+  <button onclick="add('Neymar',24.9)">Comprar</button>
+</div>
+
+<div class="card produto" data-nome="stranger things netflix">
+  <img src="stranger-things.jpg">
+  <h3>Stranger Things</h3>
+  <p class="price">R$ 29,90</p>
+  <button onclick="add('Stranger Things',29.9)">Comprar</button>
+</div>
+
 </div>
 
 <!-- CARRINHO -->
 <div class="cart">
   <h3>🛒 Carrinho</h3>
-  <div id="cart"></div>
+  <div id="cartItems">Nenhum item</div>
   <p id="total">Total: R$ 0,00</p>
+  <button onclick="finalizar()">Finalizar Compra</button>
+</div>
 
-  <div class="pix">
-    <h4>Pagamento Pix</h4>
-    <img src="pix.png">
-    <p>Thiago Maksuel Silva e Silva<br>Nubank</p>
+</div>
+
+<div id="topo" onclick="window.scrollTo(0,0)">⬆️</div>
+
+<div id="popup">
+  <div>
+    <h2>🎉 Compra registrada!</h2>
+    <button onclick="fechar()">Fechar</button>
   </div>
 </div>
 
-<a class="whatsapp" href="https://wa.me/5591989305197" target="_blank">WhatsApp</a>
-
 <script>
-let cart=[];
-let total=0;
+let cart = [];
+let total = 0;
 
-function add(nome,preco){
-  cart.push({nome,preco});
-  total+=preco;
-  render();
-}
-
-function render(){
-  const c=document.getElementById("cart");
-  c.innerHTML="";
-  cart.forEach((i,idx)=>{
-    c.innerHTML+=`${i.nome} <button onclick="remove(${idx})">❌</button><br>`;
+function renderCart() {
+  const box = document.getElementById("cartItems");
+  box.innerHTML = "";
+  if (!cart.length) return box.innerText = "Nenhum item";
+  cart.forEach((item, i) => {
+    box.innerHTML += `
+      <div class="cart-item">
+        ${item.nome}
+        <button class="remove" onclick="removeItem(${i})">❌</button>
+      </div>`;
   });
-  document.getElementById("total").innerText="Total: R$ "+total.toFixed(2);
 }
 
-function remove(i){
-  total-=cart[i].preco;
+function add(nome, preco) {
+  cart.push({ nome, preco });
+  total += preco;
+  document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
+  renderCart();
+}
+
+function removeItem(i) {
+  total -= cart[i].preco;
   cart.splice(i,1);
-  render();
+  document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
+  renderCart();
 }
 
-function buscar(txt){
-  txt=txt.toLowerCase();
-  document.querySelectorAll(".produto").forEach(p=>{
-    p.style.display=p.dataset.nome.includes(txt)?"block":"none";
+function buscar(txt) {
+  txt = txt.toLowerCase();
+  document.querySelectorAll(".produto").forEach(p => {
+    p.style.display = p.dataset.nome.includes(txt) ? "block" : "none";
   });
 }
 
-function filtrar(cat){
-  document.querySelectorAll(".produto").forEach(p=>{
-    p.style.display=(cat=="all"||p.classList.contains(cat))?"block":"none";
-  });
+function finalizar() {
+  document.getElementById("popup").style.display = "flex";
 }
 
-function toggleMode(){
-  document.body.classList.toggle("light");
+function fechar() {
+  document.getElementById("popup").style.display = "none";
 }
 </script>
 

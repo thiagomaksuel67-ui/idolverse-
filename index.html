@@ -230,15 +230,18 @@ button{
 <div id="topo" onclick="window.scrollTo(0,0)">⬆️</div>
 
 <script>
-let cart=[];
-let total=0;
+let cart = [];
+let total = 0;
 
 function renderCart(){
-  const box=document.getElementById("cartItems");
-  box.innerHTML="";
-  if(!cart.length){box.innerText="Nenhum item";return;}
+  const box = document.getElementById("cartItems");
+  box.innerHTML = "";
+  if(!cart.length){
+    box.innerText = "Nenhum item";
+    return;
+  }
   cart.forEach((item,i)=>{
-    box.innerHTML+=`
+    box.innerHTML += `
       <div class="cart-item">
         ${item.nome}
         <button class="remove" onclick="removeItem(${i})">❌</button>
@@ -246,47 +249,44 @@ function renderCart(){
   });
 }
 
-function add(nome,preco){
-  cart.push({nome,preco});
-  total+=preco;
-  document.getElementById("total").innerText="Total: R$ "+total.toFixed(2);
+function add(nome, preco){
+  cart.push({nome, preco});
+  total += preco;
+  document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
   renderCart();
 }
 
 function removeItem(i){
-  total-=cart[i].preco;
+  total -= cart[i].preco;
   cart.splice(i,1);
-  document.getElementById("total").innerText="Total: R$ "+total.toFixed(2);
+  document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
   renderCart();
 }
 
+/* 🔍 BUSCA */
 function buscar(txt){
-  txt=txt.toLowerCase();
-  document.querySelectorAll(".produto").forEach(p=>{
-    p.style.display=p.dataset.nome.includes(txt)?"block":"none";
+  txt = txt.toLowerCase();
+  document.querySelectorAll(".card.produto").forEach(p=>{
+    p.style.display = p.dataset.name.includes(txt) ? "block" : "none";
   });
 }
 
-function mostrarPix(){
-  const pix=document.getElementById("pixArea");
-  pix.style.display=pix.style.display==="none"?"block":"none";
-}
-</script>
-<script>
+/* 🏷️ FILTRO POR TAG */
 function filtrar(tag){
-  const produtos = document.querySelectorAll(".card.produto");
-
-  produtos.forEach(p => {
+  document.querySelectorAll(".card.produto").forEach(p=>{
     const categorias = p.dataset.name;
-
-    if(tag === "todos"){
-      p.style.display = "block";
-    } else if(categorias.includes(tag)){
+    if(tag === "todos" || categorias.includes(tag)){
       p.style.display = "block";
     } else {
       p.style.display = "none";
     }
   });
+}
+
+/* 💸 PIX */
+function mostrarPix(){
+  const pix = document.getElementById("pixArea");
+  pix.style.display = pix.style.display === "none" ? "block" : "none";
 }
 </script>
 

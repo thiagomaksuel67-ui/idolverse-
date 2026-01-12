@@ -1,164 +1,271 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Loja de Photocards</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ IdolVerse ✨</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f1a;
-      color: #fff;
-    }
+<style>
+:root{
+  --bg:#1e1e2f;
+  --card:#2b2b4f;
+  --pink:#ff4fd8;
+  --text:#fff;
+}
+.light{
+  --bg:#f5f5ff;
+  --card:#ffffff;
+  --text:#111;
+}
 
-    header {
-      background: #111;
-      padding: 15px;
-      text-align: center;
-    }
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
 
-    header img {
-      height: 60px;
-    }
+/* HEADER */
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:linear-gradient(135deg,#1e1e2f,#3a3a6a);
+  padding:15px;
+  text-align:center;
+}
+header h1{margin:5px 0}
+.toggle{
+  background:var(--pink);
+  border:none;
+  padding:8px 14px;
+  border-radius:20px;
+  color:#fff;
+  cursor:pointer;
+}
 
-    h1 {
-      text-align: center;
-      margin: 20px 0;
-    }
+/* SLIDER */
+.slider{
+  display:flex;
+  overflow-x:auto;
+  gap:10px;
+  padding:15px;
+}
+.slider img{
+  width:260px;
+  border-radius:15px;
+  flex-shrink:0;
+}
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
+/* SEARCH */
+.search{
+  padding:15px;
+}
+.search input{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+}
 
-    .card {
-      background: #1b1b2f;
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-    }
+/* LAYOUT */
+.main{
+  display:flex;
+}
+aside{
+  width:160px;
+  padding:15px;
+}
+aside button{
+  width:100%;
+  margin-bottom:8px;
+  padding:8px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
 
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-    }
+.products{
+  flex:1;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:15px;
+  padding:15px;
+}
 
-    .card h3 {
-      margin: 10px 0;
-    }
+.card{
+  background:var(--card);
+  border-radius:15px;
+  padding:10px;
+  text-align:center;
+}
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:10px;
+}
+.card button{
+  background:var(--pink);
+  border:none;
+  padding:8px;
+  border-radius:8px;
+  color:#fff;
+  cursor:pointer;
+}
 
-    .price {
-      font-size: 18px;
-      color: #8aff8a;
-      margin-bottom: 10px;
-    }
+/* CART */
+.cart{
+  padding:15px;
+  background:var(--card);
+  margin:15px;
+  border-radius:15px;
+}
 
-    button {
-      background: #7b3fe4;
-      border: none;
-      color: white;
-      padding: 12px;
-      width: 100%;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-    }
+/* PIX */
+.pix{
+  text-align:center;
+}
+.pix img{
+  width:200px;
+  border-radius:10px;
+}
 
-    button:hover {
-      background: #9b5cff;
-    }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
-    }
-
-    .modal-content {
-      background: #1b1b2f;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 320px;
-      width: 90%;
-      text-align: center;
-    }
-
-    .modal-content img {
-      width: 200px;
-      margin: 10px 0;
-    }
-
-    .close {
-      margin-top: 10px;
-      background: #444;
-    }
-  </style>
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25d366;
+  color:#fff;
+  padding:12px 16px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:bold;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <img src="logo.png" alt="Logo da Loja">
+  <h1>✨ IdolVerse ✨</h1>
+  <button class="toggle" onclick="toggleMode()">🌙 Modo Escuro</button>
 </header>
 
-<h1>Photocards Exclusivos</h1>
+<!-- SLIDER -->
+<div class="slider">
+  <img src="banner1.jpg">
+  <img src="banner2.jpg">
+</div>
 
-<section class="products">
+<!-- SEARCH -->
+<div class="search">
+  <input type="text" placeholder="🔍 Buscar photocard..." onkeyup="buscar(this.value)">
+</div>
 
-  <div class="card">
-    <img src="https://via.placeholder.com/300x400?text=K-POP">
-    <h3>Photocard K-Pop</h3>
-    <div class="price">R$ 9,90</div>
-    <button onclick="openPix()">Comprar</button>
+<div class="main">
+
+<!-- FILTROS -->
+<aside>
+  <button onclick="filtrar('all')">Todos</button>
+  <button onclick="filtrar('kpop')">K-Pop</button>
+  <button onclick="filtrar('famosos')">Famosos</button>
+  <button onclick="filtrar('series')">Séries</button>
+</aside>
+
+<!-- PRODUTOS -->
+<div class="products" id="produtos">
+
+  <div class="card produto kpop" data-nome="blackpink">
+    <img src="blackpink.jpg">
+    <h4>BLACKPINK</h4>
+    <p>R$ 21,90</p>
+    <button onclick="add('BLACKPINK',21.9)">Comprar</button>
   </div>
 
-  <div class="card">
-    <img src="https://via.placeholder.com/300x400?text=NEYMAR">
-    <h3>Photocard Neymar</h3>
-    <div class="price">R$ 12,90</div>
-    <button onclick="openPix()">Comprar</button>
+  <div class="card produto kpop" data-nome="bts">
+    <img src="bts.jpg">
+    <h4>BTS</h4>
+    <p>R$ 19,90</p>
+    <button onclick="add('BTS',19.9)">Comprar</button>
   </div>
 
-  <div class="card">
-    <img src="https://via.placeholder.com/300x400?text=STRANGER+THINGS">
-    <h3>Stranger Things</h3>
-    <div class="price">R$ 11,90</div>
-    <button onclick="openPix()">Comprar</button>
+  <div class="card produto famosos" data-nome="neymar">
+    <img src="neymar.jpg">
+    <h4>Neymar Jr</h4>
+    <p>R$ 24,90</p>
+    <button onclick="add('Neymar',24.9)">Comprar</button>
   </div>
 
-</section>
+  <div class="card produto series" data-nome="stranger things">
+    <img src="stranger.jpg">
+    <h4>Stranger Things</h4>
+    <p>R$ 29,90</p>
+    <button onclick="add('Stranger Things',29.9)">Comprar</button>
+  </div>
 
-<!-- MODAL PIX -->
-<div class="modal" id="pixModal">
-  <div class="modal-content">
-    <h2>Pague com Pix</h2>
-    <img src="pix.png" alt="QR Code Pix">
-    <p><strong>Nome:</strong> Thiago Maksuel Silva e Silva</p>
-    <p><strong>Banco:</strong> Nubank</p>
-    <p>Após o pagamento, envie o comprovante.</p>
-    <button class="close" onclick="closePix()">Fechar</button>
+</div>
+</div>
+
+<!-- CARRINHO -->
+<div class="cart">
+  <h3>🛒 Carrinho</h3>
+  <div id="cart"></div>
+  <p id="total">Total: R$ 0,00</p>
+
+  <div class="pix">
+    <h4>Pagamento Pix</h4>
+    <img src="pix.png">
+    <p>Thiago Maksuel Silva e Silva<br>Nubank</p>
   </div>
 </div>
 
-<script>
-  function openPix() {
-    document.getElementById("pixModal").style.display = "flex";
-  }
+<a class="whatsapp" href="https://wa.me/5591989305197" target="_blank">WhatsApp</a>
 
-  function closePix() {
-    document.getElementById("pixModal").style.display = "none";
-  }
+<script>
+let cart=[];
+let total=0;
+
+function add(nome,preco){
+  cart.push({nome,preco});
+  total+=preco;
+  render();
+}
+
+function render(){
+  const c=document.getElementById("cart");
+  c.innerHTML="";
+  cart.forEach((i,idx)=>{
+    c.innerHTML+=`${i.nome} <button onclick="remove(${idx})">❌</button><br>`;
+  });
+  document.getElementById("total").innerText="Total: R$ "+total.toFixed(2);
+}
+
+function remove(i){
+  total-=cart[i].preco;
+  cart.splice(i,1);
+  render();
+}
+
+function buscar(txt){
+  txt=txt.toLowerCase();
+  document.querySelectorAll(".produto").forEach(p=>{
+    p.style.display=p.dataset.nome.includes(txt)?"block":"none";
+  });
+}
+
+function filtrar(cat){
+  document.querySelectorAll(".produto").forEach(p=>{
+    p.style.display=(cat=="all"||p.classList.contains(cat))?"block":"none";
+  });
+}
+
+function toggleMode(){
+  document.body.classList.toggle("light");
+}
 </script>
 
 </body>

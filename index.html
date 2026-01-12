@@ -6,6 +6,58 @@
 <title>IdolVerse • Photocards</title>
 
 <style>
+  /* Container dos produtos */
+.produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Card */
+.card.produto {
+  background: #2b2b4f;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+/* Imagem */
+.card.produto img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+/* Título */
+.card.produto h3 {
+  margin: 10px 0 5px;
+  color: #fff;
+}
+
+/* Preço */
+.price {
+  color: #ff6bd6;
+  font-weight: bold;
+}
+
+/* Botão */
+.card.produto button {
+  margin-top: 10px;
+  padding: 10px;
+  width: 90%;
+  border: none;
+  border-radius: 20px;
+  background: #ff4fd8;
+  color: white;
+  cursor: pointer;
+}
+
+.card.produto button:hover {
+  opacity: 0.85;
+}
+
   html, body {
   width: 100%;
   min-height: 100%;

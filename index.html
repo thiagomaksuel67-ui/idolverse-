@@ -6,17 +6,10 @@
 <title>IdolVerse • Photocards</title>
 
 <style>
-  html, body {
-  width: 100%;
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg,#1e1e2f,#3a3a6a);
-}
-  
- 
-body{
+html, body{
   margin:0;
+  padding:0;
+  min-height:100%;
   font-family:Arial, sans-serif;
   background:linear-gradient(135deg,#1e1e2f,#3a3a6a);
   color:#fff;
@@ -39,53 +32,65 @@ header{
   padding:15px;
 }
 
-/* PESQUISA */
+/* BUSCA */
 .search input{
   width:100%;
   padding:12px;
   border-radius:10px;
   border:none;
   font-size:16px;
+  margin-bottom:15px;
+}
+
+/* TAGS */
+.tags-menu{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
   margin-bottom:20px;
+}
+.tags-menu button{
+  padding:8px 14px;
+  border:none;
+  border-radius:20px;
+  background:#ff4fd8;
+  color:#fff;
+  cursor:pointer;
 }
 
 /* GRID PRODUTOS */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
   gap:15px;
 }
 
 /* CARD */
-.card{
+.card.produto{
   background:#2b2b4f;
   border-radius:15px;
-  padding:10px;
+  overflow:hidden;
   text-align:center;
+  padding-bottom:12px;
 }
-
-.card img{
+.card.produto img{
   width:100%;
-  height:180px;
+  height:200px;
   object-fit:cover;
-  border-radius:10px;
 }
-
-.card h3{
-  font-size:15px;
-  margin:8px 0;
+.card.produto h3{
+  margin:8px 0 4px;
 }
-
 .price{
   color:#ffb3f0;
-  margin-bottom:8px;
+  font-weight:bold;
 }
-
-button{
-  width:100%;
-  padding:8px;
+.card.produto button{
+  margin-top:8px;
+  padding:10px;
+  width:90%;
   border:none;
-  border-radius:8px;
+  border-radius:20px;
   background:#ff4fd8;
   color:#fff;
   cursor:pointer;
@@ -93,22 +98,21 @@ button{
 
 /* CARRINHO */
 .cart{
-  margin-top:25px;
+  margin-top:30px;
   background:#1c1c3a;
   padding:15px;
   border-radius:15px;
 }
-
 .cart-item{
   display:flex;
   justify-content:space-between;
   margin:6px 0;
 }
-
 .remove{
   background:#ff3b3b;
-  padding:2px 6px;
-  font-size:12px;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
 }
 
 /* PIX */
@@ -117,11 +121,9 @@ button{
   margin-top:15px;
   text-align:center;
 }
-
 .pix img{
   width:180px;
   border-radius:10px;
-  margin-top:10px;
 }
 
 /* BOTÃO TOPO */
@@ -138,102 +140,60 @@ button{
 </head>
 
 <body>
-    
-  <div class="card produto" data-name="stranger things filmes e séries">
-  <span class="tag filmes">FILMES & SÉRIES</span>
-  <img src="stranger-things.jpg">
-  <h3>Stranger Things</h3>
-  <p class="price">R$ 29,90</p>
-  <button onclick="add('Stranger Things',29.9)">Comprar</button>
-</div>
-
-  <div class="card produto" data-name="neymar futebol jogador">
-  <span class="tag futebol">FUTEBOL</span>
-  <img src="neymar.jpg">
-  <h3>Neymar Jr</h3>
-  <p class="price">R$ 24,90</p>
-  <button onclick="add('Neymar',24.9)">Comprar</button>
-</div>
-
-  <div class="card produto" data-name="bts kpop">
-  <span class="tag kpop">K-POP</span>
-  <img src="bts.jpg">
-  <h3>BTS</h3>
-  <p class="price">R$ 19,90</p>
-  <button onclick="add('BTS',19.9)">Comprar</button>
-</div>
 
 <header>✨ IdolVerse ✨</header>
 
 <div class="container">
 
-<div class="search">
-  <input type="text" placeholder="🔍 Buscar BTS, BLACKPINK, Stray Kids, Neymar..."
-  onkeyup="buscar(this.value)">
-</div>
-  <div class="tags-menu">
-  <button onclick="filtrar('todos')">Todos</button>
-  <button onclick="filtrar('kpop')">K-POP</button>
-  <button onclick="filtrar('futebol')">Futebol</button>
-  <button onclick="filtrar('filmes')">Filmes & Séries</button>
-</div>
-
-<div class="products">
-
-<div class="card produto" data-name="bts kpop">
-  <img src="bts.jpg">
-  <h3>BTS</h3>
-  <p class="price">R$ 19,90</p>
-  <button onclick="add('BTS',19.9)">Comprar</button>
-</div>
-
-<div class="card produto" data-name="blackpink kpop">
-  <img src="blackpink.jpg">
-  <h3>BLACKPINK</h3>
-  <p class="price">R$ 21,90</p>
-  <button onclick="add('BLACKPINK',21.9)">Comprar</button>
-</div>
-
-<div class="card produto" data-name="stray kids kpop">
-  <img src="straykids.jpg">
-  <h3>Stray Kids</h3>
-  <p class="price">R$ 22,90</p>
-  <button onclick="add('Stray Kids',22.9)">Comprar</button>
-</div>
-
-<div class="card produto" data-name="neymar futebol">
-  <img src="neymar.jpg">
-  <h3>Neymar Jr</h3>
-  <p class="price">R$ 24,90</p>
-  <button onclick="add('Neymar',24.9)">Comprar</button>
-</div>
-
-<div class="card produto" data-name="stranger things séries">
-  <img src="stranger-things.jpg">
-  <h3>Stranger Things</h3>
-  <p class="price">R$ 29,90</p>
-  <button onclick="add('Stranger Things',29.9)">Comprar</button>
-</div>
-
-</div>
-
-<div class="cart">
-  <h3>🛒 Carrinho</h3>
-  <div id="cartItems">Nenhum item</div>
-  <p id="total">Total: R$ 0,00</p>
-
-  <button onclick="mostrarPix()">Pagar com PIX</button>
-
-  <div class="pix" id="pixArea">
-    <p><strong>Escaneie o QR Code</strong></p>
-    <img src="pix.png">
-    <p style="font-size:14px;">
-      Pix: <strong>91989305197</strong><br>
-      Banco: Nubank<br>
-      Nome: Thiago Maksuel Silva e Silva
-    </p>
+  <div class="search">
+    <input type="text" placeholder="🔍 Buscar BTS, Neymar, Stranger Things..."
+    onkeyup="buscar(this.value)">
   </div>
-</div>
+
+  <div class="tags-menu">
+    <button onclick="filtrar('todos')">Todos</button>
+    <button onclick="filtrar('kpop')">K‑POP</button>
+    <button onclick="filtrar('futebol')">Futebol</button>
+    <button onclick="filtrar('filmes')">Filmes & Séries</button>
+  </div>
+
+  <div class="products">
+
+    <div class="card produto" data-name="bts kpop">
+      <img src="bts.jpg">
+      <h3>BTS</h3>
+      <p class="price">R$ 19,90</p>
+      <button onclick="add('BTS',19.9)">Comprar</button>
+    </div>
+
+    <div class="card produto" data-name="neymar futebol">
+      <img src="neymar.jpg">
+      <h3>Neymar Jr</h3>
+      <p class="price">R$ 24,90</p>
+      <button onclick="add('Neymar',24.9)">Comprar</button>
+    </div>
+
+    <div class="card produto" data-name="stranger things filmes">
+      <img src="stranger-things.jpg">
+      <h3>Stranger Things</h3>
+      <p class="price">R$ 29,90</p>
+      <button onclick="add('Stranger Things',29.9)">Comprar</button>
+    </div>
+
+  </div>
+
+  <div class="cart">
+    <h3>🛒 Carrinho</h3>
+    <div id="cartItems">Nenhum item</div>
+    <p id="total">Total: R$ 0,00</p>
+    <button onclick="mostrarPix()">Pagar com PIX</button>
+
+    <div class="pix" id="pixArea">
+      <p><strong>Escaneie o QR Code</strong></p>
+      <img src="pix.png">
+      <p>Pix: <strong>91989305197</strong></p>
+    </div>
+  </div>
 
 </div>
 
@@ -262,41 +222,40 @@ function renderCart(){
 function add(nome, preco){
   cart.push({nome, preco});
   total += preco;
-  document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
+  document.getElementById("total").innerText =
+    "Total: R$ " + total.toFixed(2);
   renderCart();
 }
 
 function removeItem(i){
   total -= cart[i].preco;
   cart.splice(i,1);
-  document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
+  document.getElementById("total").innerText =
+    "Total: R$ " + total.toFixed(2);
   renderCart();
 }
 
-/* 🔍 BUSCA */
 function buscar(txt){
   txt = txt.toLowerCase();
   document.querySelectorAll(".card.produto").forEach(p=>{
-    p.style.display = p.dataset.name.includes(txt) ? "block" : "none";
+    p.style.display = p.dataset.name.includes(txt)
+      ? "block" : "none";
   });
 }
 
-/* 🏷️ FILTRO POR TAG */
 function filtrar(tag){
   document.querySelectorAll(".card.produto").forEach(p=>{
-    const categorias = p.dataset.name;
-    if(tag === "todos" || categorias.includes(tag)){
-      p.style.display = "block";
-    } else {
-      p.style.display = "none";
-    }
+    const cat = p.dataset.name;
+    p.style.display =
+      tag === "todos" || cat.includes(tag)
+      ? "block" : "none";
   });
 }
 
-/* 💸 PIX */
 function mostrarPix(){
   const pix = document.getElementById("pixArea");
-  pix.style.display = pix.style.display === "none" ? "block" : "none";
+  pix.style.display =
+    pix.style.display === "block" ? "none" : "block";
 }
 </script>
 

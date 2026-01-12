@@ -129,6 +129,30 @@ html, body{
   border-radius: 8px;
   padding: 10px;
   font-size: 15px;
+}/* BOTÃO FLUTUANTE WHATSAPP */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  z-index: 9999;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-float img {
+  width: 32px;
+  height: 32px;
 }
 
 /* HEADER */
@@ -437,10 +461,12 @@ function mostrarPix(){
   <img id="zoomImg">
 </div>
   
+<!-- BOTÃO FLUTUANTE WHATSAPP -->
 <a href="https://wa.me/91 98612-2614" 
-   class="whatsapp-fixo" 
-   target="_blank">
-  💬
+   class="whatsapp-float" 
+   target="_blank"
+   aria-label="Fale conosco no WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
 </a>
   
 </body>

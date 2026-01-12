@@ -6,26 +6,73 @@
 <title>IdolVerse • Photocards</title>
 
 <style>
+:root {
+  --bg: #1e1e2f;
+  --card: #2b2b4f;
+  --text: #fff;
+}
+
+body.dark {
+  --bg: #000;
+  --card: #111;
+  --text: #fff;
+}
+
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg,#1e1e2f,#3a3a6a);
-  color: #fff;
+  background: linear-gradient(135deg,var(--bg),#3a3a6a);
+  color: var(--text);
   margin: 0;
 }
 
 header {
   text-align: center;
-  padding: 20px;
+  padding: 15px;
   font-size: 26px;
   font-weight: bold;
 }
 
-.container {
-  padding: 15px;
+.toggle {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.toggle button {
+  background: #ff4fd8;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.container { padding: 15px; }
+
+.slider {
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.slider img {
+  width: 100%;
+  display: none;
+}
+
+.slider img.active {
+  display: block;
+}
+
+.search input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 15px;
 }
 
 .card {
-  background: #2b2b4f;
+  background: var(--card);
   border-radius: 12px;
   padding: 15px;
   margin-bottom: 15px;
@@ -37,10 +84,15 @@ header {
   border-radius: 10px;
 }
 
-.price {
-  font-size: 20px;
-  margin: 10px 0;
+.play {
+  background: rgba(0,0,0,.6);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-top: 8px;
 }
+
+.price { font-size: 20px; margin: 10px 0; }
 
 button {
   background: #ff4fd8;
@@ -53,25 +105,39 @@ button {
 }
 
 .cart {
-  background: #1c1c3a;
+  background: var(--card);
   padding: 15px;
   border-radius: 12px;
+  margin-top: 20px;
 }
 
-input {
-  width: 100%;
-  padding: 8px;
+.cart-item {
+  display: flex;
+  justify-content: space-between;
   margin: 6px 0;
-  border-radius: 6px;
-  border: none;
+}
+
+.remove {
+  background: red;
+  padding: 2px 8px;
+  font-size: 14px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 8px;
 }
 
 #popup {
   position: fixed;
-  top: 0;
-  left: 0;
-  right:0;
-  bottom:0;
+  inset: 0;
   background: rgba(0,0,0,.7);
   display: none;
   align-items: center;
@@ -84,12 +150,6 @@ input {
   padding: 25px;
   border-radius: 15px;
   text-align: center;
-  animation: zoom .4s ease;
-}
-
-@keyframes zoom {
-  from {transform: scale(.5); opacity:0}
-  to {transform: scale(1); opacity:1}
 }
 </style>
 </head>
@@ -98,43 +158,44 @@ input {
 
 <header>✨ IdolVerse ✨</header>
 
+<div class="toggle">
+  <button onclick="darkMode()">🌙 Modo Escuro</button>
+</div>
+
 <div class="container">
 
-<div class="card">
-<img src="6153704aed21a7b0529cadeb390a2837.jpg">
-<h3>Photocard BTS</h3>
-<p class="price">R$ 19,90</p>
-<button onclick="add('BTS',19.9)">Adicionar</button>
+<!-- SLIDER -->
+<div class="slider">
+  <img src="6153704aed21a7b0529cadeb390a2837.jpg" class="active">
+  <img src="228d29ff27373760144509f828c87bbf.jpg">
+  <img src="947436e5ec7abafca03df765aac0e900.jpg">
 </div>
 
-<div class="card">
-<img src="228d29ff27373760144509f828c87bbf.jpg">
-<h3>Photocard BLACKPINK</h3>
-<p class="price">R$ 21,90</p>
-<button onclick="add('BLACKPINK',21.9)">Adicionar</button>
+<div class="search">
+  <input placeholder="🔍 Buscar photocard..." onkeyup="buscar(this.value)">
 </div>
 
-<div class="card">
-<img src="947436e5ec7abafca03df765aac0e900.jpg">
-<h3>🔥 Combo 2 – 3 Photocards</h3>
-<p class="price">R$ 49,90</p>
-<button onclick="add('COMBO 2',49.9)">Adicionar</button>
+<!-- PRODUTO -->
+<div class="card produto" data-nome="bts">
+  <img src="6153704aed21a7b0529cadeb390a2837.jpg">
+  <div class="play">▶ Ver vídeo</div>
+  <h3>Photocard BTS</h3>
+  <p class="price">R$ 19,90</p>
+  <button onclick="add('BTS',19.9)">Adicionar</button>
 </div>
 
 <div class="cart">
-<h3>🛒 Carrinho</h3>
-<p id="cartItems">Nenhum item</p>
-<p id="total">Total: R$ 0,00</p>
+  <h3>🛒 Carrinho</h3>
+  <div id="cartItems">Nenhum item</div>
+  <p id="total">Total: R$ 0,00</p>
+</div>
 
-<h4>📦 Endereço</h4>
-<input placeholder="Nome completo">
-<input placeholder="Rua e número">
-<input placeholder="Cidade">
-<input placeholder="CEP">
-
-<br><br>
-
-<button onclick="finalizar()">Finalizar Compra</button>
+<!-- GALERIA -->
+<h3>📸 Clientes IdolVerse</h3>
+<div class="gallery">
+  <img src="6153704aed21a7b0529cadeb390a2837.jpg">
+  <img src="228d29ff27373760144509f828c87bbf.jpg">
+  <img src="947436e5ec7abafca03df765aac0e900.jpg">
 </div>
 
 </div>
@@ -142,13 +203,6 @@ input {
 <div id="popup">
   <div>
     <h2>🎉 Obrigado pela compra!</h2>
-    <p>Seu pedido foi registrado com sucesso 💖</p>
-    <p>Finalize o pagamento pelo Mercado Pago</p>
-    <br>
-    <a href="https://link.mercadopago.com.br/SEULINKAQUI" target="_blank">
-      <button>Pagar agora</button>
-    </a>
-    <br><br>
     <button onclick="fechar()">Fechar</button>
   </div>
 </div>
@@ -157,15 +211,52 @@ input {
 let cart = [];
 let total = 0;
 
-function add(nome, preco) {
-  cart.push(nome);
-  total += preco;
-  document.getElementById("cartItems").innerText = cart.join(", ");
-  document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
+/* Dark mode */
+function darkMode() {
+  document.body.classList.toggle("dark");
 }
 
-function finalizar() {
-  document.getElementById("popup").style.display = "flex";
+/* Slider */
+let slide = 0;
+setInterval(() => {
+  const imgs = document.querySelectorAll(".slider img");
+  imgs.forEach(i => i.classList.remove("active"));
+  slide = (slide + 1) % imgs.length;
+  imgs[slide].classList.add("active");
+}, 3000);
+
+/* Carrinho */
+function render() {
+  const box = document.getElementById("cartItems");
+  box.innerHTML = "";
+  cart.forEach((i, n) => {
+    box.innerHTML += `
+      <div class="cart-item">
+        ${i.nome}
+        <button class="remove" onclick="removeItem(${n})">❌</button>
+      </div>`;
+  });
+}
+
+function add(nome, preco) {
+  cart.push({ nome, preco });
+  total += preco;
+  document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
+  render();
+}
+
+function removeItem(i) {
+  total -= cart[i].preco;
+  cart.splice(i,1);
+  document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
+  render();
+}
+
+function buscar(t) {
+  t = t.toLowerCase();
+  document.querySelectorAll(".produto").forEach(p => {
+    p.style.display = p.dataset.nome.includes(t) ? "block" : "none";
+  });
 }
 
 function fechar() {

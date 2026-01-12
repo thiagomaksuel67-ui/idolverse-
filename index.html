@@ -272,6 +272,23 @@ function mostrarPix(){
   pix.style.display=pix.style.display==="none"?"block":"none";
 }
 </script>
+<script>
+function filtrar(tag){
+  const produtos = document.querySelectorAll(".card.produto");
+
+  produtos.forEach(p => {
+    const categorias = p.dataset.name;
+
+    if(tag === "todos"){
+      p.style.display = "block";
+    } else if(categorias.includes(tag)){
+      p.style.display = "block";
+    } else {
+      p.style.display = "none";
+    }
+  });
+}
+</script>
 
 </body>
 </html>

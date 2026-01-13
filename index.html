@@ -6,6 +6,52 @@
 <title>IdolVerse • Photocards</title>
 
 <style>
+  /* SLIDER BTS */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.slider img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: none;
+}
+
+.slider img.active {
+  display: block;
+}
+
+/* SETAS */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  width: 38px;
+  height: 38px;
+  font-size: 22px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.arrow.left {
+  left: 8px;
+}
+
+.arrow.right {
+  right: 8px;
+}
+
+.arrow:hover {
+  background: rgba(255,79,216,0.9);
+}
+
 /* RESET */
 *{box-sizing:border-box}
 html,body{
@@ -222,16 +268,20 @@ header{
 
 <!-- BTS COM GALERIA -->
 <div class="card produto" data-name="bts kpop">
-<img id="btsMain" src="bts1.jpg" onclick="zoomImagem(this.src)">
-<div class="gallery">
-<img src="bts.jpg" onclick="trocarBTS(this.src)">
-<img src="bts1.jpg" onclick="trocarBTS(this.src)">
-<img src="bts2.jpg" onclick="trocarBTS(this.src)">
-<img src="bts3.jpg" onclick="trocarBTS(this.src)">
-</div>
-<h3>BTS</h3>
-<p class="price">R$ 19,90</p>
-<button onclick="addCarrinho('BTS',19.9,'bts1.jpg')">Adicionar</button>
+  <div class="slider">
+    <img id="btsMain" src="bts1.jpg" onclick="zoomImagem(this.src)">
+    <img src="bts.jpg" class="slide active">
+    <img src="bts1.jpg" class="slide">
+    <img src="bts2.jpg" class="slide">
+    <img src="bts3.jpg" class="slide">
+
+    <button class="arrow left" onclick="prevSlide(this)">❮</button>
+    <button class="arrow right" onclick="nextSlide(this)">❯</button>
+  </div>
+
+  <h3>BTS</h3>
+  <p class="price">R$ 19,90</p>
+  <button onclick="addCarrinho('BTS', 19.9, 'bts1.jpg')">Adicionar</button>
 </div>
 
 <div class="card produto" data-name="blackpink kpop">
@@ -356,7 +406,28 @@ function fecharZoom(){
 function trocarBTS(src){
   document.getElementById("btsMain").src=src;
 }
-</script>
+  
+<script>
+function nextSlide(btn){
+  const slider = btn.parentElement;
+  const slides = slider.querySelectorAll(".slide");
+  let index = [...slides].findIndex(s => s.classList.contains("active"));
 
+  slides[index].classList.remove("active");
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}
+
+function prevSlide(btn){
+  const slider = btn.parentElement;
+  const slides = slider.querySelectorAll(".slide");
+  let index = [...slides].findIndex(s => s.classList.contains("active"));
+
+  slides[index].classList.remove("active");
+  index = (index - 1 + slides.length) % slides.length;
+  slides[index].classList.add("active");
+}
+</script>
+  
 </body>
 </html>

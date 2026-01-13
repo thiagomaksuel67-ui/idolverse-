@@ -6,6 +6,14 @@
 <title>IdolVerse • Photocards</title>
 
 <style>
+  #overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  display:none;
+  z-index:998;
+}
+
   #cartBtn{
   position:fixed;
   top:15px;
@@ -233,6 +241,8 @@ header{
 </head>
 
 <body>
+ <div id="overlay" onclick="abrirCarrinho()"></div>
+ 
   <!-- BOTÃO CARRINHO -->
 <div id="cartBtn" onclick="abrirCarrinho()">🛒 <span id="cartCount">0</span></div>
 
@@ -301,60 +311,9 @@ header{
   <button onclick="addCarrinho('Stray Kids', 22.9, 'straykids.jpg')">Adicionar</button>
 </div>
 
-  </div>
-
-  <div class="cart">
-    <h3>🛒 Carrinho</h3>
-    <div id="cartItems">Nenhum item</div>
-    <p id="total">Total: R$ 0,00</p>
-    <button onclick="mostrarPix()">Pagar com PIX</button>
-
-    <div class="pix" id="pixArea">
-      <p><strong>Escaneie o QR Code</strong></p>
-      <img src="pix.png">
-      <p>Pix: <strong>91989305197</strong></p>
-    </div>
-  </div>
-
-</div>
-
 <div id="topo" onclick="window.scrollTo(0,0)">⬆️</div>
 
 <script>
-let cart = [];
-let total = 0;
-
-function renderCart(){
-  const box = document.getElementById("cartItems");
-  box.innerHTML = "";
-  if(!cart.length){
-    box.innerText = "Nenhum item";
-    return;
-  }
-  cart.forEach((item,i)=>{
-    box.innerHTML += `
-      <div class="cart-item">
-        ${item.nome}
-        <button class="remove" onclick="removeItem(${i})">❌</button>
-      </div>`;
-  });
-}
-
-function add(nome, preco){
-  cart.push({nome, preco});
-  total += preco;
-  document.getElementById("total").innerText =
-    "Total: R$ " + total.toFixed(2);
-  renderCart();
-}
-
-function removeItem(i){
-  total -= cart[i].preco;
-  cart.splice(i,1);
-  document.getElementById("total").innerText =
-    "Total: R$ " + total.toFixed(2);
-  renderCart();
-}
 
 function buscar(txt){
   txt = txt.toLowerCase();
@@ -416,12 +375,17 @@ function atualizar(){
 
   carrinho.forEach((item,i)=>{
     if(item.ativo) total += item.preco * item.qtd;
-    count += item.qtd;
+   if(item.ativo) count += item.qtd;
 
+    
     lista.innerHTML += `
       <div class="item-cart">
         <input type="checkbox" ${item.ativo?"checked":""}
-        onchange="item.ativo=this.checked; atualizar()">
+       onchange="toggleAtivo(${i}, this.checked)"
+function toggleAtivo(i, valor){
+  carrinho[i].ativo = valor;
+  atualizar();
+}
 
         <img src="${item.img}">
         <div>
@@ -457,10 +421,10 @@ function finalizar(){
   });
 
   msg += `%0ATotal: R$ ${total.toFixed(2)}`;
-  window.open(`https://wa.me/5591986122614text=${msg}`);
+  window.open(`https://wa.me/5591986122614?text=${msg}`);
 }
   
 </script>
-  
-</body>
-</html>
+    
+</body></html>
+    

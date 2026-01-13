@@ -6,6 +6,70 @@
 <title>IdolVerse • Photocards</title>
 
 <style>
+  #cartBtn{
+  position:fixed;
+  top:15px;
+  right:15px;
+  background:#ff4fd8;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:25px;
+  cursor:pointer;
+  z-index:1000;
+}
+
+#carrinho{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:100%;
+  max-width:400px;
+  height:100vh;
+  background:#1c1c3a;
+  padding:15px;
+  transition:.3s;
+  z-index:999;
+  overflow-y:auto;
+}
+
+#carrinho h2{
+  text-align:center;
+}
+
+.item-cart{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  background:#2b2b4f;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+
+.item-cart img{
+  width:60px;
+  height:60px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+.qtd{
+  display:flex;
+  gap:5px;
+  align-items:center;
+}
+
+.qtd button{
+  padding:4px 8px;
+}
+
+.footer-cart{
+  position:sticky;
+  bottom:0;
+  background:#1c1c3a;
+  padding:10px;
+}
+  
 html, body{
   margin:0;
   padding:0;
@@ -169,6 +233,20 @@ header{
 </head>
 
 <body>
+  <!-- BOTÃO CARRINHO -->
+<div id="cartBtn" onclick="abrirCarrinho()">🛒 <span id="cartCount">0</span></div>
+
+<!-- CARRINHO -->
+<div id="carrinho">
+  <h2>Carrinho</h2>
+
+  <div id="listaCarrinho"></div>
+
+  <div class="footer-cart">
+    <p>Total: <strong id="total">R$ 0,00</strong></p>
+    <button onclick="finalizar()">Finalizar no WhatsApp</button>
+  </div>
+</div>
 
 <header>✨ IdolVerse ✨</header>
 
@@ -192,33 +270,35 @@ header{
       <img src="bts.jpg" onclick="zoomImagem(this.src)">
       <h3>BTS</h3>
       <p class="price">R$ 19,90</p>
-      <button onclick="add('BTS',19.9)">Comprar</button>
+      <button onclick="addCarrinho('BTS',19.9,'bts.jpg')">Adicionar</button>
     </div>
 
     <div class="card produto" data-name="neymar futebol">
       <img src="neymar.jpg" onclick="zoomImagem(this.src)">
       <h3>Neymar Jr</h3>
       <p class="price">R$ 24,90</p>
-      <button onclick="add('Neymar',24.9)">Comprar</button>
+      <button onclick="addCarrinho('Neymar Jr', 24.9, 'neymar.jpg')">Adicionar</button>
     </div>
 
     <div class="card produto" data-name="stranger things filmes">
       <img src="stranger-things.jpg" onclick="zoomImagem(this.src)">
       <h3>Stranger Things</h3>
       <p class="price">R$ 29,90</p>
-      <button onclick="add('Stranger Things',29.9)">Comprar</button>
+      <button onclick="addCarrinho('Stranger Things', 29.9, 'stranger-things.jpg')">Adicionar</button>
     </div>
+    
 <div class="card produto" data-name="blackpink kpop">
   <img src="blackpink.jpg" onclick="zoomImagem(this.src)">
   <h3>BLACKPINK</h3>
   <p class="price">R$ 21,90</p>
-  <button onclick="add('BLACKPINK',21.9)">Comprar</button>
+  <button onclick="addCarrinho('BLACKPINK', 21.9, 'blackpink.jpg')">Adicionar</button>
 </div>
+    
     <div class="card produto" data-name="straykids kpop">
   <img src="straykids.jpg" onclick="zoomImagem(this.src)">
   <h3>Stray Kids</h3>
   <p class="price">R$ 22,90</p>
-  <button onclick="add('Stray Kids',22.9)">Comprar</button>
+  <button onclick="addCarrinho('Stray Kids', 22.9, 'straykids.jpg')">Adicionar</button>
 </div>
 
   </div>
@@ -315,6 +395,72 @@ function fecharZoom(){
   <span class="zoom-close">✖</span>
   <img id="zoomImg">
 </div>
+<script>
+let carrinho = [];
 
+function addCarrinho(nome, preco, img){
+  const item = carrinho.find(i => i.nome === nome);
+  if(item){
+    item.qtd++;
+  }else{
+    carrinho.push({nome, preco, img, qtd:1, ativo:true});
+  }
+  atualizar();
+}
+
+function atualizar(){
+  const lista = document.getElementById("listaCarrinho");
+  lista.innerHTML = "";
+  let total = 0;
+  let count = 0;
+
+  carrinho.forEach((item,i)=>{
+    if(item.ativo) total += item.preco * item.qtd;
+    count += item.qtd;
+
+    lista.innerHTML += `
+      <div class="item-cart">
+        <input type="checkbox" ${item.ativo?"checked":""}
+        onchange="item.ativo=this.checked; atualizar()">
+
+        <img src="${item.img}">
+        <div>
+          <p>${item.nome}</p>
+          <p>R$ ${item.preco.toFixed(2)}</p>
+          <div class="qtd">
+            <button onclick="item.qtd--; if(item.qtd<=0) carrinho.splice(${i},1); atualizar()">-</button>
+            ${item.qtd}
+            <button onclick="item.qtd++; atualizar()">+</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById("total").innerText =
+    "R$ " + total.toFixed(2);
+  document.getElementById("cartCount").innerText = count;
+}
+
+function abrirCarrinho(){
+  const c = document.getElementById("carrinho");
+  c.style.right = c.style.right === "0px" ? "-100%" : "0";
+}
+
+function finalizar(){
+  let msg = "🛒 Pedido:%0A";
+  let total = 0;
+
+  carrinho.filter(i=>i.ativo).forEach(i=>{
+    msg += `• ${i.nome} x${i.qtd}%0A`;
+    total += i.preco * i.qtd;
+  });
+
+  msg += `%0ATotal: R$ ${total.toFixed(2)}`;
+  window.open(`https://wa.me/5591999999999?text=${msg}`);
+}
+  
+</script>
+  
 </body>
 </html>

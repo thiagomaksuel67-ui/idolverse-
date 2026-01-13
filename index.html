@@ -6,114 +6,12 @@
 <title>IdolVerse • Photocards</title>
 
 <style>
-  #overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.5);
-  display:none;
-  z-index:998;
-}
-
-  #cartBtn{
-  position:fixed;
-  top:15px;
-  right:15px;
-  background:#ff4fd8;
-  color:#fff;
-  padding:10px 15px;
-  border-radius:25px;
-  cursor:pointer;
-  z-index:1000;
-}
-
-#carrinho{
-  position:fixed;
-  top:0;
-  right:-100%;
-  width:100%;
-  max-width:400px;
-  height:100vh;
-  background:#1c1c3a;
-  padding:15px;
-  transition:.3s;
-  z-index:999;
-  overflow-y:auto;
-}
-
-#carrinho h2{
-  text-align:center;
-}
-
-.item-cart{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  background:#2b2b4f;
-  padding:10px;
-  border-radius:10px;
-  margin-bottom:10px;
-}
-
-.item-cart img{
-  width:45px;
-  height:45px;
-  object-fit:cover;
-  border-radius:6px;
-}
-
-.qtd{
-  display:flex;
-  gap:5px;
-  align-items:center;
-}
-
-.qtd button{
-  padding:4px 8px;
-}
-
-.footer-cart{
-  position:sticky;
-  bottom:0;
-  background:#1c1c3a;
-  padding:10px;
-}
-  
-html, body{
+*{box-sizing:border-box}
+body{
   margin:0;
-  padding:0;
-  min-height:100%;
   font-family:Arial, sans-serif;
   background:linear-gradient(135deg,#1e1e2f,#3a3a6a);
   color:#fff;
-}/* 🖼️ ZOOM IMAGEM */
-.zoom-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.zoom-overlay img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(255,79,216,0.6);
-}
-
-/* Botão fechar */
-.zoom-close {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  font-size: 30px;
-  color: #fff;
-  cursor: pointer;
 }
 
 /* HEADER */
@@ -128,10 +26,75 @@ header{
   z-index:10;
 }
 
-/* CONTAINER */
-.container{
-  padding:15px;
+/* CARRINHO BOTÃO */
+#cartBtn{
+  position:fixed;
+  top:15px;
+  right:15px;
+  background:#ff4fd8;
+  padding:10px 15px;
+  border-radius:25px;
+  cursor:pointer;
+  z-index:1000;
 }
+
+/* OVERLAY */
+#overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  z-index:998;
+}
+
+/* CARRINHO */
+#carrinho{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:100%;
+  max-width:360px;
+  height:100vh;
+  background:#1c1c3a;
+  padding:15px;
+  transition:.3s;
+  z-index:999;
+  overflow-y:auto;
+}
+#carrinho h2{text-align:center}
+
+/* ITEM CARRINHO */
+.item-cart{
+  display:flex;
+  gap:10px;
+  background:#2b2b4f;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:10px;
+  align-items:center;
+}
+.item-cart img{
+  width:45px;
+  height:45px;
+  object-fit:cover;
+  border-radius:6px;
+}
+.qtd{
+  display:flex;
+  gap:5px;
+  align-items:center;
+}
+.qtd button{
+  background:#ff4fd8;
+  border:none;
+  color:#fff;
+  padding:4px 8px;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+/* CONTAINER */
+.container{padding:15px}
 
 /* BUSCA */
 .search input{
@@ -139,7 +102,6 @@ header{
   padding:12px;
   border-radius:10px;
   border:none;
-  font-size:16px;
   margin-bottom:15px;
 }
 
@@ -148,7 +110,7 @@ header{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
-  margin-bottom:20px;
+  margin-bottom:15px;
 }
 .tags-menu button{
   padding:8px 14px;
@@ -159,37 +121,29 @@ header{
   cursor:pointer;
 }
 
-/* GRID PRODUTOS */
+/* PRODUTOS */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:15px;
 }
-
-/* CARD */
-.card.produto{
+.card{
   background:#2b2b4f;
   border-radius:15px;
   overflow:hidden;
   text-align:center;
-  padding-bottom:12px;
+  padding-bottom:10px;
 }
-.card.produto img{
+.card img{
   width:100%;
-  height:200px;
+  height:180px;
   object-fit:cover;
+  cursor:pointer;
 }
-.card.produto h3{
-  margin:8px 0 4px;
-}
-.price{
-  color:#ffb3f0;
-  font-weight:bold;
-}
-.card.produto button{
-  margin-top:8px;
-  padding:10px;
+.price{color:#ffb3f0;font-weight:bold}
+.card button{
   width:90%;
+  padding:10px;
   border:none;
   border-radius:20px;
   background:#ff4fd8;
@@ -197,73 +151,48 @@ header{
   cursor:pointer;
 }
 
-/* CARRINHO */
-.cart{
-  margin-top:30px;
-  background:#1c1c3a;
-  padding:15px;
-  border-radius:15px;
-}
-.cart-item{
-  display:flex;
-  justify-content:space-between;
-  margin:6px 0;
-}
-.remove{
-  background:#ff3b3b;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
-}
-
-/* PIX */
-.pix{
-  display:none;
-  margin-top:15px;
-  text-align:center;
-}
-.pix img{
-  width:180px;
-  border-radius:10px;
-}
-
-/* BOTÃO TOPO */
-#topo{
+/* ZOOM */
+.zoom-overlay{
   position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#ff4fd8;
-  border-radius:50%;
-  padding:10px 14px;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+.zoom-overlay img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+}
+.zoom-close{
+  position:absolute;
+  top:20px;
+  right:25px;
+  font-size:30px;
   cursor:pointer;
 }
 </style>
 </head>
 
 <body>
- 
-  <!-- BOTÃO CARRINHO -->
-<div id="cartBtn" onclick="abrirCarrinho()">🛒 <span id="cartCount">0</span></div>
 
-<!-- CARRINHO -->
+<div id="overlay" onclick="toggleCarrinho()"></div>
+<div id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></div>
+
 <div id="carrinho">
   <h2>Carrinho</h2>
-
   <div id="listaCarrinho"></div>
-
-  <div class="footer-cart">
-    <p>Total: <strong id="total">R$ 0,00</strong></p>
-    <button onclick="finalizar()">Finalizar no WhatsApp</button>
-  </div>
+  <p><strong>Total: R$ <span id="total">0.00</span></strong></p>
+  <button onclick="finalizar()">Finalizar no WhatsApp</button>
 </div>
 
 <header>✨ IdolVerse ✨</header>
 
 <div class="container">
-
   <div class="search">
-    <input type="text" placeholder="🔍 Buscar BTS, Neymar, Stranger Things..."
-    onkeyup="buscar(this.value)">
+    <input placeholder="Buscar..." onkeyup="buscar(this.value)">
   </div>
 
   <div class="tags-menu">
@@ -276,189 +205,131 @@ header{
   <div class="products">
 
     <div class="card produto" data-name="bts kpop">
-      <img src="bts.jpg" onclick="zoomImagem(this.src)">
+      <img src="bts.jpg" onclick="zoom(this.src)">
       <h3>BTS</h3>
       <p class="price">R$ 19,90</p>
-      <button onclick="addCarrinho('BTS',19.9,'bts.jpg')">Adicionar</button>
+      <button onclick="add('BTS',19.9,'bts.jpg')">Adicionar</button>
+    </div>
+
+    <div class="card produto" data-name="blackpink kpop">
+      <img src="blackpink.jpg" onclick="zoom(this.src)">
+      <h3>BLACKPINK</h3>
+      <p class="price">R$ 21,90</p>
+      <button onclick="add('BLACKPINK',21.9,'blackpink.jpg')">Adicionar</button>
+    </div>
+
+    <div class="card produto" data-name="straykids kpop">
+      <img src="straykids.jpg" onclick="zoom(this.src)">
+      <h3>Stray Kids</h3>
+      <p class="price">R$ 22,90</p>
+      <button onclick="add('Stray Kids',22.9,'straykids.jpg')">Adicionar</button>
     </div>
 
     <div class="card produto" data-name="neymar futebol">
-      <img src="neymar.jpg" onclick="zoomImagem(this.src)">
+      <img src="neymar.jpg" onclick="zoom(this.src)">
       <h3>Neymar Jr</h3>
       <p class="price">R$ 24,90</p>
-      <button onclick="addCarrinho('Neymar Jr', 24.9, 'neymar.jpg')">Adicionar</button>
+      <button onclick="add('Neymar Jr',24.9,'neymar.jpg')">Adicionar</button>
     </div>
 
     <div class="card produto" data-name="stranger things filmes">
-      <img src="stranger-things.jpg" onclick="zoomImagem(this.src)">
+      <img src="stranger-things.jpg" onclick="zoom(this.src)">
       <h3>Stranger Things</h3>
       <p class="price">R$ 29,90</p>
-      <button onclick="addCarrinho('Stranger Things', 29.9, 'stranger-things.jpg')">Adicionar</button>
+      <button onclick="add('Stranger Things',29.9,'stranger-things.jpg')">Adicionar</button>
     </div>
-    
-<div class="card produto" data-name="blackpink kpop">
-  <img src="blackpink.jpg" onclick="zoomImagem(this.src)">
-  <h3>BLACKPINK</h3>
-  <p class="price">R$ 21,90</p>
-  <button onclick="addCarrinho('BLACKPINK', 21.9, 'blackpink.jpg')">Adicionar</button>
-</div>
-    
-    <div class="card produto" data-name="straykids kpop">
-  <img src="straykids.jpg" onclick="zoomImagem(this.src)">
-  <h3>Stray Kids</h3>
-  <p class="price">R$ 22,90</p>
-  <button onclick="addCarrinho('Stray Kids', 22.9, 'straykids.jpg')">Adicionar</button>
+
+  </div>
 </div>
 
-<div id="topo" onclick="window.scrollTo(0,0)">⬆️</div>
-
-<script>
-  function abrirCarrinho(){
-  const c = document.getElementById("carrinho");
-  const o = document.getElementById("overlay");
-
-  if(c.style.right === "0px"){
-    c.style.right = "-100%";
-    o.style.display = "none";
-  }else{
-    c.style.right = "0";
-    o.style.display = "block";
-  }
-}
-
-  function toggleAtivo(i, valor){
-  carrinho[i].ativo = valor;
-  atualizar();
-}
-
-
-function buscar(txt){
-  txt = txt.toLowerCase();
-  document.querySelectorAll(".card.produto").forEach(p=>{
-    p.style.display = p.dataset.name.includes(txt)
-      ? "block" : "none";
-  });
-}
-
-function filtrar(tag){
-  document.querySelectorAll(".card.produto").forEach(p=>{
-    const cat = p.dataset.name;
-    p.style.display =
-      tag === "todos" || cat.includes(tag)
-      ? "block" : "none";
-  });
-}
-
-function mostrarPix(){
-  const pix = document.getElementById("pixArea");
-  pix.style.display =
-    pix.style.display === "block" ? "none" : "block";
-}/* 🔍 ZOOM DA IMAGEM */
-function zoomImagem(src){
-  const overlay = document.getElementById("zoomOverlay");
-  const img = document.getElementById("zoomImg");
-  img.src = src;
-  overlay.style.display = "flex";
-}
-
-function fecharZoom(){
-  document.getElementById("zoomOverlay").style.display = "none";
-}
-  
-</script>
-<!-- ZOOM IMAGEM -->
-<div class="zoom-overlay" id="zoomOverlay" onclick="fecharZoom()">
+<div class="zoom-overlay" id="zoomBox" onclick="closeZoom()">
   <span class="zoom-close">✖</span>
   <img id="zoomImg">
 </div>
-<script>
-let carrinho = [];
 
-function addCarrinho(nome, preco, img){
-  const item = carrinho.find(i => i.nome === nome);
-  if(item){
-    item.qtd++;
-  }else{
-    carrinho.push({nome, preco, img, qtd:1, ativo:true});
-  }
-  atualizar();
+<script>
+let carrinho=[];
+
+function add(nome,preco,img){
+  let item=carrinho.find(i=>i.nome===nome);
+  if(item){item.qtd++}
+  else{carrinho.push({nome,preco,img,qtd:1})}
+  render();
 }
 
-<script>
-function atualizar(){
-  const lista = document.getElementById("listaCarrinho");
-  lista.innerHTML = "";
-  let total = 0;
-  let count = 0;
-
-  carrinho.forEach((item,i)=>{
-    if(item.ativo){
-      total += item.preco * item.qtd;
-      count += item.qtd;
-    }
-
-    lista.innerHTML += `
+function render(){
+  let lista=document.getElementById("listaCarrinho");
+  let total=0,count=0;
+  lista.innerHTML="";
+  carrinho.forEach((i,idx)=>{
+    total+=i.preco*i.qtd;
+    count+=i.qtd;
+    lista.innerHTML+=`
       <div class="item-cart">
-        <input type="checkbox" ${item.ativo ? "checked" : ""}
-          onchange="toggleAtivo(${i}, this.checked)">
-        
-        <img src="${item.img}">
-        
-        <div style="flex:1">
-          <p>${item.nome}</p>
-          <p>R$ ${item.preco.toFixed(2)}</p>
-
+        <img src="${i.img}">
+        <div>
+          <p>${i.nome}</p>
+          <p>R$ ${i.preco.toFixed(2)}</p>
           <div class="qtd">
-            <button onclick="diminuir(${i})">−</button>
-            <span>${item.qtd}</span>
-            <button onclick="aumentar(${i})">+</button>
+            <button onclick="qtd(${idx},-1)">−</button>
+            ${i.qtd}
+            <button onclick="qtd(${idx},1)">+</button>
           </div>
         </div>
-      </div>
-    `;
+      </div>`;
   });
-
-  document.getElementById("total").innerText = "R$ " + total.toFixed(2);
-  document.getElementById("cartCount").innerText = count;
-}
-  <script>
-function aumentar(i){
-  carrinho[i].qtd++;
-  atualizar();
+  document.getElementById("total").innerText=total.toFixed(2);
+  document.getElementById("cartCount").innerText=count;
 }
 
-function diminuir(i){
-  carrinho[i].qtd--;
-  if(carrinho[i].qtd <= 0){
-    carrinho.splice(i,1);
-  }
-  atualizar();
+function qtd(i,v){
+  carrinho[i].qtd+=v;
+  if(carrinho[i].qtd<=0) carrinho.splice(i,1);
+  render();
 }
 
-function toggleAtivo(i, valor){
-  carrinho[i].ativo = valor;
-  atualizar();
-}
-
-function abrirCarrinho(){
-  const c = document.getElementById("carrinho");
-  c.style.right = c.style.right === "0px" ? "-100%" : "0";
+function toggleCarrinho(){
+  let c=document.getElementById("carrinho");
+  let o=document.getElementById("overlay");
+  let aberto=c.style.right==="0px";
+  c.style.right=aberto?"-100%":"0";
+  o.style.display=aberto?"none":"block";
 }
 
 function finalizar(){
-  let msg = "🛒 Pedido:%0A";
-  let total = 0;
-
-  carrinho.filter(i=>i.ativo).forEach(i=>{
-    msg += `• ${i.nome} x${i.qtd}%0A`;
-    total += i.preco * i.qtd;
+  let msg="🛒 Pedido:%0A";
+  let total=0;
+  carrinho.forEach(i=>{
+    msg+=`• ${i.nome} x${i.qtd}%0A`;
+    total+=i.preco*i.qtd;
   });
-
-  msg += `%0ATotal: R$ ${total.toFixed(2)}`;
-  window.open(`https://wa.me/5591986122614?text=${msg}`);
+  msg+=`%0ATotal: R$ ${total.toFixed(2)}`;
+  window.open("https://wa.me/5591986122614?text="+msg);
 }
-  
+
+function buscar(t){
+  t=t.toLowerCase();
+  document.querySelectorAll(".produto").forEach(p=>{
+    p.style.display=p.dataset.name.includes(t)?"block":"none";
+  });
+}
+
+function filtrar(t){
+  document.querySelectorAll(".produto").forEach(p=>{
+    p.style.display=t==="todos"||p.dataset.name.includes(t)?"block":"none";
+  });
+}
+
+function zoom(src){
+  document.getElementById("zoomImg").src=src;
+  document.getElementById("zoomBox").style.display="flex";
+}
+function closeZoom(){
+  document.getElementById("zoomBox").style.display="none";
+}
 </script>
-    
-</body></html>
+
+</body>
+</html>
+
     

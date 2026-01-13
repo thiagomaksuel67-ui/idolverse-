@@ -6,8 +6,9 @@
 <title>IdolVerse • Photocards</title>
 
 <style>
+/* RESET */
 *{box-sizing:border-box}
-body{
+html,body{
   margin:0;
   font-family:Arial, sans-serif;
   background:linear-gradient(135deg,#1e1e2f,#3a3a6a);
@@ -26,7 +27,7 @@ header{
   z-index:10;
 }
 
-/* CARRINHO BOTÃO */
+/* BOTÃO CARRINHO */
 #cartBtn{
   position:fixed;
   top:15px;
@@ -42,7 +43,7 @@ header{
 #overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,.5);
   display:none;
   z-index:998;
 }
@@ -53,7 +54,7 @@ header{
   top:0;
   right:-100%;
   width:100%;
-  max-width:360px;
+  max-width:380px;
   height:100vh;
   background:#1c1c3a;
   padding:15px;
@@ -61,9 +62,6 @@ header{
   z-index:999;
   overflow-y:auto;
 }
-#carrinho h2{text-align:center}
-
-/* ITEM CARRINHO */
 .item-cart{
   display:flex;
   gap:10px;
@@ -79,18 +77,15 @@ header{
   object-fit:cover;
   border-radius:6px;
 }
-.qtd{
-  display:flex;
-  gap:5px;
-  align-items:center;
-}
 .qtd button{
-  background:#ff4fd8;
-  border:none;
-  color:#fff;
-  padding:4px 8px;
-  border-radius:5px;
+  padding:3px 7px;
   cursor:pointer;
+}
+.footer-cart{
+  position:sticky;
+  bottom:0;
+  background:#1c1c3a;
+  padding:10px;
 }
 
 /* CONTAINER */
@@ -110,10 +105,42 @@ header{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
-  margin-bottom:15px;
+  margin-bottom:20px;
 }
 .tags-menu button{
+  border:none;
+  border-radius:20px;
   padding:8px 14px;
+  background:#ff4fd8;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* GRID */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+}
+
+/* CARD */
+.card{
+  background:#2b2b4f;
+  border-radius:15px;
+  overflow:hidden;
+  text-align:center;
+}
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  cursor:pointer;
+}
+.price{color:#ffb3f0;font-weight:bold}
+.card button{
+  margin:10px;
+  padding:10px;
+  width:90%;
   border:none;
   border-radius:20px;
   background:#ff4fd8;
@@ -121,33 +148,18 @@ header{
   cursor:pointer;
 }
 
-/* PRODUTOS */
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:15px;
+/* GALERIA BTS */
+.gallery{
+  display:flex;
+  gap:5px;
+  justify-content:center;
+  margin-bottom:8px;
 }
-.card{
-  background:#2b2b4f;
-  border-radius:15px;
-  overflow:hidden;
-  text-align:center;
-  padding-bottom:10px;
-}
-.card img{
-  width:100%;
-  height:180px;
+.gallery img{
+  width:40px;
+  height:40px;
   object-fit:cover;
-  cursor:pointer;
-}
-.price{color:#ffb3f0;font-weight:bold}
-.card button{
-  width:90%;
-  padding:10px;
-  border:none;
-  border-radius:20px;
-  background:#ff4fd8;
-  color:#fff;
+  border-radius:6px;
   cursor:pointer;
 }
 
@@ -179,85 +191,82 @@ header{
 <body>
 
 <div id="overlay" onclick="toggleCarrinho()"></div>
+
 <div id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></div>
 
 <div id="carrinho">
   <h2>Carrinho</h2>
   <div id="listaCarrinho"></div>
-  <p><strong>Total: R$ <span id="total">0.00</span></strong></p>
-  <button onclick="finalizar()">Finalizar no WhatsApp</button>
+  <div class="footer-cart">
+    <p>Total: <strong id="total">R$ 0,00</strong></p>
+    <button onclick="finalizar()">Finalizar no WhatsApp</button>
+  </div>
 </div>
 
 <header>✨ IdolVerse ✨</header>
 
 <div class="container">
-  <div class="search">
-    <input placeholder="Buscar..." onkeyup="buscar(this.value)">
-  </div>
 
-  <div class="tags-menu">
-    <button onclick="filtrar('todos')">Todos</button>
-    <button onclick="filtrar('kpop')">K‑POP</button>
-    <button onclick="filtrar('futebol')">Futebol</button>
-    <button onclick="filtrar('filmes')">Filmes & Séries</button>
-  </div>
-
-  <div class="products">
-
-    <div class="card produto" data-name="bts kpop">
-      <img src="bts.jpg" onclick="zoom(this.src)">
-      <h3>BTS</h3>
-      <p class="price">R$ 19,90</p>
-      <button onclick="add('BTS',19.9,'bts.jpg')">Adicionar</button>
-    </div>
-
-    <div class="card produto" data-name="blackpink kpop">
-      <img src="blackpink.jpg" onclick="zoom(this.src)">
-      <h3>BLACKPINK</h3>
-      <p class="price">R$ 21,90</p>
-      <button onclick="add('BLACKPINK',21.9,'blackpink.jpg')">Adicionar</button>
-    </div>
-
-    <div class="card produto" data-name="straykids kpop">
-      <img src="straykids.jpg" onclick="zoom(this.src)">
-      <h3>Stray Kids</h3>
-      <p class="price">R$ 22,90</p>
-      <button onclick="add('Stray Kids',22.9,'straykids.jpg')">Adicionar</button>
-    </div>
-
-    <div class="card produto" data-name="neymar futebol">
-      <img src="neymar.jpg" onclick="zoom(this.src)">
-      <h3>Neymar Jr</h3>
-      <p class="price">R$ 24,90</p>
-      <button onclick="add('Neymar Jr',24.9,'neymar.jpg')">Adicionar</button>
-    </div>
-
-    <div class="card produto" data-name="stranger things filmes">
-      <img src="stranger-things.jpg" onclick="zoom(this.src)">
-      <h3>Stranger Things</h3>
-      <p class="price">R$ 29,90</p>
-      <button onclick="add('Stranger Things',29.9,'stranger-things.jpg')">Adicionar</button>
-    </div>
-
-  </div>
+<div class="search">
+<input placeholder="🔍 Buscar..." onkeyup="buscar(this.value)">
 </div>
 
-<div class="zoom-overlay" id="zoomBox" onclick="closeZoom()">
-  <span class="zoom-close">✖</span>
-  <img id="zoomImg">
+<div class="tags-menu">
+<button onclick="filtrar('todos')">Todos</button>
+<button onclick="filtrar('kpop')">K‑POP</button>
+<button onclick="filtrar('futebol')">Futebol</button>
+<button onclick="filtrar('filmes')">Filmes</button>
+</div>
+
+<div class="products">
+
+<!-- BTS COM GALERIA -->
+<div class="card produto" data-name="bts kpop">
+<img id="btsMain" src="bts1.jpg" onclick="zoomImagem(this.src)">
+<div class="gallery">
+<img src="bts1.jpg" onclick="trocarBTS(this.src)">
+<img src="bts2.jpg" onclick="trocarBTS(this.src)">
+<img src="bts3.jpg" onclick="trocarBTS(this.src)">
+</div>
+<h3>BTS</h3>
+<p class="price">R$ 19,90</p>
+<button onclick="addCarrinho('BTS',19.9,'bts1.jpg')">Adicionar</button>
+</div>
+
+<div class="card produto" data-name="blackpink kpop">
+<img src="blackpink.jpg" onclick="zoomImagem(this.src)">
+<h3>BLACKPINK</h3>
+<p class="price">R$ 21,90</p>
+<button onclick="addCarrinho('BLACKPINK',21.9,'blackpink.jpg')">Adicionar</button>
+</div>
+
+<div class="card produto" data-name="straykids kpop">
+<img src="straykids.jpg" onclick="zoomImagem(this.src)">
+<h3>Stray Kids</h3>
+<p class="price">R$ 22,90</p>
+<button onclick="addCarrinho('Stray Kids',22.9,'straykids.jpg')">Adicionar</button>
+</div>
+
+</div>
+</div>
+
+<!-- ZOOM -->
+<div class="zoom-overlay" id="zoomOverlay" onclick="fecharZoom()">
+<span class="zoom-close">✖</span>
+<img id="zoomImg">
 </div>
 
 <script>
 let carrinho=[];
 
-function add(nome,preco,img){
+function addCarrinho(nome,preco,img){
   let item=carrinho.find(i=>i.nome===nome);
-  if(item){item.qtd++}
-  else{carrinho.push({nome,preco,img,qtd:1})}
-  render();
+  if(item)item.qtd++;
+  else carrinho.push({nome,preco,img,qtd:1});
+  atualizar();
 }
 
-function render(){
+function atualizar(){
   let lista=document.getElementById("listaCarrinho");
   let total=0,count=0;
   lista.innerHTML="";
@@ -265,27 +274,27 @@ function render(){
     total+=i.preco*i.qtd;
     count+=i.qtd;
     lista.innerHTML+=`
-      <div class="item-cart">
-        <img src="${i.img}">
-        <div>
-          <p>${i.nome}</p>
-          <p>R$ ${i.preco.toFixed(2)}</p>
-          <div class="qtd">
-            <button onclick="qtd(${idx},-1)">−</button>
-            ${i.qtd}
-            <button onclick="qtd(${idx},1)">+</button>
-          </div>
+    <div class="item-cart">
+      <img src="${i.img}">
+      <div>
+        <p>${i.nome}</p>
+        <p>R$ ${i.preco.toFixed(2)}</p>
+        <div class="qtd">
+          <button onclick="alterarQtd(${idx},-1)">-</button>
+          ${i.qtd}
+          <button onclick="alterarQtd(${idx},1)">+</button>
         </div>
-      </div>`;
+      </div>
+    </div>`;
   });
-  document.getElementById("total").innerText=total.toFixed(2);
+  document.getElementById("total").innerText="R$ "+total.toFixed(2);
   document.getElementById("cartCount").innerText=count;
 }
 
-function qtd(i,v){
+function alterarQtd(i,v){
   carrinho[i].qtd+=v;
-  if(carrinho[i].qtd<=0) carrinho.splice(i,1);
-  render();
+  if(carrinho[i].qtd<=0)carrinho.splice(i,1);
+  atualizar();
 }
 
 function toggleCarrinho(){
@@ -304,28 +313,34 @@ function finalizar(){
     total+=i.preco*i.qtd;
   });
   msg+=`%0ATotal: R$ ${total.toFixed(2)}`;
-  window.open("https://wa.me/5591986122614?text="+msg);
+  window.open(`https://wa.me/5591986122614?text=${msg}`);
 }
 
+/* FILTRO */
 function buscar(t){
   t=t.toLowerCase();
   document.querySelectorAll(".produto").forEach(p=>{
     p.style.display=p.dataset.name.includes(t)?"block":"none";
   });
 }
-
-function filtrar(t){
+function filtrar(tag){
   document.querySelectorAll(".produto").forEach(p=>{
-    p.style.display=t==="todos"||p.dataset.name.includes(t)?"block":"none";
+    p.style.display=(tag==="todos"||p.dataset.name.includes(tag))?"block":"none";
   });
 }
 
-function zoom(src){
+/* ZOOM */
+function zoomImagem(src){
   document.getElementById("zoomImg").src=src;
-  document.getElementById("zoomBox").style.display="flex";
+  document.getElementById("zoomOverlay").style.display="flex";
 }
-function closeZoom(){
-  document.getElementById("zoomBox").style.display="none";
+function fecharZoom(){
+  document.getElementById("zoomOverlay").style.display="none";
+}
+
+/* GALERIA BTS */
+function trocarBTS(src){
+  document.getElementById("btsMain").src=src;
 }
 </script>
 

@@ -300,10 +300,10 @@ function finalizar(){
   let msg="🛒 Pedido:%0A";
   let total=0;
   carrinho.forEach(i=>{
-    msg+=• ${i.nome} x${i.qtd}%0A;
+    msg+=`• ${i.nome} x${i.qtd}%0A`;
     total+=i.preco*i.qtd;
   });
-  msg+=%0ATotal: R$ ${total.toFixed(2)};
+  msg+=`%0ATotal: R$ ${total.toFixed(2)}`;
   window.open("https://wa.me/5591986122614?text="+msg);
 }
 
@@ -331,4 +331,3 @@ function closeZoom(){
 
 </body>
 </html>
-    

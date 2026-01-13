@@ -241,7 +241,6 @@ header{
 </head>
 
 <body>
- <div id="overlay" onclick="abrirCarrinho()"></div>
  
   <!-- BOTÃO CARRINHO -->
 <div id="cartBtn" onclick="abrirCarrinho()">🛒 <span id="cartCount">0</span></div>
@@ -314,6 +313,24 @@ header{
 <div id="topo" onclick="window.scrollTo(0,0)">⬆️</div>
 
 <script>
+  function abrirCarrinho(){
+  const c = document.getElementById("carrinho");
+  const o = document.getElementById("overlay");
+
+  if(c.style.right === "0px"){
+    c.style.right = "-100%";
+    o.style.display = "none";
+  }else{
+    c.style.right = "0";
+    o.style.display = "block";
+  }
+}
+
+  function toggleAtivo(i, valor){
+  carrinho[i].ativo = valor;
+  atualizar();
+}
+
 
 function buscar(txt){
   txt = txt.toLowerCase();
@@ -379,13 +396,8 @@ function atualizar(){
 
     
     lista.innerHTML += `
-      <div class="item-cart">
-        <input type="checkbox" ${item.ativo?"checked":""}
-       onchange="toggleAtivo(${i}, this.checked)"
-function toggleAtivo(i, valor){
-  carrinho[i].ativo = valor;
-  atualizar();
-}
+     <input type="checkbox" ${item.ativo ? "checked" : ""}
+onchange="toggleAtivo(${i}, this.checked)">
 
         <img src="${item.img}">
         <div>

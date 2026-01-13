@@ -6,62 +6,13 @@
 <title>IdolVerse • Photocards</title>
 
 <style>
-  /* SLIDER BTS */
-.slider {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-}
-
-.slider img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: none;
-}
-
-.slider img.active {
-  display: block;
-}
-
-/* SETAS */
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  border: none;
-  width: 38px;
-  height: 38px;
-  font-size: 22px;
-  cursor: pointer;
-  border-radius: 8px;
-}
-
-.arrow.left {
-  left: 8px;
-}
-
-.arrow.right {
-  right: 8px;
-}
-
-.arrow:hover {
-  background: rgba(255,79,216,0.9);
-}
-
-/* RESET */
 *{box-sizing:border-box}
-html,body{
+body{
   margin:0;
   font-family:Arial, sans-serif;
   background:linear-gradient(135deg,#1e1e2f,#3a3a6a);
   color:#fff;
 }
-
-/* HEADER */
 header{
   position:sticky;
   top:0;
@@ -70,10 +21,7 @@ header{
   text-align:center;
   font-size:24px;
   font-weight:bold;
-  z-index:10;
 }
-
-/* BOTÃO CARRINHO */
 #cartBtn{
   position:fixed;
   top:15px;
@@ -84,8 +32,6 @@ header{
   cursor:pointer;
   z-index:1000;
 }
-
-/* OVERLAY */
 #overlay{
   position:fixed;
   inset:0;
@@ -93,20 +39,17 @@ header{
   display:none;
   z-index:998;
 }
-
-/* CARRINHO */
 #carrinho{
   position:fixed;
   top:0;
   right:-100%;
   width:100%;
-  max-width:380px;
+  max-width:360px;
   height:100vh;
   background:#1c1c3a;
   padding:15px;
   transition:.3s;
   z-index:999;
-  overflow-y:auto;
 }
 .item-cart{
   display:flex;
@@ -115,7 +58,6 @@ header{
   padding:10px;
   border-radius:10px;
   margin-bottom:10px;
-  align-items:center;
 }
 .item-cart img{
   width:45px;
@@ -124,52 +66,15 @@ header{
   border-radius:6px;
 }
 .qtd button{
-  padding:3px 7px;
+  padding:3px 8px;
   cursor:pointer;
 }
-.footer-cart{
-  position:sticky;
-  bottom:0;
-  background:#1c1c3a;
-  padding:10px;
-}
-
-/* CONTAINER */
 .container{padding:15px}
-
-/* BUSCA */
-.search input{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:none;
-  margin-bottom:15px;
-}
-
-/* TAGS */
-.tags-menu{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:20px;
-}
-.tags-menu button{
-  border:none;
-  border-radius:20px;
-  padding:8px 14px;
-  background:#ff4fd8;
-  color:#fff;
-  cursor:pointer;
-}
-
-/* GRID */
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   gap:15px;
 }
-
-/* CARD */
 .card{
   background:#2b2b4f;
   border-radius:15px;
@@ -180,7 +85,6 @@ header{
   width:100%;
   height:200px;
   object-fit:cover;
-  cursor:pointer;
 }
 .price{color:#ffb3f0;font-weight:bold}
 .card button{
@@ -194,142 +98,104 @@ header{
   cursor:pointer;
 }
 
-/* GALERIA BTS */
-.gallery{
-  display:flex;
-  gap:5px;
-  justify-content:center;
-  margin-bottom:8px;
+/* ===== SLIDER BTS ===== */
+.slider{
+  position:relative;
 }
-.gallery img{
-  width:40px;
-  height:40px;
-  object-fit:cover;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-/* ZOOM */
-.zoom-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-.zoom-overlay img{
-  max-width:90%;
-  max-height:90%;
-  border-radius:12px;
-}
-.zoom-close{
+.slider button{
   position:absolute;
-  top:20px;
-  right:25px;
-  font-size:30px;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,.6);
+  border:none;
+  color:#fff;
+  font-size:24px;
+  width:35px;
+  height:35px;
   cursor:pointer;
 }
+.prev{left:5px}
+.next{right:5px}
 </style>
 </head>
 
 <body>
 
 <div id="overlay" onclick="toggleCarrinho()"></div>
-
 <div id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></div>
 
 <div id="carrinho">
   <h2>Carrinho</h2>
   <div id="listaCarrinho"></div>
-  <div class="footer-cart">
-    <p>Total: <strong id="total">R$ 0,00</strong></p>
-    <button onclick="finalizar()">Finalizar no WhatsApp</button>
-  </div>
+  <p>Total: <strong id="total">R$ 0,00</strong></p>
+  <button onclick="finalizar()">Finalizar no WhatsApp</button>
 </div>
 
 <header>✨ IdolVerse ✨</header>
 
 <div class="container">
-
-<div class="search">
-<input placeholder="🔍 Buscar..." onkeyup="buscar(this.value)">
-</div>
-
-<div class="tags-menu">
-<button onclick="filtrar('todos')">Todos</button>
-<button onclick="filtrar('kpop')">K‑POP</button>
-<button onclick="filtrar('futebol')">Futebol</button>
-<button onclick="filtrar('filmes')">Filmes</button>
-</div>
-
 <div class="products">
 
-<!-- BTS COM GALERIA -->
-<div class="card produto" data-name="bts kpop">
+<!-- BTS -->
+<div class="card">
   <div class="slider">
-    <img id="btsMain" src="bts1.jpg" onclick="zoomImagem(this.src)">
-    <img src="bts.jpg" class="slide active">
-    <img src="bts1.jpg" class="slide">
-    <img src="bts2.jpg" class="slide">
-    <img src="bts3.jpg" class="slide">
-
-    <button class="arrow left" onclick="prevSlide(this)">❮</button>
-    <button class="arrow right" onclick="nextSlide(this)">❯</button>
+    <img id="btsImg" src="bts1.jpg">
+    <button class="prev" onclick="slideBTS(-1)">❮</button>
+    <button class="next" onclick="slideBTS(1)">❯</button>
   </div>
-
   <h3>BTS</h3>
   <p class="price">R$ 19,90</p>
-  <button onclick="addCarrinho('BTS', 19.9, 'bts1.jpg')">Adicionar</button>
+  <button onclick="addCarrinho('BTS',19.9,'bts1.jpg')">Adicionar</button>
 </div>
 
-<div class="card produto" data-name="blackpink kpop">
-<img src="blackpink.jpg" onclick="zoomImagem(this.src)">
-<h3>BLACKPINK</h3>
-<p class="price">R$ 21,90</p>
-<button onclick="addCarrinho('BLACKPINK',21.9,'blackpink.jpg')">Adicionar</button>
+<div class="card">
+  <img src="blackpink.jpg">
+  <h3>BLACKPINK</h3>
+  <p class="price">R$ 21,90</p>
+  <button onclick="addCarrinho('BLACKPINK',21.9,'blackpink.jpg')">Adicionar</button>
 </div>
 
-<div class="card produto" data-name="straykids kpop">
-<img src="straykids.jpg" onclick="zoomImagem(this.src)">
-<h3>Stray Kids</h3>
-<p class="price">R$ 22,90</p>
-<button onclick="addCarrinho('Stray Kids',22.9,'straykids.jpg')">Adicionar</button>
-</div>
-  
-<div class="card produto" data-name="neymar futebol">
-      <img src="neymar.jpg" onclick="zoomImagem(this.src)">
-      <h3>Neymar Jr</h3>
-      <p class="price">R$ 24,90</p>
-      <button onclick="addCarrinho('Neymar Jr',24.9,'neymar.jpg')">Adicionar</button>
-    </div>
-  
-  <div class="card produto" data-name="stranger things filmes">
-      <img src="stranger-things.jpg" onclick="zoomImagem(this.src)">
-      <h3>Stranger Things</h3>
-      <p class="price">R$ 29,90</p>
-      <button onclick="addCarrinho('Stranger Things',29.9,'stranger-things.jpg')">Adicionar</button>
-    </div>
-  
+<div class="card">
+  <img src="straykids.jpg">
+  <h3>Stray Kids</h3>
+  <p class="price">R$ 22,90</p>
+  <button onclick="addCarrinho('Stray Kids',22.9,'straykids.jpg')">Adicionar</button>
 </div>
 
-<!-- ZOOM -->
-<div class="zoom-overlay" id="zoomOverlay" onclick="fecharZoom()">
-<span class="zoom-close">✖</span>
-<img id="zoomImg">
+<div class="card">
+  <img src="neymar.jpg">
+  <h3>Neymar Jr</h3>
+  <p class="price">R$ 24,90</p>
+  <button onclick="addCarrinho('Neymar Jr',24.9,'neymar.jpg')">Adicionar</button>
+</div>
+
+<div class="card">
+  <img src="stranger-things.jpg">
+  <h3>Stranger Things</h3>
+  <p class="price">R$ 29,90</p>
+  <button onclick="addCarrinho('Stranger Things',29.9,'stranger-things.jpg')">Adicionar</button>
+</div>
+
+</div>
 </div>
 
 <script>
-let carrinho=[];
+/* ===== SLIDER BTS ===== */
+const btsImgs=["bts1.jpg","bts2.jpg","bts3.jpg","bts4.jpg"];
+let btsIndex=0;
+function slideBTS(dir){
+  btsIndex=(btsIndex+dir+btsImgs.length)%btsImgs.length;
+  document.getElementById("btsImg").src=btsImgs[btsIndex];
+}
 
+/* ===== CARRINHO ===== */
+let carrinho=[];
 function addCarrinho(nome,preco,img){
   let item=carrinho.find(i=>i.nome===nome);
   if(item)item.qtd++;
   else carrinho.push({nome,preco,img,qtd:1});
   atualizar();
 }
-
 function atualizar(){
   let lista=document.getElementById("listaCarrinho");
   let total=0,count=0;
@@ -354,13 +220,11 @@ function atualizar(){
   document.getElementById("total").innerText="R$ "+total.toFixed(2);
   document.getElementById("cartCount").innerText=count;
 }
-
 function alterarQtd(i,v){
   carrinho[i].qtd+=v;
   if(carrinho[i].qtd<=0)carrinho.splice(i,1);
   atualizar();
 }
-
 function toggleCarrinho(){
   let c=document.getElementById("carrinho");
   let o=document.getElementById("overlay");
@@ -368,7 +232,6 @@ function toggleCarrinho(){
   c.style.right=aberto?"-100%":"0";
   o.style.display=aberto?"none":"block";
 }
-
 function finalizar(){
   let msg="🛒 Pedido:%0A";
   let total=0;
@@ -379,55 +242,7 @@ function finalizar(){
   msg+=`%0ATotal: R$ ${total.toFixed(2)}`;
   window.open(`https://wa.me/5591986122614?text=${msg}`);
 }
-
-/* FILTRO */
-function buscar(t){
-  t=t.toLowerCase();
-  document.querySelectorAll(".produto").forEach(p=>{
-    p.style.display=p.dataset.name.includes(t)?"block":"none";
-  });
-}
-function filtrar(tag){
-  document.querySelectorAll(".produto").forEach(p=>{
-    p.style.display=(tag==="todos"||p.dataset.name.includes(tag))?"block":"none";
-  });
-}
-
-/* ZOOM */
-function zoomImagem(src){
-  document.getElementById("zoomImg").src=src;
-  document.getElementById("zoomOverlay").style.display="flex";
-}
-function fecharZoom(){
-  document.getElementById("zoomOverlay").style.display="none";
-}
-
-/* GALERIA BTS */
-function trocarBTS(src){
-  document.getElementById("btsMain").src=src;
-}
-  
-<script>
-function nextSlide(btn){
-  const slider = btn.parentElement;
-  const slides = slider.querySelectorAll(".slide");
-  let index = [...slides].findIndex(s => s.classList.contains("active"));
-
-  slides[index].classList.remove("active");
-  index = (index + 1) % slides.length;
-  slides[index].classList.add("active");
-}
-
-function prevSlide(btn){
-  const slider = btn.parentElement;
-  const slides = slider.querySelectorAll(".slide");
-  let index = [...slides].findIndex(s => s.classList.contains("active"));
-
-  slides[index].classList.remove("active");
-  index = (index - 1 + slides.length) % slides.length;
-  slides[index].classList.add("active");
-}
 </script>
-  
+
 </body>
 </html>

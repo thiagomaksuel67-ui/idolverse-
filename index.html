@@ -384,6 +384,16 @@ header{
 <div id="topo" onclick="window.scrollTo(0,0)">⬆️</div>
 
 <script>
+  function zoomImagem(src){
+  const overlay = document.getElementById("zoomOverlay");
+  const img = document.getElementById("zoomImg");
+  img.src = src;
+  overlay.style.display = "flex";
+}
+
+function fecharZoom(){
+  document.getElementById("zoomOverlay").style.display = "none";
+}
 function zoomImagem(src){
   const overlay = document.getElementById("zoomOverlay");
   const img = document.getElementById("zoomImg");
@@ -394,7 +404,16 @@ function zoomImagem(src){
 function fecharZoom(){
   document.getElementById("zoomOverlay").style.display = "none";
 }
- 
+alert(
+    "Pedido registrado com sucesso!\n\n" +
+    "Nome: " + nome + "\n" +
+    "WhatsApp: " + whatsapp + "\n\n" +
+    "Agora finalize o pagamento via PIX."
+  );
+
+  mostrarPix();
+}
+
 <script>
 let cart = [];
 let total = 0;
@@ -457,52 +476,6 @@ function removeItem(i){
   renderCart();
 }
   
-function buscar(txt){
-  txt = txt.toLowerCase();
-  document.querySelectorAll(".card.produto").forEach(p=>{
-    p.style.display = p.dataset.name.includes(txt)
-      ? "block" : "none";
-  });
-}
-
-function filtrar(tag){
-  document.querySelectorAll(".card.produto").forEach(p=>{
-    const cat = p.dataset.name;
-    p.style.display =
-      tag === "todos" || cat.includes(tag)
-      ? "block" : "none";
-  });
-}
-
-function mostrarPix(){
-  const pix = document.getElementById("pixArea");
-  pix.style.display =
-    pix.style.display === "block" ? "none" : "block";
-}function concluirCompra(){
-  const nome = document.getElementById("nome").value;
-  const whatsapp = document.getElementById("whatsapp").value;
-  const email = document.getElementById("email").value;
-  const endereco = document.getElementById("endereco").value;
-
-  if(!nome || !whatsapp || !email || !endereco){
-    alert("Por favor, preencha todos os dados.");
-    return;
-  }
-
-  if(cart.length === 0){
-    alert("Seu carrinho está vazio.");
-    return;
-  }
-
-  alert(
-    "Pedido registrado com sucesso!\n\n" +
-    "Nome: " + nome + "\n" +
-    "WhatsApp: " + whatsapp + "\n\n" +
-    "Agora finalize o pagamento via PIX."
-  );
-
-  mostrarPix();
-}
 </script>
 <!-- ZOOM IMAGEM -->
 <div class="zoom-overlay" id="zoomOverlay" onclick="fecharZoom()">

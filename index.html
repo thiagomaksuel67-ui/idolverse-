@@ -6,18 +6,6 @@
 <title>IdolVerse • Photocards</title>
 
 <style>
-  #galeriaImgs{
-  display:flex;
-  gap:10px;
-  max-width:90%;
-  overflow-x:auto;
-}
-#galeriaImgs img{
-  width:250px;
-  border-radius:12px;
-  cursor:pointer;
-}
-
 *{box-sizing:border-box}
 body{
   margin:0;
@@ -258,14 +246,6 @@ header{
   <span class="zoom-close">✖</span>
   <img id="zoomImg">
 </div>
-  <div class="card produto" data-name="bts kpop">
-  <img src="bts1.jpg" onclick="abrirGaleria('BTS')">
-  <h3>BTS</h3>
-  <p class="price">R$ 19,90</p>
-  <button onclick="addCarrinho('BTS', 19.9, 'bts1.jpg')">
-    Adicionar
-  </button>
-</div>
 
 <script>
 let carrinho=[];
@@ -320,10 +300,10 @@ function finalizar(){
   let msg="🛒 Pedido:%0A";
   let total=0;
   carrinho.forEach(i=>{
-    msg+=`• ${i.nome} x${i.qtd}%0A`;
+    msg+=• ${i.nome} x${i.qtd}%0A;
     total+=i.preco*i.qtd;
   });
-  msg+=`%0ATotal: R$ ${total.toFixed(2)}`;
+  msg+=%0ATotal: R$ ${total.toFixed(2)};
   window.open("https://wa.me/5591986122614?text="+msg);
 }
 
@@ -347,43 +327,8 @@ function zoom(src){
 function closeZoom(){
   document.getElementById("zoomBox").style.display="none";
 }
-  
-<script>
-const produtos = {
-  BTS: {
-    nome: "BTS",
-    preco: 19.9,
-    imagens: [
-      "bts1.jpg",
-      "bts2.jpg",
-      "bts3.jpg",
-      "bts4.jpg"
-    ]
-  }
-};
-
-function abrirGaleria(produto){
-  const galeria = document.getElementById("galeria");
-  const box = document.getElementById("galeriaImgs");
-  box.innerHTML = "";
-
-  produtos[produto].imagens.forEach(img=>{
-    box.innerHTML += `<img src="${img}">`;
-  });
-
-  galeria.style.display = "flex";
-}
-
-function fecharGaleria(){
-  document.getElementById("galeria").style.display = "none";
-}
-
 </script>
-<div class="zoom-overlay" id="galeria" onclick="fecharGaleria()">
-  <div id="galeriaImgs"></div>
-</div>
 
 </body>
 </html>
-
     

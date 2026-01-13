@@ -153,6 +153,26 @@ html, body{
 .whatsapp-float img {
   width: 32px;
   height: 32px;
+}/* BOTÃO ESTILO STEAM */
+.btn-add {
+  width: 90%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #5c7e10;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-add:hover {
+  opacity: 0.9;
+}
+
+.btn-add.added {
+  background: #2a475e;
+  color: #a4d007;
 }
 
 /* HEADER */
@@ -375,41 +395,68 @@ function fecharZoom(){
   document.getElementById("zoomOverlay").style.display = "none";
 }
  
+<script>
 let cart = [];
 let total = 0;
 
 function renderCart(){
   const box = document.getElementById("cartItems");
   box.innerHTML = "";
-  if(!cart.length){
+
+  if(cart.length === 0){
     box.innerText = "Nenhum item";
     return;
   }
-  cart.forEach((item,i)=>{
+
+  cart.forEach((item, i) => {
     box.innerHTML += `
       <div class="cart-item">
         ${item.nome}
         <button class="remove" onclick="removeItem(${i})">❌</button>
       </div>`;
   });
-}
 
-function add(nome, preco){
-  cart.push({nome, preco});
-  total += preco;
   document.getElementById("total").innerText =
     "Total: R$ " + total.toFixed(2);
+}
+
+/* ESTILO STEAM */
+function toggleCart(btn, nome, preco){
+  const index = cart.findIndex(item => item.nome === nome);
+
+  if(index === -1){
+    // adiciona
+    cart.push({nome, preco});
+    total += preco;
+    btn.classList.add("added");
+    btn.innerText = "✔ No carrinho";
+  } else {
+    // remove
+    total -= cart[index].preco;
+    cart.splice(index, 1);
+    btn.classList.remove("added");
+    btn.innerText = "Adicionar ao carrinho";
+  }
+
   renderCart();
 }
 
 function removeItem(i){
+  const nome = cart[i].nome;
   total -= cart[i].preco;
   cart.splice(i,1);
-  document.getElementById("total").innerText =
-    "Total: R$ " + total.toFixed(2);
+
+  // restaura botão
+  document.querySelectorAll(".btn-add").forEach(btn=>{
+    if(btn.getAttribute("onclick").includes(nome)){
+      btn.classList.remove("added");
+      btn.innerText = "Adicionar ao carrinho";
+    }
+  });
+
   renderCart();
 }
-
+  
 function buscar(txt){
   txt = txt.toLowerCase();
   document.querySelectorAll(".card.produto").forEach(p=>{

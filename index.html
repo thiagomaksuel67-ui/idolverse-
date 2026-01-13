@@ -6,14 +6,6 @@
 <title>IdolVerse • Photocards</title>
 
 <style>
-  /* IMAGEM DO CARRINHO (MENOR) */
-.item-cart img{
-  width:45px;
-  height:45px;
-  object-fit:cover;
-  border-radius:6px;
-}
-
   #overlay{
   position:fixed;
   inset:0;
@@ -392,7 +384,6 @@ function addCarrinho(nome, preco, img){
   atualizar();
 }
 
-<script>
 function atualizar(){
   const lista = document.getElementById("listaCarrinho");
   lista.innerHTML = "";
@@ -400,54 +391,33 @@ function atualizar(){
   let count = 0;
 
   carrinho.forEach((item,i)=>{
-    if(item.ativo){
-      total += item.preco * item.qtd;
-      count += item.qtd;
-    }
+    if(item.ativo) total += item.preco * item.qtd;
+   if(item.ativo) count += item.qtd;
 
+    
     lista.innerHTML += `
-      <div class="item-cart">
-        <input type="checkbox" ${item.ativo ? "checked" : ""} 
-        onchange="toggleAtivo(${i}, this.checked)">
+     <input type="checkbox" ${item.ativo ? "checked" : ""}
+onchange="toggleAtivo(${i}, this.checked)">
 
         <img src="${item.img}">
-
-        <div style="flex:1">
+        <div>
           <p>${item.nome}</p>
           <p>R$ ${item.preco.toFixed(2)}</p>
-
           <div class="qtd">
-            <button onclick="diminuir(${i})">−</button>
-            <span>${item.qtd}</span>
-            <button onclick="aumentar(${i})">+</button>
+            <button onclick="item.qtd--; if(item.qtd<=0) carrinho.splice(${i},1); atualizar()">-</button>
+            ${item.qtd}
+            <button onclick="item.qtd++; atualizar()">+</button>
           </div>
         </div>
       </div>
     `;
   });
 
-  document.getElementById("total").innerText = "R$ " + total.toFixed(2);
+  document.getElementById("total").innerText =
+    "R$ " + total.toFixed(2);
   document.getElementById("cartCount").innerText = count;
 }
-<script>
-function aumentar(i){
-  carrinho[i].qtd++;
-  atualizar();
-}
 
-function diminuir(i){
-  carrinho[i].qtd--;
-  if(carrinho[i].qtd <= 0){
-    carrinho.splice(i,1);
-  }
-  atualizar();
-}
-
-function toggleAtivo(i, valor){
-  carrinho[i].ativo = valor;
-  atualizar();
-}
-  
 function abrirCarrinho(){
   const c = document.getElementById("carrinho");
   c.style.right = c.style.right === "0px" ? "-100%" : "0";

@@ -6,67 +6,6 @@
 <title>IdolVerse • Photocards</title>
 
 <style>
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-.card.produto {
-  background: #2b2b4f;
-  border-radius: 16px;
-  overflow: hidden;
-  text-align: center;
-  padding-bottom: 15px;
-  transition: transform 0.2s ease;
-}
-
-.card.produto:hover {
-  transform: translateY(-5px);
-}
-
-.card.produto img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  display: block;
-}
-
-.card.produto h3 {
-  margin: 12px 0 6px;
-  font-size: 16px;
-}
-
-.price {
-  color: #ff6bd6;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.card.produto button {
-  width: 85%;
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
-  background: #ff4fd8;
-  color: #fff;
-  cursor: pointer;
-}
-
-@media (max-width: 600px) {
-  .products {
-    grid-template-columns: 1fr;
-  }
-
-  .card.produto img {
-    height: 280px;
-  }
-
-  .card.produto h3 {
-    font-size: 18px;
-  }
-}
- 
 html, body{
   margin:0;
   padding:0;
@@ -74,105 +13,6 @@ html, body{
   font-family:Arial, sans-serif;
   background:linear-gradient(135deg,#1e1e2f,#3a3a6a);
   color:#fff;
-}
-.zoom-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.zoom-overlay img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(255,79,216,0.6);
-}
-
-/* Botão fechar */
-.zoom-close {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  font-size: 30px;
-  color: #fff;
-  cursor: pointer;
-}.checkout{
-  margin-top: 20px;
-  background: #2b2b4f;
-  padding: 15px;
-  border-radius: 12px;
-}
-
-.checkout h3{
-  margin-bottom: 10px;
-}
-
-.checkout input,
-.checkout textarea{
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  border: none;
-  font-size: 14px;
-}
-
-.checkout button{
-  background: #4CAF50;
-  border-radius: 8px;
-  padding: 10px;
-  font-size: 15px;
-}/* BOTÃO FLUTUANTE WHATSAPP */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  width: 60px;
-  height: 60px;
-  background-color: #25D366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-  z-index: 9999;
-  transition: transform 0.3s ease;
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.1);
-}
-
-.whatsapp-float img {
-  width: 32px;
-  height: 32px;
-}/* BOTÃO ESTILO STEAM */
-.btn-add {
-  width: 90%;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  background: #5c7e10;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-add:hover {
-  opacity: 0.9;
-}
-
-.btn-add.added {
-  background: #2a475e;
-  color: #a4d007;
 }
 
 /* HEADER */
@@ -320,35 +160,33 @@ header{
   <div class="products">
 
     <div class="card produto" data-name="bts kpop">
-      <img src="bts.jpg" onclick="zoomImagem(this.src)">
+      <img src="bts.jpg">
       <h3>BTS</h3>
       <p class="price">R$ 19,90</p>
-     <button class="btn-add" onclick="toggleCart(this, 'BTS', 19.9)">
-  Adicionar ao carrinho
-</button>
+      <button onclick="add('BTS',19.9)">Comprar</button>
     </div>
 
     <div class="card produto" data-name="neymar futebol">
-      <img src="neymar.jpg" onclick="zoomImagem(this.src)">
+      <img src="neymar.jpg">
       <h3>Neymar Jr</h3>
       <p class="price">R$ 24,90</p>
       <button onclick="add('Neymar',24.9)">Comprar</button>
     </div>
 
     <div class="card produto" data-name="stranger things filmes">
-      <img src="stranger-things.jpg" onclick="zoomImagem(this.src)">
+      <img src="stranger-things.jpg">
       <h3>Stranger Things</h3>
       <p class="price">R$ 29,90</p>
       <button onclick="add('Stranger Things',29.9)">Comprar</button>
     </div>
 <div class="card produto" data-name="blackpink kpop">
-  <img src="blackpink.jpg" onclick="zoomImagem(this.src)">
+  <img src="blackpink.jpg">
   <h3>BLACKPINK</h3>
   <p class="price">R$ 21,90</p>
   <button onclick="add('BLACKPINK',21.9)">Comprar</button>
 </div>
     <div class="card produto" data-name="stray kids kpop">
-  <img src="straykids.jpg" onclick="zoomImagem(this.src)">
+  <img src="straykids.jpg">
   <h3>Stray Kids</h3>
   <p class="price">R$ 22,90</p>
   <button onclick="add('Stray Kids',22.9)">Comprar</button>
@@ -356,17 +194,7 @@ header{
 
   </div>
 
-  <div class="cart"><div class="checkout">
-  <h3>📋 Dados para entrega</h3>
-
-  <input type="text" id="nome" placeholder="Nome completo" required>
-  <input type="tel" id="whatsapp" placeholder="WhatsApp" required>
-  <input type="email" id="email" placeholder="Email" required>
-  <textarea id="endereco" placeholder="Endereço completo" rows="3" required></textarea>
-
-  <button onclick="concluirCompra()">Concluir compra</button>
-</div>
-
+  <div class="cart">
     <h3>🛒 Carrinho</h3>
     <div id="cartItems">Nenhum item</div>
     <p id="total">Total: R$ 0,00</p>
@@ -384,112 +212,64 @@ header{
 <div id="topo" onclick="window.scrollTo(0,0)">⬆️</div>
 
 <script>
-  function zoomImagem(src){
-  const overlay = document.getElementById("zoomOverlay");
-  const img = document.getElementById("zoomImg");
-  img.src = src;
-  overlay.style.display = "flex";
-}
-
-function fecharZoom(){
-  document.getElementById("zoomOverlay").style.display = "none";
-}
-function zoomImagem(src){
-  const overlay = document.getElementById("zoomOverlay");
-  const img = document.getElementById("zoomImg");
-  img.src = src;
-  overlay.style.display = "flex";
-}
-
-function fecharZoom(){
-  document.getElementById("zoomOverlay").style.display = "none";
-}
-alert(
-    "Pedido registrado com sucesso!\n\n" +
-    "Nome: " + nome + "\n" +
-    "WhatsApp: " + whatsapp + "\n\n" +
-    "Agora finalize o pagamento via PIX."
-  );
-
-  mostrarPix();
-}
-
-<script>
 let cart = [];
 let total = 0;
 
 function renderCart(){
   const box = document.getElementById("cartItems");
   box.innerHTML = "";
-
-  if(cart.length === 0){
+  if(!cart.length){
     box.innerText = "Nenhum item";
     return;
   }
-
-  cart.forEach((item, i) => {
+  cart.forEach((item,i)=>{
     box.innerHTML += `
       <div class="cart-item">
         ${item.nome}
         <button class="remove" onclick="removeItem(${i})">❌</button>
       </div>`;
   });
-
-  document.getElementById("total").innerText =
-    "Total: R$ " + total.toFixed(2);
 }
 
-/* ESTILO STEAM */
-function toggleCart(btn, nome, preco){
-  const index = cart.findIndex(item => item.nome === nome);
-
-  if(index === -1){
-    // adiciona
-    cart.push({nome, preco});
-    total += preco;
-    btn.classList.add("added");
-    btn.innerText = "✔ No carrinho";
-  } else {
-    // remove
-    total -= cart[index].preco;
-    cart.splice(index, 1);
-    btn.classList.remove("added");
-    btn.innerText = "Adicionar ao carrinho";
-  }
-
+function add(nome, preco){
+  cart.push({nome, preco});
+  total += preco;
+  document.getElementById("total").innerText =
+    "Total: R$ " + total.toFixed(2);
   renderCart();
 }
 
 function removeItem(i){
-  const nome = cart[i].nome;
   total -= cart[i].preco;
   cart.splice(i,1);
-
-  // restaura botão
-  document.querySelectorAll(".btn-add").forEach(btn=>{
-    if(btn.getAttribute("onclick").includes(nome)){
-      btn.classList.remove("added");
-      btn.innerText = "Adicionar ao carrinho";
-    }
-  });
-
+  document.getElementById("total").innerText =
+    "Total: R$ " + total.toFixed(2);
   renderCart();
 }
-  
+
+function buscar(txt){
+  txt = txt.toLowerCase();
+  document.querySelectorAll(".card.produto").forEach(p=>{
+    p.style.display = p.dataset.name.includes(txt)
+      ? "block" : "none";
+  });
+}
+
+function filtrar(tag){
+  document.querySelectorAll(".card.produto").forEach(p=>{
+    const cat = p.dataset.name;
+    p.style.display =
+      tag === "todos" || cat.includes(tag)
+      ? "block" : "none";
+  });
+}
+
+function mostrarPix(){
+  const pix = document.getElementById("pixArea");
+  pix.style.display =
+    pix.style.display === "block" ? "none" : "block";
+}
 </script>
-<!-- ZOOM IMAGEM -->
-<div class="zoom-overlay" id="zoomOverlay" onclick="fecharZoom()">
-  <span class="zoom-close">✖</span>
-  <img id="zoomImg">
-</div>
-  
-<!-- BOTÃO FLUTUANTE WHATSAPP -->
-<a href="https://wa.me/5591986122614" 
-   class="whatsapp-float" 
-   target="_blank"
-   aria-label="Fale conosco no WhatsApp">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-</a>
-  
+
 </body>
 </html>

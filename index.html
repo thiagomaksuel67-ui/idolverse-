@@ -13,6 +13,8 @@ html,body{
   background:linear-gradient(135deg,#1e1e2f,#3a3a6a);
   color:#fff;
 }
+
+/* HEADER */
 header{
   position:sticky;
   top:0;
@@ -23,6 +25,8 @@ header{
   font-weight:bold;
   z-index:10;
 }
+
+/* CARRINHO */
 #cartBtn{
   position:fixed;
   top:15px;
@@ -33,6 +37,7 @@ header{
   cursor:pointer;
   z-index:1000;
 }
+
 #overlay{
   position:fixed;
   inset:0;
@@ -40,6 +45,7 @@ header{
   display:none;
   z-index:998;
 }
+
 #carrinho{
   position:fixed;
   top:0;
@@ -53,6 +59,7 @@ header{
   z-index:999;
   overflow-y:auto;
 }
+
 .item-cart{
   display:flex;
   gap:10px;
@@ -61,19 +68,24 @@ header{
   border-radius:10px;
   margin-bottom:10px;
 }
+
 .item-cart img{
   width:45px;
   height:45px;
   object-fit:cover;
   border-radius:6px;
 }
+
 .footer-cart{
   position:sticky;
   bottom:0;
   background:#1c1c3a;
   padding:10px;
 }
+
+/* LAYOUT */
 .container{padding:15px}
+
 .search input{
   width:100%;
   padding:12px;
@@ -81,12 +93,14 @@ header{
   border:none;
   margin-bottom:15px;
 }
+
 .tags-menu{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
   margin-bottom:20px;
 }
+
 .tags-menu button{
   border:none;
   border-radius:20px;
@@ -95,24 +109,53 @@ header{
   color:#fff;
   cursor:pointer;
 }
+
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   gap:15px;
 }
+
 .card{
   background:#2b2b4f;
   border-radius:15px;
   overflow:hidden;
   text-align:center;
 }
+
+/* IMAGEM PRINCIPAL */
+.image-box{
+  position:relative;
+}
+
 .card img{
   width:100%;
   height:200px;
   object-fit:cover;
   cursor:pointer;
 }
+
+/* SETAS */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:34px;
+  height:50px;
+  background:rgba(0,0,0,.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  cursor:pointer;
+  user-select:none;
+}
+
+.arrow.left{left:5px;border-radius:6px 0 0 6px}
+.arrow.right{right:5px;border-radius:0 6px 6px 0}
+
 .price{color:#ffb3f0;font-weight:bold}
+
 .card button{
   margin:10px;
   padding:10px;
@@ -131,6 +174,7 @@ header{
   justify-content:center;
   margin-bottom:8px;
 }
+
 .gallery img{
   width:40px;
   height:40px;
@@ -149,11 +193,13 @@ header{
   justify-content:center;
   z-index:9999;
 }
+
 .zoom-overlay img{
   max-width:90%;
   max-height:90%;
   border-radius:12px;
 }
+
 .zoom-close{
   position:absolute;
   top:20px;
@@ -197,7 +243,11 @@ header{
 
 <!-- BTS -->
 <div class="card produto" data-name="bts kpop">
+<div class="image-box">
+<span class="arrow left" onclick="prevImg('bts')">❮</span>
 <img id="btsMain" src="bts1.jpg" onclick="zoomImagem(this.src)">
+<span class="arrow right" onclick="nextImg('bts')">❯</span>
+</div>
 <div class="gallery">
 <img src="bts.jpg" onclick="trocarImagem('btsMain',this.src)">
 <img src="bts1.jpg" onclick="trocarImagem('btsMain',this.src)">
@@ -227,7 +277,11 @@ header{
 
 <!-- NEYMAR -->
 <div class="card produto" data-name="neymar futebol">
+<div class="image-box">
+<span class="arrow left" onclick="prevImg('neymar')">❮</span>
 <img id="neymarMain" src="neymar.jpg" onclick="zoomImagem(this.src)">
+<span class="arrow right" onclick="nextImg('neymar')">❯</span>
+</div>
 <div class="gallery">
 <img src="neymar.jpg" onclick="trocarImagem('neymarMain',this.src)">
 <img src="neymar1.jpg" onclick="trocarImagem('neymarMain',this.src)">
@@ -241,7 +295,11 @@ header{
 
 <!-- STRANGER THINGS -->
 <div class="card produto" data-name="stranger things filmes">
+<div class="image-box">
+<span class="arrow left" onclick="prevImg('stranger')">❮</span>
 <img id="strangerMain" src="stranger-things.jpg" onclick="zoomImagem(this.src)">
+<span class="arrow right" onclick="nextImg('stranger')">❯</span>
+</div>
 <div class="gallery">
 <img src="stranger-things.jpg" onclick="trocarImagem('strangerMain',this.src)">
 <img src="stranger1.jpg" onclick="trocarImagem('strangerMain',this.src)">
@@ -256,6 +314,7 @@ header{
 </div>
 </div>
 
+<!-- ZOOM -->
 <div class="zoom-overlay" id="zoomOverlay" onclick="fecharZoom()">
 <span class="zoom-close">✖</span>
 <img id="zoomImg">
@@ -275,7 +334,7 @@ function atualizar(){
   let lista=document.getElementById("listaCarrinho");
   let total=0,count=0;
   lista.innerHTML="";
-  carrinho.forEach((i,idx)=>{
+  carrinho.forEach(i=>{
     total+=i.preco*i.qtd;
     count+=i.qtd;
     lista.innerHTML+=`
@@ -329,6 +388,25 @@ function fecharZoom(){
 
 function trocarImagem(id,src){
   document.getElementById(id).src=src;
+}
+
+/* SLIDERS */
+const imagens={
+  bts:["bts.jpg","bts1.jpg","bts2.jpg","bts3.jpg"],
+  neymar:["neymar.jpg","neymar1.jpg","neymar2.jpg","neymar3.jpg"],
+  stranger:["stranger-things.jpg","stranger1.jpg","stranger2.jpg","stranger3.jpg"]
+};
+
+const indexImg={bts:0,neymar:0,stranger:0};
+
+function nextImg(p){
+  indexImg[p]=(indexImg[p]+1)%imagens[p].length;
+  document.getElementById(p+"Main").src=imagens[p][indexImg[p]];
+}
+
+function prevImg(p){
+  indexImg[p]=(indexImg[p]-1+imagens[p].length)%imagens[p].length;
+  document.getElementById(p+"Main").src=imagens[p][indexImg[p]];
 }
 </script>
 

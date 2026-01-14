@@ -13,6 +13,7 @@
   --primary-pink: #ff4fd8;
   --text-white: #ffffff;
   --shopee-gray: #f5f5f5;
+  --whatsapp-green: #25d366;
 }
 
 *{box-sizing:border-box}
@@ -59,6 +60,32 @@ header {
   font-weight: bold;
 }
 
+/* BANNER DE INFORMAÇÃO PERSONALIZADA */
+.info-banner {
+  background: rgba(43, 43, 79, 0.8);
+  border: 1.5px solid var(--whatsapp-green);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 15px 0;
+  text-align: left;
+}
+.info-banner p { margin: 10px 0; line-height: 1.4; font-size: 14px; }
+.info-banner .highlight { color: var(--whatsapp-green); font-weight: bold; }
+
+.btn-whatsapp-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--whatsapp-green);
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
 /* GRID PRODUTOS */
 .container { padding: 15px; max-width: 1200px; margin: 0 auto; }
 .products {
@@ -90,7 +117,34 @@ header {
   margin-top: 10px;
 }
 
-/* --- CARRINHO ESTILO SHOPEE --- */
+/* CALCULO DE FRETE */
+.shipping-box {
+  background: var(--card-purple);
+  margin: 25px 0;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.shipping-box input {
+  background: #1c1c3a;
+  border: 1px solid #444;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  width: 60%;
+  margin-top: 10px;
+}
+.shipping-box button {
+  padding: 12px 15px;
+  background: transparent;
+  border: 1px solid var(--primary-pink);
+  color: var(--primary-pink);
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* CARRINHO ESTILO SHOPEE */
 #carrinho {
   position: fixed;
   top: 0;
@@ -127,7 +181,6 @@ header {
 }
 
 .item-shopee img { width: 70px; height: 70px; object-fit: cover; border-radius: 4px; }
-
 .item-info { flex: 1; }
 .item-price { color: var(--primary-pink); font-weight: bold; }
 
@@ -139,7 +192,7 @@ header {
   border-radius: 3px;
   margin-top: 5px;
 }
-.item-controls button { background: white; border: none; padding: 2px 8px; }
+.item-controls button { background: white; border: none; padding: 2px 8px; cursor: pointer; }
 .item-controls span { padding: 0 8px; border-left: 1px solid #ddd; border-right: 1px solid #ddd; }
 
 .cart-footer { background: white; padding: 15px; border-top: 1px solid #eee; }
@@ -154,6 +207,7 @@ header {
   font-weight: bold;
   font-size: 16px;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 #overlay {
@@ -181,7 +235,7 @@ header {
 <div id="carrinho">
   <div class="cart-header">
     <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:20px;">←</span>
-    <span style="font-weight:bold;">Carrinho</span>
+    <span style="font-weight:bold;">Meu Carrinho</span>
   </div>
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
@@ -189,21 +243,22 @@ header {
         <span>Selecionar Tudo</span>
         <span>Total: <strong id="total">R$ 0,00</strong></span>
     </div>
-    <button class="btn-continuar" onclick="finalizar()">Continuar (0)</button>
+    <button class="btn-continuar" onclick="finalizar()">Finalizar Compra (0)</button>
   </div>
 </div>
 
 <div class="container">
+
+  <div class="info-banner">
+    <p>Produzimos <span class="highlight">fanbox</span> e <span class="highlight">caixas de photocards personalizadas</span> de filmes, séries e famosos. ✨</p>
+    <p>Você escolhe o tema, entra em contato com a gente e informamos valor, frete e todos os detalhes.</p>
+    <p>É só chamar e montar a sua box do jeito que quiser 💖</p>
+    <a href="https://wa.me/5591986122614" class="btn-whatsapp-banner">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="20" alt="Zap"> WhatsApp
+    </a>
+  </div>
+  
   <div class="products">
-    <div class="card produto" data-name="neymar futebol">
-      <img src="neymar.jpg">
-      <div class="card-info">
-        <h3>Pack Photocards - Neymar Jr</h3>
-        <p class="price">R$ 24,90</p>
-        <button class="btn-buy" onclick="addCarrinho('Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
-      </div>
-    </div>
-    
     <div class="card produto" data-name="bts kpop">
       <img src="bts1.jpg">
       <div class="card-info">
@@ -212,7 +267,50 @@ header {
         <button class="btn-buy" onclick="addCarrinho('BTS', 19.90, 'bts1.jpg')">Adicionar</button>
       </div>
     </div>
+
+    <div class="card produto" data-name="blackpink kpop">
+      <img src="blackpink.jpg">
+      <div class="card-info">
+        <h3>Pack Photocards - BLACKPINK</h3>
+        <p class="price">R$ 21,90</p>
+        <button class="btn-buy" onclick="addCarrinho('BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
+      </div>
+    </div>
+
+    <div class="card produto" data-name="straykids kpop">
+      <img src="straykids.jpg">
+      <div class="card-info">
+        <h3>Kit Photocards - Stray Kids</h3>
+        <p class="price">R$ 22,90</p>
+        <button class="btn-buy" onclick="addCarrinho('Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
+      </div>
+    </div>
+
+    <div class="card produto" data-name="neymar futebol">
+      <img src="neymar.jpg">
+      <div class="card-info">
+        <h3>Pack Photocards - Neymar Jr</h3>
+        <p class="price">R$ 24,90</p>
+        <button class="btn-buy" onclick="addCarrinho('Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
+      </div>
+    </div>
+
+    <div class="card produto" data-name="stranger things filmes">
+      <img src="stranger-things.jpg">
+      <div class="card-info">
+        <h3>Álbum - Stranger Things</h3>
+        <p class="price">R$ 29,90</p>
+        <button class="btn-buy" onclick="addCarrinho('Stranger Things', 29.90, 'stranger-things.jpg')">Adicionar</button>
+      </div>
+    </div>
   </div>
+
+  <div class="shipping-box">
+    <strong>🚚 Calcular Frete e Entrega</strong><br>
+    <input type="text" placeholder="Digite seu CEP">
+    <button onclick="alert('Funcionalidade de cálculo em breve!')">CALCULAR</button>
+  </div>
+
 </div>
 
 <script>
@@ -250,7 +348,7 @@ function atualizar() {
   });
   document.getElementById("total").innerText = "R$ " + total.toFixed(2);
   document.getElementById("cartCount").innerText = count;
-  document.querySelector(".btn-continuar").innerText = `Continuar (${count})`;
+  document.querySelector(".btn-continuar").innerText = `Finalizar Compra (${count})`;
 }
 
 function alterarQtd(i, v) {

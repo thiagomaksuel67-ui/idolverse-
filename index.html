@@ -12,6 +12,39 @@ html,body{
   font-family:Arial,sans-serif;
   background:linear-gradient(135deg,#1e1e2f,#3a3a6a);
   color:#fff;
+}/* WHATSAPP + MENSAGEM FIXA */
+.whatsapp-box{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  max-width:280px;
+  background:#1c1c3a;
+  border:2px solid #25d366;
+  border-radius:15px;
+  padding:12px;
+  font-size:13px;
+  line-height:1.4;
+  z-index:9999;
+  box-shadow:0 0 15px rgba(0,0,0,.4);
+}
+.whatsapp-box strong{
+  color:#25d366;
+}
+.whatsapp-box a{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+  background:#25d366;
+  color:#fff;
+  padding:8px 10px;
+  border-radius:20px;
+  text-decoration:none;
+  font-weight:bold;
+  justify-content:center;
+}
+.whatsapp-box a:hover{
+  opacity:.9;
 }
 
 /* HEADER */
@@ -404,5 +437,17 @@ function prevImg(p){
 }
 </script>
 
+<div class="whatsapp-box">
+  <p>
+    Produzimos <strong>fanbox</strong> e <strong>caixas de photocards personalizadas</strong> 
+    de filmes, séries e famosos. ✨<br><br>
+    Você escolhe o tema, entra em contato com a gente e informamos valor, frete e todos os detalhes.<br><br>
+    É só chamar e montar a sua box do jeito que quiser 💖
+  </p>
+
+  <a href="https://wa.me/5591986122614" target="_blank">
+    💬 WhatsApp: (91) 98612‑2614
+  </a>
+</div>
 </body>
 </html>

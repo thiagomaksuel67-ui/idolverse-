@@ -216,8 +216,8 @@ header {
 
 .cart-footer { background: white; padding: 15px; border-top: 1px solid #eee; }
 .footer-top { display: flex; flex-direction: column; margin-bottom: 10px; }
-.total-linha { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px; }
-.total-final { display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; margin-top: 5px; border-top: 1px solid #eee; padding-top: 5px;}
+.total-linha { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px; color: #666;}
+.total-final { display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; margin-top: 8px; border-top: 2px solid #eee; padding-top: 8px; color: #000;}
 
 .btn-continuar {
   width: 100%;
@@ -261,9 +261,9 @@ header {
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
     <div class="footer-top">
-        <div class="total-linha"><span>Produtos:</span> <span id="subtotal">R$ 0,00</span></div>
-        <div class="total-linha"><span>Frete:</span> <span id="freteNoCarrinho">R$ 0,00</span></div>
-        <div class="total-final"><span>Total:</span> <strong id="total">R$ 0,00</strong></div>
+        <div class="total-linha"><span>Valor dos Produtos:</span> <span id="subtotal">R$ 0,00</span></div>
+        <div class="total-linha"><span>Frete Selecionado:</span> <span id="freteNoCarrinho">R$ 0,00</span></div>
+        <div class="total-final"><span>TOTAL GERAL:</span> <strong id="total">R$ 0,00</strong></div>
     </div>
     <button class="btn-continuar" onclick="finalizar()">Finalizar Compra (0)</button>
   </div>
@@ -374,11 +374,12 @@ function atualizar() {
     </div>`;
   });
 
-  let totalGeral = subtotal + valorFreteSelecionado;
+  // Cálculo mesclado
+  let totalMesclado = subtotal + valorFreteSelecionado;
 
-  document.getElementById("subtotal").innerText = "R$ " + subtotal.toFixed(2);
-  document.getElementById("freteNoCarrinho").innerText = "R$ " + valorFreteSelecionado.toFixed(2);
-  document.getElementById("total").innerText = "R$ " + totalGeral.toFixed(2);
+  document.getElementById("subtotal").innerText = "R$ " + subtotal.toFixed(2).replace('.',',');
+  document.getElementById("freteNoCarrinho").innerText = "R$ " + valorFreteSelecionado.toFixed(2).replace('.',',');
+  document.getElementById("total").innerText = "R$ " + totalMesclado.toFixed(2).replace('.',',');
   document.getElementById("cartCount").innerText = count;
   document.querySelector(".btn-continuar").innerText = `Finalizar Compra (${count})`;
 }
@@ -387,18 +388,19 @@ function selecionarFrete(valor, tipo) {
     valorFreteSelecionado = valor;
     tipoFreteSelecionado = tipo;
     
-    // Marcar visualmente a seleção
+    // Feedback visual de seleção
     const opcoes = document.querySelectorAll('.frete-opcao');
     opcoes.forEach(el => el.classList.remove('selecionado'));
     event.currentTarget.classList.add('selecionado');
     
-    atualizar();
+    atualizar(); // Soma o frete ao total imediatamente
 }
 
 function alterarQtd(i, v) {
   carrinho[i].qtd += v;
   if(carrinho[i].qtd <= 0) {
       carrinho.splice(i, 1);
+      // Se o carrinho ficar vazio, o frete reseta
       if(carrinho.length === 0) {
           valorFreteSelecionado = 0;
           tipoFreteSelecionado = "";
@@ -425,12 +427,14 @@ function buscar(t) {
 function finalizar() {
   if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
   
-  let msg = "🛒 *Novo Pedido IdolVerse*:%0A%0A";
+  let msg = "🛒 *Pedido IdolVerse*:%0A%0A";
   carrinho.forEach(i => msg += `• ${i.nome} (x${i.qtd})%0A`);
   
-  msg += `%0A*Subtotal:* R$ ${(document.getElementById("subtotal").innerText)}`;
-  msg += `%0A*Frete (${tipoFreteSelecionado || 'A combinar'}):* R$ ${valorFreteSelecionado.toFixed(2)}`;
-  msg += `%0A*TOTAL FINAL:* ${document.getElementById("total").innerText}`;
+  msg += `%0A---------------------------`;
+  msg += `%0A*Produtos:* R$ ${document.getElementById("subtotal").innerText}`;
+  msg += `%0A*Frete (${tipoFreteSelecionado || 'A definir'}):* R$ ${valorFreteSelecionado.toFixed(2).replace('.',',')}`;
+  msg += `%0A*TOTAL GERAL:* ${document.getElementById("total").innerText}`;
+  msg += `%0A---------------------------`;
   
   window.open(`https://wa.me/5591986122614?text=${msg}`);
 }
@@ -446,14 +450,15 @@ function calcularFrete() {
   }
 
   resultado.style.display = "block";
-  resultado.innerHTML = "⌛ Calculando opções...";
+  resultado.innerHTML = "⌛ Calculando opções de envio...";
 
   setTimeout(() => {
-    let vPac = 15.90;
-    let vSedex = 28.50;
+    // Valores simulados
+    let vPac = 15.00;
+    let vSedex = 27.50;
 
     resultado.innerHTML = `
-      <p style="margin-bottom:10px; font-size:13px;">Clique para selecionar o frete:</p>
+      <p style="margin-bottom:10px; font-size:13px; color:#ffb3f0;">Selecione uma opção para somar ao total:</p>
       <div class="frete-opcao" onclick="selecionarFrete(${vPac}, 'PAC')">
         <strong>📦 PAC:</strong> R$ ${vPac.toFixed(2).replace('.',',')} (7 dias úteis)
       </div>

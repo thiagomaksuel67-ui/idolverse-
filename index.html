@@ -60,6 +60,32 @@ header {
   font-weight: bold;
 }
 
+/* BANNER */
+.info-banner {
+  background: rgba(43, 43, 79, 0.8);
+  border: 1.5px solid var(--whatsapp-green);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 15px 0;
+  text-align: left;
+}
+.info-banner p { margin: 10px 0; line-height: 1.4; font-size: 14px; }
+.info-banner .highlight { color: var(--whatsapp-green); font-weight: bold; }
+
+.btn-whatsapp-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--whatsapp-green);
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
 /* GRID PRODUTOS */
 .container { padding: 15px; max-width: 1200px; margin: 0 auto; }
 .products {
@@ -122,7 +148,6 @@ header {
   cursor: pointer;
 }
 
-/* Estilo das Opções de Frete */
 .frete-opcao {
     background: rgba(255,255,255,0.05);
     margin: 8px 0;
@@ -245,6 +270,16 @@ header {
 </div>
 
 <div class="container">
+
+  <div class="info-banner">
+    <p>Produzimos <span class="highlight">fanbox</span> e <span class="highlight">caixas de photocards personalizadas</span> de filmes, séries e famosos. ✨</p>
+    <p>Você escolhe o tema, entra em contato com a gente e informamos valor, frete e todos os detalhes.</p>
+    <p>É só chamar e montar a sua box do jeito que quiser 💖</p>
+    <a href="https://wa.me/5591986122614" class="btn-whatsapp-banner">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="20" alt="Zap"> WhatsApp
+    </a>
+  </div>
+  
   <div class="products">
     <div class="card produto" data-name="bts kpop">
       <img src="bts1.jpg">
@@ -254,7 +289,43 @@ header {
         <button class="btn-buy" onclick="addCarrinho('BTS', 19.90, 'bts1.jpg')">Adicionar</button>
       </div>
     </div>
+
+    <div class="card produto" data-name="blackpink kpop">
+      <img src="blackpink.jpg">
+      <div class="card-info">
+        <h3>Pack Photocards - BLACKPINK</h3>
+        <p class="price">R$ 21,90</p>
+        <button class="btn-buy" onclick="addCarrinho('BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
+      </div>
     </div>
+
+    <div class="card produto" data-name="straykids kpop">
+      <img src="straykids.jpg">
+      <div class="card-info">
+        <h3>Kit Photocards - Stray Kids</h3>
+        <p class="price">R$ 22,90</p>
+        <button class="btn-buy" onclick="addCarrinho('Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
+      </div>
+    </div>
+
+    <div class="card produto" data-name="neymar futebol">
+      <img src="neymar.jpg">
+      <div class="card-info">
+        <h3>Pack Photocards - Neymar Jr</h3>
+        <p class="price">R$ 24,90</p>
+        <button class="btn-buy" onclick="addCarrinho('Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
+      </div>
+    </div>
+
+    <div class="card produto" data-name="stranger things filmes">
+      <img src="stranger-things.jpg">
+      <div class="card-info">
+        <h3>Álbum - Stranger Things</h3>
+        <p class="price">R$ 29,90</p>
+        <button class="btn-buy" onclick="addCarrinho('Stranger Things', 29.90, 'stranger-things.jpg')">Adicionar</button>
+      </div>
+    </div>
+  </div>
 
   <div class="shipping-box">
     <strong>🚚 Calcular Frete e Entrega</strong><br>
@@ -264,6 +335,7 @@ header {
     </div>
     <div id="resultadoFrete" style="display: none; margin-top:15px;"></div>
   </div>
+
 </div>
 
 <script>
@@ -316,10 +388,11 @@ function selecionarFrete(valor, tipo) {
     tipoFreteSelecionado = tipo;
     
     // Marcar visualmente a seleção
-    document.querySelectorAll('.frete-opcao').forEach(el => el.classList.remove('selecionado'));
+    const opcoes = document.querySelectorAll('.frete-opcao');
+    opcoes.forEach(el => el.classList.remove('selecionado'));
     event.currentTarget.classList.add('selecionado');
     
-    atualizar(); // Atualiza o total no carrinho
+    atualizar();
 }
 
 function alterarQtd(i, v) {
@@ -327,11 +400,39 @@ function alterarQtd(i, v) {
   if(carrinho[i].qtd <= 0) {
       carrinho.splice(i, 1);
       if(carrinho.length === 0) {
-          valorFreteSelecionado = 0; // Zera o frete se esvaziar o carrinho
+          valorFreteSelecionado = 0;
           tipoFreteSelecionado = "";
       }
   }
   atualizar();
+}
+
+function toggleCarrinho() {
+  let c = document.getElementById("carrinho");
+  let o = document.getElementById("overlay");
+  let aberto = c.style.right === "0px";
+  c.style.right = aberto ? "-100%" : "0";
+  o.style.display = aberto ? "none" : "block";
+}
+
+function buscar(t) {
+  t = t.toLowerCase();
+  document.querySelectorAll(".produto").forEach(p => {
+    p.style.display = p.dataset.name.includes(t) ? "block" : "none";
+  });
+}
+
+function finalizar() {
+  if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
+  
+  let msg = "🛒 *Novo Pedido IdolVerse*:%0A%0A";
+  carrinho.forEach(i => msg += `• ${i.nome} (x${i.qtd})%0A`);
+  
+  msg += `%0A*Subtotal:* R$ ${(document.getElementById("subtotal").innerText)}`;
+  msg += `%0A*Frete (${tipoFreteSelecionado || 'A combinar'}):* R$ ${valorFreteSelecionado.toFixed(2)}`;
+  msg += `%0A*TOTAL FINAL:* ${document.getElementById("total").innerText}`;
+  
+  window.open(`https://wa.me/5591986122614?text=${msg}`);
 }
 
 function calcularFrete() {
@@ -361,34 +462,6 @@ function calcularFrete() {
       </div>
     `;
   }, 800);
-}
-
-function toggleCarrinho() {
-  let c = document.getElementById("carrinho");
-  let o = document.getElementById("overlay");
-  let aberto = c.style.right === "0px";
-  c.style.right = aberto ? "-100%" : "0";
-  o.style.display = aberto ? "none" : "block";
-}
-
-function buscar(t) {
-  t = t.toLowerCase();
-  document.querySelectorAll(".produto").forEach(p => {
-    p.style.display = p.dataset.name.includes(t) ? "block" : "none";
-  });
-}
-
-function finalizar() {
-  if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
-  
-  let msg = "🛒 *Novo Pedido IdolVerse*:%0A%0A";
-  carrinho.forEach(i => msg += `• ${i.nome} (x${i.qtd})%0A`);
-  
-  msg += `%0A*Subtotal:* R$ ${(document.getElementById("subtotal").innerText)}`;
-  msg += `%0A*Frete (${tipoFreteSelecionado}):* R$ ${valorFreteSelecionado.toFixed(2)}`;
-  msg += `%0A*TOTAL FINAL:* ${document.getElementById("total").innerText}`;
-  
-  window.open(`https://wa.me/5591986122614?text=${msg}`);
 }
 
 document.getElementById("cepInput").addEventListener("input", function(e) {

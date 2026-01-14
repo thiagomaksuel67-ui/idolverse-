@@ -157,12 +157,25 @@ header {
 
 .item-shopee { background: white; border-radius: 8px; padding: 12px; margin-bottom: 10px; display: flex; gap: 12px; }
 .item-shopee img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
+.item-info { flex: 1; }
 .item-price { color: var(--primary-pink); font-weight: bold; }
+
 .cart-footer { background: white; padding: 15px; border-top: 1px solid #eee; }
 .total-linha { display: flex; justify-content: space-between; font-size: 13px; color: #666; margin-bottom: 4px; }
 .total-final { display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; border-top: 1px solid #eee; padding-top: 8px; margin-top: 8px; color: #000; }
 .btn-continuar { width: 100%; padding: 15px; background: var(--primary-pink); color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; }
 #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; z-index: 1500; }
+
+.item-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  width: fit-content;
+  border-radius: 3px;
+  margin-top: 5px;
+}
+.item-controls button { background: white; border: none; padding: 2px 8px; cursor: pointer; }
+.item-controls span { padding: 0 8px; border-left: 1px solid #ddd; border-right: 1px solid #ddd; }
 </style>
 </head>
 <body>
@@ -254,6 +267,24 @@ header {
         </div>
         <button class="btn-buy" onclick="addCarrinho('Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
       </div>
+    </div>
+
+    <div class="card produto" data-name="le sserafim kpop">
+        <img src="lesserafim.jpg">
+        <div class="card-info">
+          <h3>Kit Photocards - LE SSERAFIM</h3>
+          <p class="price">R$ 22,90</p>
+          <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes do produto</button>
+          <div class="description-text">
+              <b>Sobre o produto:</b><br>
+              • Cartão lomo (54 unidades)<br>
+              • Alta qualidade e brilho<br>
+              • Tamanho: 8,5 x 5,5 cm<br>
+              • Frente e verso (dupla face)<br>
+              • Com brinde surpresa 🤩
+          </div>
+          <button class="btn-buy" onclick="addCarrinho('LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button>
+        </div>
     </div>
 
     <div class="card produto" data-name="neymar futebol">
@@ -392,7 +423,7 @@ function finalizar() {
   const cep = document.getElementById("cepInput").value;
 
   if(!nome || !endereco || !cidade) {
-      alert("Por favor, preencha as informações de entrega!");
+      alert("Por favor, preencha as informações de entrega no carrinho!");
       return;
   }
 
@@ -405,10 +436,10 @@ function finalizar() {
   msg += `%0A*Produtos:* R$ ${document.getElementById("subtotal").innerText}`;
   msg += `%0A*Frete (${tipoFrete}):* R$ ${valorFrete.toFixed(2).replace('.',',')}`;
   msg += `%0A*TOTAL:* ${document.getElementById("total").innerText}`;
+  msg += `%0A%0A_Sobre os itens: Receberei os cartões de forma aleatória. Caso chegue algo danificado, farei contato._`;
   window.open(`https://wa.me/5591986122614?text=${msg}`);
 }
 
-// NOVO SISTEMA DE CÁLCULO REAL
 async function calcularFreteReal() {
     const cepDestino = document.getElementById("cepInput").value.replace(/\D/g, '');
     const resultado = document.getElementById("resultadoFrete");
@@ -422,41 +453,19 @@ async function calcularFreteReal() {
     resultado.innerHTML = "⌛ Consultando Correios...";
 
     try {
-        // Cálculo baseado em lógica de distância (Região Norte/Castanhal -> Brasil)
-        // Como APIs diretas dos correios exigem contrato/token, 
-        // usamos uma lógica paramétrica baseada no primeiro dígito do CEP (Regiões do Brasil)
-        
         let prefixo = cepDestino.substring(0, 1);
         let basePAC = 18.50;
         let baseSedex = 32.00;
-
-        // Ajuste de valores conforme região (Saindo do Pará - Região 6)
-        const distancias = {
-            '6': 1.0, // Norte (perto)
-            '7': 1.5, // Centro-Oeste
-            '4': 1.8, // Nordeste
-            '5': 1.8,
-            '3': 2.2, // Sudeste
-            '2': 2.3,
-            '1': 2.4,
-            '0': 2.5,
-            '8': 2.8, // Sul
-            '9': 2.9
-        };
-
+        const distancias = {'6': 1.0, '7': 1.5, '4': 1.8, '5': 1.8, '3': 2.2, '2': 2.3, '1': 2.4, '0': 2.5, '8': 2.8, '9': 2.9};
         let multiplicador = distancias[prefixo] || 2.0;
-        
-        // Simulação de peso (cada kit photocard ~150g)
         let totalItens = carrinho.reduce((acc, i) => acc + i.qtd, 0) || 1;
         let adicionalPeso = totalItens * 1.50;
 
         let finalPAC = basePAC * multiplicador + adicionalPeso;
         let finalSedex = baseSedex * multiplicador + adicionalPeso;
 
-        // Buscar nome da cidade via API para confirmar
         const response = await fetch(`https://viacep.com.br/ws/${cepDestino}/json/`);
         const data = await response.json();
-
         if (data.erro) throw new Error();
 
         document.getElementById("cidadeCliente").value = `${data.localidade} / ${data.uf}`;
@@ -464,14 +473,12 @@ async function calcularFreteReal() {
         resultado.innerHTML = `
             <p style="font-size:12px; color:#ffb3f0;">Entrega para: ${data.localidade} - ${data.uf}</p>
             <div class="frete-opcao" onclick="selecionarFrete('${finalPAC}', 'PAC')">
-                <strong>📦 PAC:</strong> R$ ${finalPAC.toFixed(2).replace('.',',')} (Prazo Estimado)
+                <strong>📦 PAC:</strong> R$ ${finalPAC.toFixed(2).replace('.',',')}
             </div>
             <div class="frete-opcao" onclick="selecionarFrete('${finalSedex}', 'SEDEX')">
-                <strong>⚡ SEDEX:</strong> R$ ${finalSedex.toFixed(2).replace('.',',')} (Prazo Estimado)
+                <strong>⚡ SEDEX:</strong> R$ ${finalSedex.toFixed(2).replace('.',',')}
             </div>
-            <small style="opacity:0.6">*Valores baseados em peso e distância.</small>
         `;
-
     } catch (e) {
         resultado.innerHTML = "❌ Erro ao calcular. Verifique o CEP.";
     }

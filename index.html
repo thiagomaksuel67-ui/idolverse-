@@ -60,32 +60,6 @@ header {
   font-weight: bold;
 }
 
-/* BANNER */
-.info-banner {
-  background: rgba(43, 43, 79, 0.8);
-  border: 1.5px solid var(--whatsapp-green);
-  border-radius: 15px;
-  padding: 20px;
-  margin: 15px 0;
-  text-align: left;
-}
-.info-banner p { margin: 10px 0; line-height: 1.4; font-size: 14px; }
-.info-banner .highlight { color: var(--whatsapp-green); font-weight: bold; }
-
-.btn-whatsapp-banner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: var(--whatsapp-green);
-  color: white;
-  text-decoration: none;
-  padding: 12px;
-  border-radius: 30px;
-  font-weight: bold;
-  margin-top: 15px;
-}
-
 /* GRID PRODUTOS */
 .container { padding: 15px; max-width: 1200px; margin: 0 auto; }
 .products {
@@ -99,11 +73,34 @@ header {
   border-radius: 15px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  flex-direction: column;
 }
 
 .card img { width: 100%; height: 170px; object-fit: cover; }
-.card-info { padding: 12px; text-align: center; }
-.price { color: #ffb3f0; font-size: 18px; font-weight: bold; }
+.card-info { padding: 12px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
+.price { color: #ffb3f0; font-size: 18px; font-weight: bold; margin: 8px 0; }
+
+.btn-details {
+    background: transparent;
+    color: #bbb;
+    border: none;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.description-text {
+    display: none;
+    font-size: 11px;
+    text-align: left;
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
 
 .btn-buy {
   background: var(--primary-pink);
@@ -114,130 +111,41 @@ header {
   width: 100%;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 10px;
 }
 
-/* CALCULO DE FRETE */
+/* FRETE */
 .shipping-box {
   background: var(--card-purple);
   margin: 25px 0;
   padding: 20px;
   border-radius: 15px;
-  border: 1px solid rgba(255,255,255,0.1);
 }
-.shipping-box .input-group {
-  display: flex;
-  gap: 8px;
-  margin-top: 10px;
-}
-.shipping-box input {
-  background: #1c1c3a;
-  border: 1px solid #444;
-  color: white;
-  padding: 12px;
-  border-radius: 8px;
-  flex: 1;
-}
-.shipping-box button {
-  padding: 12px 15px;
-  background: transparent;
-  border: 1px solid var(--primary-pink);
-  color: var(--primary-pink);
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
+.shipping-box .input-group { display: flex; gap: 8px; margin-top: 10px; }
+.shipping-box input { background: #1c1c3a; border: 1px solid #444; color: white; padding: 12px; border-radius: 8px; flex: 1; }
+.shipping-box button { padding: 12px 15px; background: transparent; border: 1px solid var(--primary-pink); color: var(--primary-pink); border-radius: 8px; font-weight: bold; cursor: pointer; }
 
 .frete-opcao {
     background: rgba(255,255,255,0.05);
-    margin: 8px 0;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: 0.3s;
+    margin: 8px 0; padding: 10px; border-radius: 8px; cursor: pointer; border: 1px solid transparent;
 }
-.frete-opcao:hover { border-color: var(--primary-pink); }
-.frete-opcao.selecionado {
-    border-color: var(--whatsapp-green);
-    background: rgba(37, 211, 102, 0.1);
-}
+.frete-opcao.selecionado { border-color: var(--whatsapp-green); background: rgba(37, 211, 102, 0.1); }
 
 /* CARRINHO */
 #carrinho {
   position: fixed;
-  top: 0;
-  right: -100%;
-  width: 100%;
-  max-width: 450px;
-  height: 100vh;
-  background: var(--shopee-gray);
-  z-index: 2000;
-  transition: 0.4s;
-  display: flex;
-  flex-direction: column;
-  color: #333;
+  top: 0; right: -100%; width: 100%; max-width: 450px; height: 100vh;
+  background: var(--shopee-gray); z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; color: #333;
 }
-
-.cart-header {
-  background: var(--bg-dark-deep);
-  color: white;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
+.cart-header { background: var(--bg-dark-deep); color: white; padding: 15px; display: flex; align-items: center; gap: 15px; }
 #listaCarrinho { flex: 1; overflow-y: auto; padding: 10px; }
-
-.item-shopee {
-  background: white;
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 10px;
-  display: flex;
-  gap: 12px;
-}
-
-.item-shopee img { width: 70px; height: 70px; object-fit: cover; border-radius: 4px; }
-.item-info { flex: 1; }
+.item-shopee { background: white; border-radius: 8px; padding: 12px; margin-bottom: 10px; display: flex; gap: 12px; }
+.item-shopee img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
 .item-price { color: var(--primary-pink); font-weight: bold; }
-
-.item-controls {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ddd;
-  width: fit-content;
-  border-radius: 3px;
-  margin-top: 5px;
-}
-.item-controls button { background: white; border: none; padding: 2px 8px; cursor: pointer; }
-.item-controls span { padding: 0 8px; border-left: 1px solid #ddd; border-right: 1px solid #ddd; }
-
 .cart-footer { background: white; padding: 15px; border-top: 1px solid #eee; }
-.footer-top { display: flex; flex-direction: column; margin-bottom: 10px; }
-.total-linha { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px; color: #666;}
-.total-final { display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; margin-top: 8px; border-top: 2px solid #eee; padding-top: 8px; color: #000;}
-
-.btn-continuar {
-  width: 100%;
-  padding: 15px;
-  background: var(--primary-pink);
-  color: white;
-  border: none;
-  font-weight: bold;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-#overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  display: none;
-  z-index: 1500;
-}
+.total-linha { display: flex; justify-content: space-between; font-size: 13px; color: #666; margin-bottom: 4px; }
+.total-final { display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; border-top: 1px solid #eee; padding-top: 8px; margin-top: 8px; color: #000; }
+.btn-continuar { width: 100%; padding: 15px; background: var(--primary-pink); color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; }
+#overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; z-index: 1500; }
 </style>
 </head>
 <body>
@@ -250,7 +158,6 @@ header {
 </header>
 
 <button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>
-
 <div id="overlay" onclick="toggleCarrinho()"></div>
 
 <div id="carrinho">
@@ -260,32 +167,29 @@ header {
   </div>
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
-    <div class="footer-top">
-        <div class="total-linha"><span>Valor dos Produtos:</span> <span id="subtotal">R$ 0,00</span></div>
-        <div class="total-linha"><span>Frete Selecionado:</span> <span id="freteNoCarrinho">R$ 0,00</span></div>
-        <div class="total-final"><span>TOTAL GERAL:</span> <strong id="total">R$ 0,00</strong></div>
-    </div>
+    <div class="total-linha"><span>Produtos:</span> <span id="subtotal">R$ 0,00</span></div>
+    <div class="total-linha"><span>Frete:</span> <span id="freteNoCarrinho">R$ 0,00</span></div>
+    <div class="total-final"><span>TOTAL:</span> <span id="total">R$ 0,00</span></div>
     <button class="btn-continuar" onclick="finalizar()">Finalizar Compra (0)</button>
   </div>
 </div>
 
 <div class="container">
-
-  <div class="info-banner">
-    <p>Produzimos <span class="highlight">fanbox</span> e <span class="highlight">caixas de photocards personalizadas</span> de filmes, séries e famosos. ✨</p>
-    <p>Você escolhe o tema, entra em contato com a gente e informamos valor, frete e todos os detalhes.</p>
-    <p>É só chamar e montar a sua box do jeito que quiser 💖</p>
-    <a href="https://wa.me/5591986122614" class="btn-whatsapp-banner">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="20" alt="Zap"> WhatsApp
-    </a>
-  </div>
-  
   <div class="products">
     <div class="card produto" data-name="bts kpop">
       <img src="bts1.jpg">
       <div class="card-info">
         <h3>Kit Photocards - BTS</h3>
         <p class="price">R$ 19,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes do produto</button>
+        <div class="description-text">
+            <b>Sobre o produto:</b><br>
+            • Cartão lomo (54 unidades)<br>
+            • Alta qualidade e brilho<br>
+            • Tamanho: 8,5 x 5,5 cm<br>
+            • Frente e verso (dupla face)<br>
+            • Com brinde surpresa 🤩
+        </div>
         <button class="btn-buy" onclick="addCarrinho('BTS', 19.90, 'bts1.jpg')">Adicionar</button>
       </div>
     </div>
@@ -295,6 +199,15 @@ header {
       <div class="card-info">
         <h3>Pack Photocards - BLACKPINK</h3>
         <p class="price">R$ 21,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes do produto</button>
+        <div class="description-text">
+            <b>Sobre o produto:</b><br>
+            • Cartão lomo (54 unidades)<br>
+            • Alta qualidade e brilho<br>
+            • Tamanho: 8,5 x 5,5 cm<br>
+            • Frente e verso (dupla face)<br>
+            • Com brinde surpresa 🤩
+        </div>
         <button class="btn-buy" onclick="addCarrinho('BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
       </div>
     </div>
@@ -304,6 +217,15 @@ header {
       <div class="card-info">
         <h3>Kit Photocards - Stray Kids</h3>
         <p class="price">R$ 22,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes do produto</button>
+        <div class="description-text">
+            <b>Sobre o produto:</b><br>
+            • Cartão lomo (54 unidades)<br>
+            • Alta qualidade e brilho<br>
+            • Tamanho: 8,5 x 5,5 cm<br>
+            • Frente e verso (dupla face)<br>
+            • Com brinde surpresa 🤩
+        </div>
         <button class="btn-buy" onclick="addCarrinho('Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
       </div>
     </div>
@@ -313,6 +235,15 @@ header {
       <div class="card-info">
         <h3>Pack Photocards - Neymar Jr</h3>
         <p class="price">R$ 24,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes do produto</button>
+        <div class="description-text">
+            <b>Sobre o produto:</b><br>
+            • Cartão lomo (54 unidades)<br>
+            • Alta qualidade e brilho<br>
+            • Tamanho: 8,5 x 5,5 cm<br>
+            • Frente e verso (dupla face)<br>
+            • Com brinde surpresa 🤩
+        </div>
         <button class="btn-buy" onclick="addCarrinho('Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
       </div>
     </div>
@@ -322,6 +253,15 @@ header {
       <div class="card-info">
         <h3>Álbum - Stranger Things</h3>
         <p class="price">R$ 29,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes do produto</button>
+        <div class="description-text">
+            <b>Sobre o produto:</b><br>
+            • Cartão lomo (54 unidades)<br>
+            • Alta qualidade e brilho<br>
+            • Tamanho: 8,5 x 5,5 cm<br>
+            • Frente e verso (dupla face)<br>
+            • Com brinde surpresa 🤩
+        </div>
         <button class="btn-buy" onclick="addCarrinho('Stranger Things', 29.90, 'stranger-things.jpg')">Adicionar</button>
       </div>
     </div>
@@ -335,13 +275,19 @@ header {
     </div>
     <div id="resultadoFrete" style="display: none; margin-top:15px;"></div>
   </div>
-
 </div>
 
 <script>
 let carrinho = [];
-let valorFreteSelecionado = 0;
-let tipoFreteSelecionado = "";
+let valorFrete = 0;
+let tipoFrete = "";
+
+function toggleDesc(btn) {
+    const desc = btn.nextElementSibling;
+    const isVisible = desc.style.display === "block";
+    desc.style.display = isVisible ? "none" : "block";
+    btn.innerText = isVisible ? "Ver detalhes do produto" : "Fechar detalhes";
+}
 
 function addCarrinho(nome, preco, img) {
   let item = carrinho.find(i => i.nome === nome);
@@ -355,7 +301,6 @@ function atualizar() {
   let lista = document.getElementById("listaCarrinho");
   let subtotal = 0, count = 0;
   lista.innerHTML = "";
-  
   carrinho.forEach((i, idx) => {
     subtotal += i.preco * i.qtd;
     count += i.qtd;
@@ -374,38 +319,26 @@ function atualizar() {
     </div>`;
   });
 
-  // Cálculo mesclado
-  let totalMesclado = subtotal + valorFreteSelecionado;
-
+  let totalGeral = subtotal + valorFrete;
   document.getElementById("subtotal").innerText = "R$ " + subtotal.toFixed(2).replace('.',',');
-  document.getElementById("freteNoCarrinho").innerText = "R$ " + valorFreteSelecionado.toFixed(2).replace('.',',');
-  document.getElementById("total").innerText = "R$ " + totalMesclado.toFixed(2).replace('.',',');
+  document.getElementById("freteNoCarrinho").innerText = "R$ " + valorFrete.toFixed(2).replace('.',',');
+  document.getElementById("total").innerText = "R$ " + totalGeral.toFixed(2).replace('.',',');
   document.getElementById("cartCount").innerText = count;
   document.querySelector(".btn-continuar").innerText = `Finalizar Compra (${count})`;
 }
 
 function selecionarFrete(valor, tipo) {
-    valorFreteSelecionado = valor;
-    tipoFreteSelecionado = tipo;
-    
-    // Feedback visual de seleção
-    const opcoes = document.querySelectorAll('.frete-opcao');
-    opcoes.forEach(el => el.classList.remove('selecionado'));
+    valorFrete = valor;
+    tipoFrete = tipo;
+    document.querySelectorAll('.frete-opcao').forEach(el => el.classList.remove('selecionado'));
     event.currentTarget.classList.add('selecionado');
-    
-    atualizar(); // Soma o frete ao total imediatamente
+    atualizar();
 }
 
 function alterarQtd(i, v) {
   carrinho[i].qtd += v;
-  if(carrinho[i].qtd <= 0) {
-      carrinho.splice(i, 1);
-      // Se o carrinho ficar vazio, o frete reseta
-      if(carrinho.length === 0) {
-          valorFreteSelecionado = 0;
-          tipoFreteSelecionado = "";
-      }
-  }
+  if(carrinho[i].qtd <= 0) carrinho.splice(i, 1);
+  if(carrinho.length === 0) { valorFrete = 0; tipoFrete = ""; }
   atualizar();
 }
 
@@ -425,17 +358,13 @@ function buscar(t) {
 }
 
 function finalizar() {
-  if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
-  
+  if(carrinho.length === 0) return alert("Carrinho vazio!");
   let msg = "🛒 *Pedido IdolVerse*:%0A%0A";
   carrinho.forEach(i => msg += `• ${i.nome} (x${i.qtd})%0A`);
-  
-  msg += `%0A---------------------------`;
   msg += `%0A*Produtos:* R$ ${document.getElementById("subtotal").innerText}`;
-  msg += `%0A*Frete (${tipoFreteSelecionado || 'A definir'}):* R$ ${valorFreteSelecionado.toFixed(2).replace('.',',')}`;
-  msg += `%0A*TOTAL GERAL:* ${document.getElementById("total").innerText}`;
-  msg += `%0A---------------------------`;
-  
+  msg += `%0A*Frete (${tipoFrete || 'A definir'}):* R$ ${valorFrete.toFixed(2).replace('.',',')}`;
+  msg += `%0A*TOTAL:* ${document.getElementById("total").innerText}`;
+  msg += `%0A%0A_Sobre os itens: Receberei os cartões de forma aleatória. Caso chegue algo danificado, entrarei em contato._`;
   window.open(`https://wa.me/5591986122614?text=${msg}`);
 }
 
@@ -443,30 +372,15 @@ function calcularFrete() {
   const input = document.getElementById("cepInput");
   const cep = input.value.replace(/\D/g, '');
   const resultado = document.getElementById("resultadoFrete");
-
-  if (cep.length !== 8) {
-    alert("Por favor, digite um CEP válido.");
-    return;
-  }
-
+  if (cep.length !== 8) return alert("CEP inválido");
   resultado.style.display = "block";
-  resultado.innerHTML = "⌛ Calculando opções de envio...";
-
+  resultado.innerHTML = "⌛ Calculando...";
   setTimeout(() => {
-    // Valores simulados
-    let vPac = 15.00;
-    let vSedex = 27.50;
-
+    let vPac = 16.00; let vSedex = 29.00;
     resultado.innerHTML = `
-      <p style="margin-bottom:10px; font-size:13px; color:#ffb3f0;">Selecione uma opção para somar ao total:</p>
-      <div class="frete-opcao" onclick="selecionarFrete(${vPac}, 'PAC')">
-        <strong>📦 PAC:</strong> R$ ${vPac.toFixed(2).replace('.',',')} (7 dias úteis)
-      </div>
-      <div class="frete-opcao" onclick="selecionarFrete(${vSedex}, 'SEDEX')">
-        <strong>⚡ SEDEX:</strong> R$ ${vSedex.toFixed(2).replace('.',',')} (3 dias úteis)
-      </div>
-    `;
-  }, 800);
+      <div class="frete-opcao" onclick="selecionarFrete(${vPac}, 'PAC')">📦 PAC: R$ 16,00 (7 dias)</div>
+      <div class="frete-opcao" onclick="selecionarFrete(${vSedex}, 'SEDEX')">⚡ SEDEX: R$ 29,00 (3 dias)</div>`;
+  }, 700);
 }
 
 document.getElementById("cepInput").addEventListener("input", function(e) {

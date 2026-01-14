@@ -7,14 +7,12 @@
 
 <style>
 *{box-sizing:border-box}
-body{
+html,body{
   margin:0;
-  font-family:Arial, sans-serif;
+  font-family:Arial,sans-serif;
   background:linear-gradient(135deg,#1e1e2f,#3a3a6a);
   color:#fff;
 }
-
-/* HEADER */
 header{
   position:sticky;
   top:0;
@@ -25,8 +23,6 @@ header{
   font-weight:bold;
   z-index:10;
 }
-
-/* CARRINHO */
 #cartBtn{
   position:fixed;
   top:15px;
@@ -37,7 +33,6 @@ header{
   cursor:pointer;
   z-index:1000;
 }
-
 #overlay{
   position:fixed;
   inset:0;
@@ -45,7 +40,6 @@ header{
   display:none;
   z-index:998;
 }
-
 #carrinho{
   position:fixed;
   top:0;
@@ -59,7 +53,6 @@ header{
   z-index:999;
   overflow-y:auto;
 }
-
 .item-cart{
   display:flex;
   gap:10px;
@@ -68,88 +61,58 @@ header{
   border-radius:10px;
   margin-bottom:10px;
 }
-
 .item-cart img{
   width:45px;
   height:45px;
   object-fit:cover;
   border-radius:6px;
 }
-
-.qtd button{
-  padding:3px 7px;
+.footer-cart{
+  position:sticky;
+  bottom:0;
+  background:#1c1c3a;
+  padding:10px;
+}
+.container{padding:15px}
+.search input{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  margin-bottom:15px;
+}
+.tags-menu{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+.tags-menu button{
+  border:none;
+  border-radius:20px;
+  padding:8px 14px;
+  background:#ff4fd8;
+  color:#fff;
   cursor:pointer;
 }
-
-/* CONTAINER */
-.container{padding:15px}
-
-/* GRID */
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   gap:15px;
 }
-
-/* CARD */
 .card{
   background:#2b2b4f;
   border-radius:15px;
   overflow:hidden;
   text-align:center;
 }
-
-/* SLIDER */
-.slider{
-  position:relative;
-}
-
-.slider img{
+.card img{
   width:100%;
   height:200px;
   object-fit:cover;
-}
-
-/* SETAS */
-.arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,.5);
-  padding:6px 10px;
-  font-size:18px;
   cursor:pointer;
-  border-radius:6px;
-  user-select:none;
 }
-
-.arrow.left{left:8px}
-.arrow.right{right:8px}
-
-/* THUMBS */
-.thumbs{
-  display:flex;
-  gap:5px;
-  justify-content:center;
-  padding:8px;
-}
-
-.thumbs img{
-  width:38px;
-  height:38px;
-  object-fit:cover;
-  border-radius:6px;
-  cursor:pointer;
-  opacity:.7;
-}
-
-.thumbs img.active{
-  opacity:1;
-  outline:2px solid #ff4fd8;
-}
-
 .price{color:#ffb3f0;font-weight:bold}
-
 .card button{
   margin:10px;
   padding:10px;
@@ -158,6 +121,44 @@ header{
   border-radius:20px;
   background:#ff4fd8;
   color:#fff;
+  cursor:pointer;
+}
+
+/* GALERIA */
+.gallery{
+  display:flex;
+  gap:5px;
+  justify-content:center;
+  margin-bottom:8px;
+}
+.gallery img{
+  width:40px;
+  height:40px;
+  object-fit:cover;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* ZOOM */
+.zoom-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+.zoom-overlay img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+}
+.zoom-close{
+  position:absolute;
+  top:20px;
+  right:25px;
+  font-size:30px;
   cursor:pointer;
 }
 </style>
@@ -171,120 +172,163 @@ header{
 <div id="carrinho">
   <h2>Carrinho</h2>
   <div id="listaCarrinho"></div>
-  <p>Total: <strong id="total">R$ 0,00</strong></p>
+  <div class="footer-cart">
+    <p>Total: <strong id="total">R$ 0,00</strong></p>
+    <button onclick="finalizar()">Finalizar no WhatsApp</button>
+  </div>
 </div>
 
 <header>✨ IdolVerse ✨</header>
 
 <div class="container">
+
+<div class="search">
+<input placeholder="🔍 Buscar..." onkeyup="buscar(this.value)">
+</div>
+
+<div class="tags-menu">
+<button onclick="filtrar('todos')">Todos</button>
+<button onclick="filtrar('kpop')">K‑POP</button>
+<button onclick="filtrar('futebol')">Futebol</button>
+<button onclick="filtrar('filmes')">Filmes</button>
+</div>
+
 <div class="products">
 
 <!-- BTS -->
-<div class="card">
-  <div class="slider" data-prod="bts">
-    <span class="arrow left" onclick="prevImg('bts')">❮</span>
-    <img id="img-bts" src="bts1.jpg">
-    <span class="arrow right" onclick="nextImg('bts')">❯</span>
-  </div>
-  <div class="thumbs">
-    <img src="bts1.jpg" onclick="setImg('bts',0)">
-    <img src="bts2.jpg" onclick="setImg('bts',1)">
-    <img src="bts3.jpg" onclick="setImg('bts',2)">
-    <img src="bts4.jpg" onclick="setImg('bts',3)">
-  </div>
-  <h3>BTS</h3>
-  <p class="price">R$ 19,90</p>
-  <button onclick="addCarrinho('BTS',19.9,'bts1.jpg')">Adicionar</button>
+<div class="card produto" data-name="bts kpop">
+<img id="btsMain" src="bts1.jpg" onclick="zoomImagem(this.src)">
+<div class="gallery">
+<img src="bts.jpg" onclick="trocarImagem('btsMain',this.src)">
+<img src="bts1.jpg" onclick="trocarImagem('btsMain',this.src)">
+<img src="bts2.jpg" onclick="trocarImagem('btsMain',this.src)">
+<img src="bts3.jpg" onclick="trocarImagem('btsMain',this.src)">
+</div>
+<h3>BTS</h3>
+<p class="price">R$ 19,90</p>
+<button onclick="addCarrinho('BTS',19.9,'bts1.jpg')">Adicionar</button>
+</div>
+
+<!-- BLACKPINK -->
+<div class="card produto" data-name="blackpink kpop">
+<img src="blackpink.jpg" onclick="zoomImagem(this.src)">
+<h3>BLACKPINK</h3>
+<p class="price">R$ 21,90</p>
+<button onclick="addCarrinho('BLACKPINK',21.9,'blackpink.jpg')">Adicionar</button>
+</div>
+
+<!-- STRAY KIDS -->
+<div class="card produto" data-name="straykids kpop">
+<img src="straykids.jpg" onclick="zoomImagem(this.src)">
+<h3>Stray Kids</h3>
+<p class="price">R$ 22,90</p>
+<button onclick="addCarrinho('Stray Kids',22.9,'straykids.jpg')">Adicionar</button>
 </div>
 
 <!-- NEYMAR -->
-<div class="card">
-  <div class="slider" data-prod="neymar">
-    <span class="arrow left" onclick="prevImg('neymar')">❮</span>
-    <img id="img-neymar" src="neymar1.jpg">
-    <span class="arrow right" onclick="nextImg('neymar')">❯</span>
-  </div>
-  <div class="thumbs">
-    <img src="neymar1.jpg" onclick="setImg('neymar',0)">
-    <img src="neymar2.jpg" onclick="setImg('neymar',1)">
-    <img src="neymar3.jpg" onclick="setImg('neymar',2)">
-    <img src="neymar4.jpg" onclick="setImg('neymar',3)">
-  </div>
-  <h3>Neymar Jr</h3>
-  <p class="price">R$ 24,90</p>
-  <button onclick="addCarrinho('Neymar Jr',24.9,'neymar1.jpg')">Adicionar</button>
+<div class="card produto" data-name="neymar futebol">
+<img id="neymarMain" src="neymar.jpg" onclick="zoomImagem(this.src)">
+<div class="gallery">
+<img src="neymar.jpg" onclick="trocarImagem('neymarMain',this.src)">
+<img src="neymar1.jpg" onclick="trocarImagem('neymarMain',this.src)">
+<img src="neymar2.jpg" onclick="trocarImagem('neymarMain',this.src)">
+<img src="neymar3.jpg" onclick="trocarImagem('neymarMain',this.src)">
+</div>
+<h3>Neymar Jr</h3>
+<p class="price">R$ 24,90</p>
+<button onclick="addCarrinho('Neymar Jr',24.9,'neymar.jpg')">Adicionar</button>
 </div>
 
 <!-- STRANGER THINGS -->
-<div class="card">
-  <div class="slider" data-prod="st">
-    <span class="arrow left" onclick="prevImg('st')">❮</span>
-    <img id="img-st" src="st1.jpg">
-    <span class="arrow right" onclick="nextImg('st')">❯</span>
-  </div>
-  <div class="thumbs">
-    <img src="st1.jpg" onclick="setImg('st',0)">
-    <img src="st2.jpg" onclick="setImg('st',1)">
-    <img src="st3.jpg" onclick="setImg('st',2)">
-    <img src="st4.jpg" onclick="setImg('st',3)">
-  </div>
-  <h3>Stranger Things</h3>
-  <p class="price">R$ 29,90</p>
-  <button onclick="addCarrinho('Stranger Things',29.9,'st1.jpg')">Adicionar</button>
+<div class="card produto" data-name="stranger things filmes">
+<img id="strangerMain" src="stranger-things.jpg" onclick="zoomImagem(this.src)">
+<div class="gallery">
+<img src="stranger-things.jpg" onclick="trocarImagem('strangerMain',this.src)">
+<img src="stranger1.jpg" onclick="trocarImagem('strangerMain',this.src)">
+<img src="stranger2.jpg" onclick="trocarImagem('strangerMain',this.src)">
+<img src="stranger3.jpg" onclick="trocarImagem('strangerMain',this.src)">
+</div>
+<h3>Stranger Things</h3>
+<p class="price">R$ 29,90</p>
+<button onclick="addCarrinho('Stranger Things',29.9,'stranger-things.jpg')">Adicionar</button>
 </div>
 
 </div>
+</div>
+
+<div class="zoom-overlay" id="zoomOverlay" onclick="fecharZoom()">
+<span class="zoom-close">✖</span>
+<img id="zoomImg">
 </div>
 
 <script>
-const galerias={
-  bts:["bts1.jpg","bts2.jpg","bts3.jpg","bts4.jpg"],
-  neymar:["neymar1.jpg","neymar2.jpg","neymar3.jpg","neymar4.jpg"],
-  st:["st1.jpg","st2.jpg","st3.jpg","st4.jpg"]
-};
-
-const indexImg={bts:0,neymar:0,st:0};
-
-function setImg(p,i){
-  indexImg[p]=i;
-  document.getElementById("img-"+p).src=galerias[p][i];
-}
-
-function nextImg(p){
-  indexImg[p]=(indexImg[p]+1)%galerias[p].length;
-  setImg(p,indexImg[p]);
-}
-
-function prevImg(p){
-  indexImg[p]=(indexImg[p]-1+galerias[p].length)%galerias[p].length;
-  setImg(p,indexImg[p]);
-}
-
-/* CARRINHO */
 let carrinho=[];
+
 function addCarrinho(nome,preco,img){
-  let i=carrinho.find(p=>p.nome===nome);
-  if(i)i.qtd++; else carrinho.push({nome,preco,img,qtd:1});
+  let item=carrinho.find(i=>i.nome===nome);
+  if(item) item.qtd++;
+  else carrinho.push({nome,preco,img,qtd:1});
   atualizar();
 }
+
 function atualizar(){
   let lista=document.getElementById("listaCarrinho");
   let total=0,count=0;
   lista.innerHTML="";
-  carrinho.forEach(i=>{
+  carrinho.forEach((i,idx)=>{
     total+=i.preco*i.qtd;
     count+=i.qtd;
-    lista.innerHTML+=`<p>${i.nome} x${i.qtd}</p>`;
+    lista.innerHTML+=`
+      <div class="item-cart">
+        <img src="${i.img}">
+        <div>
+          <p>${i.nome}</p>
+          <p>R$ ${i.preco.toFixed(2)}</p>
+        </div>
+      </div>`;
   });
   document.getElementById("total").innerText="R$ "+total.toFixed(2);
   document.getElementById("cartCount").innerText=count;
 }
+
 function toggleCarrinho(){
   let c=document.getElementById("carrinho");
   let o=document.getElementById("overlay");
   let aberto=c.style.right==="0px";
   c.style.right=aberto?"-100%":"0";
   o.style.display=aberto?"none":"block";
+}
+
+function finalizar(){
+  let msg="🛒 Pedido:%0A";
+  carrinho.forEach(i=>msg+=`• ${i.nome} x${i.qtd}%0A`);
+  window.open(`https://wa.me/5591986122614?text=${msg}`);
+}
+
+function buscar(t){
+  t=t.toLowerCase();
+  document.querySelectorAll(".produto").forEach(p=>{
+    p.style.display=p.dataset.name.includes(t)?"block":"none";
+  });
+}
+
+function filtrar(tag){
+  document.querySelectorAll(".produto").forEach(p=>{
+    p.style.display=(tag==="todos"||p.dataset.name.includes(tag))?"block":"none";
+  });
+}
+
+function zoomImagem(src){
+  document.getElementById("zoomImg").src=src;
+  document.getElementById("zoomOverlay").style.display="flex";
+}
+
+function fecharZoom(){
+  document.getElementById("zoomOverlay").style.display="none";
+}
+
+function trocarImagem(id,src){
+  document.getElementById(id).src=src;
 }
 </script>
 

@@ -138,6 +138,23 @@ header {
 }
 .cart-header { background: var(--bg-dark-deep); color: white; padding: 15px; display: flex; align-items: center; gap: 15px; }
 #listaCarrinho { flex: 1; overflow-y: auto; padding: 10px; }
+
+/* DADOS DE ENTREGA */
+.entrega-form {
+    padding: 15px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+}
+.entrega-form h4 { margin: 0 0 10px 0; font-size: 14px; color: var(--bg-dark-deep); }
+.entrega-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
 .item-shopee { background: white; border-radius: 8px; padding: 12px; margin-bottom: 10px; display: flex; gap: 12px; }
 .item-shopee img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
 .item-price { color: var(--primary-pink); font-weight: bold; }
@@ -165,7 +182,16 @@ header {
     <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:20px;">←</span>
     <span style="font-weight:bold;">Meu Carrinho</span>
   </div>
+  
   <div id="listaCarrinho"></div>
+
+  <div class="entrega-form">
+      <h4>📍 Dados para Entrega</h4>
+      <input type="text" id="nomeCliente" placeholder="Seu Nome Completo">
+      <input type="text" id="endCliente" placeholder="Rua, Número e Bairro">
+      <input type="text" id="cidadeCliente" placeholder="Cidade / UF">
+  </div>
+
   <div class="cart-footer">
     <div class="total-linha"><span>Produtos:</span> <span id="subtotal">R$ 0,00</span></div>
     <div class="total-linha"><span>Frete:</span> <span id="freteNoCarrinho">R$ 0,00</span></div>
@@ -359,12 +385,32 @@ function buscar(t) {
 
 function finalizar() {
   if(carrinho.length === 0) return alert("Carrinho vazio!");
+  
+  const nome = document.getElementById("nomeCliente").value;
+  const endereco = document.getElementById("endCliente").value;
+  const cidade = document.getElementById("cidadeCliente").value;
+  const cep = document.getElementById("cepInput").value;
+
+  if(!nome || !endereco || !cidade) {
+      alert("Por favor, preencha as informações de entrega no carrinho!");
+      return;
+  }
+
   let msg = "🛒 *Pedido IdolVerse*:%0A%0A";
+  msg += `👤 *Cliente:* ${nome}%0A`;
+  msg += `📍 *Endereço:* ${endereco}%0A`;
+  msg += `🏙️ *Cidade:* ${cidade}%0A`;
+  msg += `📮 *CEP:* ${cep || 'Não informado'}%0A%0A`;
+  
+  msg += "*ITENS:*%0A";
   carrinho.forEach(i => msg += `• ${i.nome} (x${i.qtd})%0A`);
+  
   msg += `%0A*Produtos:* R$ ${document.getElementById("subtotal").innerText}`;
   msg += `%0A*Frete (${tipoFrete || 'A definir'}):* R$ ${valorFrete.toFixed(2).replace('.',',')}`;
-  msg += `%0A*TOTAL:* ${document.getElementById("total").innerText}`;
-  msg += `%0A%0A_Sobre os itens: Receberei os cartões de forma aleatória. Caso chegue algo danificado, entrarei em contato._`;
+  msg += `%0A*TOTAL FINAL:* ${document.getElementById("total").innerText}`;
+  
+  msg += `%0A%0A_Sobre os itens: Receberei os cartões de forma aleatória. Caso chegue algo danificado, farei contato._`;
+
   window.open(`https://wa.me/5591986122614?text=${msg}`);
 }
 

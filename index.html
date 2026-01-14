@@ -60,32 +60,6 @@ header {
   font-weight: bold;
 }
 
-/* BANNER DE INFORMAÇÃO PERSONALIZADA */
-.info-banner {
-  background: rgba(43, 43, 79, 0.8);
-  border: 1.5px solid var(--whatsapp-green);
-  border-radius: 15px;
-  padding: 20px;
-  margin: 15px 0;
-  text-align: left;
-}
-.info-banner p { margin: 10px 0; line-height: 1.4; font-size: 14px; }
-.info-banner .highlight { color: var(--whatsapp-green); font-weight: bold; }
-
-.btn-whatsapp-banner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: var(--whatsapp-green);
-  color: white;
-  text-decoration: none;
-  padding: 12px;
-  border-radius: 30px;
-  font-weight: bold;
-  margin-top: 15px;
-}
-
 /* GRID PRODUTOS */
 .container { padding: 15px; max-width: 1200px; margin: 0 auto; }
 .products {
@@ -147,12 +121,21 @@ header {
   font-weight: bold;
   cursor: pointer;
 }
-#resultadoFrete {
-  margin-top: 15px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  font-size: 14px;
-  line-height: 1.6;
+
+/* Estilo das Opções de Frete */
+.frete-opcao {
+    background: rgba(255,255,255,0.05);
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+.frete-opcao:hover { border-color: var(--primary-pink); }
+.frete-opcao.selecionado {
+    border-color: var(--whatsapp-green);
+    background: rgba(37, 211, 102, 0.1);
 }
 
 /* CARRINHO */
@@ -207,7 +190,9 @@ header {
 .item-controls span { padding: 0 8px; border-left: 1px solid #ddd; border-right: 1px solid #ddd; }
 
 .cart-footer { background: white; padding: 15px; border-top: 1px solid #eee; }
-.footer-top { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.footer-top { display: flex; flex-direction: column; margin-bottom: 10px; }
+.total-linha { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px; }
+.total-final { display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; margin-top: 5px; border-top: 1px solid #eee; padding-top: 5px;}
 
 .btn-continuar {
   width: 100%;
@@ -251,24 +236,15 @@ header {
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
     <div class="footer-top">
-        <span>Selecionar Tudo</span>
-        <span>Total: <strong id="total">R$ 0,00</strong></span>
+        <div class="total-linha"><span>Produtos:</span> <span id="subtotal">R$ 0,00</span></div>
+        <div class="total-linha"><span>Frete:</span> <span id="freteNoCarrinho">R$ 0,00</span></div>
+        <div class="total-final"><span>Total:</span> <strong id="total">R$ 0,00</strong></div>
     </div>
     <button class="btn-continuar" onclick="finalizar()">Finalizar Compra (0)</button>
   </div>
 </div>
 
 <div class="container">
-
-  <div class="info-banner">
-    <p>Produzimos <span class="highlight">fanbox</span> e <span class="highlight">caixas de photocards personalizadas</span> de filmes, séries e famosos. ✨</p>
-    <p>Você escolhe o tema, entra em contato com a gente e informamos valor, frete e todos os detalhes.</p>
-    <p>É só chamar e montar a sua box do jeito que quiser 💖</p>
-    <a href="https://wa.me/5591986122614" class="btn-whatsapp-banner">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="20" alt="Zap"> WhatsApp
-    </a>
-  </div>
-  
   <div class="products">
     <div class="card produto" data-name="bts kpop">
       <img src="bts1.jpg">
@@ -278,43 +254,7 @@ header {
         <button class="btn-buy" onclick="addCarrinho('BTS', 19.90, 'bts1.jpg')">Adicionar</button>
       </div>
     </div>
-
-    <div class="card produto" data-name="blackpink kpop">
-      <img src="blackpink.jpg">
-      <div class="card-info">
-        <h3>Pack Photocards - BLACKPINK</h3>
-        <p class="price">R$ 21,90</p>
-        <button class="btn-buy" onclick="addCarrinho('BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
-      </div>
     </div>
-
-    <div class="card produto" data-name="straykids kpop">
-      <img src="straykids.jpg">
-      <div class="card-info">
-        <h3>Kit Photocards - Stray Kids</h3>
-        <p class="price">R$ 22,90</p>
-        <button class="btn-buy" onclick="addCarrinho('Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
-      </div>
-    </div>
-
-    <div class="card produto" data-name="neymar futebol">
-      <img src="neymar.jpg">
-      <div class="card-info">
-        <h3>Pack Photocards - Neymar Jr</h3>
-        <p class="price">R$ 24,90</p>
-        <button class="btn-buy" onclick="addCarrinho('Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
-      </div>
-    </div>
-
-    <div class="card produto" data-name="stranger things filmes">
-      <img src="stranger-things.jpg">
-      <div class="card-info">
-        <h3>Álbum - Stranger Things</h3>
-        <p class="price">R$ 29,90</p>
-        <button class="btn-buy" onclick="addCarrinho('Stranger Things', 29.90, 'stranger-things.jpg')">Adicionar</button>
-      </div>
-    </div>
-  </div>
 
   <div class="shipping-box">
     <strong>🚚 Calcular Frete e Entrega</strong><br>
@@ -322,13 +262,14 @@ header {
         <input type="text" id="cepInput" placeholder="00000-000" maxlength="9">
         <button onclick="calcularFrete()">CALCULAR</button>
     </div>
-    <div id="resultadoFrete" style="display: none;"></div>
+    <div id="resultadoFrete" style="display: none; margin-top:15px;"></div>
   </div>
-
 </div>
 
 <script>
 let carrinho = [];
+let valorFreteSelecionado = 0;
+let tipoFreteSelecionado = "";
 
 function addCarrinho(nome, preco, img) {
   let item = carrinho.find(i => i.nome === nome);
@@ -340,14 +281,14 @@ function addCarrinho(nome, preco, img) {
 
 function atualizar() {
   let lista = document.getElementById("listaCarrinho");
-  let total = 0, count = 0;
+  let subtotal = 0, count = 0;
   lista.innerHTML = "";
+  
   carrinho.forEach((i, idx) => {
-    total += i.preco * i.qtd;
+    subtotal += i.preco * i.qtd;
     count += i.qtd;
     lista.innerHTML += `
     <div class="item-shopee">
-      <input type="checkbox" checked>
       <img src="${i.img}">
       <div class="item-info">
         <h4 style="margin:0; font-size:14px;">${i.nome}</h4>
@@ -360,15 +301,66 @@ function atualizar() {
       </div>
     </div>`;
   });
-  document.getElementById("total").innerText = "R$ " + total.toFixed(2);
+
+  let totalGeral = subtotal + valorFreteSelecionado;
+
+  document.getElementById("subtotal").innerText = "R$ " + subtotal.toFixed(2);
+  document.getElementById("freteNoCarrinho").innerText = "R$ " + valorFreteSelecionado.toFixed(2);
+  document.getElementById("total").innerText = "R$ " + totalGeral.toFixed(2);
   document.getElementById("cartCount").innerText = count;
   document.querySelector(".btn-continuar").innerText = `Finalizar Compra (${count})`;
 }
 
+function selecionarFrete(valor, tipo) {
+    valorFreteSelecionado = valor;
+    tipoFreteSelecionado = tipo;
+    
+    // Marcar visualmente a seleção
+    document.querySelectorAll('.frete-opcao').forEach(el => el.classList.remove('selecionado'));
+    event.currentTarget.classList.add('selecionado');
+    
+    atualizar(); // Atualiza o total no carrinho
+}
+
 function alterarQtd(i, v) {
   carrinho[i].qtd += v;
-  if(carrinho[i].qtd <= 0) carrinho.splice(i, 1);
+  if(carrinho[i].qtd <= 0) {
+      carrinho.splice(i, 1);
+      if(carrinho.length === 0) {
+          valorFreteSelecionado = 0; // Zera o frete se esvaziar o carrinho
+          tipoFreteSelecionado = "";
+      }
+  }
   atualizar();
+}
+
+function calcularFrete() {
+  const input = document.getElementById("cepInput");
+  const cep = input.value.replace(/\D/g, '');
+  const resultado = document.getElementById("resultadoFrete");
+
+  if (cep.length !== 8) {
+    alert("Por favor, digite um CEP válido.");
+    return;
+  }
+
+  resultado.style.display = "block";
+  resultado.innerHTML = "⌛ Calculando opções...";
+
+  setTimeout(() => {
+    let vPac = 15.90;
+    let vSedex = 28.50;
+
+    resultado.innerHTML = `
+      <p style="margin-bottom:10px; font-size:13px;">Clique para selecionar o frete:</p>
+      <div class="frete-opcao" onclick="selecionarFrete(${vPac}, 'PAC')">
+        <strong>📦 PAC:</strong> R$ ${vPac.toFixed(2).replace('.',',')} (7 dias úteis)
+      </div>
+      <div class="frete-opcao" onclick="selecionarFrete(${vSedex}, 'SEDEX')">
+        <strong>⚡ SEDEX:</strong> R$ ${vSedex.toFixed(2).replace('.',',')} (3 dias úteis)
+      </div>
+    `;
+  }, 800);
 }
 
 function toggleCarrinho() {
@@ -388,47 +380,20 @@ function buscar(t) {
 
 function finalizar() {
   if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
-  let msg = "🛒 *Pedido IdolVerse*:%0A%0A";
+  
+  let msg = "🛒 *Novo Pedido IdolVerse*:%0A%0A";
   carrinho.forEach(i => msg += `• ${i.nome} (x${i.qtd})%0A`);
-  msg += `%0A*Total:* ${document.getElementById("total").innerText}`;
+  
+  msg += `%0A*Subtotal:* R$ ${(document.getElementById("subtotal").innerText)}`;
+  msg += `%0A*Frete (${tipoFreteSelecionado}):* R$ ${valorFreteSelecionado.toFixed(2)}`;
+  msg += `%0A*TOTAL FINAL:* ${document.getElementById("total").innerText}`;
+  
   window.open(`https://wa.me/5591986122614?text=${msg}`);
 }
 
-// NOVA FUNCIONALIDADE: CALCULO DE FRETE
-function calcularFrete() {
-  const input = document.getElementById("cepInput");
-  const cep = input.value.replace(/\D/g, '');
-  const resultado = document.getElementById("resultadoFrete");
-
-  if (cep.length !== 8) {
-    alert("Por favor, digite um CEP válido.");
-    return;
-  }
-
-  resultado.style.display = "block";
-  resultado.innerHTML = "⌛ Calculando opções de envio...";
-
-  // Simulação de tempo de resposta da API
-  setTimeout(() => {
-    // Lógica fictícia baseada no CEP para simular valores diferentes
-    let valorPAC = (12 + Math.random() * 10).toFixed(2);
-    let valorSedex = (parseFloat(valorPAC) + 12.50).toFixed(2);
-
-    resultado.innerHTML = `
-      <p style="margin: 5px 0; color: #ffb3f0;">📍 Resultados para o CEP ${input.value}:</p>
-      <p style="margin: 5px 0;">📦 <strong>PAC:</strong> R$ ${valorPAC.replace('.',',')} (7 dias úteis)</p>
-      <p style="margin: 5px 0;">⚡ <strong>SEDEX:</strong> R$ ${valorSedex.replace('.',',')} (3 dias úteis)</p>
-      <small style="opacity: 0.7;">*Prazo contado após a postagem.</small>
-    `;
-  }, 1000);
-}
-
-// Máscara automática para o CEP (XXXXX-XXX)
 document.getElementById("cepInput").addEventListener("input", function(e) {
   let value = e.target.value.replace(/\D/g, "");
-  if (value.length > 5) {
-    value = value.substring(0, 5) + "-" + value.substring(5, 8);
-  }
+  if (value.length > 5) value = value.substring(0, 5) + "-" + value.substring(5, 8);
   e.target.value = value;
 });
 </script>

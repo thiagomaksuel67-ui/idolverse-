@@ -66,7 +66,6 @@ header {
   cursor: zoom-in; 
 }
 .card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-@media (max-width: 600px) { .img-container { height: 140px; } }
 
 .card-info { padding: 10px; text-align: center; flex-grow: 1; }
 .card-info h3 { font-size: 14px; margin: 5px 0; }
@@ -81,20 +80,18 @@ header {
     background: var(--card-purple); margin: 30px 0; padding: 20px; border-radius: 15px;
     border: 1px solid rgba(255,255,255,0.1);
 }
-.shipping-section h3 { margin-top: 0; font-size: 18px; }
 .shipping-input-group { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
 .shipping-section input {
-    background: #1c1c3a; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; flex: 1; min-width: 150px;
+    background: #1c1c3a; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; flex: 1;
 }
 .shipping-section button { padding: 10px 20px; background: var(--violet-accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-.shipping-options { display: none; flex-direction: column; gap: 10px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; }
-.option-item { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px; border-radius: 5px; transition: 0.2s; }
-.option-item:hover { background: rgba(255,255,255,0.05); }
+.shipping-options { display: none; flex-direction: column; gap: 10px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; margin-top: 10px; }
+.option-item { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px; border-radius: 5px; }
 
 .meus-pedidos { background: rgba(0,0,0,0.2); margin: 30px 0; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-pink); }
 .pedido-card { background: var(--card-purple); padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--primary-pink); position: relative; }
-.btn-cancelar { position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.4); color: #fff; border: 1px solid #ff4f4f; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+.btn-cancelar { position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.4); color: #fff; border: 1px solid #ff4f4f; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
 #carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh; background: var(--violet-deep); z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; color: white; box-shadow: -5px 0 20px rgba(0,0,0,0.8); }
 .cart-header { padding: 20px; background: rgba(0,0,0,0.3); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
@@ -102,23 +99,20 @@ header {
 .item-cart { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; margin-bottom: 10px; }
 .item-cart img { width: 50px; height: 50px; border-radius: 5px; object-fit: cover; }
 .qty-controls { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
-.qty-btn { background: var(--violet-accent); color: white; border: none; width: 24px; height: 24px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+.qty-btn { background: var(--violet-accent); color: white; border: none; width: 24px; height: 24px; border-radius: 5px; cursor: pointer; }
 
-/* AJUSTE DO RODAPÉ DO CARRINHO PARA OS NOVOS CAMPOS */
 .cart-footer { padding: 15px; background: var(--bg-dark-deep); border-top: 1px solid var(--primary-pink); }
 .cart-inputs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
 .cart-inputs input { background: #1c1c3a; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; font-size: 13px; }
 
-#cartBtn { position: fixed; top: 15px; right: 15px; background: var(--primary-pink); border:none; padding: 10px 18px; border-radius: 50px; z-index: 1001; color:white; cursor:pointer; font-weight:bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+#cartBtn { position: fixed; top: 15px; right: 15px; background: var(--primary-pink); border:none; padding: 10px 18px; border-radius: 50px; z-index: 1001; color:white; cursor:pointer; font-weight:bold; }
 #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
 
 #zoomModal { display: none; position: fixed; z-index: 3000; inset: 0; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
 #imgZoomed { max-width: 90%; max-height: 80%; border-radius: 10px; }
 
-.credits { text-align: center; padding: 20px 0; margin-top: 20px; font-size: 10px; letter-spacing: 1px; color: rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.05); text-transform: uppercase; }
-.credits span { color: var(--primary-pink); opacity: 0.5; }
+.credits { text-align: center; padding: 20px 0; margin-top: 20px; font-size: 10px; color: rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.05); text-transform: uppercase; }
 .bug-report { text-align: right; font-size: 9px; color: rgba(255, 255, 255, 0.2); margin-top: 5px; padding-bottom: 10px; font-style: italic; }
-.bug-report a { color: inherit; text-decoration: none; }
 </style>
 </head>
 <body>
@@ -131,73 +125,22 @@ header {
 </header>
 
 <div class="container">
-  
   <div class="products" id="productGrid">
     <div class="card produto" data-name="bts kpop">
       <div class="img-container"><img src="bts1.jpg" onclick="abrirZoom(this)"></div>
       <div class="card-info">
         <h3>Kit BTS</h3><p class="price">R$ 19,90</p>
         <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">54 photocards brilhantes, 8,5x5,5cm.</div>
-        <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button>
+        <div class="description-text">54 photocards brilhantes.</div>
+        <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg', '54 cards brilhantes')">Adicionar</button>
       </div>
     </div>
-
-    <div class="card produto" data-name="blackpink kpop">
-      <div class="img-container"><img src="blackpink.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Pack BLACKPINK</h3><p class="price">R$ 21,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">54 photocards premium.</div>
-        <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
-      </div>
     </div>
-
-    <div class="card produto" data-name="stray kids kpop">
-      <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Kit Stray Kids</h3><p class="price">R$ 22,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">54 cards lomo HD.</div>
-        <button class="btn-buy" onclick="addCarrinho('Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
-      </div>
-    </div>
-
-    <div class="card produto" data-name="le sserafim kpop">
-      <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Kit LE SSERAFIM</h3><p class="price">R$ 22,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">Coleção especial 54 cards.</div>
-        <button class="btn-buy" onclick="addCarrinho('LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button>
-      </div>
-    </div>
-
-    <div class="card produto" data-name="neymar jr futebol">
-      <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">54 photocards futebol.</div>
-        <button class="btn-buy" onclick="addCarrinho('Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
-      </div>
-    </div>
-
-    <div class="card produto" data-name="stranger things filmes">
-      <div class="img-container"><img src="stranger-things.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">Série Netflix 54 cards.</div>
-        <button class="btn-buy" onclick="addCarrinho('Stranger Things', 29.90, 'strangerthings.jpg')">Adicionar</button>
-      </div>
-    </div>
-  </div>
 
   <div class="shipping-section">
       <h3>🚚 Cálculo de Entrega</h3>
       <div class="shipping-input-group">
-          <input type="text" id="cepInput" placeholder="Digite seu CEP" maxlength="9">
+          <input type="text" id="cepInput" placeholder="CEP (00000-000)" maxlength="9">
           <button onclick="calcularFreteOpcoes()">CALCULAR</button>
       </div>
       <div id="shippingOptions" class="shipping-options">
@@ -215,13 +158,8 @@ header {
       <p>© 2026 IdolVerse. Todos os direitos reservados.</p>
   </footer>
 
-  <div class="credits">
-      Criado por <span>Thiago Maksuel</span> • <span>Marina Angels</span> • <span>Maria Sophya</span>
-  </div>
-
-  <div class="bug-report">
-      Se encontrar algum bug no site, entre em contato com <a href="https://wa.me/559188822874">+55 91 8882-2874</a> por whatsapp e reporte o bug. Obrigada!
-  </div>
+  <div class="credits">Criado por <span>Thiago Maksuel</span> • <span>Marina Angels</span> • <span>Maria Sophya</span></div>
+  <div class="bug-report">Reporte bugs: +55 91 8882-2874</div>
 </div>
 
 <button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>
@@ -234,7 +172,8 @@ header {
   <div class="cart-footer">
     <div class="cart-inputs">
         <input type="text" id="cartNome" placeholder="Nome Completo">
-        <input type="text" id="cartCidade" placeholder="Cidade">
+        <input type="text" id="cartEndereco" placeholder="Endereço Completo (Rua, Número, Bairro)">
+        <input type="text" id="cartCidadeEstado" placeholder="Cidade e Estado">
         <input type="text" id="cartCEP" placeholder="CEP" maxlength="9">
     </div>
 
@@ -251,8 +190,6 @@ let valorFreteSelecionado = 0;
 let freteNome = "";
 let prazoFrete = "";
 
-window.onload = carregarPedidos;
-
 function toggleDesc(btn) {
     const desc = btn.nextElementSibling;
     desc.style.display = desc.style.display === "block" ? "none" : "block";
@@ -264,26 +201,10 @@ function abrirZoom(img) {
 }
 
 function calcularFreteOpcoes() {
-    const cep = document.getElementById("cepInput").value.replace(/\D/g, "");
-    if(cep.length !== 8) return alert("CEP inválido.");
-    const optionsDiv = document.getElementById("shippingOptions");
-    optionsDiv.style.display = "flex";
-    const isLocal = cep.startsWith("6");
-    const pacVal = isLocal ? 14.50 : 29.90;
-    const sedexVal = isLocal ? 28.00 : 54.90;
-    const pacPrazo = isLocal ? "6 dias" : "12 dias";
-    const sedexPrazo = isLocal ? "2 dias" : "5 dias";
-    const inputs = optionsDiv.querySelectorAll('input');
-    const labels = optionsDiv.querySelectorAll('label span');
-    inputs[0].value = pacVal;
-    inputs[0].setAttribute('data-prazo', pacPrazo);
-    labels[0].innerText = `PAC - R$ ${pacVal.toFixed(2).replace('.',',')} (${pacPrazo})`;
-    inputs[1].value = sedexVal;
-    inputs[1].setAttribute('data-prazo', sedexPrazo);
-    labels[1].innerText = `SEDEX - R$ ${sedexVal.toFixed(2).replace('.',',')} (${sedexPrazo})`;
-    
-    // Auto-preenche o CEP no carrinho para facilitar
-    document.getElementById("cartCEP").value = document.getElementById("cepInput").value;
+    const cep = document.getElementById("cepInput").value;
+    if(cep.length < 8) return alert("CEP inválido.");
+    document.getElementById("shippingOptions").style.display = "flex";
+    document.getElementById("cartCEP").value = cep;
 }
 
 function selecionarFrete(radio) {
@@ -293,10 +214,10 @@ function selecionarFrete(radio) {
     renderCart();
 }
 
-function addCarrinho(nome, preco, img) {
+function addCarrinho(nome, preco, img, obs) {
     let item = carrinho.find(i => i.nome === nome);
     if(item) item.qtd++;
-    else carrinho.push({nome, preco, img, qtd: 1});
+    else carrinho.push({nome, preco, img, obs, qtd: 1});
     renderCart();
     toggleCarrinho();
 }
@@ -310,10 +231,10 @@ function renderCart() {
     carrinho.forEach((item, idx) => {
         subtotal += item.preco * item.qtd;
         count += item.qtd;
-        lista.innerHTML += `<div class="item-cart"><img src="${item.img}"><div style="flex:1"><div>${item.nome}</div><div class="qty-controls"><button class="qty-btn" onclick="updateQtd(${idx},-1)">-</button><span>${item.qtd}</span><button class="qty-btn" onclick="updateQtd(${idx},1)">+</button></div></div><strong>R$ ${(item.preco * item.qtd).toFixed(2).replace('.',',')}</strong></div>`;
+        lista.innerHTML += `<div class="item-cart"><img src="${item.img}"><div style="flex:1"><div>${item.nome}</div><div class="qty-controls"><button class="qty-btn" onclick="updateQtd(${idx},-1)">-</button><span>${item.qtd}</span><button class="qty-btn" onclick="updateQtd(${idx},1)">+</button></div></div><strong>R$ ${(item.preco * item.qtd).toFixed(2)}</strong></div>`;
     });
     document.getElementById("cartCount").innerText = count;
-    totalEl.innerText = `R$ ${(subtotal + valorFreteSelecionado).toFixed(2).replace('.', ',')}`;
+    totalEl.innerText = `R$ ${(subtotal + valorFreteSelecionado).toFixed(2)}`;
 }
 
 function updateQtd(idx, val) {
@@ -329,29 +250,54 @@ function toggleCarrinho() {
     o.style.display = aberto ? "none" : "block";
 }
 
+// FUNÇÃO ATUALIZADA COM O RESUMO COMPLETO PARA WHATSAPP
 function finalizar() {
     const nome = document.getElementById("cartNome").value;
-    const cidade = document.getElementById("cartCidade").value;
+    const endereco = document.getElementById("cartEndereco").value;
+    const cidadeEstado = document.getElementById("cartCidadeEstado").value;
     const cep = document.getElementById("cartCEP").value;
 
     if(carrinho.length === 0) return alert("Carrinho vazio!");
-    if(valorFreteSelecionado === 0) return alert("Calcule o frete antes de finalizar!");
-    if(!nome || !cidade || !cep) return alert("Por favor, preencha seu nome, cidade e CEP no carrinho.");
+    if(valorFreteSelecionado === 0) return alert("Selecione o frete!");
+    if(!nome || !endereco || !cidadeEstado || !cep) return alert("Preencha todos os campos de entrega.");
+
+    let subtotal = 0;
+    let listaProdutos = "";
+    carrinho.forEach(i => {
+        let totalItem = i.preco * i.qtd;
+        subtotal += totalItem;
+        listaProdutos += `• ${i.qtd}x ${i.nome} - R$ ${totalItem.toFixed(2)} (Obs: ${i.obs})\n`;
+    });
 
     const pedidoId = "#ID" + Math.floor(Math.random() * 90000 + 10000);
-    const totalMsg = document.getElementById("total").innerText;
-    
-    const novoPedido = { id: pedidoId, data: new Date().toLocaleDateString('pt-BR'), status: "Aguardando confirmação", total: totalMsg };
+    const totalFinal = (subtotal + valorFreteSelecionado).toFixed(2);
+
+    // MONTAGEM DA MENSAGEM
+    const msgZap = 
+`💎 *IDOLVERSE - RESUMO DO PEDIDO*
+---------------------------------------
+🔖 *Pedido:* ${pedidoId}
+👤 *Cliente:* ${nome}
+🏠 *Endereço:* ${endereco}
+🏙️ *Cidade/UF:* ${cidadeEstado}
+📮 *CEP:* ${cep}
+
+📦 *PRODUTOS:*
+${listaProdutos}
+💰 *Valor Produtos:* R$ ${subtotal.toFixed(2)}
+🚚 *Frete:* ${freteNome} (${prazoFrete})
+💵 *Valor Frete:* R$ ${valorFreteSelecionado.toFixed(2)}
+
+✨ *TOTAL DO PEDIDO: R$ ${totalFinal}*
+---------------------------------------
+_Obrigado por comprar na IdolVerse!_`;
+
+    // Grava no histórico local
     let pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
-    pedidos.push(novoPedido);
+    pedidos.push({ id: pedidoId, data: new Date().toLocaleDateString(), status: "Aguardando", total: "R$ " + totalFinal });
     localStorage.setItem('idolPedidos', JSON.stringify(pedidos));
-    
     carregarPedidos();
 
-    // Montagem da mensagem do WhatsApp com os novos dados
-    let itensTexto = carrinho.map(i => `${i.qtd}x ${i.nome}`).join(", ");
-    const msgZap = `Olá IdolVerse! Novo Pedido ${pedidoId}\n\n👤 Nome: ${nome}\n📍 Cidade: ${cidade}\n📫 CEP: ${cep}\n📦 Itens: ${itensTexto}\n🚚 Frete: ${freteNome} (${prazoFrete})\n💰 Total: ${totalMsg}`;
-    
     window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msgZap)}`);
     
     carrinho = []; renderCart(); toggleCarrinho();
@@ -361,11 +307,11 @@ function carregarPedidos() {
     const lista = document.getElementById("listaPedidosCliente");
     const pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
     if(pedidos.length === 0) { lista.innerHTML = "Nenhum pedido recente."; return; }
-    lista.innerHTML = pedidos.map((p, index) => `<div class="pedido-card"><button class="btn-cancelar" onclick="cancelarPedido(${index})">×</button><strong>Pedido ${p.id}</strong> - ${p.status}<br><small>${p.data} | ${p.total}</small></div>`).reverse().join('');
+    lista.innerHTML = pedidos.map((p, index) => `<div class="pedido-card"><button class="btn-cancelar" onclick="cancelarPedido(${index})">×</button><strong>${p.id}</strong> - ${p.status}<br><small>${p.data} | ${p.total}</small></div>`).reverse().join('');
 }
 
 function cancelarPedido(index) {
-    if(!confirm("Cancelar pedido?")) return;
+    if(!confirm("Cancelar?")) return;
     let pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
     pedidos.splice(pedidos.length - 1 - index, 1);
     localStorage.setItem('idolPedidos', JSON.stringify(pedidos));

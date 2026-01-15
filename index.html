@@ -67,7 +67,6 @@ header {
   gap: 15px;
 }
 
-/* Responsividade para não esticar no PC */
 @media (min-width: 768px) { .products { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 1024px) { .products { grid-template-columns: repeat(4, 1fr); } }
 
@@ -80,7 +79,6 @@ header {
   flex-direction: column;
 }
 
-/* Ajuste para imagem não esticar */
 .card img { 
   width: 100%; 
   aspect-ratio: 1 / 1; 
@@ -136,6 +134,7 @@ header {
     border-radius: 10px;
     margin-bottom: 10px;
     border-left: 4px solid var(--primary-pink);
+    position: relative;
 }
 .status-badge {
     display: inline-block;
@@ -144,6 +143,30 @@ header {
     font-size: 11px;
     font-weight: bold;
     background: #f39c12; 
+    color: white;
+}
+
+/* BOTÃO CANCELAR (X) */
+.btn-cancelar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff4f4f;
+    border: 1px solid #ff4f4f;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+.btn-cancelar:hover {
+    background: #ff4f4f;
     color: white;
 }
 
@@ -244,7 +267,7 @@ header {
     </div>
 
     <div class="card produto" data-name="le sserafim kpop">
-        <img src="le sserafim.jpg">
+        <img src="lesserafim.jpg">
         <div class="card-info">
           <h3>Kit Photocards - LE SSERAFIM</h3>
           <p class="price">R$ 22,90</p>
@@ -349,6 +372,7 @@ function finalizar() {
   if(!nome) return alert("Preencha os dados de entrega!");
 
   const novoPedido = {
+      uid: Date.now(), // ID único para controle de cancelamento
       id: "#" + Math.floor(Math.random() * 9000 + 1000),
       data: new Date().toLocaleDateString('pt-BR'),
       status: "Em preparação",
@@ -371,15 +395,28 @@ function finalizar() {
 function carregarPedidos() {
     const lista = document.getElementById("listaPedidosCliente");
     const pedidos = JSON.parse(localStorage.getItem('meusPedidos') || "[]");
-    if(pedidos.length === 0) return;
+    if(pedidos.length === 0) {
+        lista.innerHTML = '<p style="font-size: 13px; color: #bbb;">Nenhum pedido realizado.</p>';
+        return;
+    }
     lista.innerHTML = pedidos.map(p => `
         <div class="pedido-card">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
+            <button class="btn-cancelar" onclick="cancelarPedido(${p.uid})">X</button>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-right: 30px;">
                 <strong>Pedido ${p.id}</strong>
                 <span class="status-badge">${p.status}</span>
             </div>
             <p style="font-size:12px; margin: 5px 0;">${p.data} | Total: ${p.total}</p>
         </div>`).reverse().join('');
+}
+
+function cancelarPedido(uid) {
+    if(!confirm("Tem certeza que deseja cancelar e remover este pedido do histórico?")) return;
+    
+    let pedidos = JSON.parse(localStorage.getItem('meusPedidos') || "[]");
+    pedidos = pedidos.filter(p => p.uid !== uid);
+    localStorage.setItem('meusPedidos', JSON.stringify(pedidos));
+    carregarPedidos();
 }
 
 function toggleCarrinho() {

@@ -105,7 +105,7 @@ header {
 }
 
 /* --- PRODUTOS --- */
-.container { max-width: 1200px; margin: 0 auto; padding: 10px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 10px; position: relative; }
 .products {
   display: grid; grid-template-columns: repeat(2, 1fr);
   gap: 15px; margin-top: 20px;
@@ -159,6 +159,20 @@ header {
 
 .credits { text-align: center; padding: 20px 0; margin-top: 20px; font-size: 10px; letter-spacing: 1px; color: rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.05); text-transform: uppercase; }
 .credits span { color: var(--primary-pink); opacity: 0.5; }
+
+/* ESTILO DO BUG REPORT ADICIONADO */
+.bug-report-footer {
+  text-align: right;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 10px 0;
+  font-style: italic;
+}
+.bug-report-footer a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 </style>
 </head>
 <body>
@@ -249,6 +263,10 @@ header {
   </div>
 
   <div class="credits">Criado por <span>Thiago Maksuel</span> • <span>Marina Angels</span> • <span>Maria Sophya</span></div>
+
+  <div class="bug-report-footer">
+    Se encontrar algum bug no site, entre em contato com <a href="https://wa.me/559188822874">+55 91 8882-2874</a> por whatsapp e reporte o bug. Obrigada!
+  </div>
 </div>
 
 <button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>

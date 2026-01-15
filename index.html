@@ -88,7 +88,8 @@ header {
 .shipping-section button { padding: 10px 20px; background: var(--violet-accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
 .shipping-options { display: none; flex-direction: column; gap: 10px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; margin-top: 10px; }
-.option-item { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px; border-radius: 5px; }
+.option-item { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px; border-radius: 5px; transition: 0.2s; }
+.option-item:hover { background: rgba(255,255,255,0.05); }
 
 .meus-pedidos { background: rgba(0,0,0,0.2); margin: 30px 0; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-pink); }
 .pedido-card { background: var(--card-purple); padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--primary-pink); position: relative; }
@@ -246,7 +247,7 @@ header {
     </div>
 
     <div class="card produto" data-name="stranger things filmes">
-        <div class="img-container"><img src="stranger-things.jpg" onclick="abrirZoom(this)"></div>
+        <div class="img-container"><img src="strangerthings.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
           <h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p>
           <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
@@ -264,7 +265,7 @@ header {
               Ao realizar o pedido em nossa loja, você receberá os cartões de forma aleatória.<br><br>
               Caso algum item chegue danificado devido ao transporte, entre em contato conosco que faremos a compensação. Obrigado! 💖✨
           </div>
-          <button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'stranger-things.jpg', '54 cards lomo')">Adicionar</button>
+          <button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'strangerthings.jpg', '54 cards lomo')">Adicionar</button>
         </div>
     </div>
   </div>
@@ -339,11 +340,37 @@ function abrirZoom(img) {
     document.getElementById("zoomModal").style.display = "flex";
 }
 
+// FUNÇÃO DE CÁLCULO DE FRETE RESTAURADA E INTELIGENTE
 function calcularFreteOpcoes() {
-    const cep = document.getElementById("cepInput").value;
-    if(cep.length < 8) return alert("CEP inválido.");
-    document.getElementById("shippingOptions").style.display = "flex";
-    document.getElementById("cartCEP").value = cep;
+    const cep = document.getElementById("cepInput").value.replace(/\D/g, "");
+    if(cep.length !== 8) return alert("Por favor, digite um CEP válido com 8 dígitos.");
+    
+    const optionsDiv = document.getElementById("shippingOptions");
+    optionsDiv.style.display = "flex";
+    
+    // Lógica de Prazo e Preço baseada no CEP de origem (Exemplo: Norte/PA começa com 6)
+    const isLocal = cep.startsWith("6");
+    
+    const pacVal = isLocal ? 14.90 : 28.50;
+    const sedexVal = isLocal ? 26.00 : 52.90;
+    const pacPrazo = isLocal ? "5 a 7 dias úteis" : "12 a 15 dias úteis";
+    const sedexPrazo = isLocal ? "1 a 3 dias úteis" : "4 a 6 dias úteis";
+    
+    const inputs = optionsDiv.querySelectorAll('input');
+    const labels = optionsDiv.querySelectorAll('label span');
+    
+    // Atualiza PAC
+    inputs[0].value = pacVal;
+    inputs[0].setAttribute('data-prazo', pacPrazo);
+    labels[0].innerText = `PAC - R$ ${pacVal.toFixed(2).replace('.',',')} (${pacPrazo})`;
+    
+    // Atualiza SEDEX
+    inputs[1].value = sedexVal;
+    inputs[1].setAttribute('data-prazo', sedexPrazo);
+    labels[1].innerText = `SEDEX - R$ ${sedexVal.toFixed(2).replace('.',',')} (${sedexPrazo})`;
+    
+    // Copia o CEP para o carrinho automaticamente
+    document.getElementById("cartCEP").value = document.getElementById("cepInput").value;
 }
 
 function selecionarFrete(radio) {

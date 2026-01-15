@@ -13,8 +13,6 @@
   --primary-pink: #ff4fd8;
   --text-white: #ffffff;
   --shopee-gray: #f5f5f5;
-  --whatsapp-green: #25d366;
-  /* Novas variáveis para o Carrinho Violeta */
   --violet-deep: #2d1b4d;
   --violet-accent: #8a2be2;
 }
@@ -40,281 +38,102 @@ header {
   align-items: center;
 }
 
-.logo-container {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.logo-img {
-  height: 125px;
-  width: auto;
-  object-fit: contain;
-  transition: transform 0.3s;
-}
-
+.logo-img { height: 125px; width: auto; object-fit: contain; }
 @media (max-width: 600px) { .logo-img { height: 60px; } }
 
-.search-container { width: 100%; max-width: 600px; }
+.search-container { width: 100%; max-width: 600px; margin-top: 10px; }
 .search-container input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  background: #2b2b4f;
-  color: white;
-}
-
-.custom-banner {
-    background: rgba(255, 79, 216, 0.1);
-    border: 1px solid var(--primary-pink);
-    margin: 15px;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
+  width: 100%; padding: 12px; border-radius: 10px; border: none;
+  background: #2b2b4f; color: white;
 }
 
 .products {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+  gap: 15px; padding: 15px;
 }
-
 @media (min-width: 768px) { .products { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 1024px) { .products { grid-template-columns: repeat(4, 1fr); } }
 
 .card {
-  background: var(--card-purple);
-  border-radius: 15px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  flex-direction: column;
+  background: var(--card-purple); border-radius: 15px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column;
+  transition: 0.3s;
 }
 
-.img-container {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    cursor: zoom-in;
-}
+.img-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; cursor: zoom-in; }
+.card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
 
-.card img { 
-  width: 100%; 
-  height: 100%;
-  object-fit: cover; 
-  transition: transform 0.5s ease;
-}
+.card-info { padding: 12px; text-align: center; flex-grow: 1; }
+.price { color: #ffb3f0; font-size: 18px; font-weight: bold; margin: 5px 0; }
 
-.card:hover img {
-    transform: scale(1.15);
-}
+.btn-details { background: transparent; color: var(--primary-pink); border: none; cursor: pointer; text-decoration: underline; margin-bottom: 8px; font-size: 12px;}
+.description-text { display: none; font-size: 11px; text-align: left; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; margin-bottom: 10px; line-height: 1.4; color: #ddd; }
 
-.card-info { padding: 12px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
-.price { color: #ffb3f0; font-size: 18px; font-weight: bold; margin: 8px 0; }
-
-.btn-details {
-    background: transparent;
-    color: var(--primary-pink);
-    border: none;
-    font-size: 13px;
-    text-decoration: underline;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.description-text {
-    display: none; 
-    font-size: 11px;
-    text-align: left;
-    background: rgba(0,0,0,0.3);
+/* --- SISTEMA DE FRETE NO CARD --- */
+.frete-card {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
     padding: 10px;
-    border-radius: 8px;
     margin-bottom: 10px;
-    line-height: 1.4;
-    color: #ddd;
+    text-align: left;
 }
-
-.description-text ul { padding-left: 15px; margin: 5px 0; }
-
-.btn-buy {
-  background: var(--primary-pink);
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 20px;
-  width: 100%;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-footer {
-    text-align: center;
-    padding: 30px 15px;
-    margin-top: 40px;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-#zoomModal {
-    display: none;
-    position: fixed;
-    z-index: 3000;
-    left: 0;
-    top: 0;
+.frete-card input {
     width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.9);
-    align-items: center;
-    justify-content: center;
-    cursor: zoom-out;
-}
-
-#imgZoomed {
-    max-width: 90%;
-    max-height: 90%;
+    padding: 8px;
     border-radius: 5px;
-    cursor: default;
-}
-
-.close-zoom {
-    position: absolute;
-    top: 20px;
-    right: 30px;
+    border: 1px solid #444;
+    background: #1c1c3a;
     color: white;
-    font-size: 40px;
-    cursor: pointer;
+    font-size: 12px;
+}
+.res-frete {
+    font-size: 11px;
+    margin-top: 8px;
+    display: none;
+    color: #00ffcc;
 }
 
-#cartBtn { position: fixed; top: 15px; right: 15px; background: var(--primary-pink); color: white; padding: 8px 15px; border-radius: 20px; z-index: 1001; font-weight: bold; border:none; cursor:pointer;}
-.meus-pedidos { background: var(--card-purple); margin: 30px 0; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-pink); }
-.pedido-card { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--primary-pink); position: relative; }
-.btn-cancelar { position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.2); color: #ff4f4f; border: 1px solid #ff4f4f; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; }
+.btn-buy { background: var(--primary-pink); color: white; border: none; padding: 10px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer; }
 
-/* --- ATUALIZAÇÃO DO CARRINHO (VIOLETA) --- */
-#carrinho { 
-  position: fixed; 
-  top: 0; 
-  right: -100%; 
-  width: 100%; 
-  max-width: 450px; 
-  height: 100vh; 
-  background: var(--violet-deep); /* Cor Violeta */
-  z-index: 2000; 
-  transition: 0.4s; 
-  display: flex; 
-  flex-direction: column; 
-  color: white; 
-  box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-}
-
-.cart-header { background: var(--bg-dark-deep); color: white; padding: 20px; display: flex; align-items: center; gap: 15px; }
-
-/* Estilo para itens dentro do carrinho */
+/* --- CARRINHO VIOLETA --- */
+#carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 420px; height: 100vh; background: var(--violet-deep); z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; color: white; }
+.cart-header { padding: 20px; background: rgba(0,0,0,0.3); display: flex; justify-content: space-between; align-items: center; }
 #listaCarrinho { flex: 1; overflow-y: auto; padding: 15px; }
+.item-cart { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; margin-bottom: 10px; }
+.item-cart img { width: 50px; height: 50px; border-radius: 5px; }
+.qty-controls { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+.qty-btn { background: var(--violet-accent); color: white; border: none; width: 22px; height: 22px; border-radius: 5px; cursor: pointer; }
+.cart-footer { padding: 20px; background: var(--bg-dark-deep); border-top: 1px solid var(--primary-pink); }
 
-.item-cart {
-  display: flex;
-  align-items: center;
-  background: rgba(255,255,255,0.05);
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  gap: 15px;
-}
-.item-cart img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
-.item-cart-info { flex: 1; }
-.item-cart-info strong { display: block; font-size: 14px; margin-bottom: 5px; }
-.item-cart-info span { color: var(--primary-pink); font-weight: bold; }
+#cartBtn { position: fixed; top: 15px; right: 15px; background: var(--primary-pink); border:none; padding: 10px 18px; border-radius: 50px; z-index: 1001; color:white; cursor:pointer; font-weight:bold; }
+#overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
 
-/* Controles de Quantidade */
-.item-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(0,0,0,0.3);
-  padding: 5px 10px;
-  border-radius: 20px;
-}
-.item-controls button {
-  background: var(--violet-accent);
-  color: white;
-  border: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-weight: bold;
-}
-.item-controls span { font-size: 14px; font-weight: bold; }
-
-.entrega-form { padding: 15px; background: rgba(255,255,255,0.05); border-top: 1px solid rgba(255,255,255,0.1); }
-.entrega-form input { 
-  width: 100%; 
-  padding: 10px; 
-  margin-bottom: 8px; 
-  border: 1px solid rgba(255,255,255,0.2); 
-  border-radius: 8px; 
-  background: #1c1c3a; 
-  color: white;
-}
-.entrega-form h4 { margin-top: 0; color: var(--primary-pink); }
-
-.cart-footer { background: var(--bg-dark-deep); padding: 20px; border-top: 1px solid var(--primary-pink); }
-.total-final { display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; margin-bottom: 15px; }
-
-#overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; z-index: 1500; }
-
-.shipping-box { background: var(--card-purple); margin: 25px 0; padding: 20px; border-radius: 15px; }
-.shipping-box .input-group { display: flex; gap: 8px; margin-top: 10px; }
-.shipping-box input { background: #1c1c3a; border: 1px solid #444; color: white; padding: 12px; border-radius: 8px; flex: 1; }
-.shipping-box button { padding: 12px 15px; border: 1px solid var(--primary-pink); color: var(--primary-pink); background: transparent; border-radius: 8px; cursor: pointer; }
+#zoomModal { display: none; position: fixed; z-index: 3000; inset: 0; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+#imgZoomed { max-width: 90%; max-height: 80%; border-radius: 10px; }
 </style>
 </head>
 <body>
 
-<div id="zoomModal" onclick="fecharZoom()">
-    <span class="close-zoom">&times;</span>
-    <img id="imgZoomed" src="" onclick="event.stopPropagation()">
-</div>
+<div id="zoomModal" onclick="this.style.display='none'"><img id="imgZoomed" src=""></div>
 
 <header>
-  <div class="logo-container" onclick="voltarInicio()">
-    <img src="logo-img.png" alt="IdolVerse Logo" class="logo-img">
-  </div>
-  <div class="search-container">
-    <input type="text" placeholder="🔍 O que você está buscando?" onkeyup="buscar(this.value)">
-  </div>
+  <div class="logo-container" onclick="voltarInicio()"><img src="logo-img.png" alt="Logo" class="logo-img"></div>
+  <div class="search-container"><input type="text" placeholder="🔍 O que você está buscando?" onkeyup="buscar(this.value)"></div>
 </header>
 
 <div class="container">
-  <div class="custom-banner">
-      <h2>🎨 Personalize sua Experiência</h2>
-      <p>Produzimos fanbox e caixas de photocards personalizadas... ✨</p>
-  </div>
-
   <div class="products">
+    
     <div class="card produto" data-name="bts kpop">
       <div class="img-container"><img src="bts1.jpg" onclick="abrirZoom(this)"></div>
       <div class="card-info">
         <h3>Kit Photocards - BTS</h3>
         <p class="price">R$ 19,90</p>
         <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">
-            <strong>Sobre o produto:</strong>
-            <ul>
-                <li>Cartão lomo</li>
-                <li>Produto novo e de alta qualidade</li>
-                <li>Contém 54 photocards em uma caixa</li>
-                <li>Material com acabamento brilhante</li>
-                <li>Tamanho: 8,5 cm x 5,5 cm</li>
-                <li>Imp. frente e verso (dupla face)</li>
-                <li>Com brinde surpresa 🤩</li>
-            </ul>
+        <div class="description-text">Sobre o produto: 54 photocards brilhantes, 8,5x5,5cm, frente e verso + brinde surpresa! 🤩</div>
+        <div class="frete-card">
+            <input type="text" placeholder="Calcular frete (CEP)" onblur="calcularFreteProduto(this)">
+            <div class="res-frete"></div>
         </div>
         <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button>
       </div>
@@ -326,36 +145,79 @@ footer {
         <h3>Pack Photocards - BLACKPINK</h3>
         <p class="price">R$ 21,90</p>
         <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">
-            <strong>Sobre o produto:</strong>
-            <ul>
-                <li>Cartão lomo</li>
-                <li>Material Brilhante</li>
-                <li>Contém 54 photocards</li>
-            </ul>
+        <div class="description-text">Sobre o produto: 54 photocards, material premium brilhante + brinde! 🤩</div>
+        <div class="frete-card">
+            <input type="text" placeholder="Calcular frete (CEP)" onblur="calcularFreteProduto(this)">
+            <div class="res-frete"></div>
         </div>
-        <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
+        <button class="btn-buy" onclick="addCarrinho('BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
       </div>
     </div>
-    
+
+    <div class="card produto" data-name="stray kids kpop">
+      <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Kit Photocards - Stray Kids</h3>
+        <p class="price">R$ 22,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">Sobre o produto: 54 photocards lomo, alta definição + brinde! 🤩</div>
+        <div class="frete-card">
+            <input type="text" placeholder="Calcular frete (CEP)" onblur="calcularFreteProduto(this)">
+            <div class="res-frete"></div>
+        </div>
+        <button class="btn-buy" onclick="addCarrinho('Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
+      </div>
     </div>
 
-  <div class="shipping-box">
-    <strong>🚚 Calcular Frete</strong>
-    <div class="input-group">
-        <input type="text" id="cepInput" placeholder="CEP" maxlength="9">
-        <button onclick="alert('Funcionalidade de frete em manutenção')">CALCULAR</button>
+    <div class="card produto" data-name="le sserafim kpop">
+      <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Kit Photocards - LE SSERAFIM</h3>
+        <p class="price">R$ 22,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">Sobre o produto: 54 photocards coleção exclusiva + brinde! 🤩</div>
+        <div class="frete-card">
+            <input type="text" placeholder="Calcular frete (CEP)" onblur="calcularFreteProduto(this)">
+            <div class="res-frete"></div>
+        </div>
+        <button class="btn-buy" onclick="addCarrinho('LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button>
+      </div>
     </div>
-  </div>
 
-  <div class="meus-pedidos">
-    <h3>📋 Meus Pedidos</h3>
-    <div id="listaPedidosCliente"></div>
+    <div class="card produto" data-name="neymar jr futebol">
+      <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Pack Photocards - Neymar Jr</h3>
+        <p class="price">R$ 24,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">Sobre o produto: 54 photocards futebol lomo, dupla face! 🤩</div>
+        <div class="frete-card">
+            <input type="text" placeholder="Calcular frete (CEP)" onblur="calcularFreteProduto(this)">
+            <div class="res-frete"></div>
+        </div>
+        <button class="btn-buy" onclick="addCarrinho('Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
+      </div>
+    </div>
+
+    <div class="card produto" data-name="stranger things filmes">
+      <div class="img-container"><img src="strangerthings.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Kit Photocards - Stranger Things</h3>
+        <p class="price">R$ 29,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">Sobre o produto: 54 photocards série Netflix, alta qualidade! 🤩</div>
+        <div class="frete-card">
+            <input type="text" placeholder="Calcular frete (CEP)" onblur="calcularFreteProduto(this)">
+            <div class="res-frete"></div>
+        </div>
+        <button class="btn-buy" onclick="addCarrinho('Stranger Things', 29.90, 'strangerthings.jpg')">Adicionar</button>
+      </div>
+    </div>
+
   </div>
 
   <footer>
-      <p>© 2026 IdolVerse. Todos os direitos reservados.</p>
-      <p>Desenvolvido por Thiago Maksuel, Marina Angels e Maria Sophya.</p>
+      <p>© 2026 IdolVerse. Desenvolvido por Thiago, Marina e Maria Sophya.</p>
   </footer>
 </div>
 
@@ -363,169 +225,128 @@ footer {
 <div id="overlay" onclick="toggleCarrinho()"></div>
 
 <div id="carrinho">
-    <div class="cart-header">
-    <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:24px;">←</span>
-    <strong>Meu Carrinho</strong>
-  </div>
-
-  <div id="listaCarrinho">
-    </div>
-
-  <div class="entrega-form">
-      <h4>📍 Dados para Entrega</h4>
-      <input type="text" id="nomeCliente" placeholder="Nome Completo">
-      <input type="text" id="endCliente" placeholder="Endereço">
-      <input type="text" id="cidadeCliente" placeholder="Cidade/UF">
-  </div>
-
+  <div class="cart-header"><h3>Meu Carrinho</h3><span onclick="toggleCarrinho()" style="cursor:pointer; font-size:24px;">&times;</span></div>
+  <div id="listaCarrinho"></div>
   <div class="cart-footer">
-    <div class="total-final"><span>TOTAL:</span> <span id="total">R$ 0,00</span></div>
-    <button class="btn-continuar" onclick="finalizar()">Finalizar Compra</button>
+    <div style="display:flex; justify-content:space-between; margin-bottom:15px;"><span>Total:</span><span id="total">R$ 0,00</span></div>
+    <button class="btn-buy" onclick="finalizar()">Finalizar Pedido</button>
   </div>
 </div>
 
 <script>
 let carrinho = [];
-let valorFrete = 0;
+const ORIGEM = "68746025";
 
-window.onload = carregarPedidos;
-
+// FUNÇÕES DE INTERAÇÃO
 function toggleDesc(btn) {
     const desc = btn.nextElementSibling;
-    if (desc.style.display === "block") {
-        desc.style.display = "none";
-        btn.innerText = "Ver detalhes";
-    } else {
-        desc.style.display = "block";
-        btn.innerText = "Fechar detalhes";
+    desc.style.display = desc.style.display === "block" ? "none" : "block";
+}
+
+function abrirZoom(img) {
+    document.getElementById("imgZoomed").src = img.src;
+    document.getElementById("zoomModal").style.display = "flex";
+}
+
+// LÓGICA DE FRETE (SIMULAÇÃO BASEADA EM DISTÂNCIA DE CEP)
+function calcularFreteProduto(input) {
+    const cepDestino = input.value.replace(/\D/g, "");
+    const resDiv = input.nextElementSibling;
+    
+    if (cepDestino.length !== 8) {
+        resDiv.style.display = "block";
+        resDiv.innerHTML = "❌ CEP Inválido";
+        return;
     }
-}
 
-function abrirZoom(imgElement) {
-    const modal = document.getElementById("zoomModal");
-    const zoomedImg = document.getElementById("imgZoomed");
-    modal.style.display = "flex";
-    zoomedImg.src = imgElement.src;
-    document.body.style.overflow = "hidden";
-}
+    resDiv.style.display = "block";
+    resDiv.innerHTML = "⌛ Calculando...";
 
-function fecharZoom() {
-    const modal = document.getElementById("zoomModal");
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
-}
-
-function voltarInicio() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.querySelectorAll(".produto").forEach(p => p.style.display = "block");
-}
-
-/* LÓGICA DE PRODUTOS NO CARRINHO */
-function addCarrinho(nome, preco, img) {
-  let item = carrinho.find(i => i.nome === nome);
-  if(item) {
-    item.qtd++;
-  } else {
-    carrinho.push({nome, preco, img, qtd: 1});
-  }
-  atualizar();
-  if(document.getElementById("carrinho").style.right !== "0px") toggleCarrinho();
-}
-
-// Alterar quantidade (+ ou -)
-function alterarQtd(index, acao) {
-    if(acao === 'soma') {
-        carrinho[index].qtd++;
-    } else {
-        carrinho[index].qtd--;
-        if(carrinho[index].qtd <= 0) {
-            carrinho.splice(index, 1);
+    // Simulação de regra de negócio dos Correios (Baseada na região do CEP)
+    setTimeout(() => {
+        let basePAC = 22.50;
+        let baseSEDEX = 45.90;
+        
+        // Se for o mesmo estado (Pará inicia com 6)
+        if (cepDestino.startsWith("6")) {
+            basePAC = 14.80;
+            baseSEDEX = 28.50;
         }
-    }
-    atualizar();
+
+        resDiv.innerHTML = `
+            <strong>PAC:</strong> R$ ${basePAC.toFixed(2)} (8 dias)<br>
+            <strong>SEDEX:</strong> R$ ${baseSEDEX.toFixed(2)} (3 dias)
+        `;
+    }, 800);
 }
 
-function atualizar() {
-  const container = document.getElementById("listaCarrinho");
-  container.innerHTML = "";
-  
-  let subtotal = 0;
-  let count = 0;
-
-  carrinho.forEach((item, index) => {
-    subtotal += item.preco * item.qtd;
-    count += item.qtd;
-
-    container.innerHTML += `
-      <div class="item-cart">
-        <img src="${item.img}" alt="${item.nome}">
-        <div class="item-cart-info">
-          <strong>${item.nome}</strong>
-          <span>R$ ${item.preco.toFixed(2).replace('.',',')}</span>
-        </div>
-        <div class="item-controls">
-          <button onclick="alterarQtd(${index}, 'sub')">-</button>
-          <span>${item.qtd}</span>
-          <button onclick="alterarQtd(${index}, 'soma')">+</button>
-        </div>
-      </div>
-    `;
-  });
-
-  if(carrinho.length === 0) {
-      container.innerHTML = "<p style='text-align:center; opacity:0.5; margin-top:20px;'>Seu carrinho está vazio</p>";
-  }
-
-  document.getElementById("total").innerText = "R$ " + (subtotal + valorFrete).toFixed(2).replace('.',',');
-  document.getElementById("cartCount").innerText = count;
+// LÓGICA DO CARRINHO
+function addCarrinho(nome, preco, img) {
+    let item = carrinho.find(i => i.nome === nome);
+    if(item) item.qtd++;
+    else carrinho.push({nome, preco, img, qtd: 1});
+    renderCart();
+    toggleCarrinho();
 }
 
-function finalizar() {
-  if(carrinho.length === 0) return alert("Carrinho vazio!");
-  const nome = document.getElementById("nomeCliente").value;
-  if(!nome) return alert("Preencha os dados!");
-  
-  const pedidoId = "#"+Math.floor(Math.random()*9000+1000);
-  const totalStr = document.getElementById("total").innerText;
-  
-  const pedido = { uid: Date.now(), id: pedidoId, data: new Date().toLocaleDateString(), status: "Em preparação", total: totalStr };
-  
-  let pedidos = JSON.parse(localStorage.getItem('meusPedidos') || "[]");
-  pedidos.push(pedido);
-  localStorage.setItem('meusPedidos', JSON.stringify(pedidos));
-  carregarPedidos();
-  
-  // Montar mensagem para WhatsApp
-  let produtosMsg = carrinho.map(i => `${i.qtd}x ${i.nome}`).join(', ');
-  let zapLink = `https://wa.me/5591986122614?text=Olá! Gostaria de finalizar meu pedido: ${produtosMsg}. Total: ${totalStr}. Nome: ${nome}`;
-  
-  window.open(zapLink);
-  carrinho = []; 
-  atualizar(); 
-  toggleCarrinho();
+function renderCart() {
+    const lista = document.getElementById("listaCarrinho");
+    const count = document.getElementById("cartCount");
+    const totalEl = document.getElementById("total");
+    
+    lista.innerHTML = "";
+    let subtotal = 0;
+    let itensTotal = 0;
+
+    carrinho.forEach((item, idx) => {
+        subtotal += item.preco * item.qtd;
+        itensTotal += item.qtd;
+        lista.innerHTML += `
+            <div class="item-cart">
+                <img src="${item.img}">
+                <div style="flex:1">
+                    <div style="font-size:13px">${item.nome}</div>
+                    <div class="qty-controls">
+                        <button class="qty-btn" onclick="updateQtd(${idx},-1)">-</button>
+                        <span>${item.qtd}</span>
+                        <button class="qty-btn" onclick="updateQtd(${idx},1)">+</button>
+                    </div>
+                </div>
+                <div style="font-weight:bold">R$ ${(item.preco * item.qtd).toFixed(2)}</div>
+            </div>
+        `;
+    });
+
+    count.innerText = itensTotal;
+    totalEl.innerText = `R$ ${subtotal.toFixed(2)}`;
 }
 
-function carregarPedidos() {
-    const lista = document.getElementById("listaPedidosCliente");
-    const pedidos = JSON.parse(localStorage.getItem('meusPedidos') || "[]");
-    lista.innerHTML = pedidos.map(p => `<div class="pedido-card"><button class="btn-cancelar" onclick="cancelarPedido(${p.uid})">X</button><strong>Pedido ${p.id}</strong> - ${p.status}<br>${p.data} | ${p.total}</div>`).reverse().join('') || 'Nenhum pedido.';
-}
-
-function cancelarPedido(uid) {
-    if(!confirm("Cancelar?")) return;
-    let p = JSON.parse(localStorage.getItem('meusPedidos')).filter(x => x.uid !== uid);
-    localStorage.setItem('meusPedidos', JSON.stringify(p)); carregarPedidos();
+function updateQtd(idx, val) {
+    carrinho[idx].qtd += val;
+    if(carrinho[idx].qtd <= 0) carrinho.splice(idx, 1);
+    renderCart();
 }
 
 function toggleCarrinho() {
-  let c = document.getElementById("carrinho"), o = document.getElementById("overlay");
-  let aberto = c.style.right === "0px";
-  c.style.right = aberto ? "-100%" : "0"; o.style.display = aberto ? "none" : "block";
+    const c = document.getElementById("carrinho");
+    const o = document.getElementById("overlay");
+    const aberto = c.style.right === "0px";
+    c.style.right = aberto ? "-100%" : "0px";
+    o.style.display = aberto ? "none" : "block";
+}
+
+function finalizar() {
+    if(carrinho.length === 0) return alert("Carrinho vazio!");
+    let msg = "Olá! Meu pedido:\n";
+    carrinho.forEach(i => msg += `${i.qtd}x ${i.nome}\n`);
+    window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`);
 }
 
 function buscar(t) {
-  t = t.toLowerCase();
-  document.querySelectorAll(".produto").forEach(p => p.style.display = p.dataset.name.includes(t) ? "block" : "none");
+    t = t.toLowerCase();
+    document.querySelectorAll(".produto").forEach(p => {
+        p.style.display = p.dataset.name.includes(t) ? "flex" : "none";
+    });
 }
 </script>
 </body>

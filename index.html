@@ -113,6 +113,31 @@ header {
 .card-info { padding: 12px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
 .price { color: #ffb3f0; font-size: 18px; font-weight: bold; margin: 8px 0; }
 
+/* ESTILO DA DESCRIÇÃO */
+.btn-details {
+    background: transparent;
+    color: var(--primary-pink);
+    border: none;
+    font-size: 13px;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.description-text {
+    display: none; /* Escondido por padrão */
+    font-size: 11px;
+    text-align: left;
+    background: rgba(0,0,0,0.3);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    color: #ddd;
+}
+
+.description-text ul { padding-left: 15px; margin: 5px 0; }
+
 .btn-buy {
   background: var(--primary-pink);
   color: white;
@@ -124,7 +149,6 @@ header {
   cursor: pointer;
 }
 
-/* --- ESTILO DOS CRÉDITOS (FOOTER) --- */
 footer {
     text-align: center;
     padding: 30px 15px;
@@ -134,9 +158,6 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-footer p { margin: 5px 0; }
-
-/* --- ESTILOS DO ZOOM TELA CHEIA (MODAL) --- */
 #zoomModal {
     display: none;
     position: fixed;
@@ -167,7 +188,7 @@ footer p { margin: 5px 0; }
     cursor: pointer;
 }
 
-/* --- RESTANTE DOS ESTILOS --- */
+/* RESTANTE DOS ESTILOS */
 #cartBtn { position: fixed; top: 15px; right: 15px; background: var(--primary-pink); color: white; padding: 8px 15px; border-radius: 20px; z-index: 1001; font-weight: bold; border:none; cursor:pointer;}
 .meus-pedidos { background: var(--card-purple); margin: 30px 0; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-pink); }
 .pedido-card { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--primary-pink); position: relative; }
@@ -215,67 +236,133 @@ footer p { margin: 5px 0; }
 
   <div class="products">
     <div class="card produto" data-name="bts kpop">
-      <div class="img-container">
-        <img src="bts1.jpg" onclick="abrirZoom(this)">
-      </div>
+      <div class="img-container"><img src="bts1.jpg" onclick="abrirZoom(this)"></div>
       <div class="card-info">
         <h3>Kit Photocards - BTS</h3>
         <p class="price">R$ 19,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">
+            <strong>Sobre o produto:</strong>
+            <ul>
+                <li>Cartão lomo</li>
+                <li>Produto novo e de alta qualidade</li>
+                <li>Contém 54 photocards em uma caixa</li>
+                <li>Material com acabamento brilhante</li>
+                <li>Tamanho: 8,5 cm x 5,5 cm</li>
+                <li>Imp. frente e verso (dupla face)</li>
+                <li>Com brinde surpresa 🤩</li>
+            </ul>
+            <p style="font-size:10px; margin-top:5px;">Ao realizar o pedido, você receberá os cartões de forma aleatória. Compensamos danos de transporte! 💖</p>
+        </div>
         <button class="btn-buy" onclick="addCarrinho('BTS', 19.90, 'bts1.jpg')">Adicionar</button>
       </div>
     </div>
 
     <div class="card produto" data-name="blackpink kpop">
-      <div class="img-container">
-        <img src="blackpink.jpg" onclick="abrirZoom(this)">
-      </div>
+      <div class="img-container"><img src="blackpink.jpg" onclick="abrirZoom(this)"></div>
       <div class="card-info">
         <h3>Pack Photocards - BLACKPINK</h3>
         <p class="price">R$ 21,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">
+            <strong>Sobre o produto:</strong>
+            <ul>
+                <li>Cartão lomo</li>
+                <li>Produto novo e de alta qualidade</li>
+                <li>Contém 54 photocards em uma caixa</li>
+                <li>Material com acabamento brilhante</li>
+                <li>Tamanho: 8,5 cm x 5,5 cm</li>
+                <li>Imp. frente e verso (dupla face)</li>
+                <li>Com brinde surpresa 🤩</li>
+            </ul>
+            <p style="font-size:10px; margin-top:5px;">Ao realizar o pedido, você receberá os cartões de forma aleatória. 💖</p>
+        </div>
         <button class="btn-buy" onclick="addCarrinho('BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
       </div>
     </div>
 
     <div class="card produto" data-name="straykids kpop">
-      <div class="img-container">
-        <img src="straykids.jpg" onclick="abrirZoom(this)">
-      </div>
+      <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
       <div class="card-info">
         <h3>Kit Photocards - Stray Kids</h3>
         <p class="price">R$ 22,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">
+            <strong>Sobre o produto:</strong>
+            <ul>
+                <li>Cartão lomo</li>
+                <li>Produto novo e de alta qualidade</li>
+                <li>Contém 54 photocards em uma caixa</li>
+                <li>Material com acabamento brilhante</li>
+                <li>Tamanho: 8,5 cm x 5,5 cm</li>
+                <li>Imp. frente e verso (dupla face)</li>
+                <li>Com brinde surpresa 🤩</li>
+            </ul>
+            <p style="font-size:10px; margin-top:5px;">Compensamos danos de transporte! 💖</p>
+        </div>
         <button class="btn-buy" onclick="addCarrinho('Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
       </div>
     </div>
 
     <div class="card produto" data-name="le sserafim kpop">
-      <div class="img-container">
-        <img src="lesserafim.jpg" onclick="abrirZoom(this)">
-      </div>
+      <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
       <div class="card-info">
         <h3>Kit Photocards - LE SSERAFIM</h3>
         <p class="price">R$ 22,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">
+            <strong>Sobre o produto:</strong>
+            <ul>
+                <li>Cartão lomo</li>
+                <li>Produto novo e de alta qualidade</li>
+                <li>Contém 54 photocards em uma caixa</li>
+                <li>Material com acabamento brilhante</li>
+                <li>Tamanho: 8,5 cm x 5,5 cm</li>
+                <li>Imp. frente e verso (dupla face)</li>
+                <li>Com brinde surpresa 🤩</li>
+            </ul>
+        </div>
         <button class="btn-buy" onclick="addCarrinho('LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button>
       </div>
     </div>
 
     <div class="card produto" data-name="neymar futebol">
-      <div class="img-container">
-        <img src="neymar.jpg" onclick="abrirZoom(this)">
-      </div>
+      <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
       <div class="card-info">
         <h3>Pack Photocards - Neymar Jr</h3>
         <p class="price">R$ 24,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">
+            <strong>Sobre o produto:</strong>
+            <ul>
+                <li>Cartão lomo</li>
+                <li>Contém 54 photocards</li>
+                <li>Tamanho: 8,5 cm x 5,5 cm</li>
+                <li>Imp. frente e verso (dupla face)</li>
+                <li>Com brinde surpresa 🤩</li>
+            </ul>
+        </div>
         <button class="btn-buy" onclick="addCarrinho('Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
       </div>
     </div>
 
     <div class="card produto" data-name="stranger things filmes">
-      <div class="img-container">
-        <img src="stranger-things.jpg" onclick="abrirZoom(this)">
-      </div>
+      <div class="img-container"><img src="stranger-things.jpg" onclick="abrirZoom(this)"></div>
       <div class="card-info">
         <h3>Álbum - Stranger Things</h3>
         <p class="price">R$ 29,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">
+            <strong>Sobre o produto:</strong>
+            <ul>
+                <li>Cartão lomo</li>
+                <li>Produto novo e de alta qualidade</li>
+                <li>Contém 54 photocards</li>
+                <li>Tamanho: 8,5 cm x 5,5 cm</li>
+                <li>Imp. frente e verso (dupla face)</li>
+                <li>Com brinde surpresa 🤩</li>
+            </ul>
+        </div>
         <button class="btn-buy" onclick="addCarrinho('Stranger Things', 29.90, 'stranger-things.jpg')">Adicionar</button>
       </div>
     </div>
@@ -305,7 +392,7 @@ footer p { margin: 5px 0; }
 <div id="overlay" onclick="toggleCarrinho()"></div>
 
 <div id="carrinho">
-  <div class="cart-header">
+    <div class="cart-header">
     <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:20px;">←</span>
     <strong>Meu Carrinho</strong>
   </div>
@@ -327,6 +414,18 @@ let carrinho = [];
 let valorFrete = 0;
 
 window.onload = carregarPedidos;
+
+// FUNÇÃO PARA MOSTRAR/ESCONDER DETALHES
+function toggleDesc(btn) {
+    const desc = btn.nextElementSibling;
+    if (desc.style.display === "block") {
+        desc.style.display = "none";
+        btn.innerText = "Ver detalhes";
+    } else {
+        desc.style.display = "block";
+        btn.innerText = "Fechar detalhes";
+    }
+}
 
 function abrirZoom(imgElement) {
     const modal = document.getElementById("zoomModal");

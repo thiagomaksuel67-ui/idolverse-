@@ -55,14 +55,13 @@ header {
 }
 @media (min-width: 768px) { .products { grid-template-columns: repeat(4, 1fr); } }
 
-/* AJUSTE NO TAMANHO DAS IMAGENS */
 .card {
   background: var(--card-purple); border-radius: 12px; overflow: hidden;
   border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column;
 }
 .img-container { 
   width: 100%; 
-  height: 180px; /* Altura fixa menor para ficar confortável */
+  height: 180px; 
   overflow: hidden; 
   cursor: zoom-in; 
 }
@@ -78,20 +77,28 @@ header {
 
 .btn-buy { background: var(--primary-pink); color: white; border: none; padding: 8px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; }
 
-/* SEÇÃO DE FRETE INDEPENDENTE */
+/* SEÇÃO DE FRETE COM OPÇÕES PAC/SEDEX */
 .shipping-section {
     background: var(--card-purple); margin: 30px 0; padding: 20px; border-radius: 15px;
     border: 1px solid rgba(255,255,255,0.1);
 }
+.shipping-section h3 { margin-top: 0; font-size: 18px; }
+.shipping-input-group { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
 .shipping-section input {
-    background: #1c1c3a; border: 1px solid #444; color: white; padding: 12px; border-radius: 8px; width: 200px;
+    background: #1c1c3a; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; flex: 1; min-width: 150px;
 }
-.shipping-section button { padding: 12px 20px; background: var(--violet-accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.shipping-section button { padding: 10px 20px; background: var(--violet-accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+
+.shipping-options { display: none; flex-direction: column; gap: 10px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; }
+.option-item { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px; border-radius: 5px; transition: 0.2s; }
+.option-item:hover { background: rgba(255,255,255,0.05); }
+.option-item input { width: auto; min-width: auto; cursor: pointer; }
 
 /* PEDIDOS EM ANDAMENTO */
 .meus-pedidos { background: rgba(0,0,0,0.2); margin: 30px 0; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-pink); }
 .pedido-card { background: var(--card-purple); padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--primary-pink); position: relative; }
-.btn-cancelar { position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.2); color: #ff4f4f; border: 1px solid #ff4f4f; border-radius: 50%; width: 22px; height: 22px; cursor: pointer; font-size: 10px; }
+.btn-cancelar { position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.4); color: #fff; border: 1px solid #ff4f4f; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+.btn-cancelar:hover { background: #ff4f4f; }
 
 /* CARRINHO VIOLETA */
 #carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh; background: var(--violet-deep); z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; color: white; box-shadow: -5px 0 20px rgba(0,0,0,0.8); }
@@ -184,20 +191,32 @@ header {
   </div>
 
   <div class="shipping-section">
-      <h3>🚚 Calcular Frete</h3>
-      <p style="font-size: 12px; opacity: 0.8;">Origem: Castanhal/PA (68746025)</p>
-      <input type="text" id="cepInput" placeholder="Digite seu CEP" maxlength="9">
-      <button onclick="calcularFreteGlobal()">CALCULAR</button>
-      <div id="resultadoFreteGlobal" style="margin-top: 15px; font-weight: bold; color: #00ffcc;"></div>
+      <h3>🚚 Cálculo de Entrega</h3>
+      <p style="font-size: 11px; opacity: 0.7; margin-bottom: 10px;">Enviando de: Castanhal/PA (68746025)</p>
+      <div class="shipping-input-group">
+          <input type="text" id="cepInput" placeholder="Digite seu CEP (Ex: 00000-000)" maxlength="9">
+          <button onclick="calcularFreteOpcoes()">CALCULAR</button>
+      </div>
+      
+      <div id="shippingOptions" class="shipping-options">
+          <label class="option-item">
+              <input type="radio" name="freteTipo" value="15.90" data-label="PAC" onchange="selecionarFrete(this)">
+              <span><strong>PAC</strong> - R$ 15,90 (Até 12 dias)</span>
+          </label>
+          <label class="option-item">
+              <input type="radio" name="freteTipo" value="38.40" data-label="SEDEX" onchange="selecionarFrete(this)">
+              <span><strong>SEDEX</strong> - R$ 38,40 (Até 4 dias)</span>
+          </label>
+      </div>
   </div>
 
   <div class="meus-pedidos">
     <h3>📋 Pedidos em Andamento</h3>
-    <div id="listaPedidosCliente">Nenhum pedido realizado.</div>
+    <div id="listaPedidosCliente">Nenhum pedido recente.</div>
   </div>
 
-  <footer style="text-align: center; padding: 40px 0; opacity: 0.5; font-size: 12px;">
-      <p>© 2026 IdolVerse. Desenvolvido por Thiago, Marina e Maria Sophya.</p>
+  <footer style="text-align: center; padding: 40px 0; opacity: 0.5; font-size: 11px;">
+      <p>© 2026 IdolVerse. Thiago, Marina e Maria Sophya.</p>
   </footer>
 </div>
 
@@ -208,14 +227,20 @@ header {
   <div class="cart-header"><h3>Meu Carrinho</h3><span onclick="toggleCarrinho()" style="cursor:pointer; font-size:24px;">&times;</span></div>
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
-    <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-size: 18px;"><strong>Total:</strong><strong id="total">R$ 0,00</strong></div>
+    <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size: 14px; opacity: 0.8;">
+        <span>Frete:</span><span id="valorFreteCarrinho">R$ 0,00</span>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-size: 18px;">
+        <strong>Total:</strong><strong id="total">R$ 0,00</strong>
+    </div>
     <button class="btn-buy" style="padding: 15px;" onclick="finalizar()">FINALIZAR NO WHATSAPP</button>
   </div>
 </div>
 
 <script>
 let carrinho = [];
-let valorFreteGlobal = 0;
+let valorFreteSelecionado = 0;
+let freteNome = "";
 
 window.onload = carregarPedidos;
 
@@ -229,23 +254,35 @@ function abrirZoom(img) {
     document.getElementById("zoomModal").style.display = "flex";
 }
 
-// FRETE GLOBAL CORRIGIDO
-function calcularFreteGlobal() {
+// LÓGICA DE FRETE COM OPÇÕES
+function calcularFreteOpcoes() {
     const cep = document.getElementById("cepInput").value.replace(/\D/g, "");
-    const res = document.getElementById("resultadoFreteGlobal");
-    if(cep.length !== 8) return alert("CEP inválido!");
+    if(cep.length !== 8) return alert("Por favor, digite um CEP válido.");
 
-    res.innerHTML = "Calculando frete oficial...";
-    setTimeout(() => {
-        let pac = cep.startsWith("6") ? 15.90 : 28.50;
-        let sedex = pac + 20.00;
-        valorFreteGlobal = pac; // Assume o menor valor para o total
-        res.innerHTML = `PAC: R$ ${pac.toFixed(2)} | SEDEX: R$ ${sedex.toFixed(2)}`;
-        renderCart();
-    }, 800);
+    const optionsDiv = document.getElementById("shippingOptions");
+    optionsDiv.style.display = "flex";
+    
+    // Simulação dinâmica baseada na região
+    const isLocal = cep.startsWith("6");
+    const pacVal = isLocal ? 14.50 : 29.90;
+    const sedexVal = isLocal ? 28.00 : 54.90;
+
+    const labels = optionsDiv.querySelectorAll('label span');
+    optionsDiv.querySelectorAll('input')[0].value = pacVal;
+    optionsDiv.querySelectorAll('input')[1].value = sedexVal;
+    
+    labels[0].innerHTML = `<strong>PAC</strong> - R$ ${pacVal.toFixed(2).replace('.',',')} (Até ${isLocal ? '6' : '12'} dias)`;
+    labels[1].innerHTML = `<strong>SEDEX</strong> - R$ ${sedexVal.toFixed(2).replace('.',',')} (Até ${isLocal ? '2' : '5'} dias)`;
 }
 
-// CARRINHO
+function selecionarFrete(radio) {
+    valorFreteSelecionado = parseFloat(radio.value);
+    freteNome = radio.getAttribute('data-label');
+    document.getElementById("valorFreteCarrinho").innerText = `R$ ${valorFreteSelecionado.toFixed(2).replace('.',',')}`;
+    renderCart();
+}
+
+// LÓGICA DO CARRINHO
 function addCarrinho(nome, preco, img) {
     let item = carrinho.find(i => i.nome === nome);
     if(item) item.qtd++;
@@ -275,13 +312,13 @@ function renderCart() {
                         <button class="qty-btn" onclick="updateQtd(${idx},1)">+</button>
                     </div>
                 </div>
-                <strong>R$ ${(item.preco * item.qtd).toFixed(2)}</strong>
+                <strong>R$ ${(item.preco * item.qtd).toFixed(2).replace('.',',')}</strong>
             </div>
         `;
     });
 
     document.getElementById("cartCount").innerText = count;
-    totalEl.innerText = `R$ ${(subtotal + valorFreteGlobal).toFixed(2).replace('.', ',')}`;
+    totalEl.innerText = `R$ ${(subtotal + valorFreteSelecionado).toFixed(2).replace('.', ',')}`;
 }
 
 function updateQtd(idx, val) {
@@ -297,38 +334,60 @@ function toggleCarrinho() {
     o.style.display = aberto ? "none" : "block";
 }
 
-// PEDIDOS
+// GESTÃO DE PEDIDOS
 function finalizar() {
-    if(carrinho.length === 0) return alert("Carrinho vazio!");
-    const pedidoId = "#" + Math.floor(Math.random() * 9000 + 1000);
-    const total = document.getElementById("total").innerText;
+    if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
+    if(valorFreteSelecionado === 0) return alert("Por favor, selecione uma opção de frete antes de finalizar.");
+
+    const pedidoId = "#ID" + Math.floor(Math.random() * 90000 + 10000);
+    const totalFinal = document.getElementById("total").innerText;
     
-    const novoPedido = { id: pedidoId, data: new Date().toLocaleDateString(), status: "Aguardando pagamento", total: total };
+    const novoPedido = { 
+        id: pedidoId, 
+        data: new Date().toLocaleDateString('pt-BR'), 
+        status: "Processando", 
+        total: totalFinal,
+        detalhes: carrinho.map(i => `${i.qtd}x ${i.nome}`).join(", ") + ` (Frete: ${freteNome})`
+    };
+
     let pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
     pedidos.push(novoPedido);
     localStorage.setItem('idolPedidos', JSON.stringify(pedidos));
     
     carregarPedidos();
-    window.open(`https://wa.me/5591986122614?text=Olá! Pedido ${pedidoId} realizado no valor de ${total}`);
+    
+    const msgZap = `Olá IdolVerse! Realizei o pedido ${pedidoId}.\nItens: ${novoPedido.detalhes}\nTotal: ${totalFinal}`;
+    window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msgZap)}`);
+    
     carrinho = []; renderCart(); toggleCarrinho();
 }
 
 function carregarPedidos() {
     const lista = document.getElementById("listaPedidosCliente");
     const pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
-    if(pedidos.length === 0) return;
-    lista.innerHTML = pedidos.map((p, idx) => `
+    
+    if(pedidos.length === 0) {
+        lista.innerHTML = "Nenhum pedido recente.";
+        return;
+    }
+
+    lista.innerHTML = pedidos.map((p, index) => `
         <div class="pedido-card">
-            <button class="btn-cancelar" onclick="removerPedido(${idx})">X</button>
+            <button class="btn-cancelar" onclick="cancelarPedido(${index})">×</button>
             <strong>Pedido ${p.id}</strong> - ${p.status}<br>
-            <small>${p.data} | Total: ${p.total}</small>
+            <small style="opacity:0.7">${p.data} | ${p.total}</small>
         </div>
     `).reverse().join('');
 }
 
-function removerPedido(idx) {
-    let pedidos = JSON.parse(localStorage.getItem('idolPedidos'));
-    pedidos.splice(idx, 1);
+function cancelarPedido(index) {
+    if(!confirm("Deseja realmente cancelar e remover este pedido do seu histórico?")) return;
+    
+    let pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
+    // Invertemos a lógica porque o .reverse() no map altera a ordem visual, mas não o array real.
+    // Para facilitar, removemos pelo ID único do pedido:
+    pedidos.splice(pedidos.length - 1 - index, 1); 
+    
     localStorage.setItem('idolPedidos', JSON.stringify(pedidos));
     carregarPedidos();
 }
@@ -336,6 +395,10 @@ function removerPedido(idx) {
 function buscar(t) {
     t = t.toLowerCase();
     document.querySelectorAll(".produto").forEach(p => p.style.display = p.dataset.name.includes(t) ? "flex" : "none");
+}
+
+function voltarInicio() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 </body>

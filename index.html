@@ -111,8 +111,10 @@ header {
 #zoomModal { display: none; position: fixed; z-index: 3000; inset: 0; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
 #imgZoomed { max-width: 90%; max-height: 80%; border-radius: 10px; }
 
-.credits { text-align: center; padding: 20px 0; margin-top: 20px; font-size: 10px; color: rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.05); text-transform: uppercase; }
+.credits { text-align: center; padding: 20px 0; margin-top: 20px; font-size: 10px; letter-spacing: 1px; color: rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.05); text-transform: uppercase; }
+.credits span { color: var(--primary-pink); opacity: 0.5; }
 .bug-report { text-align: right; font-size: 9px; color: rgba(255, 255, 255, 0.2); margin-top: 5px; padding-bottom: 10px; font-style: italic; }
+.bug-report a { color: inherit; text-decoration: none; }
 </style>
 </head>
 <body>
@@ -125,22 +127,73 @@ header {
 </header>
 
 <div class="container">
+  
   <div class="products" id="productGrid">
     <div class="card produto" data-name="bts kpop">
       <div class="img-container"><img src="bts1.jpg" onclick="abrirZoom(this)"></div>
       <div class="card-info">
         <h3>Kit BTS</h3><p class="price">R$ 19,90</p>
         <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">54 photocards brilhantes.</div>
+        <div class="description-text">54 photocards brilhantes, 8,5x5,5cm.</div>
         <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg', '54 cards brilhantes')">Adicionar</button>
       </div>
     </div>
+
+    <div class="card produto" data-name="blackpink kpop">
+      <div class="img-container"><img src="blackpink.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Pack BLACKPINK</h3><p class="price">R$ 21,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">54 photocards premium.</div>
+        <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg', 'Premium 54 cards')">Adicionar</button>
+      </div>
     </div>
+
+    <div class="card produto" data-name="stray kids kpop">
+      <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Kit Stray Kids</h3><p class="price">R$ 22,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">54 cards lomo HD.</div>
+        <button class="btn-buy" onclick="addCarrinho('Stray Kids', 22.90, 'straykids.jpg', 'Lomo HD 54 cards')">Adicionar</button>
+      </div>
+    </div>
+
+    <div class="card produto" data-name="le sserafim kpop">
+      <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Kit LE SSERAFIM</h3><p class="price">R$ 22,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">Coleção especial 54 cards.</div>
+        <button class="btn-buy" onclick="addCarrinho('LE SSERAFIM', 22.90, 'lesserafim.jpg', 'Especial 54 cards')">Adicionar</button>
+      </div>
+    </div>
+
+    <div class="card produto" data-name="neymar jr futebol">
+      <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">54 photocards futebol.</div>
+        <button class="btn-buy" onclick="addCarrinho('Neymar Jr', 24.90, 'neymar.jpg', 'Futebol 54 cards')">Adicionar</button>
+      </div>
+    </div>
+
+    <div class="card produto" data-name="stranger things filmes">
+      <div class="img-container"><img src="stranger-things.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">Série Netflix 54 cards.</div>
+        <button class="btn-buy" onclick="addCarrinho('Stranger Things', 29.90, 'strangerthings.jpg', 'Série Netflix 54 cards')">Adicionar</button>
+      </div>
+    </div>
+  </div>
 
   <div class="shipping-section">
       <h3>🚚 Cálculo de Entrega</h3>
       <div class="shipping-input-group">
-          <input type="text" id="cepInput" placeholder="CEP (00000-000)" maxlength="9">
+          <input type="text" id="cepInput" placeholder="Digite seu CEP" maxlength="9">
           <button onclick="calcularFreteOpcoes()">CALCULAR</button>
       </div>
       <div id="shippingOptions" class="shipping-options">
@@ -158,8 +211,13 @@ header {
       <p>© 2026 IdolVerse. Todos os direitos reservados.</p>
   </footer>
 
-  <div class="credits">Criado por <span>Thiago Maksuel</span> • <span>Marina Angels</span> • <span>Maria Sophya</span></div>
-  <div class="bug-report">Reporte bugs: +55 91 8882-2874</div>
+  <div class="credits">
+      Criado por <span>Thiago Maksuel</span> • <span>Marina Angels</span> • <span>Maria Sophya</span>
+  </div>
+
+  <div class="bug-report">
+      Se encontrar algum bug no site, entre em contato com <a href="https://wa.me/559188822874">+55 91 8882-2874</a> por whatsapp e reporte o bug. Obrigada!
+  </div>
 </div>
 
 <button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>
@@ -189,6 +247,8 @@ let carrinho = [];
 let valorFreteSelecionado = 0;
 let freteNome = "";
 let prazoFrete = "";
+
+window.onload = carregarPedidos;
 
 function toggleDesc(btn) {
     const desc = btn.nextElementSibling;
@@ -231,10 +291,10 @@ function renderCart() {
     carrinho.forEach((item, idx) => {
         subtotal += item.preco * item.qtd;
         count += item.qtd;
-        lista.innerHTML += `<div class="item-cart"><img src="${item.img}"><div style="flex:1"><div>${item.nome}</div><div class="qty-controls"><button class="qty-btn" onclick="updateQtd(${idx},-1)">-</button><span>${item.qtd}</span><button class="qty-btn" onclick="updateQtd(${idx},1)">+</button></div></div><strong>R$ ${(item.preco * item.qtd).toFixed(2)}</strong></div>`;
+        lista.innerHTML += `<div class="item-cart"><img src="${item.img}"><div style="flex:1"><div>${item.nome}</div><div class="qty-controls"><button class="qty-btn" onclick="updateQtd(${idx},-1)">-</button><span>${item.qtd}</span><button class="qty-btn" onclick="updateQtd(${idx},1)">+</button></div></div><strong>R$ ${(item.preco * item.qtd).toFixed(2).replace('.',',')}</strong></div>`;
     });
     document.getElementById("cartCount").innerText = count;
-    totalEl.innerText = `R$ ${(subtotal + valorFreteSelecionado).toFixed(2)}`;
+    totalEl.innerText = `R$ ${(subtotal + valorFreteSelecionado).toFixed(2).replace('.', ',')}`;
 }
 
 function updateQtd(idx, val) {
@@ -250,7 +310,6 @@ function toggleCarrinho() {
     o.style.display = aberto ? "none" : "block";
 }
 
-// FUNÇÃO ATUALIZADA COM O RESUMO COMPLETO PARA WHATSAPP
 function finalizar() {
     const nome = document.getElementById("cartNome").value;
     const endereco = document.getElementById("cartEndereco").value;
@@ -266,13 +325,12 @@ function finalizar() {
     carrinho.forEach(i => {
         let totalItem = i.preco * i.qtd;
         subtotal += totalItem;
-        listaProdutos += `• ${i.qtd}x ${i.nome} - R$ ${totalItem.toFixed(2)} (Obs: ${i.obs})\n`;
+        listaProdutos += `• ${i.qtd}x ${i.nome} - R$ ${totalItem.toFixed(2).replace('.',',')} (Obs: ${i.obs || 'N/A'})\n`;
     });
 
     const pedidoId = "#ID" + Math.floor(Math.random() * 90000 + 10000);
-    const totalFinal = (subtotal + valorFreteSelecionado).toFixed(2);
+    const totalFinal = (subtotal + valorFreteSelecionado).toFixed(2).replace('.',',');
 
-    // MONTAGEM DA MENSAGEM
     const msgZap = 
 `💎 *IDOLVERSE - RESUMO DO PEDIDO*
 ---------------------------------------
@@ -284,17 +342,16 @@ function finalizar() {
 
 📦 *PRODUTOS:*
 ${listaProdutos}
-💰 *Valor Produtos:* R$ ${subtotal.toFixed(2)}
+💰 *Valor Produtos:* R$ ${subtotal.toFixed(2).replace('.',',')}
 🚚 *Frete:* ${freteNome} (${prazoFrete})
-💵 *Valor Frete:* R$ ${valorFreteSelecionado.toFixed(2)}
+💵 *Valor Frete:* R$ ${valorFreteSelecionado.toFixed(2).replace('.',',')}
 
 ✨ *TOTAL DO PEDIDO: R$ ${totalFinal}*
 ---------------------------------------
 _Obrigado por comprar na IdolVerse!_`;
 
-    // Grava no histórico local
     let pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
-    pedidos.push({ id: pedidoId, data: new Date().toLocaleDateString(), status: "Aguardando", total: "R$ " + totalFinal });
+    pedidos.push({ id: pedidoId, data: new Date().toLocaleDateString(), status: "Processando", total: "R$ " + totalFinal });
     localStorage.setItem('idolPedidos', JSON.stringify(pedidos));
     carregarPedidos();
 
@@ -311,7 +368,7 @@ function carregarPedidos() {
 }
 
 function cancelarPedido(index) {
-    if(!confirm("Cancelar?")) return;
+    if(!confirm("Cancelar pedido?")) return;
     let pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
     pedidos.splice(pedidos.length - 1 - index, 1);
     localStorage.setItem('idolPedidos', JSON.stringify(pedidos));

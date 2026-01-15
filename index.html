@@ -134,7 +134,18 @@ header {
     text-decoration: none; padding: 10px 20px; border-radius: 50px;
     font-weight: bold; font-size: 12px; margin-top: 10px;
 }
+
+/* ESTILO DOS PEDIDOS EM ANDAMENTO */
 .meus-pedidos { background: rgba(0,0,0,0.2); margin: 30px 0; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-pink); }
+.pedido-item {
+    background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-top: 10px;
+    border-left: 4px solid var(--primary-pink); font-size: 13px;
+}
+.pedido-data { font-size: 10px; opacity: 0.6; }
+.btn-limpar-pedidos { 
+    background: none; border: 1px solid rgba(255,255,255,0.2); color: white; 
+    font-size: 10px; cursor: pointer; padding: 5px 10px; border-radius: 5px; margin-top: 10px;
+}
 
 #carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh; background: var(--violet-deep); z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; box-shadow: -5px 0 20px rgba(0,0,0,0.8); }
 .cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); }
@@ -161,7 +172,7 @@ header {
 .bug-report-footer a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
 </style>
 </head>
-<body>
+<body onload="carregarPedidosHist()">
 
 <div id="zoomModal" onclick="this.style.display='none'"><img id="imgZoomed" src=""></div>
 
@@ -227,39 +238,39 @@ header {
     </div>
     <div class="card produto" data-name="taylor swift famosos">
       <div class="img-container"><img src="taylor.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Kit Taylor Swift</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards de todas as eras (Eras Tour).</div><button class="btn-buy" onclick="addCarrinho('Kit Taylor Swift', 26.90, 'taylor.jpg')">Adicionar</button></div>
+      <div class="card-info"><h3>Kit Taylor Swift</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards de todas as eras.</div><button class="btn-buy" onclick="addCarrinho('Kit Taylor Swift', 26.90, 'taylor.jpg')">Adicionar</button></div>
     </div>
     <div class="card produto" data-name="jenna ortega famosos">
-      <div class="img-container"><img src="jenna.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Pack Jenna Ortega</h3><p class="price">R$ 23,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção exclusiva da talentosa atriz.</div><button class="btn-buy" onclick="addCarrinho('Pack Jenna Ortega', 23.90, 'jenna.jpg')">Adicionar</button></div>
+        <div class="img-container"><img src="jenna.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Pack Jenna Ortega</h3><p class="price">R$ 23,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção exclusiva da atriz.</div><button class="btn-buy" onclick="addCarrinho('Pack Jenna Ortega', 23.90, 'jenna.jpg')">Adicionar</button></div>
     </div>
     <div class="card produto" data-name="eminem famosos">
-      <div class="img-container"><img src="eminem.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Kit Eminem</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards do Slim Shady para fãs de rap.</div><button class="btn-buy" onclick="addCarrinho('Kit Eminem', 25.90, 'eminem.jpg')">Adicionar</button></div>
+        <div class="img-container"><img src="eminem.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Kit Eminem</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards lendários do Rap.</div><button class="btn-buy" onclick="addCarrinho('Kit Eminem', 25.90, 'eminem.jpg')">Adicionar</button></div>
     </div>
     <div class="card produto" data-name="bruno mars famosos">
-      <div class="img-container"><img src="brunomars.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Pack Bruno Mars</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Fotos icônicas do Bruninho no Brasil.</div><button class="btn-buy" onclick="addCarrinho('Pack Bruno Mars', 24.90, 'brunomars.jpg')">Adicionar</button></div>
+        <div class="img-container"><img src="brunomars.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Pack Bruno Mars</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Edição especial Bruninho.</div><button class="btn-buy" onclick="addCarrinho('Pack Bruno Mars', 24.90, 'brunomars.jpg')">Adicionar</button></div>
     </div>
     <div class="card produto" data-name="ariana grande famosos">
-      <div class="img-container"><img src="ariana.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Kit Ariana Grande</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards estéticos da era Eternal Sunshine.</div><button class="btn-buy" onclick="addCarrinho('Kit Ariana Grande', 25.90, 'ariana.jpg')">Adicionar</button></div>
+        <div class="img-container"><img src="ariana.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Kit Ariana Grande</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards estéticos.</div><button class="btn-buy" onclick="addCarrinho('Kit Ariana Grande', 25.90, 'ariana.jpg')">Adicionar</button></div>
     </div>
     <div class="card produto" data-name="the weeknd famosos">
-      <div class="img-container"><img src="theweeknd.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Kit The Weeknd</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção After Hours & Dawn FM.</div><button class="btn-buy" onclick="addCarrinho('Kit The Weeknd', 26.90, 'theweeknd.jpg')">Adicionar</button></div>
+        <div class="img-container"><img src="theweeknd.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Kit The Weeknd</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">XO Collection.</div><button class="btn-buy" onclick="addCarrinho('Kit The Weeknd', 26.90, 'theweeknd.jpg')">Adicionar</button></div>
     </div>
     <div class="card produto" data-name="olivia rodrigo famosos">
-      <div class="img-container"><img src="olivia.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Kit Olivia Rodrigo</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards inspirados em GUTS e SOUR.</div><button class="btn-buy" onclick="addCarrinho('Kit Olivia Rodrigo', 24.90, 'olivia.jpg')">Adicionar</button></div>
+        <div class="img-container"><img src="olivia.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Kit Olivia Rodrigo</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">GUTS & SOUR eras.</div><button class="btn-buy" onclick="addCarrinho('Kit Olivia Rodrigo', 24.90, 'olivia.jpg')">Adicionar</button></div>
     </div>
     <div class="card produto" data-name="dua lipa famosos">
-      <div class="img-container"><img src="dualipa.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Pack Dua Lipa</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Fotos exclusivas da era Radical Optimism.</div><button class="btn-buy" onclick="addCarrinho('Pack Dua Lipa', 25.90, 'dualipa.jpg')">Adicionar</button></div>
+        <div class="img-container"><img src="dualipa.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Pack Dua Lipa</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Radical Optimism Edition.</div><button class="btn-buy" onclick="addCarrinho('Pack Dua Lipa', 25.90, 'dualipa.jpg')">Adicionar</button></div>
     </div>
     <div class="card produto" data-name="billie eilish famosos">
-      <div class="img-container"><img src="billie.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Kit Billie Eilish</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards Hit Me Hard and Soft.</div><button class="btn-buy" onclick="addCarrinho('Kit Billie Eilish', 26.90, 'billie.jpg')">Adicionar</button></div>
+        <div class="img-container"><img src="billie.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Kit Billie Eilish</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards azuis intensos.</div><button class="btn-buy" onclick="addCarrinho('Kit Billie Eilish', 26.90, 'billie.jpg')">Adicionar</button></div>
     </div>
 
     <div class="card produto" data-name="your name anime filmes">
@@ -362,6 +373,7 @@ header {
   <div class="meus-pedidos">
     <h3>📋 Pedidos em Andamento</h3>
     <div id="listaPedidosCliente">Nenhum pedido recente.</div>
+    <button class="btn-limpar-pedidos" onclick="limparHistorico()" id="btnLimpar" style="display:none;">Limpar Histórico</button>
   </div>
 
   <div class="credits">Criado por <span>Thiago Maksuel</span> • <span>Marina Angels</span> • <span>Maria Sophya</span></div>
@@ -405,6 +417,53 @@ let valorFrete = 0;
 let subtotalProdutos = 0;
 let prazoEntrega = "";
 
+// FUNÇÕES DE PEDIDOS EM ANDAMENTO (HISTÓRICO)
+function salvarPedidoNoHistorico(cliente, total, itens) {
+    let historico = JSON.parse(localStorage.getItem('idolverse_pedidos')) || [];
+    const novoPedido = {
+        id: Date.now(),
+        data: new Date().toLocaleString(),
+        cliente: cliente,
+        total: total,
+        resumo: itens.substring(0, 60) + "..."
+    };
+    historico.unshift(novoPedido); // Adiciona no topo
+    localStorage.setItem('idolverse_pedidos', JSON.stringify(historico));
+    carregarPedidosHist();
+}
+
+function carregarPedidosHist() {
+    const listaDiv = document.getElementById("listaPedidosCliente");
+    const btnLimpar = document.getElementById("btnLimpar");
+    let historico = JSON.parse(localStorage.getItem('idolverse_pedidos')) || [];
+
+    if(historico.length === 0) {
+        listaDiv.innerHTML = "Nenhum pedido recente.";
+        btnLimpar.style.display = "none";
+        return;
+    }
+
+    btnLimpar.style.display = "inline-block";
+    listaDiv.innerHTML = "";
+    historico.forEach(p => {
+        listaDiv.innerHTML += `
+            <div class="pedido-item">
+                <div class="pedido-data">📅 ${p.data}</div>
+                <strong>Total: R$ ${p.total}</strong><br>
+                <span>${p.resumo}</span>
+            </div>
+        `;
+    });
+}
+
+function limparHistorico() {
+    if(confirm("Deseja limpar seu histórico de pedidos?")) {
+        localStorage.removeItem('idolverse_pedidos');
+        carregarPedidosHist();
+    }
+}
+
+// LOGICA DO CARRINHO
 function addCarrinho(nome, preco, img) {
     let item = carrinho.find(i => i.nome === nome);
     if(item) item.qtd++; else carrinho.push({nome, preco, img, qtd: 1});
@@ -472,11 +531,19 @@ function finalizar() {
     const cid = document.getElementById("cartCidadeEstado").value;
     const cep = document.getElementById("cartCEP").value;
     const freteTipo = document.querySelector('input[name="tipoFrete"]:checked')?.value || "SEDEX";
+    
     if(carrinho.length === 0) return alert("O seu carrinho está vazio!");
     if(!cliente || !endereco) return alert("Preencha seus dados de entrega!");
     if(valorFrete === 0) return alert("Calcule o frete antes de finalizar!");
+    
     const lista = carrinho.map(i => `• ${i.qtd}x ${i.nome} - R$ ${(i.preco * i.qtd).toFixed(2)}`).join('\n');
-    const msg = `*PEDIDO: IdolVerse*\n\n*CLIENTE:* ${cliente}\n*ENDEREÇO:* ${endereco}\n*CIDADE:* ${cid}\n*CEP:* ${cep}\n\n*PRODUTOS:*\n${lista}\n\n*SUBTOTAL:* R$ ${subtotalProdutos.toFixed(2)}\n*FRETE:* ${freteTipo} (R$ ${valorFrete.toFixed(2)})\n*PRAZO ESTIMADO:* ${prazoEntrega}\n*TOTAL:* R$ ${(subtotalProdutos + valorFrete).toFixed(2)}\n\n*OBS:* Itens conforme disponibilidade.`;
+    const totalFinal = (subtotalProdutos + valorFrete).toFixed(2);
+    
+    // SALVAR NO HISTORICO LOCAL ANTES DE IR PRO WHATSAPP
+    salvarPedidoNoHistorico(cliente, totalFinal, lista);
+
+    const msg = `*PEDIDO: IdolVerse*\n\n*CLIENTE:* ${cliente}\n*ENDEREÇO:* ${endereco}\n*CIDADE:* ${cid}\n*CEP:* ${cep}\n\n*PRODUTOS:*\n${lista}\n\n*SUBTOTAL:* R$ ${subtotalProdutos.toFixed(2)}\n*FRETE:* ${freteTipo} (R$ ${valorFrete.toFixed(2)})\n*PRAZO ESTIMADO:* ${prazoEntrega}\n*TOTAL:* R$ ${totalFinal}\n\n*OBS:* Itens conforme disponibilidade.`;
+    
     window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`);
 }
 

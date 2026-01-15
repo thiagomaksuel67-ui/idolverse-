@@ -129,21 +129,19 @@ header {
 .cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.1); }
 #listaCarrinho { flex: 1; overflow-y: auto; padding: 15px; }
 
-/* CONTROLES ESTILO SHOPEE */
 .item-cart { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; margin-bottom: 10px; }
 .item-cart img { width: 60px; height: 60px; border-radius: 5px; object-fit: cover; }
 .item-details { flex: 1; display: flex; flex-direction: column; gap: 5px; }
 .qty-wrapper { display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; width: fit-content; overflow: hidden; }
 .btn-qty { background: rgba(255,255,255,0.1); border: none; color: white; width: 28px; height: 28px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; }
-.btn-qty:hover { background: var(--primary-pink); }
 .qty-num { width: 35px; text-align: center; font-size: 14px; font-weight: bold; border-left: 1px solid rgba(255,255,255,0.1); border-right: 1px solid rgba(255,255,255,0.1); }
 
-.cart-footer { padding: 15px; background: var(--bg-dark-deep); border-top: 1px solid var(--primary-pink); }
+.cart-footer { padding: 15px; background: var(--bg-dark-deep); border-top: 1px solid var(--primary-pink); overflow-y: auto; }
 .cart-inputs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
 .cart-inputs input { background: #1c1c3a; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; font-size: 13px; }
 
 .shipping-section { background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 10px; margin-bottom: 10px; }
-.shipping-input-group { display: flex; gap: 5px; }
+.shipping-input-group { display: flex; gap: 5px; margin-bottom: 8px; }
 .shipping-input-group input { flex: 1; background: #1c1c3a; border: 1px solid #444; color: white; padding: 8px; border-radius: 8px; }
 .shipping-input-group button { background: var(--violet-accent); color: white; border: none; border-radius: 8px; padding: 0 15px; cursor: pointer; }
 
@@ -181,7 +179,6 @@ header {
         <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button>
       </div>
     </div>
-
     <div class="card produto" data-name="blackpink kpop">
         <div class="img-container"><img src="blackpink.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
@@ -191,7 +188,6 @@ header {
           <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
         </div>
     </div>
-
     <div class="card produto" data-name="stray kids kpop">
         <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
@@ -201,7 +197,6 @@ header {
           <button class="btn-buy" onclick="addCarrinho('Kit Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
         </div>
     </div>
-
     <div class="card produto" data-name="le sserafim kpop">
         <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
@@ -211,7 +206,6 @@ header {
           <button class="btn-buy" onclick="addCarrinho('Kit LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button>
         </div>
     </div>
-
     <div class="card produto" data-name="neymar famosos">
         <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
@@ -221,7 +215,6 @@ header {
           <button class="btn-buy" onclick="addCarrinho('Pack Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
         </div>
     </div>
-
     <div class="card produto" data-name="stranger things filmes séries">
         <div class="img-container"><img src="strangerthings.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
@@ -243,13 +236,18 @@ header {
   
   <div class="cart-footer">
     <div class="cart-inputs">
-        <input type="text" id="cartNome" placeholder="Nome Completo">
-        <input type="text" id="cartEndereco" placeholder="Endereço de entrega" oninput="atualizarHeader()">
+        <input type="text" id="cartNome" placeholder="Nome do Cliente">
+        <input type="text" id="cartEndereco" placeholder="Rua, Número, Bairro" oninput="atualizarHeader()">
+        <input type="text" id="cartCidadeEstado" placeholder="Cidade e Estado">
     </div>
     <div class="shipping-section">
         <div class="shipping-input-group">
-            <input type="text" id="cartCEP" placeholder="CEP">
+            <input type="text" id="cartCEP" placeholder="CEP (00000-000)">
             <button onclick="calcularFrete()">CALCULAR</button>
+        </div>
+        <div id="opcoesFrete" style="display:none; margin-top:10px; font-size:13px;">
+            <label><input type="radio" name="tipoFrete" value="PAC" onchange="atualizarTotal()"> PAC</label>
+            <label style="margin-left:15px;"><input type="radio" name="tipoFrete" value="SEDEX" checked onchange="atualizarTotal()"> SEDEX</label>
         </div>
         <div id="resFrete" style="font-size:12px; margin-top:5px; color:#ffb3f0;"></div>
     </div>
@@ -263,30 +261,20 @@ header {
 <script>
 let carrinho = [];
 let valorFrete = 0;
+let subtotalProdutos = 0;
 
 function addCarrinho(nome, preco, img) {
     let item = carrinho.find(i => i.nome === nome);
-    if(item) {
-        item.qtd++;
-    } else {
-        carrinho.push({nome, preco, img, qtd: 1});
-    }
+    if(item) item.qtd++;
+    else carrinho.push({nome, preco, img, qtd: 1});
     renderCart();
 }
 
-// FUNÇÃO PARA ALTERAR QUANTIDADE (+/-)
 function mudarQtd(nome, operacao) {
     let item = carrinho.find(i => i.nome === nome);
     if(item) {
-        if(operacao === 'mais') {
-            item.qtd++;
-        } else if(operacao === 'menos' && item.qtd > 1) {
-            item.qtd--;
-        } else if(operacao === 'menos' && item.qtd === 1) {
-            // Se quiser que remova o item ao clicar menos com qtd 1, use a linha abaixo:
-            // carrinho = carrinho.filter(i => i.nome !== nome);
-            alert("A quantidade mínima é 1. Para remover, limpe o carrinho.");
-        }
+        if(operacao === 'mais') item.qtd++;
+        else if(operacao === 'menos' && item.qtd > 1) item.qtd--;
     }
     renderCart();
 }
@@ -294,18 +282,17 @@ function mudarQtd(nome, operacao) {
 function renderCart() {
     const lista = document.getElementById("listaCarrinho");
     lista.innerHTML = "";
-    let subtotal = 0;
+    subtotalProdutos = 0;
     let totalItens = 0;
 
     carrinho.forEach((item) => {
-        subtotal += item.preco * item.qtd;
+        subtotalProdutos += item.preco * item.qtd;
         totalItens += item.qtd;
         lista.innerHTML += `
             <div class="item-cart">
                 <img src="${item.img}">
                 <div class="item-details">
                     <div style="font-size:14px; font-weight:500;">${item.nome}</div>
-                    <div style="color:#ffb3f0; font-weight:bold;">R$ ${item.preco.toFixed(2)}</div>
                     <div class="qty-wrapper">
                         <button class="btn-qty" onclick="mudarQtd('${item.nome}', 'menos')">−</button>
                         <div class="qty-num">${item.qtd}</div>
@@ -317,15 +304,63 @@ function renderCart() {
     });
 
     document.getElementById("cartCount").innerText = totalItens;
-    document.getElementById("total").innerText = `R$ ${(subtotal + valorFrete).toFixed(2).replace('.', ',')}`;
+    atualizarTotal();
 }
 
 function calcularFrete() {
     const cep = document.getElementById("cartCEP").value.replace(/\D/g, "");
     if(cep.length !== 8) return alert("CEP inválido");
-    valorFrete = cep.startsWith("6") ? 26.00 : 52.90;
-    document.getElementById("resFrete").innerText = `🚚 SEDEX: R$ ${valorFrete.toFixed(2).replace('.',',')}`;
-    renderCart();
+    
+    document.getElementById("opcoesFrete").style.display = "block";
+    const isLocal = cep.startsWith("6");
+    
+    // Simulação de valores baseado no CEP
+    valorFrete = isLocal ? 26.00 : 52.90;
+    document.getElementById("resFrete").innerText = `🚚 Valor estimado: R$ ${valorFrete.toFixed(2).replace('.',',')}`;
+    atualizarTotal();
+}
+
+function atualizarTotal() {
+    const totalGeral = subtotalProdutos + valorFrete;
+    document.getElementById("total").innerText = `R$ ${totalGeral.toFixed(2).replace('.', ',')}`;
+}
+
+function finalizar() {
+    const nomeLoja = "IdolVerse • Photocards";
+    const cliente = document.getElementById("cartNome").value;
+    const endereco = document.getElementById("cartEndereco").value;
+    const cidadeEstado = document.getElementById("cartCidadeEstado").value;
+    const cep = document.getElementById("cartCEP").value;
+    const freteSelecionado = document.querySelector('input[name="tipoFrete"]:checked')?.value || "Não selecionado";
+
+    if(!cliente || !endereco || !cidadeEstado || carrinho.length === 0) {
+        return alert("Por favor, preencha todos os campos e adicione itens ao carrinho!");
+    }
+
+    // Gerando a lista de produtos
+    let listaProdutos = carrinho.map(i => `• ${i.qtd}x ${i.nome} - R$ ${(i.preco * i.qtd).toFixed(2)}`).join('\n');
+
+    // Montando a mensagem para o WhatsApp
+    const mensagem = `*PEDIDO: ${nomeLoja}*
+---------------------------------------
+*DADOS DO CLIENTE:*
+👤 *Nome:* ${cliente}
+📍 *Endereço:* ${endereco}
+🏙️ *Cidade/UF:* ${cidadeEstado}
+📮 *CEP:* ${cep}
+
+*PRODUTOS:*
+${listaProdutos}
+
+💰 *Valor dos Produtos:* R$ ${subtotalProdutos.toFixed(2)}
+🚚 *Frete:* ${freteSelecionado} (R$ ${valorFrete.toFixed(2)})
+✅ *TOTAL:* R$ ${(subtotalProdutos + valorFrete).toFixed(2)}
+---------------------------------------
+*OBSERVAÇÃO:* Itens sujeitos a disponibilidade. Favor confirmar o pagamento para envio.`;
+
+    // Abrindo o WhatsApp
+    const fone = "5591986122614";
+    window.open(`https://wa.me/${fone}?text=${encodeURIComponent(mensagem)}`);
 }
 
 function toggleCarrinho() {
@@ -338,13 +373,6 @@ function toggleCarrinho() {
 function atualizarHeader() {
     const end = document.getElementById("cartEndereco").value;
     document.getElementById("displayEndereco").innerText = end ? `📍 Enviar para: ${end}` : "📍 Informe o endereço no carrinho >";
-}
-
-function finalizar() {
-    const nome = document.getElementById("cartNome").value;
-    if(!nome || carrinho.length === 0) return alert("Preencha seu nome e adicione itens!");
-    const msg = `Olá! Meu nome é ${nome}.\nPedido:\n${carrinho.map(i => `- ${i.qtd}x ${i.nome}`).join('\n')}\nTotal: ${document.getElementById("total").innerText}`;
-    window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`);
 }
 
 function buscar(t) {

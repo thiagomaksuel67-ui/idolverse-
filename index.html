@@ -78,7 +78,7 @@ header {
 }
 .nav-item.active { border-bottom: 2px solid var(--primary-pink); opacity: 1; }
 
-/* --- BOTÃO CARRINHO ATUALIZADO --- */
+/* --- BOTÃO CARRINHO --- */
 #cartBtn { 
   position: fixed; 
   bottom: 20px; 
@@ -88,13 +88,12 @@ header {
   width: 60px; 
   height: 60px; 
   border-radius: 50%; 
-  z-index: 1100; /* Reduzido para ficar abaixo do menu lateral do carrinho */
+  z-index: 1100; 
   color: white; 
   cursor: pointer; 
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 4px 15px rgba(0,0,0,0.5);
   font-size: 24px;
-  transition: transform 0.3s ease;
 }
 
 #cartCount {
@@ -203,7 +202,52 @@ header {
         <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button>
       </div>
     </div>
+    <div class="card produto" data-name="blackpink kpop">
+      <div class="img-container"><img src="blackpink.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Pack BLACKPINK</h3><p class="price">R$ 21,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">54 photocards lomo exclusivos da turnê Born Pink.</div>
+        <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
+      </div>
     </div>
+    <div class="card produto" data-name="stray kids kpop">
+      <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Kit Stray Kids</h3><p class="price">R$ 22,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">54 photocards lomo, papel fotográfico premium.</div>
+        <button class="btn-buy" onclick="addCarrinho('Kit Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
+      </div>
+    </div>
+    <div class="card produto" data-name="le sserafim kpop">
+      <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Kit LE SSERAFIM</h3><p class="price">R$ 22,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">Photocards lomo especiais do comeback.</div>
+        <button class="btn-buy" onclick="addCarrinho('Kit LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button>
+      </div>
+    </div>
+    <div class="card produto" data-name="neymar famosos">
+      <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">Coleção exclusiva com momentos históricos do craque.</div>
+        <button class="btn-buy" onclick="addCarrinho('Pack Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
+      </div>
+    </div>
+    <div class="card produto" data-name="stranger things filmes séries">
+      <div class="img-container"><img src="strangerthings.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info">
+        <h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">Photocards temáticos da série, edição limitada.</div>
+        <button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'strangerthings.jpg')">Adicionar</button>
+      </div>
+    </div>
+  </div>
 
   <div class="custom-order-section">
       <h3>✨ Encomendas Personalizadas</h3>
@@ -332,19 +376,17 @@ function finalizar() {
     window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`);
 }
 
-// FUNÇÃO TOGGLE ATUALIZADA PARA O BOTÃO NÃO COBRIR NADA
 function toggleCarrinho() {
     const c = document.getElementById("carrinho"), o = document.getElementById("overlay"), b = document.getElementById("cartBtn");
     const aberto = c.style.right === "0px";
-    
     if (aberto) {
         c.style.right = "-100%";
         o.style.display = "none";
-        b.style.display = "flex"; // Mostra o botão flutuante novamente
+        b.style.display = "flex";
     } else {
         c.style.right = "0px";
         o.style.display = "block";
-        b.style.display = "none"; // Esconde o botão flutuante para não cobrir o conteúdo do carrinho
+        b.style.display = "none";
     }
 }
 

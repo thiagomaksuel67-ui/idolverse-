@@ -89,10 +89,13 @@ header {
 .location-bar {
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: 11px;
   color: rgba(255, 255, 255, 0.7);
   padding: 2px 0;
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nav-menu {
@@ -235,7 +238,7 @@ header {
   </div>
 
   <div class="location-bar">
-    <span>📍 Enviar para Rua Doutor Adailson da Silva Rodrigues 184 ></span>
+    <span id="displayEndereco">📍 Informe seu endereço no carrinho ></span>
   </div>
 
   <nav class="nav-menu">
@@ -258,12 +261,8 @@ header {
             <strong>Sobre o produto:</strong>
             <ul>
                 <li>Cartão lomo</li>
-                <li>Produto novo e de alta qualidade</li>
                 <li>Contém 54 photocards em uma caixa</li>
-                <li>Material com acabamento brilhante</li>
                 <li>Tamanho: 8,5 cm x 5,5 cm</li>
-                <li>Impressão frente e verso (dupla face)</li>
-                <li>Com brinde surpresa 🤩</li>
             </ul>
         </div>
         <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg', '54 cards lomo')">Adicionar</button>
@@ -277,10 +276,7 @@ header {
           <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
           <div class="description-text">
               <strong>Sobre o produto:</strong>
-              <ul>
-                  <li>Cartão lomo</li>
-                  <li>Contém 54 photocards</li>
-              </ul>
+              <ul><li>Contém 54 photocards</li></ul>
           </div>
           <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg', '54 cards lomo')">Adicionar</button>
         </div>
@@ -341,8 +337,7 @@ header {
 
   <div class="custom-order-section">
       <h3>✨ Encomendas Personalizadas</h3>
-      <p>Produzimos fanbox e caixas de photocards personalizadas de filmes, séries e famosos. Você escolhe o tema e monta sua box do jeito que quiser 💖.</p>
-      <p>Para informações sobre <strong>valores, frete e detalhes</strong>, entre em contato pelo nosso chat:</p>
+      <p>Produzimos fanbox e caixas de photocards personalizadas. Você escolhe o tema 💖.</p>
       <a href="https://wa.me/5591986122614" class="btn-whatsapp-custom">CHAMAR NO WHATSAPP</a>
   </div>
 
@@ -370,10 +365,6 @@ header {
   <div class="credits">
       Criado por <span>Thiago Maksuel</span> • <span>Marina Angels</span> • <span>Maria Sophya</span>
   </div>
-
-  <div class="bug-report">
-      Se encontrar algum bug no site, entre em contato com <a href="https://wa.me/559188822874">+55 91 8882-2874</a> por whatsapp e reporte o bug. Obrigada!
-  </div>
 </div>
 
 <button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>
@@ -386,9 +377,9 @@ header {
   <div class="cart-footer">
     <div class="cart-inputs">
         <input type="text" id="cartNome" placeholder="Nome Completo">
-        <input type="text" id="cartEndereco" placeholder="Endereço Completo (Rua, Número, Bairro)">
-        <input type="text" id="cartCidadeEstado" placeholder="Cidade e Estado">
-        <input type="text" id="cartCEP" placeholder="CEP" maxlength="9">
+        <input type="text" id="cartEndereco" placeholder="Endereço (Rua, Nº, Bairro)" oninput="atualizarDisplayEndereco()">
+        <input type="text" id="cartCidadeEstado" placeholder="Cidade e Estado" oninput="atualizarDisplayEndereco()">
+        <input type="text" id="cartCEP" placeholder="CEP" maxlength="9" oninput="atualizarDisplayEndereco()">
     </div>
 
     <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-size: 18px;">
@@ -406,7 +397,20 @@ let prazoFrete = "";
 
 window.onload = carregarPedidos;
 
-// Função para filtrar via categorias do novo menu
+// NOVO: Função para tornar o endereço dinâmico no topo do site
+function atualizarDisplayEndereco() {
+    const endereco = document.getElementById("cartEndereco").value;
+    const cidade = document.getElementById("cartCidadeEstado").value;
+    const cep = document.getElementById("cartCEP").value;
+    const display = document.getElementById("displayEndereco");
+
+    if(endereco || cidade || cep) {
+        display.innerText = `📍 Enviar para ${endereco}${endereco && cidade ? ', ' : ''}${cidade} ${cep ? '('+cep+')' : ''} >`;
+    } else {
+        display.innerText = "📍 Informe seu endereço no carrinho >";
+    }
+}
+
 function filtrarCategoria(el, termo) {
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
     el.classList.add('active');
@@ -441,7 +445,10 @@ function calcularFreteOpcoes() {
     inputs[1].value = sedexVal;
     inputs[1].setAttribute('data-prazo', sedexPrazo);
     labels[1].innerText = `SEDEX - R$ ${sedexVal.toFixed(2).replace('.',',')} (${sedexPrazo})`;
+    
+    // Sincroniza CEP com o carrinho
     document.getElementById("cartCEP").value = document.getElementById("cepInput").value;
+    atualizarDisplayEndereco();
 }
 
 function selecionarFrete(radio) {
@@ -456,7 +463,10 @@ function addCarrinho(nome, preco, img, obs) {
     if(item) item.qtd++;
     else carrinho.push({nome, preco, img, obs, qtd: 1});
     renderCart();
-    toggleCarrinho();
+    // Abre o carrinho para o cliente ver o item adicionado
+    const c = document.getElementById("carrinho"), o = document.getElementById("overlay");
+    c.style.right = "0px";
+    o.style.display = "block";
 }
 
 function renderCart() {
@@ -492,22 +502,26 @@ function finalizar() {
     const endereco = document.getElementById("cartEndereco").value;
     const cidadeEstado = document.getElementById("cartCidadeEstado").value;
     const cep = document.getElementById("cartCEP").value;
-    if(carrinho.length === 0) return alert("Carrinho vazio!");
-    if(valorFreteSelecionado === 0) return alert("Selecione o frete!");
-    if(!nome || !endereco || !cidadeEstado || !cep) return alert("Preencha todos os campos de entrega.");
+    if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
+    if(valorFreteSelecionado === 0) return alert("Por favor, calcule o frete primeiro!");
+    if(!nome || !endereco || !cidadeEstado || !cep) return alert("Preencha seus dados de entrega para finalizar.");
+    
     let subtotal = 0;
     let listaProdutos = "";
     carrinho.forEach(i => {
         let totalItem = i.preco * i.qtd;
         subtotal += totalItem;
-        listaProdutos += `• ${i.qtd}x ${i.nome} - R$ ${totalItem.toFixed(2).replace('.',',')} (Obs: ${i.obs || 'N/A'})\n`;
+        listaProdutos += `• ${i.qtd}x ${i.nome} - R$ ${totalItem.toFixed(2).replace('.',',')}\n`;
     });
+    
     const pedidoId = "#ID" + Math.floor(Math.random() * 90000 + 10000);
     const totalFinal = (subtotal + valorFreteSelecionado).toFixed(2).replace('.',',');
     const msgZap = `💎 *IDOLVERSE - RESUMO DO PEDIDO*\n---------------------------------------\n🔖 *Pedido:* ${pedidoId}\n👤 *Cliente:* ${nome}\n🏠 *Endereço:* ${endereco}\n🏙️ *Cidade/UF:* ${cidadeEstado}\n📮 *CEP:* ${cep}\n\n📦 *PRODUTOS:*\n${listaProdutos}\n💰 *Valor Produtos:* R$ ${subtotal.toFixed(2).replace('.',',')}\n🚚 *Frete:* ${freteNome} (${prazoFrete})\n💵 *Valor Frete:* R$ ${valorFreteSelecionado.toFixed(2).replace('.',',')}\n\n✨ *TOTAL DO PEDIDO: R$ ${totalFinal}*\n---------------------------------------\n_Obrigado por comprar na IdolVerse!_`;
+    
     let pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
     pedidos.push({ id: pedidoId, data: new Date().toLocaleDateString(), status: "Processando", total: "R$ " + totalFinal });
     localStorage.setItem('idolPedidos', JSON.stringify(pedidos));
+    
     carregarPedidos();
     window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msgZap)}`);
     carrinho = []; renderCart(); toggleCarrinho();
@@ -521,7 +535,7 @@ function carregarPedidos() {
 }
 
 function cancelarPedido(index) {
-    if(!confirm("Cancelar pedido?")) return;
+    if(!confirm("Deseja cancelar este pedido?")) return;
     let pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
     pedidos.splice(pedidos.length - 1 - index, 1);
     localStorage.setItem('idolPedidos', JSON.stringify(pedidos));

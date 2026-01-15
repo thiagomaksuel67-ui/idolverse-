@@ -25,26 +25,101 @@ body{
   color: var(--text-white);
 }
 
+/* --- NOVO HEADER ESTILO ML --- */
 header {
   background: var(--bg-dark-deep);
-  padding: 10px 15px;
+  padding: 10px 15px 5px 15px;
   position: sticky;
   top: 0;
   z-index: 1000;
-  text-align: center;
   display: flex;
   flex-direction: column;
+  gap: 8px;
+}
+
+.header-top {
+  display: flex;
   align-items: center;
+  gap: 12px;
+  width: 100%;
 }
 
-.logo-img { height: 80px; width: auto; object-fit: contain; }
-@media (max-width: 600px) { .logo-img { height: 50px; } }
+.logo-container { cursor: pointer; flex-shrink: 0; }
+.logo-img { height: 35px; width: auto; object-fit: contain; }
 
-.search-container { width: 100%; max-width: 600px; margin-top: 10px; }
+.search-container { flex-grow: 1; position: relative; }
 .search-container input {
-  width: 100%; padding: 12px; border-radius: 10px; border: none;
-  background: #2b2b4f; color: white;
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  border-radius: 25px;
+  border: none;
+  background: #ffffff;
+  color: #333;
+  font-size: 14px;
 }
+
+.search-container::before {
+  content: '🔍';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+.notification-icon {
+    position: relative;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--primary-pink);
+}
+.badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: #ff4f4f;
+    color: white;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.location-bar {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 2px 0;
+  cursor: pointer;
+}
+
+.nav-menu {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 20px;
+  padding: 8px 0;
+  scrollbar-width: none;
+}
+.nav-menu::-webkit-scrollbar { display: none; }
+
+.nav-item {
+  color: var(--text-white);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+  opacity: 0.8;
+}
+.nav-item.active {
+  border-bottom: 2px solid var(--primary-pink);
+  opacity: 1;
+  font-weight: bold;
+}
+/* ---------------------------- */
 
 .container { max-width: 1200px; margin: 0 auto; padding: 10px; }
 
@@ -77,7 +152,6 @@ header {
 
 .btn-buy { background: var(--primary-pink); color: white; border: none; padding: 8px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; }
 
-/* NOVA SEÇÃO PERSONALIZADOS */
 .custom-order-section {
     background: rgba(255, 79, 216, 0.1);
     border: 1px solid var(--primary-pink);
@@ -146,8 +220,30 @@ header {
 <div id="zoomModal" onclick="this.style.display='none'"><img id="imgZoomed" src=""></div>
 
 <header>
-  <div class="logo-container" onclick="voltarInicio()"><img src="logo-img.png" alt="Logo" class="logo-img"></div>
-  <div class="search-container"><input type="text" placeholder="🔍 Buscar photocards..." onkeyup="buscar(this.value)"></div>
+  <div class="header-top">
+    <div class="logo-container" onclick="voltarInicio()">
+        <img src="logo-img.png" alt="Logo" class="logo-img">
+    </div>
+    
+    <div class="search-container">
+        <input type="text" placeholder="Buscar no IdolVerse" onkeyup="buscar(this.value)">
+    </div>
+
+    <div class="notification-icon">
+        🔔<span class="badge">2</span>
+    </div>
+  </div>
+
+  <div class="location-bar">
+    <span>📍 Enviar para Rua Doutor Adailson da Silva Rodrigues 184 ></span>
+  </div>
+
+  <nav class="nav-menu">
+    <a href="#" class="nav-item active" onclick="filtrarCategoria(this, '')">K-pop</a>
+    <a href="#" class="nav-item" onclick="filtrarCategoria(this, 'famosos')">Famosos</a>
+    <a href="#" class="nav-item" onclick="filtrarCategoria(this, 'filmes')">Filmes</a>
+    <a href="#" class="nav-item" onclick="filtrarCategoria(this, 'séries')">Séries</a>
+  </nav>
 </header>
 
 <div class="container">
@@ -169,8 +265,6 @@ header {
                 <li>Impressão frente e verso (dupla face)</li>
                 <li>Com brinde surpresa 🤩</li>
             </ul>
-            Ao realizar o pedido em nossa loja, você receberá os cartões de forma aleatória.<br><br>
-            Caso algum item chegue danificado devido ao transporte, entre em contato conosco que faremos a compensação. Obrigado! 💖✨
         </div>
         <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg', '54 cards lomo')">Adicionar</button>
       </div>
@@ -185,15 +279,8 @@ header {
               <strong>Sobre o produto:</strong>
               <ul>
                   <li>Cartão lomo</li>
-                  <li>Produto novo e de alta qualidade</li>
-                  <li>Contém 54 photocards em uma caixa</li>
-                  <li>Material com acabamento brilhante</li>
-                  <li>Tamanho: 8,5 cm x 5,5 cm</li>
-                  <li>Impressão frente e verso (dupla face)</li>
-                  <li>Com brinde surpresa 🤩</li>
+                  <li>Contém 54 photocards</li>
               </ul>
-              Ao realizar o pedido em nossa loja, você receberá os cartões de forma aleatória.<br><br>
-              Caso algum item chegue danificado devido ao transporte, entre em contato conosco que faremos a compensação. Obrigado! 💖✨
           </div>
           <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg', '54 cards lomo')">Adicionar</button>
         </div>
@@ -206,17 +293,7 @@ header {
           <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
           <div class="description-text">
               <strong>Sobre o produto:</strong>
-              <ul>
-                  <li>Cartão lomo</li>
-                  <li>Produto novo e de alta qualidade</li>
-                  <li>Contém 54 photocards em uma caixa</li>
-                  <li>Material com acabamento brilhante</li>
-                  <li>Tamanho: 8,5 cm x 5,5 cm</li>
-                  <li>Impressão frente e verso (dupla face)</li>
-                  <li>Com brinde surpresa 🤩</li>
-              </ul>
-              Ao realizar o pedido em nossa loja, você receberá os cartões de forma aleatória.<br><br>
-              Caso algum item chegue danificado devido ao transporte, entre em contato conosco que faremos a compensação. Obrigado! 💖✨
+              <ul><li>Contém 54 photocards</li></ul>
           </div>
           <button class="btn-buy" onclick="addCarrinho('Kit Stray Kids', 22.90, 'straykids.jpg', '54 cards lomo')">Adicionar</button>
         </div>
@@ -229,63 +306,33 @@ header {
           <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
           <div class="description-text">
               <strong>Sobre o produto:</strong>
-              <ul>
-                  <li>Cartão lomo</li>
-                  <li>Produto novo e de alta qualidade</li>
-                  <li>Contém 54 photocards em uma caixa</li>
-                  <li>Material com acabamento brilhante</li>
-                  <li>Tamanho: 8,5 cm x 5,5 cm</li>
-                  <li>Impressão frente e verso (dupla face)</li>
-                  <li>Com brinde surpresa 🤩</li>
-              </ul>
-              Ao realizar o pedido em nossa loja, você receberá os cartões de forma aleatória.<br><br>
-              Caso algum item chegue danificado devido ao transporte, entre em contato conosco que faremos a compensação. Obrigado! 💖✨
+              <ul><li>Contém 54 photocards</li></ul>
           </div>
           <button class="btn-buy" onclick="addCarrinho('Kit LE SSERAFIM', 22.90, 'lesserafim.jpg', '54 cards lomo')">Adicionar</button>
         </div>
     </div>
 
-    <div class="card produto" data-name="neymar jr futebol">
+    <div class="card produto" data-name="neymar jr futebol famosos">
         <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
           <h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p>
           <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
           <div class="description-text">
               <strong>Sobre o produto:</strong>
-              <ul>
-                  <li>Cartão lomo</li>
-                  <li>Produto novo e de alta qualidade</li>
-                  <li>Contém 54 photocards em uma caixa</li>
-                  <li>Material com acabamento brilhante</li>
-                  <li>Tamanho: 8,5 cm x 5,5 cm</li>
-                  <li>Impressão frente e verso (dupla face)</li>
-                  <li>Com brinde surpresa 🤩</li>
-              </ul>
-              Ao realizar o pedido em nossa loja, você receberá os cartões de forma aleatória.<br><br>
-              Caso algum item chegue danificado devido ao transporte, entre em contato conosco que faremos a compensação. Obrigado! 💖✨
+              <ul><li>Contém 54 photocards</li></ul>
           </div>
           <button class="btn-buy" onclick="addCarrinho('Pack Neymar Jr', 24.90, 'neymar.jpg', '54 cards lomo')">Adicionar</button>
         </div>
     </div>
 
-    <div class="card produto" data-name="stranger things filmes">
+    <div class="card produto" data-name="stranger things filmes séries">
         <div class="img-container"><img src="strangerthings.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
           <h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p>
           <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
           <div class="description-text">
               <strong>Sobre o produto:</strong>
-              <ul>
-                  <li>Cartão lomo</li>
-                  <li>Produto novo e de alta qualidade</li>
-                  <li>Contém 54 photocards em uma caixa</li>
-                  <li>Material com acabamento brilhante</li>
-                  <li>Tamanho: 8,5 cm x 5,5 cm</li>
-                  <li>Impressão frente e verso (dupla face)</li>
-                  <li>Com brinde surpresa 🤩</li>
-              </ul>
-              Ao realizar o pedido em nossa loja, você receberá os cartões de forma aleatória.<br><br>
-              Caso algum item chegue danificado devido ao transporte, entre em contato conosco que faremos a compensação. Obrigado! 💖✨
+              <ul><li>Contém 54 photocards</li></ul>
           </div>
           <button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'strangerthings.jpg', '54 cards lomo')">Adicionar</button>
         </div>
@@ -358,6 +405,13 @@ let freteNome = "";
 let prazoFrete = "";
 
 window.onload = carregarPedidos;
+
+// Função para filtrar via categorias do novo menu
+function filtrarCategoria(el, termo) {
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    el.classList.add('active');
+    buscar(termo);
+}
 
 function toggleDesc(btn) {
     const desc = btn.nextElementSibling;

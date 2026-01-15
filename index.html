@@ -37,13 +37,7 @@ header {
   gap: 8px;
 }
 
-.header-top {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-}
-
+.header-top { display: flex; align-items: center; gap: 12px; width: 100%; }
 .logo-container { cursor: pointer; flex-shrink: 0; }
 .logo-img { height: 35px; width: auto; object-fit: contain; }
 
@@ -61,108 +55,58 @@ header {
 .search-container::before {
   content: '🔍';
   position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
-  opacity: 0.5;
-}
-
-.notification-icon {
-    position: relative;
-    font-size: 22px;
-    cursor: pointer;
-    color: var(--primary-pink);
-}
-.badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    background: #ff4f4f;
-    color: white;
-    font-size: 10px;
-    padding: 2px 5px;
-    border-radius: 10px;
-    font-weight: bold;
+  left: 12px; top: 50%; transform: translateY(-50%);
+  font-size: 14px; opacity: 0.5;
 }
 
 .location-bar {
-  display: flex;
-  align-items: center;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.7);
+  display: flex; align-items: center;
+  font-size: 11px; color: rgba(255, 255, 255, 0.7);
   padding: 2px 0;
 }
 
 .nav-menu {
-  display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-  gap: 20px;
-  padding: 8px 0;
-  scrollbar-width: none;
+  display: flex; overflow-x: auto; white-space: nowrap;
+  gap: 20px; padding: 8px 0; scrollbar-width: none;
 }
 .nav-menu::-webkit-scrollbar { display: none; }
 
 .nav-item {
-  color: var(--text-white);
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 500;
-  padding-bottom: 5px;
-  border-bottom: 2px solid transparent;
-  opacity: 0.8;
+  color: var(--text-white); text-decoration: none;
+  font-size: 13px; font-weight: 500; opacity: 0.8;
 }
-.nav-item.active {
-  border-bottom: 2px solid var(--primary-pink);
-  opacity: 1;
-  font-weight: bold;
-}
+.nav-item.active { border-bottom: 2px solid var(--primary-pink); opacity: 1; }
 
-/* --- AJUSTE DEFINITIVO DO BOTÃO FLUTUANTE --- */
+/* --- BOTÃO CARRINHO BOLINHA --- */
 #cartBtn { 
   position: fixed; 
   bottom: 20px; 
   right: 20px; 
   background: var(--primary-pink); 
   border: none; 
-  width: 60px; /* Largura fixa */
-  height: 60px; /* Altura fixa */
-  border-radius: 50%; /* Círculo perfeito */
-  z-index: 2100; /* Acima do carrinho aberto e do overlay */
+  width: 60px; 
+  height: 60px; 
+  border-radius: 50%; 
+  z-index: 2100; 
   color: white; 
   cursor: pointer; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   box-shadow: 0 4px 15px rgba(0,0,0,0.5);
   font-size: 24px;
-  transition: transform 0.2s ease;
 }
-#cartBtn:active { transform: scale(0.9); }
 
 #cartCount {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background: white;
-  color: var(--primary-pink);
-  font-size: 12px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute; top: 5px; right: 5px;
+  background: white; color: var(--primary-pink);
+  font-size: 12px; width: 20px; height: 20px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
   font-weight: bold;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
+/* --- PRODUTOS --- */
 .container { max-width: 1200px; margin: 0 auto; padding: 10px; }
-
 .products {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: grid; grid-template-columns: repeat(2, 1fr);
   gap: 15px; margin-top: 20px;
 }
 @media (min-width: 768px) { .products { grid-template-columns: repeat(4, 1fr); } }
@@ -171,76 +115,41 @@ header {
   background: var(--card-purple); border-radius: 12px; overflow: hidden;
   border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column;
 }
-.img-container { 
-  width: 100%; 
-  height: 180px; 
-  overflow: hidden; 
-  cursor: zoom-in; 
-}
+.img-container { width: 100%; height: 180px; overflow: hidden; cursor: zoom-in; }
 .card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-
 .card-info { padding: 10px; text-align: center; flex-grow: 1; }
 .card-info h3 { font-size: 14px; margin: 5px 0; }
 .price { color: #ffb3f0; font-size: 16px; font-weight: bold; }
-
 .btn-details { background: transparent; color: var(--primary-pink); border: none; cursor: pointer; text-decoration: underline; font-size: 11px; margin-bottom: 5px; }
 .description-text { display: none; font-size: 10px; text-align: left; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 5px; margin-bottom: 8px; color: #ddd; line-height: 1.4; }
-.description-text ul { padding-left: 15px; margin: 5px 0; }
-
 .btn-buy { background: var(--primary-pink); color: white; border: none; padding: 8px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; }
 
-.custom-order-section {
-    background: rgba(255, 79, 216, 0.1);
-    border: 1px solid var(--primary-pink);
-    border-radius: 15px;
-    padding: 20px;
-    margin: 20px 0;
-    text-align: center;
-}
-.custom-order-section h3 { margin-top: 0; color: var(--primary-pink); font-size: 18px; }
-.custom-order-section p { font-size: 13px; line-height: 1.5; margin: 10px 0; }
-.btn-whatsapp-custom {
-    display: inline-block;
-    background: #25d366;
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 12px;
-    margin-top: 10px;
-}
-
-.option-item:has(input[data-label="PAC"]) {
-    display: none !important;
-}
-
-.meus-pedidos { background: rgba(0,0,0,0.2); margin: 30px 0; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-pink); }
-.pedido-card { background: var(--card-purple); padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--primary-pink); position: relative; }
-
-/* --- CARRINHO --- */
-#carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh; background: var(--violet-deep); z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; color: white; box-shadow: -5px 0 20px rgba(0,0,0,0.8); }
-.cart-header { padding: 20px; background: rgba(0,0,0,0.3); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+/* --- CARRINHO LATERAL --- */
+#carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh; background: var(--violet-deep); z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; box-shadow: -5px 0 20px rgba(0,0,0,0.8); }
+.cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.1); }
 #listaCarrinho { flex: 1; overflow-y: auto; padding: 15px; }
-.item-cart { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; margin-bottom: 10px; }
-.item-cart img { width: 50px; height: 50px; border-radius: 5px; object-fit: cover; }
 
-.cart-footer { padding: 15px; background: var(--bg-dark-deep); border-top: 1px solid var(--primary-pink); overflow-y: auto; }
+/* CONTROLES ESTILO SHOPEE */
+.item-cart { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; margin-bottom: 10px; }
+.item-cart img { width: 60px; height: 60px; border-radius: 5px; object-fit: cover; }
+.item-details { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.qty-wrapper { display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; width: fit-content; overflow: hidden; }
+.btn-qty { background: rgba(255,255,255,0.1); border: none; color: white; width: 28px; height: 28px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+.btn-qty:hover { background: var(--primary-pink); }
+.qty-num { width: 35px; text-align: center; font-size: 14px; font-weight: bold; border-left: 1px solid rgba(255,255,255,0.1); border-right: 1px solid rgba(255,255,255,0.1); }
+
+.cart-footer { padding: 15px; background: var(--bg-dark-deep); border-top: 1px solid var(--primary-pink); }
 .cart-inputs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
 .cart-inputs input { background: #1c1c3a; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; font-size: 13px; }
 
-.shipping-section { background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 10px; margin: 10px 0; }
-.shipping-input-group { display: flex; gap: 5px; margin-bottom: 10px; }
-.shipping-section input { background: #1c1c3a; border: 1px solid #444; color: white; padding: 8px; border-radius: 8px; flex: 1; font-size: 12px; }
-.shipping-section button { padding: 8px 15px; background: var(--violet-accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 12px; }
+.shipping-section { background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 10px; margin-bottom: 10px; }
+.shipping-input-group { display: flex; gap: 5px; }
+.shipping-input-group input { flex: 1; background: #1c1c3a; border: 1px solid #444; color: white; padding: 8px; border-radius: 8px; }
+.shipping-input-group button { background: var(--violet-accent); color: white; border: none; border-radius: 8px; padding: 0 15px; cursor: pointer; }
 
 #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
-
 #zoomModal { display: none; position: fixed; z-index: 3000; inset: 0; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
 #imgZoomed { max-width: 90%; max-height: 80%; border-radius: 10px; }
-
-.credits { text-align: center; padding: 20px 0; margin-top: 20px; font-size: 10px; letter-spacing: 1px; color: rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.05); text-transform: uppercase; }
-.credits span { color: var(--primary-pink); opacity: 0.5; }
 </style>
 </head>
 <body>
@@ -249,13 +158,10 @@ header {
 
 <header>
   <div class="header-top">
-    <div class="logo-container" onclick="voltarInicio()"><img src="logo-img.png" alt="Logo" class="logo-img"></div>
+    <div class="logo-container"><img src="logo-img.png" alt="Logo" class="logo-img"></div>
     <div class="search-container"><input type="text" placeholder="Buscar no IdolVerse" onkeyup="buscar(this.value)"></div>
-    <div class="notification-icon">🔔<span class="badge">2</span></div>
   </div>
-  <div class="location-bar">
-    <span id="displayEndereco">📍 Informe o endereço no carrinho ></span>
-  </div>
+  <div class="location-bar"><span id="displayEndereco">📍 Informe o endereço no carrinho ></span></div>
   <nav class="nav-menu">
     <a href="#" class="nav-item active" onclick="filtrarCategoria(this, '')">K-pop</a>
     <a href="#" class="nav-item" onclick="filtrarCategoria(this, 'famosos')">Famosos</a>
@@ -271,73 +177,64 @@ header {
       <div class="card-info">
         <h3>Kit BTS</h3><p class="price">R$ 19,90</p>
         <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text"><strong>Sobre:</strong> 54 photocards lomo.</div>
+        <div class="description-text">54 photocards lomo.</div>
         <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button>
       </div>
     </div>
+
     <div class="card produto" data-name="blackpink kpop">
         <div class="img-container"><img src="blackpink.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
           <h3>Pack BLACKPINK</h3><p class="price">R$ 21,90</p>
           <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-          <div class="description-text"><strong>Sobre:</strong> 54 photocards lomo.</div>
+          <div class="description-text">54 photocards lomo.</div>
           <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
         </div>
     </div>
+
     <div class="card produto" data-name="stray kids kpop">
         <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
           <h3>Kit Stray Kids</h3><p class="price">R$ 22,90</p>
           <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-          <div class="description-text"><strong>Sobre:</strong> 54 photocards lomo.</div>
+          <div class="description-text">54 photocards lomo.</div>
           <button class="btn-buy" onclick="addCarrinho('Kit Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
         </div>
     </div>
+
     <div class="card produto" data-name="le sserafim kpop">
         <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
           <h3>Kit LE SSERAFIM</h3><p class="price">R$ 22,90</p>
           <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-          <div class="description-text"><strong>Sobre:</strong> 54 photocards lomo.</div>
+          <div class="description-text">54 photocards lomo.</div>
           <button class="btn-buy" onclick="addCarrinho('Kit LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button>
         </div>
     </div>
+
     <div class="card produto" data-name="neymar famosos">
         <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
           <h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p>
           <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-          <div class="description-text"><strong>Sobre:</strong> 54 photocards lomo.</div>
+          <div class="description-text">54 photocards lomo.</div>
           <button class="btn-buy" onclick="addCarrinho('Pack Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
         </div>
     </div>
+
     <div class="card produto" data-name="stranger things filmes séries">
         <div class="img-container"><img src="strangerthings.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
           <h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p>
           <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-          <div class="description-text"><strong>Sobre:</strong> 54 photocards lomo.</div>
+          <div class="description-text">54 photocards lomo.</div>
           <button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'strangerthings.jpg')">Adicionar</button>
         </div>
     </div>
   </div>
-
-  <div class="custom-order-section">
-      <h3>✨ Encomendas Personalizadas</h3>
-      <p>Produzimos fanbox e caixas de photocards personalizadas 💖.</p>
-      <a href="https://wa.me/5591986122614" class="btn-whatsapp-custom">CHAMAR NO WHATSAPP</a>
-  </div>
-
-  <div class="meus-pedidos">
-    <h3>📋 Pedidos em Andamento</h3>
-    <div id="listaPedidosCliente">Nenhum pedido recente.</div>
-  </div>
-
-  <div class="credits">Criado por <span>Thiago Maksuel</span> • <span>Marina Angels</span> • <span>Maria Sophya</span></div>
 </div>
 
 <button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>
-
 <div id="overlay" onclick="toggleCarrinho()"></div>
 
 <div id="carrinho">
@@ -347,24 +244,17 @@ header {
   <div class="cart-footer">
     <div class="cart-inputs">
         <input type="text" id="cartNome" placeholder="Nome Completo">
-        <input type="text" id="cartEndereco" placeholder="Rua, Número, Bairro" oninput="atualizarHeader()">
-        <input type="text" id="cartCidadeEstado" placeholder="Cidade e Estado" oninput="atualizarHeader()">
+        <input type="text" id="cartEndereco" placeholder="Endereço de entrega" oninput="atualizarHeader()">
     </div>
-
     <div class="shipping-section">
-        <h3>🚚 Cálculo de Entrega (SEDEX)</h3>
         <div class="shipping-input-group">
-            <input type="text" id="cartCEP" placeholder="CEP" maxlength="9" oninput="atualizarHeader()">
-            <button onclick="calcularFreteOpcoes()">OK</button>
+            <input type="text" id="cartCEP" placeholder="CEP">
+            <button onclick="calcularFrete()">CALCULAR</button>
         </div>
-        <div id="shippingOptions" style="display:none">
-            <label class="option-item"><input type="radio" name="freteTipo" data-label="PAC" value="0"> <span>PAC</span></label>
-            <label class="option-item"><input type="radio" name="freteTipo" id="radioSedex" data-label="SEDEX" value="0"> <span id="labelSedex">SEDEX</span></label>
-        </div>
+        <div id="resFrete" style="font-size:12px; margin-top:5px; color:#ffb3f0;"></div>
     </div>
-
-    <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-size: 18px;">
-        <strong>Total:</strong><strong id="total">R$ 0,00</strong>
+    <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-size: 18px; font-weight: bold;">
+        <span>Total:</span><span id="total">R$ 0,00</span>
     </div>
     <button class="btn-buy" style="padding: 15px;" onclick="finalizar()">FINALIZAR NO WHATSAPP</button>
   </div>
@@ -374,33 +264,31 @@ header {
 let carrinho = [];
 let valorFrete = 0;
 
-window.onload = carregarPedidos;
-
-function atualizarHeader() {
-    const r = document.getElementById("cartEndereco").value;
-    const c = document.getElementById("cartCidadeEstado").value;
-    const p = document.getElementById("cartCEP").value;
-    const d = document.getElementById("displayEndereco");
-    if(r || c || p) d.innerText = `📍 Enviar para: ${r}, ${c} (${p}) >`;
-    else d.innerText = "📍 Informe o endereço no carrinho >";
-}
-
-function calcularFreteOpcoes() {
-    const cep = document.getElementById("cartCEP").value.replace(/\D/g, "");
-    if(cep.length !== 8) return alert("CEP inválido");
-    document.getElementById("shippingOptions").style.display = "block";
-    const isLocal = cep.startsWith("6");
-    valorFrete = isLocal ? 26.00 : 52.90;
-    document.getElementById("labelSedex").innerText = `SEDEX: R$ ${valorFrete.toFixed(2).replace('.',',')}`;
-    document.getElementById("radioSedex").checked = true;
-    renderCart();
-}
-
 function addCarrinho(nome, preco, img) {
     let item = carrinho.find(i => i.nome === nome);
-    if(item) item.qtd++; else carrinho.push({nome, preco, img, qtd: 1});
+    if(item) {
+        item.qtd++;
+    } else {
+        carrinho.push({nome, preco, img, qtd: 1});
+    }
     renderCart();
-    // Removido o toggleCarrinho automático para o cliente ver o badge aumentar
+}
+
+// FUNÇÃO PARA ALTERAR QUANTIDADE (+/-)
+function mudarQtd(nome, operacao) {
+    let item = carrinho.find(i => i.nome === nome);
+    if(item) {
+        if(operacao === 'mais') {
+            item.qtd++;
+        } else if(operacao === 'menos' && item.qtd > 1) {
+            item.qtd--;
+        } else if(operacao === 'menos' && item.qtd === 1) {
+            // Se quiser que remova o item ao clicar menos com qtd 1, use a linha abaixo:
+            // carrinho = carrinho.filter(i => i.nome !== nome);
+            alert("A quantidade mínima é 1. Para remover, limpe o carrinho.");
+        }
+    }
+    renderCart();
 }
 
 function renderCart() {
@@ -408,13 +296,36 @@ function renderCart() {
     lista.innerHTML = "";
     let subtotal = 0;
     let totalItens = 0;
+
     carrinho.forEach((item) => {
         subtotal += item.preco * item.qtd;
         totalItens += item.qtd;
-        lista.innerHTML += `<div class="item-cart"><img src="${item.img}"><div style="flex:1"><div>${item.nome}</div><div>${item.qtd}x</div></div><strong>R$ ${(item.preco * item.qtd).toFixed(2)}</strong></div>`;
+        lista.innerHTML += `
+            <div class="item-cart">
+                <img src="${item.img}">
+                <div class="item-details">
+                    <div style="font-size:14px; font-weight:500;">${item.nome}</div>
+                    <div style="color:#ffb3f0; font-weight:bold;">R$ ${item.preco.toFixed(2)}</div>
+                    <div class="qty-wrapper">
+                        <button class="btn-qty" onclick="mudarQtd('${item.nome}', 'menos')">−</button>
+                        <div class="qty-num">${item.qtd}</div>
+                        <button class="btn-qty" onclick="mudarQtd('${item.nome}', 'mais')">+</button>
+                    </div>
+                </div>
+                <div style="font-weight:bold;">R$ ${(item.preco * item.qtd).toFixed(2)}</div>
+            </div>`;
     });
+
     document.getElementById("cartCount").innerText = totalItens;
     document.getElementById("total").innerText = `R$ ${(subtotal + valorFrete).toFixed(2).replace('.', ',')}`;
+}
+
+function calcularFrete() {
+    const cep = document.getElementById("cartCEP").value.replace(/\D/g, "");
+    if(cep.length !== 8) return alert("CEP inválido");
+    valorFrete = cep.startsWith("6") ? 26.00 : 52.90;
+    document.getElementById("resFrete").innerText = `🚚 SEDEX: R$ ${valorFrete.toFixed(2).replace('.',',')}`;
+    renderCart();
 }
 
 function toggleCarrinho() {
@@ -424,26 +335,27 @@ function toggleCarrinho() {
     o.style.display = aberto ? "none" : "block";
 }
 
+function atualizarHeader() {
+    const end = document.getElementById("cartEndereco").value;
+    document.getElementById("displayEndereco").innerText = end ? `📍 Enviar para: ${end}` : "📍 Informe o endereço no carrinho >";
+}
+
 function finalizar() {
     const nome = document.getElementById("cartNome").value;
-    if(!nome || valorFrete === 0) return alert("Preencha nome e frete!");
-    const msg = `Pedido de ${nome}\nEndereço: ${document.getElementById("cartEndereco").value}\nTotal: ${document.getElementById("total").innerText}`;
+    if(!nome || carrinho.length === 0) return alert("Preencha seu nome e adicione itens!");
+    const msg = `Olá! Meu nome é ${nome}.\nPedido:\n${carrinho.map(i => `- ${i.qtd}x ${i.nome}`).join('\n')}\nTotal: ${document.getElementById("total").innerText}`;
     window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`);
 }
 
-function carregarPedidos() {
-    const pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
+function buscar(t) {
+    t = t.toLowerCase();
+    document.querySelectorAll(".produto").forEach(p => p.style.display = p.dataset.name.includes(t) ? "flex" : "none");
 }
 
 function filtrarCategoria(el, t) {
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
     el.classList.add('active');
     buscar(t);
-}
-
-function buscar(t) {
-    t = t.toLowerCase();
-    document.querySelectorAll(".produto").forEach(p => p.style.display = p.dataset.name.includes(t) ? "flex" : "none");
 }
 
 function toggleDesc(btn) {
@@ -455,8 +367,6 @@ function abrirZoom(img) {
     document.getElementById("imgZoomed").src = img.src;
     document.getElementById("zoomModal").style.display = "flex";
 }
-
-function voltarInicio() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 </script>
 </body>
 </html>

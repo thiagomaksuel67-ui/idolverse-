@@ -77,6 +77,29 @@ header {
 
 .btn-buy { background: var(--primary-pink); color: white; border: none; padding: 8px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; }
 
+/* NOVA SEÇÃO PERSONALIZADOS */
+.custom-order-section {
+    background: rgba(255, 79, 216, 0.1);
+    border: 1px solid var(--primary-pink);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+}
+.custom-order-section h3 { margin-top: 0; color: var(--primary-pink); font-size: 18px; }
+.custom-order-section p { font-size: 13px; line-height: 1.5; margin: 10px 0; }
+.btn-whatsapp-custom {
+    display: inline-block;
+    background: #25d366;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
 .shipping-section {
     background: var(--card-purple); margin: 30px 0; padding: 20px; border-radius: 15px;
     border: 1px solid rgba(255,255,255,0.1);
@@ -88,8 +111,7 @@ header {
 .shipping-section button { padding: 10px 20px; background: var(--violet-accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
 .shipping-options { display: none; flex-direction: column; gap: 10px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; margin-top: 10px; }
-.option-item { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px; border-radius: 5px; transition: 0.2s; }
-.option-item:hover { background: rgba(255,255,255,0.05); }
+.option-item { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px; border-radius: 5px; }
 
 .meus-pedidos { background: rgba(0,0,0,0.2); margin: 30px 0; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-pink); }
 .pedido-card { background: var(--card-purple); padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--primary-pink); position: relative; }
@@ -247,7 +269,7 @@ header {
     </div>
 
     <div class="card produto" data-name="stranger things filmes">
-        <div class="img-container"><img src="stranger-things.jpg" onclick="abrirZoom(this)"></div>
+        <div class="img-container"><img src="strangerthings.jpg" onclick="abrirZoom(this)"></div>
         <div class="card-info">
           <h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p>
           <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
@@ -268,6 +290,13 @@ header {
           <button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'strangerthings.jpg', '54 cards lomo')">Adicionar</button>
         </div>
     </div>
+  </div>
+
+  <div class="custom-order-section">
+      <h3>✨ Encomendas Personalizadas</h3>
+      <p>Produzimos fanbox e caixas de photocards personalizadas de filmes, séries e famosos. Você escolhe o tema e monta sua box do jeito que quiser 💖.</p>
+      <p>Para informações sobre <strong>valores, frete e detalhes</strong>, entre em contato pelo nosso chat:</p>
+      <a href="https://wa.me/5591986122614" class="btn-whatsapp-custom">CHAMAR NO WHATSAPP</a>
   </div>
 
   <div class="shipping-section">
@@ -340,36 +369,24 @@ function abrirZoom(img) {
     document.getElementById("zoomModal").style.display = "flex";
 }
 
-// FUNÇÃO DE CÁLCULO DE FRETE RESTAURADA E INTELIGENTE
 function calcularFreteOpcoes() {
     const cep = document.getElementById("cepInput").value.replace(/\D/g, "");
     if(cep.length !== 8) return alert("Por favor, digite um CEP válido com 8 dígitos.");
-    
     const optionsDiv = document.getElementById("shippingOptions");
     optionsDiv.style.display = "flex";
-    
-    // Lógica de Prazo e Preço baseada no CEP de origem (Exemplo: Norte/PA começa com 6)
     const isLocal = cep.startsWith("6");
-    
     const pacVal = isLocal ? 14.90 : 28.50;
     const sedexVal = isLocal ? 26.00 : 52.90;
     const pacPrazo = isLocal ? "5 a 7 dias úteis" : "12 a 15 dias úteis";
     const sedexPrazo = isLocal ? "1 a 3 dias úteis" : "4 a 6 dias úteis";
-    
     const inputs = optionsDiv.querySelectorAll('input');
     const labels = optionsDiv.querySelectorAll('label span');
-    
-    // Atualiza PAC
     inputs[0].value = pacVal;
     inputs[0].setAttribute('data-prazo', pacPrazo);
     labels[0].innerText = `PAC - R$ ${pacVal.toFixed(2).replace('.',',')} (${pacPrazo})`;
-    
-    // Atualiza SEDEX
     inputs[1].value = sedexVal;
     inputs[1].setAttribute('data-prazo', sedexPrazo);
     labels[1].innerText = `SEDEX - R$ ${sedexVal.toFixed(2).replace('.',',')} (${sedexPrazo})`;
-    
-    // Copia o CEP para o carrinho automaticamente
     document.getElementById("cartCEP").value = document.getElementById("cepInput").value;
 }
 
@@ -421,11 +438,9 @@ function finalizar() {
     const endereco = document.getElementById("cartEndereco").value;
     const cidadeEstado = document.getElementById("cartCidadeEstado").value;
     const cep = document.getElementById("cartCEP").value;
-
     if(carrinho.length === 0) return alert("Carrinho vazio!");
     if(valorFreteSelecionado === 0) return alert("Selecione o frete!");
     if(!nome || !endereco || !cidadeEstado || !cep) return alert("Preencha todos os campos de entrega.");
-
     let subtotal = 0;
     let listaProdutos = "";
     carrinho.forEach(i => {
@@ -433,36 +448,14 @@ function finalizar() {
         subtotal += totalItem;
         listaProdutos += `• ${i.qtd}x ${i.nome} - R$ ${totalItem.toFixed(2).replace('.',',')} (Obs: ${i.obs || 'N/A'})\n`;
     });
-
     const pedidoId = "#ID" + Math.floor(Math.random() * 90000 + 10000);
     const totalFinal = (subtotal + valorFreteSelecionado).toFixed(2).replace('.',',');
-
-    const msgZap = 
-`💎 *IDOLVERSE - RESUMO DO PEDIDO*
----------------------------------------
-🔖 *Pedido:* ${pedidoId}
-👤 *Cliente:* ${nome}
-🏠 *Endereço:* ${endereco}
-🏙️ *Cidade/UF:* ${cidadeEstado}
-📮 *CEP:* ${cep}
-
-📦 *PRODUTOS:*
-${listaProdutos}
-💰 *Valor Produtos:* R$ ${subtotal.toFixed(2).replace('.',',')}
-🚚 *Frete:* ${freteNome} (${prazoFrete})
-💵 *Valor Frete:* R$ ${valorFreteSelecionado.toFixed(2).replace('.',',')}
-
-✨ *TOTAL DO PEDIDO: R$ ${totalFinal}*
----------------------------------------
-_Obrigado por comprar na IdolVerse!_`;
-
+    const msgZap = `💎 *IDOLVERSE - RESUMO DO PEDIDO*\n---------------------------------------\n🔖 *Pedido:* ${pedidoId}\n👤 *Cliente:* ${nome}\n🏠 *Endereço:* ${endereco}\n🏙️ *Cidade/UF:* ${cidadeEstado}\n📮 *CEP:* ${cep}\n\n📦 *PRODUTOS:*\n${listaProdutos}\n💰 *Valor Produtos:* R$ ${subtotal.toFixed(2).replace('.',',')}\n🚚 *Frete:* ${freteNome} (${prazoFrete})\n💵 *Valor Frete:* R$ ${valorFreteSelecionado.toFixed(2).replace('.',',')}\n\n✨ *TOTAL DO PEDIDO: R$ ${totalFinal}*\n---------------------------------------\n_Obrigado por comprar na IdolVerse!_`;
     let pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
     pedidos.push({ id: pedidoId, data: new Date().toLocaleDateString(), status: "Processando", total: "R$ " + totalFinal });
     localStorage.setItem('idolPedidos', JSON.stringify(pedidos));
     carregarPedidos();
-
     window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msgZap)}`);
-    
     carrinho = []; renderCart(); toggleCarrinho();
 }
 

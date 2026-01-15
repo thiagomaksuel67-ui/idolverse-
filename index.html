@@ -121,8 +121,11 @@ header {
 .card-info { padding: 10px; text-align: center; flex-grow: 1; }
 .card-info h3 { font-size: 14px; margin: 5px 0; }
 .price { color: #ffb3f0; font-size: 16px; font-weight: bold; }
+
+/* ESTILO DA DESCRIÇÃO RESTAURADO */
 .btn-details { background: transparent; color: var(--primary-pink); border: none; cursor: pointer; text-decoration: underline; font-size: 11px; margin-bottom: 5px; }
 .description-text { display: none; font-size: 10px; text-align: left; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 5px; margin-bottom: 8px; color: #ddd; line-height: 1.4; }
+
 .btn-buy { background: var(--primary-pink); color: white; border: none; padding: 8px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; }
 
 /* --- SEÇÕES EXTRAS --- */
@@ -180,27 +183,57 @@ header {
   <div class="products" id="productGrid">
     <div class="card produto" data-name="bts kpop">
       <div class="img-container"><img src="bts1.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Kit BTS</h3><p class="price">R$ 19,90</p><button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button></div>
+      <div class="card-info">
+        <h3>Kit BTS</h3><p class="price">R$ 19,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">54 photocards lomo de alta qualidade, acabamento brilhante.</div>
+        <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button>
+      </div>
     </div>
     <div class="card produto" data-name="blackpink kpop">
       <div class="img-container"><img src="blackpink.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Pack BLACKPINK</h3><p class="price">R$ 21,90</p><button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button></div>
+      <div class="card-info">
+        <h3>Pack BLACKPINK</h3><p class="price">R$ 21,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">54 photocards lomo exclusivos da turnê Born Pink.</div>
+        <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
+      </div>
     </div>
     <div class="card produto" data-name="stray kids kpop">
       <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Kit Stray Kids</h3><p class="price">R$ 22,90</p><button class="btn-buy" onclick="addCarrinho('Kit Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button></div>
+      <div class="card-info">
+        <h3>Kit Stray Kids</h3><p class="price">R$ 22,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">54 photocards lomo, papel fotográfico premium.</div>
+        <button class="btn-buy" onclick="addCarrinho('Kit Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
+      </div>
     </div>
     <div class="card produto" data-name="le sserafim kpop">
       <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Kit LE SSERAFIM</h3><p class="price">R$ 22,90</p><button class="btn-buy" onclick="addCarrinho('Kit LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button></div>
+      <div class="card-info">
+        <h3>Kit LE SSERAFIM</h3><p class="price">R$ 22,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">Photocards lomo especiais do comeback.</div>
+        <button class="btn-buy" onclick="addCarrinho('Kit LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button>
+      </div>
     </div>
     <div class="card produto" data-name="neymar famosos">
       <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p><button class="btn-buy" onclick="addCarrinho('Pack Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button></div>
+      <div class="card-info">
+        <h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">Coleção exclusiva com momentos históricos do craque.</div>
+        <button class="btn-buy" onclick="addCarrinho('Pack Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
+      </div>
     </div>
     <div class="card produto" data-name="stranger things filmes séries">
       <div class="img-container"><img src="strangerthings.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info"><h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p><button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'strangerthings.jpg')">Adicionar</button></div>
+      <div class="card-info">
+        <h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p>
+        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+        <div class="description-text">Photocards temáticos da série, edição limitada.</div>
+        <button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'strangerthings.jpg')">Adicionar</button>
+      </div>
     </div>
   </div>
 
@@ -254,7 +287,6 @@ function addCarrinho(nome, preco, img) {
     renderCart();
 }
 
-/* LÓGICA DE REMOÇÃO AO CHEGAR EM 0 */
 function mudarQtd(nome, operacao) {
     let itemIndex = carrinho.findIndex(i => i.nome === nome);
     if(itemIndex !== -1) {
@@ -262,7 +294,6 @@ function mudarQtd(nome, operacao) {
             carrinho[itemIndex].qtd++;
         } else if(operacao === 'menos') {
             carrinho[itemIndex].qtd--;
-            // Se a quantidade chegar a 0, remove o item do array
             if(carrinho[itemIndex].qtd <= 0) {
                 carrinho.splice(itemIndex, 1);
             }
@@ -303,9 +334,8 @@ function finalizar() {
     const cep = document.getElementById("cartCEP").value;
     const freteTipo = document.querySelector('input[name="tipoFrete"]:checked')?.value || "SEDEX";
 
-    /* TRAVA DE SEGURANÇA: CARRINHO VAZIO */
     if(carrinho.length === 0) return alert("O seu carrinho está vazio!");
-    if(!cliente || !endereco) return alert("Por favor, preencha seus dados de entrega!");
+    if(!cliente || !endereco) return alert("Preencha seus dados de entrega!");
 
     const lista = carrinho.map(i => `• ${i.qtd}x ${i.nome} - R$ ${(i.preco * i.qtd).toFixed(2)}`).join('\n');
     const msg = `*PEDIDO: IdolVerse*\n\n*CLIENTE:* ${cliente}\n*ENDEREÇO:* ${endereco}\n*CIDADE:* ${cid}\n*CEP:* ${cep}\n\n*PRODUTOS:*\n${lista}\n\n*SUBTOTAL:* R$ ${subtotalProdutos.toFixed(2)}\n*FRETE:* ${freteTipo} (R$ ${valorFrete.toFixed(2)})\n*TOTAL:* R$ ${(subtotalProdutos + valorFrete).toFixed(2)}\n\n*OBS:* Itens conforme disponibilidade.`;
@@ -329,6 +359,16 @@ function filtrarCategoria(el, t) {
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
     el.classList.add('active');
     buscar(t);
+}
+
+function toggleDesc(btn) {
+    const desc = btn.nextElementSibling;
+    desc.style.display = (desc.style.display === "block") ? "none" : "block";
+}
+
+function abrirZoom(img) {
+    document.getElementById("imgZoomed").src = img.src;
+    document.getElementById("zoomModal").style.display = "flex";
 }
 
 function atualizarHeader() {

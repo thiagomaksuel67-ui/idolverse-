@@ -25,7 +25,7 @@ body{
   color: var(--text-white);
 }
 
-/* --- HEADER ESTILO ML --- */
+/* --- HEADER --- */
 header {
   background: var(--bg-dark-deep);
   padding: 10px 15px 5px 15px;
@@ -92,7 +92,6 @@ header {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.7);
   padding: 2px 0;
-  cursor: pointer;
 }
 
 .nav-menu {
@@ -120,27 +119,26 @@ header {
   font-weight: bold;
 }
 
-/* CARRINHO BOLINHA FLUTUANTE */
+/* AJUSTE DO CARRINHO PARA BOLINHA FLUTUANTE */
 #cartBtn { 
   position: fixed; 
-  bottom: 25px; 
-  right: 25px; 
+  bottom: 20px; 
+  right: 20px; 
   background: var(--primary-pink); 
   border: none; 
-  width: 65px; 
-  height: 65px; 
+  width: 60px; 
+  height: 60px; 
   border-radius: 50%; 
   z-index: 1001; 
   color: white; 
   cursor: pointer; 
-  font-size: 28px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-  transition: transform 0.2s ease;
+  font-size: 24px;
 }
-#cartBtn:active { transform: scale(0.9); }
 
 #cartCount {
   position: absolute;
@@ -148,14 +146,13 @@ header {
   right: 5px;
   background: white;
   color: var(--primary-pink);
-  font-size: 12px;
-  width: 20px;
-  height: 20px;
+  font-size: 11px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
 }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 10px; }
@@ -218,15 +215,21 @@ header {
 
 .meus-pedidos { background: rgba(0,0,0,0.2); margin: 30px 0; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-pink); }
 .pedido-card { background: var(--card-purple); padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--primary-pink); position: relative; }
+.btn-cancelar { position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.4); color: #fff; border: 1px solid #ff4f4f; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
 #carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh; background: var(--violet-deep); z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; color: white; box-shadow: -5px 0 20px rgba(0,0,0,0.8); }
 .cart-header { padding: 20px; background: rgba(0,0,0,0.3); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
 #listaCarrinho { flex: 1; overflow-y: auto; padding: 15px; }
+.item-cart { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; margin-bottom: 10px; }
+.item-cart img { width: 50px; height: 50px; border-radius: 5px; object-fit: cover; }
+.qty-controls { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+.qty-btn { background: var(--violet-accent); color: white; border: none; width: 24px; height: 24px; border-radius: 5px; cursor: pointer; }
 
 .cart-footer { padding: 15px; background: var(--bg-dark-deep); border-top: 1px solid var(--primary-pink); overflow-y: auto; }
 .cart-inputs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
 .cart-inputs input { background: #1c1c3a; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; font-size: 13px; }
 
+/* SEÇÃO FRETE REPOSICIONADA */
 .shipping-section { background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 10px; margin: 10px 0; }
 .shipping-input-group { display: flex; gap: 5px; margin-bottom: 10px; }
 .shipping-section input { background: #1c1c3a; border: 1px solid #444; color: white; padding: 8px; border-radius: 8px; flex: 1; font-size: 12px; }
@@ -268,65 +271,18 @@ header {
       <div class="card-info">
         <h3>Kit BTS</h3><p class="price">R$ 19,90</p>
         <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text"><strong>Sobre:</strong> 54 photocards lomo.</div>
+        <div class="description-text">
+            <strong>Sobre o produto:</strong>
+            <ul><li>Cartão lomo</li><li>Contém 54 photocards</li></ul>
+        </div>
         <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button>
       </div>
     </div>
-
-    <div class="card produto" data-name="blackpink kpop">
-        <div class="img-container"><img src="blackpink.jpg" onclick="abrirZoom(this)"></div>
-        <div class="card-info">
-          <h3>Pack BLACKPINK</h3><p class="price">R$ 21,90</p>
-          <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-          <div class="description-text"><strong>Sobre:</strong> 54 photocards lomo.</div>
-          <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
-        </div>
     </div>
-
-    <div class="card produto" data-name="stray kids kpop">
-        <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
-        <div class="card-info">
-          <h3>Kit Stray Kids</h3><p class="price">R$ 22,90</p>
-          <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-          <div class="description-text"><strong>Sobre:</strong> 54 photocards lomo.</div>
-          <button class="btn-buy" onclick="addCarrinho('Kit Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
-        </div>
-    </div>
-
-    <div class="card produto" data-name="le sserafim kpop">
-        <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
-        <div class="card-info">
-          <h3>Kit LE SSERAFIM</h3><p class="price">R$ 22,90</p>
-          <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-          <div class="description-text"><strong>Sobre:</strong> 54 photocards lomo.</div>
-          <button class="btn-buy" onclick="addCarrinho('Kit LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button>
-        </div>
-    </div>
-
-    <div class="card produto" data-name="neymar famosos">
-        <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
-        <div class="card-info">
-          <h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p>
-          <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-          <div class="description-text"><strong>Sobre:</strong> 54 photocards lomo.</div>
-          <button class="btn-buy" onclick="addCarrinho('Pack Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
-        </div>
-    </div>
-
-    <div class="card produto" data-name="stranger things filmes séries">
-        <div class="img-container"><img src="strangerthings.jpg" onclick="abrirZoom(this)"></div>
-        <div class="card-info">
-          <h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p>
-          <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-          <div class="description-text"><strong>Sobre:</strong> 54 photocards lomo.</div>
-          <button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'strangerthings.jpg')">Adicionar</button>
-        </div>
-    </div>
-  </div>
 
   <div class="custom-order-section">
       <h3>✨ Encomendas Personalizadas</h3>
-      <p>Produzimos fanbox e caixas de photocards personalizadas 💖.</p>
+      <p>Produzimos fanbox e caixas de photocards personalizadas. Você escolhe o tema 💖.</p>
       <a href="https://wa.me/5591986122614" class="btn-whatsapp-custom">CHAMAR NO WHATSAPP</a>
   </div>
 
@@ -353,10 +309,10 @@ header {
     </div>
 
     <div class="shipping-section">
-        <h3>🚚 Cálculo de Entrega (SEDEX)</h3>
+        <h3>🚚 Frete (SEDEX)</h3>
         <div class="shipping-input-group">
             <input type="text" id="cartCEP" placeholder="CEP" maxlength="9" oninput="atualizarHeader()">
-            <button onclick="calcularFreteOpcoes()">OK</button>
+            <button onclick="calcularFreteOpcoes()">CALCULAR</button>
         </div>
         <div id="shippingOptions" style="display:none">
             <label class="option-item"><input type="radio" name="freteTipo" data-label="PAC" value="0"> <span>PAC</span></label>
@@ -375,13 +331,14 @@ header {
 let carrinho = [];
 let valorFrete = 0;
 
+window.onload = carregarPedidos;
+
 function atualizarHeader() {
     const r = document.getElementById("cartEndereco").value;
     const c = document.getElementById("cartCidadeEstado").value;
     const p = document.getElementById("cartCEP").value;
     const d = document.getElementById("displayEndereco");
-    if(r || c || p) d.innerText = `📍 Enviar para: ${r}, ${c} (${p}) >`;
-    else d.innerText = "📍 Informe o endereço no carrinho >";
+    d.innerText = (r || c || p) ? `📍 Enviar para: ${r}, ${c} (${p})` : "📍 Informe o endereço no carrinho >";
 }
 
 function calcularFreteOpcoes() {
@@ -406,7 +363,7 @@ function renderCart() {
     const lista = document.getElementById("listaCarrinho");
     lista.innerHTML = "";
     let subtotal = 0;
-    carrinho.forEach((item) => {
+    carrinho.forEach((item, idx) => {
         subtotal += item.preco * item.qtd;
         lista.innerHTML += `<div class="item-cart"><img src="${item.img}"><div style="flex:1"><div>${item.nome}</div><div>${item.qtd}x</div></div><strong>R$ ${(item.preco * item.qtd).toFixed(2)}</strong></div>`;
     });
@@ -424,8 +381,14 @@ function toggleCarrinho() {
 function finalizar() {
     const nome = document.getElementById("cartNome").value;
     if(!nome || valorFrete === 0) return alert("Preencha nome e frete!");
-    const msg = `Pedido de ${nome}\nEndereço: ${document.getElementById("cartEndereco").value}\nTotal: ${document.getElementById("total").innerText}`;
+    const msg = `Pedido de ${nome}\nTotal: ${document.getElementById("total").innerText}`;
     window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`);
+}
+
+function carregarPedidos() {
+    const lista = document.getElementById("listaPedidosCliente");
+    const pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
+    if(pedidos.length > 0) lista.innerHTML = "Pedidos carregados com sucesso.";
 }
 
 function filtrarCategoria(el, t) {
@@ -448,8 +411,6 @@ function abrirZoom(img) {
     document.getElementById("imgZoomed").src = img.src;
     document.getElementById("zoomModal").style.display = "flex";
 }
-
-function voltarInicio() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 </script>
 </body>
 </html>

@@ -25,17 +25,47 @@ body{
   color: var(--text-white);
 }
 
+/* HEADER AJUSTADO PARA LOGO */
 header {
   background: var(--bg-dark-deep);
-  padding: 15px;
+  padding: 10px 15px;
   position: sticky;
   top: 0;
   z-index: 1000;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.logo { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+.logo-container {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
 
+.logo-img {
+  height: 80px; /* Tamanho para Computador */
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
+}
+
+/* Responsividade da Logo para Celular */
+@media (max-width: 600px) {
+  .logo-img {
+    height: 60px;
+  }
+}
+
+.search-container { width: 100%; max-width: 600px; }
 .search-container input {
   width: 100%;
   padding: 12px;
@@ -45,7 +75,7 @@ header {
   color: white;
 }
 
-/* NOVO: BANNER DE PERSONALIZAÇÃO */
+/* BANNER DE PERSONALIZAÇÃO */
 .custom-banner {
     background: rgba(255, 79, 216, 0.1);
     border: 1px solid var(--primary-pink);
@@ -206,7 +236,10 @@ header {
 <body>
 
 <header>
-  <div class="logo">✨ IdolVerse ✨</div>
+  <div class="logo-container" onclick="voltarInicio()">
+    <img src="WhatsApp Image 2026-01-14 at 21.05.53.jpeg" alt="IdolVerse Logo" class="logo-img">
+  </div>
+  
   <div class="search-container">
     <input type="text" placeholder="🔍 O que você está buscando?" onkeyup="buscar(this.value)">
   </div>
@@ -337,6 +370,13 @@ let tipoFrete = "";
 
 window.onload = carregarPedidos;
 
+// FUNÇÃO PARA VOLTAR AO INÍCIO
+function voltarInicio() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.querySelectorAll(".produto").forEach(p => p.style.display = "block");
+    document.querySelector(".search-container input").value = "";
+}
+
 function toggleDesc(btn) {
     const desc = btn.nextElementSibling;
     desc.style.display = desc.style.display === "block" ? "none" : "block";
@@ -397,10 +437,9 @@ function finalizar() {
   localStorage.setItem('meusPedidos', JSON.stringify(pedidos));
   carregarPedidos();
 
-  // MENSAGEM WHATSAPP ATUALIZADA
   let msg = `🛒 *Novo Pedido IdolVerse*:%0A🆔 *Pedido:* ${novoPedido.id}%0A👤 *Cliente:* ${nome}%0A%0A✨ *Produtos:*%0A`;
   carrinho.forEach(i => msg += `• ${i.nome} (x${i.qtd})%0A`);
-  msg += `%0A💰 *Valor:* ${novoPedido.total}%0A%0A⚠️ *Olá! Gostaria de confirmar os detalhes do meu pedido e tirar dúvidas sobre personalização e frete.*`;
+  msg += `%0A💰 *Valor:* ${novoPedido.total}%0A%0A⚠️ *Olá! Gostaria de confirmar os detalhes do meu pedido.*`;
   
   window.open(`https://wa.me/5591986122614?text=${msg}`);
   

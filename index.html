@@ -284,8 +284,8 @@ header {
         <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:8px; border-radius:8px; margin-bottom:10px; cursor:pointer;">CALCULAR FRETE</button>
     </div>
     <div id="opcoesFrete" style="display:none; color:white; font-size:13px; margin-bottom:10px;">
-        <label><input type="radio" name="tipoFrete" value="PAC" onchange="atualizarTotal()"> PAC</label>
-        <label style="margin-left:15px;"><input type="radio" name="tipoFrete" value="SEDEX" checked onchange="atualizarTotal()"> SEDEX</label>
+        <label><input type="radio" name="tipoFrete" value="PAC" onchange="atualizarTotal()"> <span id="labelPAC">PAC</span></label>
+        <label style="margin-left:15px;"><input type="radio" name="tipoFrete" value="SEDEX" checked onchange="atualizarTotal()"> <span id="labelSEDEX">SEDEX</span></label>
     </div>
     <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:18px;">
         <span>Total:</span><span id="total">R$ 0,00</span>
@@ -298,6 +298,7 @@ header {
 let carrinho = [];
 let valorFrete = 0;
 let subtotalProdutos = 0;
+let prazoEntrega = "";
 
 function addCarrinho(nome, preco, img) {
     let item = carrinho.find(i => i.nome === nome);
@@ -332,15 +333,37 @@ function renderCart() {
     atualizarTotal();
 }
 
+// FUNÇÃO DE FRETE ATUALIZADA COM PRAZOS DINÂMICOS
 function calcularFrete() {
     const cep = document.getElementById("cartCEP").value.replace(/\D/g, "");
     if(cep.length !== 8) return alert("CEP inválido");
+    
     document.getElementById("opcoesFrete").style.display = "block";
-    valorFrete = cep.startsWith("6") ? 26.00 : 52.90;
+    
+    const isLocal = cep.startsWith("6"); // Simulação: CEPs do Pará/Norte
+    const precoPAC = isLocal ? 14.90 : 28.50;
+    const precoSEDEX = isLocal ? 26.00 : 52.90;
+    const diasPAC = isLocal ? "5-7 dias úteis" : "12-15 dias úteis";
+    const diasSEDEX = isLocal ? "1-3 dias úteis" : "4-6 dias úteis";
+
+    document.getElementById("labelPAC").innerText = `PAC - R$ ${precoPAC.toFixed(2)} (${diasPAC})`;
+    document.getElementById("labelSEDEX").innerText = `SEDEX - R$ ${precoSEDEX.toFixed(2)} (${diasSEDEX})`;
+
+    // Vincula os valores aos inputs para o cálculo de total
+    document.querySelector('input[value="PAC"]').dataset.preco = precoPAC;
+    document.querySelector('input[value="PAC"]').dataset.prazo = diasPAC;
+    document.querySelector('input[value="SEDEX"]').dataset.preco = precoSEDEX;
+    document.querySelector('input[value="SEDEX"]').dataset.prazo = diasSEDEX;
+
     atualizarTotal();
 }
 
 function atualizarTotal() {
+    const selecionado = document.querySelector('input[name="tipoFrete"]:checked');
+    if(selecionado && selecionado.dataset.preco) {
+        valorFrete = parseFloat(selecionado.dataset.preco);
+        prazoEntrega = selecionado.dataset.prazo;
+    }
     const total = subtotalProdutos + valorFrete;
     document.getElementById("total").innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
 }
@@ -354,9 +377,10 @@ function finalizar() {
 
     if(carrinho.length === 0) return alert("O seu carrinho está vazio!");
     if(!cliente || !endereco) return alert("Preencha seus dados de entrega!");
+    if(valorFrete === 0) return alert("Calcule o frete antes de finalizar!");
 
     const lista = carrinho.map(i => `• ${i.qtd}x ${i.nome} - R$ ${(i.preco * i.qtd).toFixed(2)}`).join('\n');
-    const msg = `*PEDIDO: IdolVerse*\n\n*CLIENTE:* ${cliente}\n*ENDEREÇO:* ${endereco}\n*CIDADE:* ${cid}\n*CEP:* ${cep}\n\n*PRODUTOS:*\n${lista}\n\n*SUBTOTAL:* R$ ${subtotalProdutos.toFixed(2)}\n*FRETE:* ${freteTipo} (R$ ${valorFrete.toFixed(2)})\n*TOTAL:* R$ ${(subtotalProdutos + valorFrete).toFixed(2)}\n\n*OBS:* Itens conforme disponibilidade.`;
+    const msg = `*PEDIDO: IdolVerse*\n\n*CLIENTE:* ${cliente}\n*ENDEREÇO:* ${endereco}\n*CIDADE:* ${cid}\n*CEP:* ${cep}\n\n*PRODUTOS:*\n${lista}\n\n*SUBTOTAL:* R$ ${subtotalProdutos.toFixed(2)}\n*FRETE:* ${freteTipo} (R$ ${valorFrete.toFixed(2)})\n*PRAZO ESTIMADO:* ${prazoEntrega}\n*TOTAL:* R$ ${(subtotalProdutos + valorFrete).toFixed(2)}\n\n*OBS:* Itens conforme disponibilidade.`;
     
     window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`);
 }

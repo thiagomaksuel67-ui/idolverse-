@@ -130,6 +130,33 @@ header {
 }
 .frete-opcao.selecionado { border-color: var(--whatsapp-green); background: rgba(37, 211, 102, 0.1); }
 
+/* MEUS PEDIDOS */
+.meus-pedidos {
+    background: var(--card-purple);
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px dashed var(--primary-pink);
+}
+.pedido-card {
+    background: rgba(0,0,0,0.2);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--primary-pink);
+}
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: bold;
+    background: #f39c12; /* Laranja para Preparação */
+    color: white;
+    text-transform: uppercase;
+}
+.status-enviado { background: var(--whatsapp-green); }
+
 /* CARRINHO */
 #carrinho {
   position: fixed;
@@ -332,6 +359,13 @@ header {
     </div>
     <div id="resultadoFrete" style="display: none; margin-top:15px;"></div>
   </div>
+
+  <div class="meus-pedidos">
+    <h3>📋 Meus Pedidos</h3>
+    <div id="listaPedidosCliente">
+        <p style="font-size: 13px; color: #bbb;">Nenhum pedido realizado ainda.</p>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -339,6 +373,9 @@ let carrinho = [];
 let valorFrete = 0;
 let tipoFrete = "";
 const CEP_ORIGEM = "68746-025";
+
+// Carregar pedidos ao abrir a página
+window.onload = carregarPedidos;
 
 function toggleDesc(btn) {
     const desc = btn.nextElementSibling;
@@ -427,7 +464,25 @@ function finalizar() {
       return;
   }
 
+  // --- LÓGICA DE STATUS AUTOMÁTICO ---
+  const novoPedido = {
+      id: "#" + Math.floor(Math.random() * 9000 + 1000),
+      data: new Date().toLocaleDateString('pt-BR'),
+      status: "Em preparação",
+      rastreio: null,
+      total: document.getElementById("total").innerText
+  };
+
+  // Salva no navegador do cliente (LocalStorage)
+  let pedidosAntigos = JSON.parse(localStorage.getItem('meusPedidos') || "[]");
+  pedidosAntigos.push(novoPedido);
+  localStorage.setItem('meusPedidos', JSON.stringify(pedidosAntigos));
+  
+  carregarPedidos(); // Atualiza a lista na tela
+
+  // Mensagem para o WhatsApp
   let msg = "🛒 *Pedido IdolVerse*:%0A%0A";
+  msg += `🆔 *Pedido:* ${novoPedido.id}%0A`;
   msg += `👤 *Cliente:* ${nome}%0A`;
   msg += `📍 *Endereço:* ${endereco}%0A`;
   msg += `🏙️ *Cidade:* ${cidade}%0A`;
@@ -436,8 +491,33 @@ function finalizar() {
   msg += `%0A*Produtos:* R$ ${document.getElementById("subtotal").innerText}`;
   msg += `%0A*Frete (${tipoFrete}):* R$ ${valorFrete.toFixed(2).replace('.',',')}`;
   msg += `%0A*TOTAL:* ${document.getElementById("total").innerText}`;
+  msg += `%0A%0A_Status Atual: 🟠 Em preparação_`;
   msg += `%0A%0A_Sobre os itens: Receberei os cartões de forma aleatória. Caso chegue algo danificado, farei contato._`;
+  
   window.open(`https://wa.me/5591986122614?text=${msg}`);
+  
+  // Limpa o carrinho após finalizar
+  carrinho = [];
+  atualizar();
+  toggleCarrinho();
+}
+
+function carregarPedidos() {
+    const lista = document.getElementById("listaPedidosCliente");
+    const pedidos = JSON.parse(localStorage.getItem('meusPedidos') || "[]");
+    
+    if(pedidos.length === 0) return;
+
+    lista.innerHTML = pedidos.map(p => `
+        <div class="pedido-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong>Pedido ${p.id}</strong>
+                <span class="status-badge ${p.status === 'Enviado' ? 'status-enviado' : ''}">${p.status}</span>
+            </div>
+            <p style="font-size:12px; margin: 5px 0;">Data: ${p.data} | Total: ${p.total}</p>
+            ${p.rastreio ? `<p style="font-size:12px; color: #25d366;">🚚 Rastreio: <strong>${p.rastreio}</strong></p>` : ''}
+        </div>
+    `).reverse().join('');
 }
 
 async function calcularFreteReal() {

@@ -75,6 +75,7 @@ header {
   color: var(--text-white); text-decoration: none;
   font-size: 13px; font-weight: 500; opacity: 0.8;
   padding-bottom: 5px;
+  cursor: pointer;
 }
 .nav-item.active { border-bottom: 2px solid var(--primary-pink); opacity: 1; }
 
@@ -184,10 +185,11 @@ header {
   </div>
   <div class="location-bar"><span id="displayEndereco">📍 Informe o endereço no carrinho ></span></div>
   <nav class="nav-menu">
-    <a href="#" class="nav-item active" onclick="filtrarCategoria(this, '')">K-pop</a>
-    <a href="#" class="nav-item" onclick="filtrarCategoria(this, 'famosos')">Famosos</a>
-    <a href="#" class="nav-item" onclick="filtrarCategoria(this, 'filmes')">Filmes</a>
-    <a href="#" class="nav-item" onclick="filtrarCategoria(this, 'séries')">Séries</a>
+    <a class="nav-item active" onclick="filtrarCategoria(this, '')">Todos</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'kpop')">K-pop</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'famosos')">Famosos</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'filmes')">Filmes</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'séries')">Séries</a>
   </nav>
 </header>
 

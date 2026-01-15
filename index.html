@@ -45,6 +45,19 @@ header {
   color: white;
 }
 
+/* NOVO: BANNER DE PERSONALIZAÇÃO */
+.custom-banner {
+    background: rgba(255, 79, 216, 0.1);
+    border: 1px solid var(--primary-pink);
+    margin: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 1.5;
+}
+.custom-banner h2 { font-size: 18px; margin-top: 0; color: var(--primary-pink); }
+.custom-banner p { font-size: 14px; margin-bottom: 0; }
+
 #cartBtn {
   position: fixed;
   top: 15px;
@@ -120,7 +133,6 @@ header {
   cursor: pointer;
 }
 
-/* STATUS MEUS PEDIDOS */
 .meus-pedidos {
     background: var(--card-purple);
     margin: 30px 0;
@@ -146,7 +158,6 @@ header {
     color: white;
 }
 
-/* BOTÃO CANCELAR (X) */
 .btn-cancelar {
     position: absolute;
     top: 10px;
@@ -163,14 +174,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.3s;
-}
-.btn-cancelar:hover {
-    background: #ff4f4f;
-    color: white;
 }
 
-/* CARRINHO */
 #carrinho {
   position: fixed;
   top: 0; right: -100%; width: 100%; max-width: 450px; height: 100vh;
@@ -190,7 +195,6 @@ header {
 .item-controls { display: flex; align-items: center; border: 1px solid #ddd; width: fit-content; margin-top: 5px; }
 .item-controls button { background: white; border: none; padding: 2px 8px; cursor: pointer; }
 
-/* FRETE */
 .shipping-box { background: var(--card-purple); margin: 25px 0; padding: 20px; border-radius: 15px; }
 .shipping-box .input-group { display: flex; gap: 8px; margin-top: 10px; }
 .shipping-box input { background: #1c1c3a; border: 1px solid #444; color: white; padding: 12px; border-radius: 8px; flex: 1; }
@@ -208,30 +212,16 @@ header {
   </div>
 </header>
 
-<button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>
-<div id="overlay" onclick="toggleCarrinho()"></div>
-
-<div id="carrinho">
-  <div class="cart-header">
-    <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:20px;">←</span>
-    <span style="font-weight:bold;">Meu Carrinho</span>
-  </div>
-  <div id="listaCarrinho"></div>
-  <div class="entrega-form">
-      <h4>📍 Dados para Entrega</h4>
-      <input type="text" id="nomeCliente" placeholder="Seu Nome Completo">
-      <input type="text" id="endCliente" placeholder="Rua, Número e Bairro">
-      <input type="text" id="cidadeCliente" placeholder="Cidade / UF">
-  </div>
-  <div class="cart-footer">
-    <div class="total-linha" style="display:flex; justify-content: space-between; font-size: 13px;"><span>Produtos:</span> <span id="subtotal">R$ 0,00</span></div>
-    <div class="total-linha" style="display:flex; justify-content: space-between; font-size: 13px;"><span>Frete:</span> <span id="freteNoCarrinho">R$ 0,00</span></div>
-    <div class="total-final"><span>TOTAL:</span> <span id="total">R$ 0,00</span></div>
-    <button class="btn-continuar" onclick="finalizar()">Finalizar Compra (0)</button>
-  </div>
-</div>
-
 <div class="container">
+  <div class="custom-banner">
+      <h2>🎨 Personalize sua Experiência</h2>
+      <p>
+          Produzimos fanbox e caixas de photocards personalizadas de filmes, séries e famosos. ✨<br>
+          Você escolhe o tema e monta sua box do jeito que quiser 💖.<br>
+          <strong>Consulte valores, frete e detalhes via WhatsApp.</strong>
+      </p>
+  </div>
+
   <div class="products">
     <div class="card produto" data-name="bts kpop">
       <img src="bts1.jpg">
@@ -317,6 +307,29 @@ header {
   </div>
 </div>
 
+<button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>
+<div id="overlay" onclick="toggleCarrinho()"></div>
+
+<div id="carrinho">
+  <div class="cart-header">
+    <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:20px;">←</span>
+    <span style="font-weight:bold;">Meu Carrinho</span>
+  </div>
+  <div id="listaCarrinho"></div>
+  <div class="entrega-form">
+      <h4>📍 Dados para Entrega</h4>
+      <input type="text" id="nomeCliente" placeholder="Seu Nome Completo">
+      <input type="text" id="endCliente" placeholder="Rua, Número e Bairro">
+      <input type="text" id="cidadeCliente" placeholder="Cidade / UF">
+  </div>
+  <div class="cart-footer">
+    <div class="total-linha" style="display:flex; justify-content: space-between; font-size: 13px;"><span>Produtos:</span> <span id="subtotal">R$ 0,00</span></div>
+    <div class="total-linha" style="display:flex; justify-content: space-between; font-size: 13px;"><span>Frete:</span> <span id="freteNoCarrinho">R$ 0,00</span></div>
+    <div class="total-final"><span>TOTAL:</span> <span id="total">R$ 0,00</span></div>
+    <button class="btn-continuar" onclick="finalizar()">Finalizar Compra (0)</button>
+  </div>
+</div>
+
 <script>
 let carrinho = [];
 let valorFrete = 0;
@@ -372,7 +385,7 @@ function finalizar() {
   if(!nome) return alert("Preencha os dados de entrega!");
 
   const novoPedido = {
-      uid: Date.now(), // ID único para controle de cancelamento
+      uid: Date.now(),
       id: "#" + Math.floor(Math.random() * 9000 + 1000),
       data: new Date().toLocaleDateString('pt-BR'),
       status: "Em preparação",
@@ -384,7 +397,11 @@ function finalizar() {
   localStorage.setItem('meusPedidos', JSON.stringify(pedidos));
   carregarPedidos();
 
-  let msg = `🛒 *Pedido IdolVerse*:%0A🆔 *Pedido:* ${novoPedido.id}%0A👤 *Cliente:* ${nome}%0A*Status:* 🟠 Em preparação%0A*TOTAL:* ${novoPedido.total}`;
+  // MENSAGEM WHATSAPP ATUALIZADA
+  let msg = `🛒 *Novo Pedido IdolVerse*:%0A🆔 *Pedido:* ${novoPedido.id}%0A👤 *Cliente:* ${nome}%0A%0A✨ *Produtos:*%0A`;
+  carrinho.forEach(i => msg += `• ${i.nome} (x${i.qtd})%0A`);
+  msg += `%0A💰 *Valor:* ${novoPedido.total}%0A%0A⚠️ *Olá! Gostaria de confirmar os detalhes do meu pedido e tirar dúvidas sobre personalização e frete.*`;
+  
   window.open(`https://wa.me/5591986122614?text=${msg}`);
   
   carrinho = [];
@@ -411,8 +428,7 @@ function carregarPedidos() {
 }
 
 function cancelarPedido(uid) {
-    if(!confirm("Tem certeza que deseja cancelar e remover este pedido do histórico?")) return;
-    
+    if(!confirm("Tem certeza que deseja cancelar?")) return;
     let pedidos = JSON.parse(localStorage.getItem('meusPedidos') || "[]");
     pedidos = pedidos.filter(p => p.uid !== uid);
     localStorage.setItem('meusPedidos', JSON.stringify(pedidos));

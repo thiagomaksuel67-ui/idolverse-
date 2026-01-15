@@ -111,7 +111,6 @@ header {
 #zoomModal { display: none; position: fixed; z-index: 3000; inset: 0; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
 #imgZoomed { max-width: 90%; max-height: 80%; border-radius: 10px; }
 
-/* ESTILO DISCRETO PARA OS CRÉDITOS */
 .credits {
     text-align: center;
     padding: 20px 0;
@@ -205,8 +204,8 @@ header {
           <button onclick="calcularFreteOpcoes()">CALCULAR</button>
       </div>
       <div id="shippingOptions" class="shipping-options">
-          <label class="option-item"><input type="radio" name="freteTipo" value="15.90" data-label="PAC" onchange="selecionarFrete(this)"> <span>PAC</span></label>
-          <label class="option-item"><input type="radio" name="freteTipo" value="38.40" data-label="SEDEX" onchange="selecionarFrete(this)"> <span>SEDEX</span></label>
+          <label class="option-item"><input type="radio" name="freteTipo" value="15.90" data-label="PAC" data-prazo="12 dias" onchange="selecionarFrete(this)"> <span>PAC</span></label>
+          <label class="option-item"><input type="radio" name="freteTipo" value="38.40" data-label="SEDEX" data-prazo="4 dias" onchange="selecionarFrete(this)"> <span>SEDEX</span></label>
       </div>
   </div>
 
@@ -231,7 +230,13 @@ header {
   <div class="cart-header"><h3>Meu Carrinho</h3><span onclick="toggleCarrinho()" style="cursor:pointer; font-size:24px;">&times;</span></div>
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
-    <div style="display:flex; justify-content:space-between; margin-bottom:15px;"><strong>Total:</strong><strong id="total">R$ 0,00</strong></div>
+    <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size: 13px; opacity: 0.8;">
+        <span>Frete:</span>
+        <span id="labelFreteCarrinho">R$ 0,00</span>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-size: 18px;">
+        <strong>Total:</strong><strong id="total">R$ 0,00</strong>
+    </div>
     <button class="btn-buy" style="padding: 15px;" onclick="finalizar()">FINALIZAR NO WHATSAPP</button>
   </div>
 </div>
@@ -240,6 +245,7 @@ header {
 let carrinho = [];
 let valorFreteSelecionado = 0;
 let freteNome = "";
+let prazoFrete = "";
 
 window.onload = carregarPedidos;
 
@@ -259,18 +265,30 @@ function calcularFreteOpcoes() {
     const optionsDiv = document.getElementById("shippingOptions");
     optionsDiv.style.display = "flex";
     const isLocal = cep.startsWith("6");
+    
     const pacVal = isLocal ? 14.50 : 29.90;
     const sedexVal = isLocal ? 28.00 : 54.90;
+    const pacPrazo = isLocal ? "6 dias" : "12 dias";
+    const sedexPrazo = isLocal ? "2 dias" : "5 dias";
+
+    const inputs = optionsDiv.querySelectorAll('input');
     const labels = optionsDiv.querySelectorAll('label span');
-    optionsDiv.querySelectorAll('input')[0].value = pacVal;
-    optionsDiv.querySelectorAll('input')[1].value = sedexVal;
-    labels[0].innerText = `PAC - R$ ${pacVal.toFixed(2).replace('.',',')}`;
-    labels[1].innerText = `SEDEX - R$ ${sedexVal.toFixed(2).replace('.',',')}`;
+    
+    inputs[0].value = pacVal;
+    inputs[0].setAttribute('data-prazo', pacPrazo);
+    labels[0].innerText = `PAC - R$ ${pacVal.toFixed(2).replace('.',',')} (${pacPrazo})`;
+    
+    inputs[1].value = sedexVal;
+    inputs[1].setAttribute('data-prazo', sedexPrazo);
+    labels[1].innerText = `SEDEX - R$ ${sedexVal.toFixed(2).replace('.',',')} (${sedexPrazo})`;
 }
 
 function selecionarFrete(radio) {
     valorFreteSelecionado = parseFloat(radio.value);
     freteNome = radio.getAttribute('data-label');
+    prazoFrete = radio.getAttribute('data-prazo');
+    
+    document.getElementById("labelFreteCarrinho").innerText = `R$ ${valorFreteSelecionado.toFixed(2).replace('.',',')} (${prazoFrete})`;
     renderCart();
 }
 
@@ -312,13 +330,14 @@ function toggleCarrinho() {
 
 function finalizar() {
     if(carrinho.length === 0) return alert("Carrinho vazio!");
+    if(valorFreteSelecionado === 0) return alert("Calcule o frete primeiro!");
     const pedidoId = "#ID" + Math.floor(Math.random() * 90000 + 10000);
     const novoPedido = { id: pedidoId, data: new Date().toLocaleDateString('pt-BR'), status: "Processando", total: document.getElementById("total").innerText };
     let pedidos = JSON.parse(localStorage.getItem('idolPedidos') || "[]");
     pedidos.push(novoPedido);
     localStorage.setItem('idolPedidos', JSON.stringify(pedidos));
     carregarPedidos();
-    window.open(`https://wa.me/5591986122614?text=Pedido ${pedidoId} realizado!`);
+    window.open(`https://wa.me/5591986122614?text=Pedido ${pedidoId} realizado! Frete: ${freteNome} (${prazoFrete})`);
     carrinho = []; renderCart(); toggleCarrinho();
 }
 

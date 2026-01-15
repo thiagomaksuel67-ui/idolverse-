@@ -11,9 +11,10 @@
   --bg-gradient: linear-gradient(135deg, #1e1e2f, #3a3a6a);
   --card-purple: #2b2b4f;
   --primary-pink: #ff4fd8;
+  --violet-bright: #8a2be2;
+  --violet-dark: #4b0082;
   --text-white: #ffffff;
-  --shopee-gray: #f5f5f5;
-  --whatsapp-green: #25d366;
+  --glass-violet: rgba(75, 0, 130, 0.95);
 }
 
 *{box-sizing:border-box}
@@ -25,6 +26,7 @@ body{
   color: var(--text-white);
 }
 
+/* --- HEADER E LAYOUT --- */
 header {
   background: var(--bg-dark-deep);
   padding: 10px 15px;
@@ -37,204 +39,119 @@ header {
   align-items: center;
 }
 
-.logo-container {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.logo-img {
-  height: 125px;
-  width: auto;
-  object-fit: contain;
-  transition: transform 0.3s;
-}
-
+.logo-img { height: 125px; width: auto; object-fit: contain; }
 @media (max-width: 600px) { .logo-img { height: 60px; } }
 
-.search-container { width: 100%; max-width: 600px; }
+.search-container { width: 100%; max-width: 600px; margin-top: 10px; }
 .search-container input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  background: #2b2b4f;
-  color: white;
-}
-
-.custom-banner {
-    background: rgba(255, 79, 216, 0.1);
-    border: 1px solid var(--primary-pink);
-    margin: 15px;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
+  width: 100%; padding: 12px; border-radius: 10px; border: none;
+  background: #2b2b4f; color: white;
 }
 
 .products {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+  gap: 15px; padding: 15px;
 }
-
 @media (min-width: 768px) { .products { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 1024px) { .products { grid-template-columns: repeat(4, 1fr); } }
 
 .card {
-  background: var(--card-purple);
-  border-radius: 15px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  flex-direction: column;
+  background: var(--card-purple); border-radius: 15px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column;
 }
 
-.img-container {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    cursor: zoom-in;
-}
+.img-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; cursor: zoom-in; }
+.card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.card:hover img { transform: scale(1.1); }
 
-.card img { 
-  width: 100%; 
-  height: 100%;
-  object-fit: cover; 
-  transition: transform 0.5s ease;
-}
+.card-info { padding: 12px; text-align: center; }
+.price { color: #ffb3f0; font-size: 18px; font-weight: bold; }
 
-.card:hover img {
-    transform: scale(1.15);
-}
-
-.card-info { padding: 12px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
-.price { color: #ffb3f0; font-size: 18px; font-weight: bold; margin: 8px 0; }
-
-/* ESTILO DA DESCRIÇÃO */
-.btn-details {
-    background: transparent;
-    color: var(--primary-pink);
-    border: none;
-    font-size: 13px;
-    text-decoration: underline;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.description-text {
-    display: none; /* Escondido por padrão */
-    font-size: 11px;
-    text-align: left;
-    background: rgba(0,0,0,0.3);
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    line-height: 1.4;
-    color: #ddd;
-}
-
-.description-text ul { padding-left: 15px; margin: 5px 0; }
+.btn-details { background: transparent; color: var(--primary-pink); border: none; cursor: pointer; text-decoration: underline; margin-bottom: 8px; }
+.description-text { display: none; font-size: 11px; text-align: left; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-bottom: 10px; }
 
 .btn-buy {
-  background: var(--primary-pink);
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 20px;
-  width: 100%;
-  font-weight: bold;
-  cursor: pointer;
+  background: var(--primary-pink); color: white; border: none;
+  padding: 10px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer;
 }
 
-footer {
-    text-align: center;
-    padding: 30px 15px;
-    margin-top: 40px;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+/* --- CARRINHO VIOLETA PROFISSIONAL --- */
+#carrinho {
+  position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px;
+  height: 100vh; background: var(--glass-violet); backdrop-filter: blur(10px);
+  z-index: 2000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex; flex-direction: column; box-shadow: -5px 0 15px rgba(0,0,0,0.5);
 }
+
+.cart-header {
+  padding: 20px; background: rgba(0,0,0,0.2); display: flex;
+  justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+#listaCarrinho { flex: 1; overflow-y: auto; padding: 15px; }
+
+/* Item no Carrinho */
+.cart-item {
+  background: rgba(255, 255, 255, 0.1); border-radius: 12px;
+  padding: 12px; margin-bottom: 12px; display: flex; gap: 12px; align-items: center;
+}
+.cart-item img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
+.item-info { flex: 1; }
+.item-info h4 { margin: 0; font-size: 14px; }
+.item-info p { margin: 4px 0; color: #ffb3f0; font-weight: bold; }
+
+/* Controles de Quantidade */
+.qty-controls { display: flex; align-items: center; gap: 10px; margin-top: 5px; }
+.qty-btn {
+  background: var(--violet-bright); color: white; border: none;
+  width: 25px; height: 25px; border-radius: 5px; cursor: pointer;
+  font-weight: bold; display: flex; align-items: center; justify-content: center;
+}
+.qty-val { font-size: 14px; min-width: 20px; text-align: center; }
+
+.entrega-form { padding: 15px; background: rgba(0,0,0,0.1); }
+.entrega-form input {
+  width: 100%; padding: 10px; margin-bottom: 8px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: white;
+}
+
+.cart-footer { padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+.total-final { display: flex; justify-content: space-between; font-size: 18px; margin-bottom: 15px; }
+
+.btn-continuar {
+  width: 100%; padding: 15px; background: var(--primary-pink);
+  color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer;
+}
+
+/* --- OUTROS --- */
+#cartBtn { position: fixed; top: 15px; right: 15px; background: var(--primary-pink); border:none; padding: 10px 15px; border-radius: 50px; z-index: 1001; color:white; cursor:pointer; font-weight:bold; }
+#overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
+footer { text-align: center; padding: 20px; font-size: 12px; opacity: 0.6; }
 
 #zoomModal {
-    display: none;
-    position: fixed;
-    z-index: 3000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.9);
-    align-items: center;
-    justify-content: center;
-    cursor: zoom-out;
+    display: none; position: fixed; z-index: 3000; inset: 0;
+    background: rgba(0,0,0,0.9); align-items: center; justify-content: center;
 }
-
-#imgZoomed {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 5px;
-    cursor: default;
-}
-
-.close-zoom {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 40px;
-    cursor: pointer;
-}
-
-/* RESTANTE DOS ESTILOS */
-#cartBtn { position: fixed; top: 15px; right: 15px; background: var(--primary-pink); color: white; padding: 8px 15px; border-radius: 20px; z-index: 1001; font-weight: bold; border:none; cursor:pointer;}
-.meus-pedidos { background: var(--card-purple); margin: 30px 0; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-pink); }
-.pedido-card { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--primary-pink); position: relative; }
-.btn-cancelar { position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.2); color: #ff4f4f; border: 1px solid #ff4f4f; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; }
-#carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 450px; height: 100vh; background: var(--shopee-gray); z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; color: #333; }
-.cart-header { background: var(--bg-dark-deep); color: white; padding: 15px; display: flex; align-items: center; gap: 15px; }
-#listaCarrinho { flex: 1; overflow-y: auto; padding: 10px; }
-.entrega-form { padding: 15px; background: #fff; border-top: 1px solid #ddd; }
-.entrega-form input { width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ddd; border-radius: 4px; }
-.cart-footer { background: white; padding: 15px; border-top: 1px solid #eee; }
-.total-final { display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; margin-top: 8px; color: #000; }
-.btn-continuar { width: 100%; padding: 15px; background: var(--primary-pink); color: white; border: none; font-weight: bold; cursor: pointer; }
-#overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; z-index: 1500; }
-.item-shopee { background: white; border-radius: 8px; padding: 12px; margin-bottom: 10px; display: flex; gap: 12px; }
-.item-shopee img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
-.item-controls { display: flex; align-items: center; border: 1px solid #ddd; width: fit-content; margin-top: 5px; }
-.item-controls button { background: white; border: none; padding: 2px 8px; cursor: pointer; }
-.shipping-box { background: var(--card-purple); margin: 25px 0; padding: 20px; border-radius: 15px; }
-.shipping-box .input-group { display: flex; gap: 8px; margin-top: 10px; }
-.shipping-box input { background: #1c1c3a; border: 1px solid #444; color: white; padding: 12px; border-radius: 8px; flex: 1; }
-.shipping-box button { padding: 12px 15px; border: 1px solid var(--primary-pink); color: var(--primary-pink); background: transparent; border-radius: 8px; cursor: pointer; }
+#imgZoomed { max-width: 90%; max-height: 80%; border-radius: 10px; }
 </style>
 </head>
 <body>
 
-<div id="zoomModal" onclick="fecharZoom()">
-    <span class="close-zoom">&times;</span>
-    <img id="imgZoomed" src="" onclick="event.stopPropagation()">
+<div id="zoomModal" onclick="this.style.display='none'">
+    <img id="imgZoomed" src="">
 </div>
 
 <header>
   <div class="logo-container" onclick="voltarInicio()">
-    <img src="logo-img.png" alt="IdolVerse Logo" class="logo-img">
+    <img src="logo-img.png" alt="Logo" class="logo-img">
   </div>
   <div class="search-container">
-    <input type="text" placeholder="🔍 O que você está buscando?" onkeyup="buscar(this.value)">
+    <input type="text" placeholder="🔍 Buscar photocards..." onkeyup="buscar(this.value)">
   </div>
 </header>
 
 <div class="container">
-  <div class="custom-banner">
-      <h2>🎨 Personalize sua Experiência</h2>
-      <p>Produzimos fanbox e caixas de photocards personalizadas... ✨</p>
-  </div>
-
-  <div class="products">
+  <div class="products" id="productGrid">
     <div class="card produto" data-name="bts kpop">
       <div class="img-container"><img src="bts1.jpg" onclick="abrirZoom(this)"></div>
       <div class="card-info">
@@ -242,148 +159,27 @@ footer {
         <p class="price">R$ 19,90</p>
         <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
         <div class="description-text">
-            <strong>Sobre o produto:</strong>
-            <ul>
-                <li>Cartão lomo</li>
-                <li>Produto novo e de alta qualidade</li>
-                <li>Contém 54 photocards em uma caixa</li>
-                <li>Material com acabamento brilhante</li>
-                <li>Tamanho: 8,5 cm x 5,5 cm</li>
-                <li>Imp. frente e verso (dupla face)</li>
-                <li>Com brinde surpresa 🤩</li>
-            </ul>
-            <p style="font-size:10px; margin-top:5px;">Ao realizar o pedido, você receberá os cartões de forma aleatória. Compensamos danos de transporte! 💖</p>
+            * 54 photocards brilhantes <br> * Tamanho: 8,5x5,5cm <br> * Frente e verso + Brinde! 🤩
         </div>
-        <button class="btn-buy" onclick="addCarrinho('BTS', 19.90, 'bts1.jpg')">Adicionar</button>
+        <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button>
       </div>
     </div>
 
     <div class="card produto" data-name="blackpink kpop">
       <div class="img-container"><img src="blackpink.jpg" onclick="abrirZoom(this)"></div>
       <div class="card-info">
-        <h3>Pack Photocards - BLACKPINK</h3>
+        <h3>Pack - BLACKPINK</h3>
         <p class="price">R$ 21,90</p>
         <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
         <div class="description-text">
-            <strong>Sobre o produto:</strong>
-            <ul>
-                <li>Cartão lomo</li>
-                <li>Produto novo e de alta qualidade</li>
-                <li>Contém 54 photocards em uma caixa</li>
-                <li>Material com acabamento brilhante</li>
-                <li>Tamanho: 8,5 cm x 5,5 cm</li>
-                <li>Imp. frente e verso (dupla face)</li>
-                <li>Com brinde surpresa 🤩</li>
-            </ul>
-            <p style="font-size:10px; margin-top:5px;">Ao realizar o pedido, você receberá os cartões de forma aleatória. 💖</p>
+            * 54 photocards brilhantes <br> * Tamanho: 8,5x5,5cm <br> * Frente e verso + Brinde! 🤩
         </div>
-        <button class="btn-buy" onclick="addCarrinho('BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
+        <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
       </div>
     </div>
-
-    <div class="card produto" data-name="straykids kpop">
-      <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Kit Photocards - Stray Kids</h3>
-        <p class="price">R$ 22,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">
-            <strong>Sobre o produto:</strong>
-            <ul>
-                <li>Cartão lomo</li>
-                <li>Produto novo e de alta qualidade</li>
-                <li>Contém 54 photocards em uma caixa</li>
-                <li>Material com acabamento brilhante</li>
-                <li>Tamanho: 8,5 cm x 5,5 cm</li>
-                <li>Imp. frente e verso (dupla face)</li>
-                <li>Com brinde surpresa 🤩</li>
-            </ul>
-            <p style="font-size:10px; margin-top:5px;">Compensamos danos de transporte! 💖</p>
-        </div>
-        <button class="btn-buy" onclick="addCarrinho('Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
-      </div>
-    </div>
-
-    <div class="card produto" data-name="le sserafim kpop">
-      <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Kit Photocards - LE SSERAFIM</h3>
-        <p class="price">R$ 22,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">
-            <strong>Sobre o produto:</strong>
-            <ul>
-                <li>Cartão lomo</li>
-                <li>Produto novo e de alta qualidade</li>
-                <li>Contém 54 photocards em uma caixa</li>
-                <li>Material com acabamento brilhante</li>
-                <li>Tamanho: 8,5 cm x 5,5 cm</li>
-                <li>Imp. frente e verso (dupla face)</li>
-                <li>Com brinde surpresa 🤩</li>
-            </ul>
-        </div>
-        <button class="btn-buy" onclick="addCarrinho('LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button>
-      </div>
-    </div>
-
-    <div class="card produto" data-name="neymar futebol">
-      <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Pack Photocards - Neymar Jr</h3>
-        <p class="price">R$ 24,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">
-            <strong>Sobre o produto:</strong>
-            <ul>
-                <li>Cartão lomo</li>
-                <li>Contém 54 photocards</li>
-                <li>Tamanho: 8,5 cm x 5,5 cm</li>
-                <li>Imp. frente e verso (dupla face)</li>
-                <li>Com brinde surpresa 🤩</li>
-            </ul>
-        </div>
-        <button class="btn-buy" onclick="addCarrinho('Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
-      </div>
-    </div>
-
-    <div class="card produto" data-name="stranger things filmes">
-      <div class="img-container"><img src="stranger-things.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Álbum - Stranger Things</h3>
-        <p class="price">R$ 29,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">
-            <strong>Sobre o produto:</strong>
-            <ul>
-                <li>Cartão lomo</li>
-                <li>Produto novo e de alta qualidade</li>
-                <li>Contém 54 photocards</li>
-                <li>Tamanho: 8,5 cm x 5,5 cm</li>
-                <li>Imp. frente e verso (dupla face)</li>
-                <li>Com brinde surpresa 🤩</li>
-            </ul>
-        </div>
-        <button class="btn-buy" onclick="addCarrinho('Stranger Things', 29.90, 'stranger-things.jpg')">Adicionar</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="shipping-box">
-    <strong>🚚 Calcular Frete</strong>
-    <div class="input-group">
-        <input type="text" id="cepInput" placeholder="CEP" maxlength="9">
-        <button onclick="calcularFreteReal()">CALCULAR</button>
-    </div>
-    <div id="resultadoFrete" style="display: none; margin-top:15px;"></div>
-  </div>
-
-  <div class="meus-pedidos">
-    <h3>📋 Meus Pedidos</h3>
-    <div id="listaPedidosCliente"></div>
   </div>
 
   <footer>
-      <p>© 2026 IdolVerse. Todos os direitos reservados.</p>
       <p>Desenvolvido por Thiago Maksuel, Marina Angels e Maria Sophya.</p>
   </footer>
 </div>
@@ -392,112 +188,119 @@ footer {
 <div id="overlay" onclick="toggleCarrinho()"></div>
 
 <div id="carrinho">
-    <div class="cart-header">
-    <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:20px;">←</span>
-    <strong>Meu Carrinho</strong>
+  <div class="cart-header">
+    <h3>Meu Carrinho</h3>
+    <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:24px;">&times;</span>
   </div>
-  <div id="listaCarrinho"></div>
+  
+  <div id="listaCarrinho">
+    </div>
+
   <div class="entrega-form">
-      <h4>📍 Dados para Entrega</h4>
       <input type="text" id="nomeCliente" placeholder="Nome Completo">
-      <input type="text" id="endCliente" placeholder="Endereço">
-      <input type="text" id="cidadeCliente" placeholder="Cidade/UF">
+      <input type="text" id="endCliente" placeholder="Endereço e Número">
   </div>
+
   <div class="cart-footer">
-    <div class="total-final"><span>TOTAL:</span> <span id="total">R$ 0,00</span></div>
-    <button class="btn-continuar" onclick="finalizar()">Finalizar Compra</button>
+    <div class="total-final">
+        <span>Total:</span>
+        <span id="total">R$ 0,00</span>
+    </div>
+    <button class="btn-continuar" onclick="finalizar()">Finalizar no WhatsApp</button>
   </div>
 </div>
 
 <script>
 let carrinho = [];
-let valorFrete = 0;
 
-window.onload = carregarPedidos;
+function abrirZoom(img) {
+    document.getElementById("imgZoomed").src = img.src;
+    document.getElementById("zoomModal").style.display = 'flex';
+}
 
-// FUNÇÃO PARA MOSTRAR/ESCONDER DETALHES
 function toggleDesc(btn) {
     const desc = btn.nextElementSibling;
-    if (desc.style.display === "block") {
-        desc.style.display = "none";
-        btn.innerText = "Ver detalhes";
-    } else {
-        desc.style.display = "block";
-        btn.innerText = "Fechar detalhes";
-    }
-}
-
-function abrirZoom(imgElement) {
-    const modal = document.getElementById("zoomModal");
-    const zoomedImg = document.getElementById("imgZoomed");
-    modal.style.display = "flex";
-    zoomedImg.src = imgElement.src;
-    document.body.style.overflow = "hidden";
-}
-
-function fecharZoom() {
-    const modal = document.getElementById("zoomModal");
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
-}
-
-function voltarInicio() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.querySelectorAll(".produto").forEach(p => p.style.display = "block");
-    document.querySelector(".search-container input").value = "";
+    desc.style.display = desc.style.display === "block" ? "none" : "block";
+    btn.innerText = desc.style.display === "block" ? "Fechar detalhes" : "Ver detalhes";
 }
 
 function addCarrinho(nome, preco, img) {
-  let item = carrinho.find(i => i.nome === nome);
-  if(item) item.qtd++;
-  else carrinho.push({nome, preco, img, qtd: 1});
-  atualizar();
-  toggleCarrinho();
+    let item = carrinho.find(i => i.nome === nome);
+    if(item) {
+        item.qtd++;
+    } else {
+        carrinho.push({ nome, preco, img, qtd: 1 });
+    }
+    renderCarrinho();
+    if(document.getElementById("carrinho").style.right !== "0px") toggleCarrinho();
 }
 
-function atualizar() {
-  let subtotal = 0, count = 0;
-  carrinho.forEach(i => { subtotal += i.preco * i.qtd; count += i.qtd; });
-  document.getElementById("total").innerText = "R$ " + (subtotal + valorFrete).toFixed(2).replace('.',',');
-  document.getElementById("cartCount").innerText = count;
+function alterarQtd(index, delta) {
+    carrinho[index].qtd += delta;
+    if(carrinho[index].qtd <= 0) {
+        carrinho.splice(index, 1);
+    }
+    renderCarrinho();
 }
 
-function finalizar() {
-  if(carrinho.length === 0) return alert("Carrinho vazio!");
-  const nome = document.getElementById("nomeCliente").value;
-  if(!nome) return alert("Preencha os dados!");
-  
-  const pedido = { uid: Date.now(), id: "#"+Math.floor(Math.random()*9000+1000), data: new Date().toLocaleDateString(), status: "Em preparação", total: document.getElementById("total").innerText };
-  let pedidos = JSON.parse(localStorage.getItem('meusPedidos') || "[]");
-  pedidos.push(pedido);
-  localStorage.setItem('meusPedidos', JSON.stringify(pedidos));
-  carregarPedidos();
-  
-  window.open(`https://wa.me/5591986122614?text=Pedido ${pedido.id} realizado!`);
-  carrinho = []; atualizar(); toggleCarrinho();
-}
+function renderCarrinho() {
+    const lista = document.getElementById("listaCarrinho");
+    const count = document.getElementById("cartCount");
+    const totalEl = document.getElementById("total");
+    
+    lista.innerHTML = "";
+    let total = 0;
+    let totalItens = 0;
 
-function carregarPedidos() {
-    const lista = document.getElementById("listaPedidosCliente");
-    const pedidos = JSON.parse(localStorage.getItem('meusPedidos') || "[]");
-    lista.innerHTML = pedidos.map(p => `<div class="pedido-card"><button class="btn-cancelar" onclick="cancelarPedido(${p.uid})">X</button><strong>Pedido ${p.id}</strong> - ${p.status}<br>${p.data} | ${p.total}</div>`).reverse().join('') || 'Nenhum pedido.';
-}
+    carrinho.forEach((item, index) => {
+        total += item.preco * item.qtd;
+        totalItens += item.qtd;
+        lista.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.img}">
+                <div class="item-info">
+                    <h4>${item.nome}</h4>
+                    <p>R$ ${(item.preco * item.qtd).toFixed(2)}</p>
+                    <div class="qty-controls">
+                        <button class="qty-btn" onclick="alterarQtd(${index}, -1)">-</button>
+                        <span class="qty-val">${item.qtd}</span>
+                        <button class="qty-btn" onclick="alterarQtd(${index}, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
 
-function cancelarPedido(uid) {
-    if(!confirm("Cancelar?")) return;
-    let p = JSON.parse(localStorage.getItem('meusPedidos')).filter(x => x.uid !== uid);
-    localStorage.setItem('meusPedidos', JSON.stringify(p)); carregarPedidos();
+    count.innerText = totalItens;
+    totalEl.innerText = "R$ " + total.toFixed(2).replace('.', ',');
 }
 
 function toggleCarrinho() {
-  let c = document.getElementById("carrinho"), o = document.getElementById("overlay");
-  let aberto = c.style.right === "0px";
-  c.style.right = aberto ? "-100%" : "0"; o.style.display = aberto ? "none" : "block";
+    const c = document.getElementById("carrinho");
+    const o = document.getElementById("overlay");
+    const aberto = c.style.right === "0px";
+    c.style.right = aberto ? "-100%" : "0px";
+    o.style.display = aberto ? "none" : "block";
+}
+
+function finalizar() {
+    if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
+    const nome = document.getElementById("nomeCliente").value;
+    if(!nome) return alert("Por favor, informe seu nome.");
+    
+    let msg = `Olá! Meu pedido:\n\n`;
+    carrinho.forEach(i => msg += `${i.qtd}x ${i.nome} - R$ ${(i.preco * i.qtd).toFixed(2)}\n`);
+    msg += `\nTotal: ${document.getElementById("total").innerText}\n`;
+    msg += `Cliente: ${nome}`;
+    
+    window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`);
 }
 
 function buscar(t) {
-  t = t.toLowerCase();
-  document.querySelectorAll(".produto").forEach(p => p.style.display = p.dataset.name.includes(t) ? "block" : "none");
+    t = t.toLowerCase();
+    document.querySelectorAll(".produto").forEach(p => {
+        p.style.display = p.dataset.name.includes(t) ? "flex" : "none";
+    });
 }
 </script>
 </body>

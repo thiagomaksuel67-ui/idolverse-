@@ -72,7 +72,8 @@ header {
 .price { color: #ffb3f0; font-size: 16px; font-weight: bold; }
 
 .btn-details { background: transparent; color: var(--primary-pink); border: none; cursor: pointer; text-decoration: underline; font-size: 11px; margin-bottom: 5px; }
-.description-text { display: none; font-size: 10px; text-align: left; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 5px; margin-bottom: 8px; color: #ddd; }
+.description-text { display: none; font-size: 10px; text-align: left; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 5px; margin-bottom: 8px; color: #ddd; line-height: 1.4; }
+.description-text ul { padding-left: 15px; margin: 5px 0; }
 
 .btn-buy { background: var(--primary-pink); color: white; border: none; padding: 8px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; }
 
@@ -134,59 +135,137 @@ header {
       <div class="card-info">
         <h3>Kit BTS</h3><p class="price">R$ 19,90</p>
         <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">54 photocards brilhantes, 8,5x5,5cm.</div>
-        <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg', '54 cards brilhantes')">Adicionar</button>
+        <div class="description-text">
+            <strong>Sobre o produto:</strong>
+            <ul>
+                <li>Cartão lomo</li>
+                <li>Produto novo e de alta qualidade</li>
+                <li>Contém 54 photocards em uma caixa</li>
+                <li>Material com acabamento brilhante</li>
+                <li>Tamanho: 8,5 cm x 5,5 cm</li>
+                <li>Impressão frente e verso (dupla face)</li>
+                <li>Com brinde surpresa 🤩</li>
+            </ul>
+            Ao realizar o pedido em nossa loja, você receberá os cartões de forma aleatória.<br><br>
+            Caso algum item chegue danificado devido ao transporte, entre em contato conosco que faremos a compensação. Obrigado! 💖✨
+        </div>
+        <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg', '54 cards lomo')">Adicionar</button>
       </div>
     </div>
 
     <div class="card produto" data-name="blackpink kpop">
-      <div class="img-container"><img src="blackpink.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Pack BLACKPINK</h3><p class="price">R$ 21,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">54 photocards premium.</div>
-        <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg', 'Premium 54 cards')">Adicionar</button>
-      </div>
+        <div class="img-container"><img src="blackpink.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info">
+          <h3>Pack BLACKPINK</h3><p class="price">R$ 21,90</p>
+          <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+          <div class="description-text">
+              <strong>Sobre o produto:</strong>
+              <ul>
+                  <li>Cartão lomo</li>
+                  <li>Produto novo e de alta qualidade</li>
+                  <li>Contém 54 photocards em uma caixa</li>
+                  <li>Material com acabamento brilhante</li>
+                  <li>Tamanho: 8,5 cm x 5,5 cm</li>
+                  <li>Impressão frente e verso (dupla face)</li>
+                  <li>Com brinde surpresa 🤩</li>
+              </ul>
+              Ao realizar o pedido em nossa loja, você receberá os cartões de forma aleatória.<br><br>
+              Caso algum item chegue danificado devido ao transporte, entre em contato conosco que faremos a compensação. Obrigado! 💖✨
+          </div>
+          <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg', '54 cards lomo')">Adicionar</button>
+        </div>
     </div>
 
     <div class="card produto" data-name="stray kids kpop">
-      <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Kit Stray Kids</h3><p class="price">R$ 22,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">54 cards lomo HD.</div>
-        <button class="btn-buy" onclick="addCarrinho('Stray Kids', 22.90, 'straykids.jpg', 'Lomo HD 54 cards')">Adicionar</button>
-      </div>
+        <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info">
+          <h3>Kit Stray Kids</h3><p class="price">R$ 22,90</p>
+          <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+          <div class="description-text">
+              <strong>Sobre o produto:</strong>
+              <ul>
+                  <li>Cartão lomo</li>
+                  <li>Produto novo e de alta qualidade</li>
+                  <li>Contém 54 photocards em uma caixa</li>
+                  <li>Material com acabamento brilhante</li>
+                  <li>Tamanho: 8,5 cm x 5,5 cm</li>
+                  <li>Impressão frente e verso (dupla face)</li>
+                  <li>Com brinde surpresa 🤩</li>
+              </ul>
+              Ao realizar o pedido em nossa loja, você receberá os cartões de forma aleatória.<br><br>
+              Caso algum item chegue danificado devido ao transporte, entre em contato conosco que faremos a compensação. Obrigado! 💖✨
+          </div>
+          <button class="btn-buy" onclick="addCarrinho('Kit Stray Kids', 22.90, 'straykids.jpg', '54 cards lomo')">Adicionar</button>
+        </div>
     </div>
 
     <div class="card produto" data-name="le sserafim kpop">
-      <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Kit LE SSERAFIM</h3><p class="price">R$ 22,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">Coleção especial 54 cards.</div>
-        <button class="btn-buy" onclick="addCarrinho('LE SSERAFIM', 22.90, 'lesserafim.jpg', 'Especial 54 cards')">Adicionar</button>
-      </div>
+        <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info">
+          <h3>Kit LE SSERAFIM</h3><p class="price">R$ 22,90</p>
+          <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+          <div class="description-text">
+              <strong>Sobre o produto:</strong>
+              <ul>
+                  <li>Cartão lomo</li>
+                  <li>Produto novo e de alta qualidade</li>
+                  <li>Contém 54 photocards em uma caixa</li>
+                  <li>Material com acabamento brilhante</li>
+                  <li>Tamanho: 8,5 cm x 5,5 cm</li>
+                  <li>Impressão frente e verso (dupla face)</li>
+                  <li>Com brinde surpresa 🤩</li>
+              </ul>
+              Ao realizar o pedido em nossa loja, você receberá os cartões de forma aleatória.<br><br>
+              Caso algum item chegue danificado devido ao transporte, entre em contato conosco que faremos a compensação. Obrigado! 💖✨
+          </div>
+          <button class="btn-buy" onclick="addCarrinho('Kit LE SSERAFIM', 22.90, 'lesserafim.jpg', '54 cards lomo')">Adicionar</button>
+        </div>
     </div>
 
     <div class="card produto" data-name="neymar jr futebol">
-      <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">54 photocards futebol.</div>
-        <button class="btn-buy" onclick="addCarrinho('Neymar Jr', 24.90, 'neymar.jpg', 'Futebol 54 cards')">Adicionar</button>
-      </div>
+        <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info">
+          <h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p>
+          <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+          <div class="description-text">
+              <strong>Sobre o produto:</strong>
+              <ul>
+                  <li>Cartão lomo</li>
+                  <li>Produto novo e de alta qualidade</li>
+                  <li>Contém 54 photocards em uma caixa</li>
+                  <li>Material com acabamento brilhante</li>
+                  <li>Tamanho: 8,5 cm x 5,5 cm</li>
+                  <li>Impressão frente e verso (dupla face)</li>
+                  <li>Com brinde surpresa 🤩</li>
+              </ul>
+              Ao realizar o pedido em nossa loja, você receberá os cartões de forma aleatória.<br><br>
+              Caso algum item chegue danificado devido ao transporte, entre em contato conosco que faremos a compensação. Obrigado! 💖✨
+          </div>
+          <button class="btn-buy" onclick="addCarrinho('Pack Neymar Jr', 24.90, 'neymar.jpg', '54 cards lomo')">Adicionar</button>
+        </div>
     </div>
 
     <div class="card produto" data-name="stranger things filmes">
-      <div class="img-container"><img src="stranger-things.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">Série Netflix 54 cards.</div>
-        <button class="btn-buy" onclick="addCarrinho('Stranger Things', 29.90, 'strangerthings.jpg', 'Série Netflix 54 cards')">Adicionar</button>
-      </div>
+        <div class="img-container"><img src="stranger-things.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info">
+          <h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p>
+          <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
+          <div class="description-text">
+              <strong>Sobre o produto:</strong>
+              <ul>
+                  <li>Cartão lomo</li>
+                  <li>Produto novo e de alta qualidade</li>
+                  <li>Contém 54 photocards em uma caixa</li>
+                  <li>Material com acabamento brilhante</li>
+                  <li>Tamanho: 8,5 cm x 5,5 cm</li>
+                  <li>Impressão frente e verso (dupla face)</li>
+                  <li>Com brinde surpresa 🤩</li>
+              </ul>
+              Ao realizar o pedido em nossa loja, você receberá os cartões de forma aleatória.<br><br>
+              Caso algum item chegue danificado devido ao transporte, entre em contato conosco que faremos a compensação. Obrigado! 💖✨
+          </div>
+          <button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'stranger-things.jpg', '54 cards lomo')">Adicionar</button>
+        </div>
     </div>
   </div>
 

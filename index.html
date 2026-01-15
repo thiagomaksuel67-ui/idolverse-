@@ -25,7 +25,6 @@ body{
   color: var(--text-white);
 }
 
-/* --- HEADER --- */
 header {
   background: var(--bg-dark-deep);
   padding: 10px 15px 5px 15px;
@@ -79,7 +78,6 @@ header {
 }
 .nav-item.active { border-bottom: 2px solid var(--primary-pink); opacity: 1; }
 
-/* --- BOTÃO CARRINHO --- */
 #cartBtn { 
   position: fixed; 
   bottom: 20px; 
@@ -105,7 +103,6 @@ header {
   font-weight: bold;
 }
 
-/* --- PRODUTOS --- */
 .container { max-width: 1200px; margin: 0 auto; padding: 10px; position: relative; }
 .products {
   display: grid; grid-template-columns: repeat(2, 1fr);
@@ -128,7 +125,6 @@ header {
 
 .btn-buy { background: var(--primary-pink); color: white; border: none; padding: 8px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; }
 
-/* --- SEÇÕES EXTRAS --- */
 .custom-order-section {
     background: rgba(255, 79, 216, 0.1); border: 1px solid var(--primary-pink);
     border-radius: 15px; padding: 20px; margin: 20px 0; text-align: center;
@@ -140,7 +136,6 @@ header {
 }
 .meus-pedidos { background: rgba(0,0,0,0.2); margin: 30px 0; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-pink); }
 
-/* --- CARRINHO --- */
 #carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh; background: var(--violet-deep); z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; box-shadow: -5px 0 20px rgba(0,0,0,0.8); }
 .cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); }
 #listaCarrinho { flex: 1; overflow-y: auto; padding: 15px; }
@@ -161,17 +156,9 @@ header {
 .credits span { color: var(--primary-pink); opacity: 0.5; }
 
 .bug-report-footer {
-  text-align: right;
-  font-size: 9px;
-  color: rgba(255, 255, 255, 0.3);
-  padding: 10px 0;
-  font-style: italic;
+  text-align: right; font-size: 9px; color: rgba(255, 255, 255, 0.3); padding: 10px 0; font-style: italic;
 }
-.bug-report-footer a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+.bug-report-footer a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
 </style>
 </head>
 <body>
@@ -199,64 +186,116 @@ header {
   <div class="products" id="productGrid">
     <div class="card produto" data-name="bts kpop">
       <div class="img-container"><img src="bts1.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Kit BTS</h3><p class="price">R$ 19,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">54 photocards lomo de alta qualidade, acabamento brilhante.</div>
-        <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button>
-      </div>
+      <div class="card-info"><h3>Kit BTS</h3><p class="price">R$ 19,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">54 photocards lomo de alta qualidade.</div><button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button></div>
     </div>
     <div class="card produto" data-name="blackpink kpop">
       <div class="img-container"><img src="blackpink.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Pack BLACKPINK</h3><p class="price">R$ 21,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">54 photocards lomo exclusivos da turnê Born Pink.</div>
-        <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
-      </div>
+      <div class="card-info"><h3>Pack BLACKPINK</h3><p class="price">R$ 21,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">54 photocards lomo exclusivos.</div><button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button></div>
     </div>
-    
+    <div class="card produto" data-name="stray kids kpop">
+      <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Stray Kids</h3><p class="price">R$ 22,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">54 photocards lomo premium.</div><button class="btn-buy" onclick="addCarrinho('Kit Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="le sserafim kpop">
+      <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit LE SSERAFIM</h3><p class="price">R$ 22,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards lomo especiais.</div><button class="btn-buy" onclick="addCarrinho('Kit LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button></div>
+    </div>
+
+    <div class="card produto" data-name="neymar famosos">
+      <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção exclusiva do craque.</div><button class="btn-buy" onclick="addCarrinho('Pack Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button></div>
+    </div>
+
     <div class="card produto" data-name="your name anime filmes">
       <div class="img-container"><img src="yourname.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Kit Your Name</h3><p class="price">R$ 25,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">Edição de colecionador do aclamado filme de Makoto Shinkai.</div>
-        <button class="btn-buy" onclick="addCarrinho('Kit Your Name', 25.90, 'yourname.jpg')">Adicionar</button>
-      </div>
+      <div class="card-info"><h3>Kit Your Name</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards do filme de Makoto Shinkai.</div><button class="btn-buy" onclick="addCarrinho('Kit Your Name', 25.90, 'yourname.jpg')">Adicionar</button></div>
     </div>
-
     <div class="card produto" data-name="demon slayer anime">
       <div class="img-container"><img src="demonslayer.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Kit Demon Slayer</h3><p class="price">R$ 25,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">Photocards lomo incríveis dos Hashiras e Tanjiro.</div>
-        <button class="btn-buy" onclick="addCarrinho('Kit Demon Slayer', 25.90, 'demonslayer.jpg')">Adicionar</button>
-      </div>
+      <div class="card-info"><h3>Kit Demon Slayer</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards dos Hashiras e Tanjiro.</div><button class="btn-buy" onclick="addCarrinho('Kit Demon Slayer', 25.90, 'demonslayer.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="evangelion anime">
+      <div class="img-container"><img src="evangelion.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Pack Evangelion</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Edição Neon Genesis Evangelion.</div><button class="btn-buy" onclick="addCarrinho('Pack Evangelion', 26.90, 'evangelion.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="dragon ball z anime">
+      <div class="img-container"><img src="dbz.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Dragon Ball Z</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards da saga Z.</div><button class="btn-buy" onclick="addCarrinho('Kit Dragon Ball Z', 24.90, 'dbz.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="frieren anime">
+      <div class="img-container"><img src="frieren.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Frieren</h3><p class="price">R$ 27,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Artes belíssimas de Frieren.</div><button class="btn-buy" onclick="addCarrinho('Kit Frieren', 27.90, 'frieren.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="jujutsu kaisen anime">
+      <div class="img-container"><img src="jjk.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Jujutsu Kaisen</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards dos feiticeiros.</div><button class="btn-buy" onclick="addCarrinho('Kit Jujutsu Kaisen', 26.90, 'jjk.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="baki anime">
+      <div class="img-container"><img src="baki.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Baki</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção Baki Hanma.</div><button class="btn-buy" onclick="addCarrinho('Kit Baki', 24.90, 'baki.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="jojo anime">
+      <div class="img-container"><img src="jojo.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit JoJo Bizarre</h3><p class="price">R$ 28,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Estilo das gerações Joestar.</div><button class="btn-buy" onclick="addCarrinho('Kit JoJo Bizarre', 28.90, 'jojo.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="dandadan anime">
+      <div class="img-container"><img src="dandadan.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Dandadan</h3><p class="price">R$ 27,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Novos photocards Dandadan.</div><button class="btn-buy" onclick="addCarrinho('Kit Dandadan', 27.90, 'dandadan.jpg')">Adicionar</button></div>
     </div>
 
+    <div class="card produto" data-name="stranger things filmes séries">
+      <div class="img-container"><img src="strangerthings.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards temáticos.</div><button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'strangerthings.jpg')">Adicionar</button></div>
+    </div>
     <div class="card produto" data-name="all of us are dead séries dorama">
       <div class="img-container"><img src="allofusaredead.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Kit All of us are Dead</h3><p class="price">R$ 25,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">Photocards intensos da escola infestada de zumbis.</div>
-        <button class="btn-buy" onclick="addCarrinho('Kit All of us are Dead', 25.90, 'allofusaredead.jpg')">Adicionar</button>
-      </div>
+      <div class="card-info"><h3>Kit All of us are Dead</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Escola infestada de zumbis.</div><button class="btn-buy" onclick="addCarrinho('Kit All of us are Dead', 25.90, 'allofusaredead.jpg')">Adicionar</button></div>
     </div>
-
+    <div class="card produto" data-name="the 100 séries">
+      <div class="img-container"><img src="the100.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit The 100</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Sobrevivência pós-apocalíptica.</div><button class="btn-buy" onclick="addCarrinho('Kit The 100', 25.90, 'the100.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="weak hero séries dorama">
+      <div class="img-container"><img src="weakhero.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Weak Hero</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Drama de ação e superação.</div><button class="btn-buy" onclick="addCarrinho('Kit Weak Hero', 26.90, 'weakhero.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="vis a vis séries">
+      <div class="img-container"><img src="visavis.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Vis a Vis</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Detentas de Cruz del Sur.</div><button class="btn-buy" onclick="addCarrinho('Kit Vis a Vis', 25.90, 'visavis.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="sweet home séries dorama">
+      <div class="img-container"><img src="sweethome.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Sweet Home</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Monstros e heróis.</div><button class="btn-buy" onclick="addCarrinho('Kit Sweet Home', 26.90, 'sweethome.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="enola holmes séries filmes">
+      <div class="img-container"><img src="enolaholmes.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Enola Holmes</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">A detetive astuta.</div><button class="btn-buy" onclick="addCarrinho('Kit Enola Holmes', 24.90, 'enolaholmes.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="reality z séries">
+      <div class="img-container"><img src="realityz.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Reality Z</h3><p class="price">R$ 23,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Zumbis no reality show.</div><button class="btn-buy" onclick="addCarrinho('Kit Reality Z', 23.90, 'realityz.jpg')">Adicionar</button></div>
+    </div>
     <div class="card produto" data-name="my name séries dorama">
       <div class="img-container"><img src="myname.jpg" onclick="abrirZoom(this)"></div>
-      <div class="card-info">
-        <h3>Kit My Name</h3><p class="price">R$ 26,90</p>
-        <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-        <div class="description-text">Photocards de tirar o fôlego deste drama de vingança.</div>
-        <button class="btn-buy" onclick="addCarrinho('Kit My Name', 26.90, 'myname.jpg')">Adicionar</button>
-      </div>
+      <div class="card-info"><h3>Kit My Name</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Drama de vingança.</div><button class="btn-buy" onclick="addCarrinho('Kit My Name', 26.90, 'myname.jpg')">Adicionar</button></div>
     </div>
-    
+    <div class="card produto" data-name="outer banks séries">
+      <div class="img-container"><img src="outerbanks.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Outer Banks</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Pogues e Kooks.</div><button class="btn-buy" onclick="addCarrinho('Kit Outer Banks', 25.90, 'outerbanks.jpg')">Adicionar</button></div>
     </div>
+    <div class="card produto" data-name="extracurricular séries dorama">
+      <div class="img-container"><img src="extracurricular.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Extracurricular</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Drama psicológico coreano.</div><button class="btn-buy" onclick="addCarrinho('Kit Extracurricular', 26.90, 'extracurricular.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="alice in borderland séries dorama">
+      <div class="img-container"><img src="aliceinborderland.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Alice in Borderland</h3><p class="price">R$ 27,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Jogos mortais de cartas.</div><button class="btn-buy" onclick="addCarrinho('Kit Alice in Borderland', 27.90, 'aliceinborderland.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="it bem vindos a derry séries filmes">
+      <div class="img-container"><img src="itderry.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Welcome to Derry</h3><p class="price">R$ 28,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Terror no universo IT.</div><button class="btn-buy" onclick="addCarrinho('Kit Welcome to Derry', 28.90, 'itderry.jpg')">Adicionar</button></div>
+    </div>
+  </div>
 
   <div class="custom-order-section">
       <h3>✨ Encomendas Personalizadas</h3>
@@ -305,7 +344,6 @@ header {
 </div>
 
 <script>
-// (Toda a lógica JavaScript original mantida integralmente)
 let carrinho = [];
 let valorFrete = 0;
 let subtotalProdutos = 0;
@@ -390,13 +428,9 @@ function toggleCarrinho() {
     const c = document.getElementById("carrinho"), o = document.getElementById("overlay"), b = document.getElementById("cartBtn");
     const aberto = c.style.right === "0px";
     if (aberto) {
-        c.style.right = "-100%";
-        o.style.display = "none";
-        b.style.display = "flex";
+        c.style.right = "-100%"; o.style.display = "none"; b.style.display = "flex";
     } else {
-        c.style.right = "0px";
-        o.style.display = "block";
-        b.style.display = "none";
+        c.style.right = "0px"; o.style.display = "block"; b.style.display = "none";
     }
 }
 

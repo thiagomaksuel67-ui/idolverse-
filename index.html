@@ -1,272 +1,587 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopee Clone | Compre Tudo Online</title>
-    <style>
-        /* RESET E CORES PADRÃO */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', Helvetica, Arial, Roboto, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IdolVerse • Photocards</title>
 
-        :root {
-            --shopee-orange: #ee4d2d;
-            --shopee-light-orange: #ff5722;
-            --bg-gray: #f5f5f5;
-        }
+<style>
+:root {
+  --bg-dark-deep: #1c1c3a;
+  --bg-gradient: linear-gradient(135deg, #1e1e2f, #3a3a6a);
+  --card-purple: #2b2b4f;
+  --primary-pink: #ff4fd8;
+  --text-white: #ffffff;
+  --violet-deep: #2d1b4d;
+  --violet-accent: #8a2be2;
+}
 
-        body {
-            background-color: var(--bg-gray);
-        }
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-white);
+}
 
-        /* HEADER */
-        header {
-            background: linear-gradient(-180deg, #f53d2d, #f63);
-            padding: 10px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            color: white;
-        }
+header {
+  background: var(--bg-dark-deep);
+  padding: 10px 15px 5px 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            font-size: 13px;
-            padding-bottom: 10px;
-        }
+.header-top { display: flex; align-items: center; gap: 12px; width: 100%; }
+.logo-container { cursor: pointer; flex-shrink: 0; }
+.logo-img { height: 35px; width: auto; object-fit: contain; }
 
-        .header-main {
-            display: flex;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 40px;
-        }
+.search-container { flex-grow: 1; position: relative; }
+.search-container input {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  border-radius: 25px;
+  border: none;
+  background: #ffffff;
+  color: #333;
+  font-size: 14px;
+}
 
-        .logo {
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.search-container::before {
+  content: '🔍';
+  position: absolute;
+  left: 12px; top: 50%; transform: translateY(-50%);
+  font-size: 14px; opacity: 0.5;
+}
 
-        .search-container {
-            flex-grow: 1;
-            display: flex;
-            background: white;
-            padding: 3px;
-            border-radius: 2px;
-            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-        }
+.location-bar {
+  display: flex; align-items: center;
+  font-size: 11px; color: rgba(255, 255, 255, 0.7);
+  padding: 2px 0;
+}
 
-        .search-container input {
-            flex-grow: 1;
-            border: none;
-            padding: 10px;
-            outline: none;
-            font-size: 14px;
-        }
+.nav-menu {
+  display: flex; overflow-x: auto; white-space: nowrap;
+  gap: 20px; padding: 8px 0; scrollbar-width: none;
+}
+.nav-menu::-webkit-scrollbar { display: none; }
 
-        .search-container button {
-            background-color: var(--shopee-orange);
-            color: white;
-            border: none;
-            padding: 0 20px;
-            border-radius: 2px;
-            cursor: pointer;
-        }
+.nav-item {
+  color: var(--text-white); text-decoration: none;
+  font-size: 13px; font-weight: 500; opacity: 0.8;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+.nav-item.active { border-bottom: 2px solid var(--primary-pink); opacity: 1; }
 
-        .cart-icon {
-            font-size: 24px;
-            cursor: pointer;
-        }
+#cartBtn { 
+  position: fixed; 
+  bottom: 20px; 
+  right: 20px; 
+  background: var(--primary-pink); 
+  border: none; 
+  width: 60px; 
+  height: 60px; 
+  border-radius: 50%; 
+  z-index: 1100; 
+  color: white; 
+  cursor: pointer; 
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  font-size: 24px;
+}
 
-        /* BANNER */
-        .banner-section {
-            max-width: 1200px;
-            margin: 20px auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 10px;
-        }
+#cartCount {
+  position: absolute; top: 5px; right: 5px;
+  background: white; color: var(--primary-pink);
+  font-size: 12px; width: 20px; height: 20px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: bold;
+}
 
-        .main-banner {
-            background: #d1d1d1;
-            height: 235px;
-            border-radius: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #666;
-            background-image: url('https://via.placeholder.com/800x235/ee4d2d/ffffff?text=OFERTAS+RELAMPAGO');
-            background-size: cover;
-        }
+.container { max-width: 1200px; margin: 0 auto; padding: 10px; position: relative; }
+.products {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 15px; margin-top: 20px;
+}
+@media (min-width: 768px) { .products { grid-template-columns: repeat(4, 1fr); } }
 
-        .side-banners {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+.card {
+  background: var(--card-purple); border-radius: 12px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column;
+}
+.img-container { width: 100%; height: 180px; overflow: hidden; cursor: zoom-in; }
+.card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.card-info { padding: 10px; text-align: center; flex-grow: 1; }
+.card-info h3 { font-size: 14px; margin: 5px 0; }
+.price { color: #ffb3f0; font-size: 16px; font-weight: bold; }
 
-        .side-banner {
-            height: 112px;
-            background: #ccc;
-            background-size: cover;
-        }
+.btn-details { background: transparent; color: var(--primary-pink); border: none; cursor: pointer; text-decoration: underline; font-size: 11px; margin-bottom: 5px; }
+.description-text { display: none; font-size: 10px; text-align: left; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 5px; margin-bottom: 8px; color: #ddd; line-height: 1.4; }
 
-        /* GRID DE PRODUTOS */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.btn-buy { background: var(--primary-pink); color: white; border: none; padding: 8px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; }
 
-        .section-title {
-            background: white;
-            padding: 20px;
-            color: var(--shopee-orange);
-            font-size: 16px;
-            font-weight: bold;
-            border-bottom: 2px solid var(--shopee-orange);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
+.custom-order-section {
+    background: rgba(255, 79, 216, 0.1); border: 1px solid var(--primary-pink);
+    border-radius: 15px; padding: 20px; margin: 20px 0; text-align: center;
+}
+.btn-whatsapp-custom {
+    display: inline-block; background: #25d366; color: white;
+    text-decoration: none; padding: 10px 20px; border-radius: 50px;
+    font-weight: bold; font-size: 12px; margin-top: 10px;
+}
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
-        }
+/* ESTILO DOS PEDIDOS EM ANDAMENTO */
+.meus-pedidos { background: rgba(0,0,0,0.2); margin: 30px 0; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-pink); }
+.pedido-item {
+    background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-top: 10px;
+    border-left: 4px solid var(--primary-pink); font-size: 13px;
+}
+.pedido-data { font-size: 10px; opacity: 0.6; }
+.btn-limpar-pedidos { 
+    background: none; border: 1px solid rgba(255,255,255,0.2); color: white; 
+    font-size: 10px; cursor: pointer; padding: 5px 10px; border-radius: 5px; margin-top: 10px;
+}
 
-        .product-card {
-            background: white;
-            transition: transform 0.1s;
-            cursor: pointer;
-            border: 1px solid transparent;
-            position: relative;
-        }
+#carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh; background: var(--violet-deep); z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; box-shadow: -5px 0 20px rgba(0,0,0,0.8); }
+.cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); }
+#listaCarrinho { flex: 1; overflow-y: auto; padding: 15px; }
 
-        .product-card:hover {
-            transform: translateY(-2px);
-            border: 1px solid var(--shopee-orange);
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+.item-cart { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; margin-bottom: 10px; }
+.item-cart img { width: 60px; height: 60px; border-radius: 5px; object-fit: cover; }
+.qty-wrapper { display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; width: fit-content; margin-top: 5px; }
+.btn-qty { background: rgba(255,255,255,0.1); border: none; color: white; width: 25px; height: 25px; cursor: pointer; }
 
-        .product-img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            background: #f0f0f0;
-            object-fit: cover;
-        }
+.cart-footer { padding: 15px; background: var(--bg-dark-deep); border-top: 1px solid var(--primary-pink); overflow-y: auto; padding-bottom: 30px; }
+.cart-inputs input { width: 100%; background: #1c1c3a; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; font-size: 13px; margin-bottom: 8px; }
 
-        .product-info {
-            padding: 10px;
-        }
+#overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
+#zoomModal { display: none; position: fixed; z-index: 3000; inset: 0; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+#imgZoomed { max-width: 90%; max-height: 80%; border-radius: 10px; }
 
-        .product-name {
-            font-size: 12px;
-            line-height: 14px;
-            height: 28px;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            margin-bottom: 10px;
-        }
+.credits { text-align: center; padding: 20px 0; margin-top: 20px; font-size: 10px; letter-spacing: 1px; color: rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.05); text-transform: uppercase; }
+.credits span { color: var(--primary-pink); opacity: 0.5; }
 
-        .product-price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .price {
-            color: var(--shopee-orange);
-            font-size: 16px;
-        }
-
-        .sold-count {
-            font-size: 10px;
-            color: #777;
-        }
-
-        .free-shipping-badge {
-            background-color: #00bfa5;
-            color: white;
-            font-size: 10px;
-            padding: 2px 4px;
-            border-radius: 2px;
-            display: inline-block;
-            margin-top: 5px;
-        }
-
-        /* RESPONSIVO */
-        @media (max-width: 1024px) {
-            .product-grid { grid-template-columns: repeat(3, 1fr); }
-            .banner-section { grid-template-columns: 1fr; }
-            .side-banners { display: none; }
-        }
-    </style>
+.bug-report-footer {
+  text-align: right; font-size: 9px; color: rgba(255, 255, 255, 0.3); padding: 10px 0; font-style: italic;
+}
+.bug-report-footer a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+</style>
 </head>
-<body>
+<body onload="carregarPedidosHist()">
 
-    <header>
-        <div class="header-top">
-            <div>Central do Vendedor | Baixe o App | Siga-nos no Instagram</div>
-            <div>Notificações | Ajuda | Cadastrar | Entre Logar</div>
-        </div>
-        <div class="header-main">
-            <div class="logo">Shopee</div>
-            <div class="search-container">
-                <input type="text" placeholder="Buscar na Shopee agora...">
-                <button>🔍</button>
-            </div>
-            <div class="cart-icon">🛒</div>
-        </div>
-    </header>
+<div id="zoomModal" onclick="this.style.display='none'"><img id="imgZoomed" src=""></div>
 
-    <div class="container">
-        <section class="banner-section">
-            <div class="main-banner"></div>
-            <div class="side-banners">
-                <div class="side-banner" style="background-image: url('https://via.placeholder.com/400x112/ff9e00/ffffff?text=Cupom+R$20')"></div>
-                <div class="side-banner" style="background-image: url('https://via.placeholder.com/400x112/00bfa5/ffffff?text=Frete+Gratis')"></div>
-            </div>
-        </section>
+<header>
+  <div class="header-top">
+    <div class="logo-container"><img src="logo-img.png" alt="Logo" class="logo-img"></div>
+    <div class="search-container"><input type="text" placeholder="Buscar no IdolVerse" onkeyup="buscar(this.value)"></div>
+  </div>
+  <div class="location-bar"><span id="displayEndereco">📍 Informe o endereço no carrinho ></span></div>
+  <nav class="nav-menu">
+    <a class="nav-item active" onclick="filtrarCategoria(this, '')">Todos</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'kpop')">K-pop</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'anime')">Anime</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'famosos')">Famosos</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'filmes')">Filmes</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'séries')">Séries</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'dorama')">Dorama</a>
+  </nav>
+</header>
 
-        <h2 class="section-title">Descoberta Diária</h2>
-        
-        <div class="product-grid">
-            <script>
-                const grid = document.querySelector('.product-grid');
-                for(let i = 1; i <= 12; i++) {
-                    grid.innerHTML += `
-                        <div class="product-card">
-                            <img src="https://picsum.photos/200/200?random=${i}" class="product-img">
-                            <div class="product-info">
-                                <div class="product-name">Produto Incrível da Shopee Modelo ${i} - Qualidade Premium garantida para você</div>
-                                <div class="free-shipping-badge">Frete Grátis</div>
-                                <div class="product-price-row">
-                                    <span class="price">R$ ${ (Math.random() * 100 + 10).toFixed(2) }</span>
-                                    <span class="sold-count">60 vendidos</span>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }
-            </script>
-        </div>
+<div class="container">
+  <div class="products" id="productGrid">
+    <div class="card produto" data-name="bts kpop">
+      <div class="img-container"><img src="bts1.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit BTS</h3><p class="price">R$ 19,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">54 photocards lomo de alta qualidade.</div><button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="blackpink kpop">
+      <div class="img-container"><img src="blackpink.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Pack BLACKPINK</h3><p class="price">R$ 21,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">54 photocards lomo exclusivos.</div><button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="stray kids kpop">
+      <div class="img-container"><img src="straykids.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Stray Kids</h3><p class="price">R$ 22,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">54 photocards lomo premium.</div><button class="btn-buy" onclick="addCarrinho('Kit Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="le sserafim kpop">
+      <div class="img-container"><img src="lesserafim.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit LE SSERAFIM</h3><p class="price">R$ 22,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards lomo especiais.</div><button class="btn-buy" onclick="addCarrinho('Kit LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="tomorrow x together txt kpop">
+      <div class="img-container"><img src="txt.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Tomorrow X Together</h3><p class="price">R$ 23,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards exclusivos do TXT.</div><button class="btn-buy" onclick="addCarrinho('Kit Tomorrow X Together', 23.90, 'txt.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="twice kpop">
+      <div class="img-container"><img src="twice.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Twice</h3><p class="price">R$ 22,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Pack com as 9 integrantes.</div><button class="btn-buy" onclick="addCarrinho('Kit Twice', 22.90, 'twice.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="new jeans kpop">
+      <div class="img-container"><img src="newjeans.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit New Jeans</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards estilo retrô Bunny.</div><button class="btn-buy" onclick="addCarrinho('Kit New Jeans', 24.90, 'newjeans.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="exo kpop">
+      <div class="img-container"><img src="exo.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit EXO</h3><p class="price">R$ 23,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção lendária do EXO.</div><button class="btn-buy" onclick="addCarrinho('Kit EXO', 23.90, 'exo.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="aespa kpop">
+      <div class="img-container"><img src="aespa.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit aespa</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards conceito Next Level.</div><button class="btn-buy" onclick="addCarrinho('Kit aespa', 24.90, 'aespa.jpg')">Adicionar</button></div>
     </div>
 
-    <footer style="margin-top: 50px; padding: 40px; text-align: center; background: white; border-top: 4px solid var(--shopee-orange);">
-        <p>© 2026 Shopee. Todos os direitos reservados.</p>
-    </footer>
+    <div class="card produto" data-name="neymar famosos">
+      <div class="img-container"><img src="neymar.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção exclusiva do craque.</div><button class="btn-buy" onclick="addCarrinho('Pack Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="taylor swift famosos">
+      <div class="img-container"><img src="taylor.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Taylor Swift</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards de todas as eras.</div><button class="btn-buy" onclick="addCarrinho('Kit Taylor Swift', 26.90, 'taylor.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="jenna ortega famosos">
+        <div class="img-container"><img src="jenna.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Pack Jenna Ortega</h3><p class="price">R$ 23,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção exclusiva da atriz.</div><button class="btn-buy" onclick="addCarrinho('Pack Jenna Ortega', 23.90, 'jenna.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="eminem famosos">
+        <div class="img-container"><img src="eminem.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Kit Eminem</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards lendários do Rap.</div><button class="btn-buy" onclick="addCarrinho('Kit Eminem', 25.90, 'eminem.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="bruno mars famosos">
+        <div class="img-container"><img src="brunomars.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Pack Bruno Mars</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Edição especial Bruninho.</div><button class="btn-buy" onclick="addCarrinho('Pack Bruno Mars', 24.90, 'brunomars.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="ariana grande famosos">
+        <div class="img-container"><img src="ariana.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Kit Ariana Grande</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards estéticos.</div><button class="btn-buy" onclick="addCarrinho('Kit Ariana Grande', 25.90, 'ariana.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="the weeknd famosos">
+        <div class="img-container"><img src="theweeknd.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Kit The Weeknd</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">XO Collection.</div><button class="btn-buy" onclick="addCarrinho('Kit The Weeknd', 26.90, 'theweeknd.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="olivia rodrigo famosos">
+        <div class="img-container"><img src="olivia.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Kit Olivia Rodrigo</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">GUTS & SOUR eras.</div><button class="btn-buy" onclick="addCarrinho('Kit Olivia Rodrigo', 24.90, 'olivia.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="dua lipa famosos">
+        <div class="img-container"><img src="dualipa.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Pack Dua Lipa</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Radical Optimism Edition.</div><button class="btn-buy" onclick="addCarrinho('Pack Dua Lipa', 25.90, 'dualipa.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="billie eilish famosos">
+        <div class="img-container"><img src="billie.jpg" onclick="abrirZoom(this)"></div>
+        <div class="card-info"><h3>Kit Billie Eilish</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards azuis intensos.</div><button class="btn-buy" onclick="addCarrinho('Kit Billie Eilish', 26.90, 'billie.jpg')">Adicionar</button></div>
+    </div>
 
+    <div class="card produto" data-name="your name anime filmes">
+      <div class="img-container"><img src="yourname.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Your Name</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards do filme de Makoto Shinkai.</div><button class="btn-buy" onclick="addCarrinho('Kit Your Name', 25.90, 'yourname.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="demon slayer anime">
+      <div class="img-container"><img src="demonslayer.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Demon Slayer</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards dos Hashiras e Tanjiro.</div><button class="btn-buy" onclick="addCarrinho('Kit Demon Slayer', 25.90, 'demonslayer.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="evangelion anime">
+      <div class="img-container"><img src="evangelion.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Pack Evangelion</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Edição Neon Genesis Evangelion.</div><button class="btn-buy" onclick="addCarrinho('Pack Evangelion', 26.90, 'evangelion.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="dragon ball z anime">
+      <div class="img-container"><img src="dbz.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Dragon Ball Z</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards da saga Z.</div><button class="btn-buy" onclick="addCarrinho('Kit Dragon Ball Z', 24.90, 'dbz.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="frieren anime">
+      <div class="img-container"><img src="frieren.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Frieren</h3><p class="price">R$ 27,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Artes belíssimas de Frieren.</div><button class="btn-buy" onclick="addCarrinho('Kit Frieren', 27.90, 'frieren.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="jujutsu kaisen anime">
+      <div class="img-container"><img src="jjk.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Jujutsu Kaisen</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards dos feiticeiros.</div><button class="btn-buy" onclick="addCarrinho('Kit Jujutsu Kaisen', 26.90, 'jjk.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="baki anime">
+      <div class="img-container"><img src="baki.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Baki</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção Baki Hanma.</div><button class="btn-buy" onclick="addCarrinho('Kit Baki', 24.90, 'baki.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="jojo anime">
+      <div class="img-container"><img src="jojo.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit JoJo Bizarre</h3><p class="price">R$ 28,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Estilo das gerações Joestar.</div><button class="btn-buy" onclick="addCarrinho('Kit JoJo Bizarre', 28.90, 'jojo.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="dandadan anime">
+      <div class="img-container"><img src="dandadan.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Dandadan</h3><p class="price">R$ 27,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Novos photocards Dandadan.</div><button class="btn-buy" onclick="addCarrinho('Kit Dandadan', 27.90, 'dandadan.jpg')">Adicionar</button></div>
+    </div>
+
+    <div class="card produto" data-name="stranger things filmes séries">
+      <div class="img-container"><img src="strangerthings.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards temáticos.</div><button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'strangerthings.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="all of us are dead séries dorama">
+      <div class="img-container"><img src="allofusaredead.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit All of us are Dead</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Escola infestada de zumbis.</div><button class="btn-buy" onclick="addCarrinho('Kit All of us are Dead', 25.90, 'allofusaredead.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="the 100 séries">
+      <div class="img-container"><img src="the100.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit The 100</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Sobrevivência pós-apocalíptica.</div><button class="btn-buy" onclick="addCarrinho('Kit The 100', 25.90, 'the100.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="weak hero séries dorama">
+      <div class="img-container"><img src="weakhero.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Weak Hero</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Drama de ação e superação.</div><button class="btn-buy" onclick="addCarrinho('Kit Weak Hero', 26.90, 'weakhero.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="vis a vis séries">
+      <div class="img-container"><img src="visavis.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Vis a Vis</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Detentas de Cruz del Sur.</div><button class="btn-buy" onclick="addCarrinho('Kit Vis a Vis', 25.90, 'visavis.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="sweet home séries dorama">
+      <div class="img-container"><img src="sweethome.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Sweet Home</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Monstros e heróis.</div><button class="btn-buy" onclick="addCarrinho('Kit Sweet Home', 26.90, 'sweethome.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="enola holmes séries filmes">
+      <div class="img-container"><img src="enolaholmes.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Enola Holmes</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">A detetive astuta.</div><button class="btn-buy" onclick="addCarrinho('Kit Enola Holmes', 24.90, 'enolaholmes.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="reality z séries">
+      <div class="img-container"><img src="realityz.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Reality Z</h3><p class="price">R$ 23,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Zumbis no reality show.</div><button class="btn-buy" onclick="addCarrinho('Kit Reality Z', 23.90, 'realityz.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="my name séries dorama">
+      <div class="img-container"><img src="myname.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit My Name</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Drama de vingança.</div><button class="btn-buy" onclick="addCarrinho('Kit My Name', 26.90, 'myname.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="outer banks séries">
+      <div class="img-container"><img src="outerbanks.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Outer Banks</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Pogues e Kooks.</div><button class="btn-buy" onclick="addCarrinho('Kit Outer Banks', 25.90, 'outerbanks.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="extracurricular séries dorama">
+      <div class="img-container"><img src="extracurricular.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Extracurricular</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Drama psicológico coreano.</div><button class="btn-buy" onclick="addCarrinho('Kit Extracurricular', 26.90, 'extracurricular.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="alice in borderland séries dorama">
+      <div class="img-container"><img src="aliceinborderland.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Alice in Borderland</h3><p class="price" >R$ 27,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Jogos mortais de cartas.</div><button class="btn-buy" onclick="addCarrinho('Kit Alice in Borderland', 27.90, 'aliceinborderland.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="it bem vindos a derry séries filmes">
+      <div class="img-container"><img src="itderry.jpg" onclick="abrirZoom(this)"></div>
+      <div class="card-info"><h3>Kit Welcome to Derry</h3><p class="price">R$ 28,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Terror no universo IT.</div><button class="btn-buy" onclick="addCarrinho('Kit Welcome to Derry', 28.90, 'itderry.jpg')">Adicionar</button></div>
+    </div>
+  </div>
+
+  <div class="custom-order-section">
+      <h3>✨ Encomendas Personalizadas</h3>
+      <p>Produzimos fanbox e caixas de photocards personalizadas 💖.</p>
+      <a href="https://wa.me/5591986122614" class="btn-whatsapp-custom">CHAMAR NO WHATSAPP</a>
+  </div>
+
+  <div class="meus-pedidos">
+    <h3>📋 Pedidos em Andamento</h3>
+    <div id="listaPedidosCliente">Nenhum pedido recente.</div>
+    <button class="btn-limpar-pedidos" onclick="limparHistorico()" id="btnLimpar" style="display:none;">Limpar Histórico</button>
+  </div>
+
+  <div class="credits">Criado por <span>Thiago Maksuel</span> • <span>Marina Angels</span> • <span>Maria Sophya</span></div>
+
+  <div class="bug-report-footer">
+    Se encontrar algum bug no site, entre em contato com <a href="https://wa.me/559188822874">+55 91 8882-2874</a> por whatsapp e reporte o bug. Obrigada!
+  </div>
+</div>
+
+<button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>
+<div id="overlay" onclick="toggleCarrinho()"></div>
+
+<div id="carrinho">
+  <div class="cart-header">
+    <h3>Meu Carrinho</h3>
+    <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:32px; padding: 10px; color: var(--primary-pink); font-weight: bold;">&times;</span>
+  </div>
+  <div id="listaCarrinho"></div>
+  <div class="cart-footer">
+    <div class="cart-inputs">
+        <input type="text" id="cartNome" placeholder="Nome do Cliente">
+        <input type="text" id="cartEndereco" placeholder="Rua, Número, Bairro" oninput="atualizarHeader()">
+        <input type="text" id="cartCidadeEstado" placeholder="Cidade e Estado">
+        <input type="text" id="cartCEP" placeholder="CEP (00000-000)">
+        <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:12px; border-radius:8px; margin-bottom:10px; cursor:pointer; font-weight: bold;">CALCULAR FRETE</button>
+    </div>
+    <div id="opcoesFrete" style="display:none; color:white; font-size:13px; margin-bottom:10px;">
+        <label><input type="radio" name="tipoFrete" value="PAC" onchange="atualizarTotal()"> <span id="labelPAC">PAC</span></label>
+        <label style="margin-left:15px;"><input type="radio" name="tipoFrete" value="SEDEX" checked onchange="atualizarTotal()"> <span id="labelSEDEX">SEDEX</span></label>
+    </div>
+    <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:20px; margin: 10px 0;">
+        <span>Total:</span><span id="total">R$ 0,00</span>
+    </div>
+    <button class="btn-buy" style="padding:18px; margin-top:10px; font-size: 14px;" onclick="finalizar()">FINALIZAR NO WHATSAPP</button>
+  </div>
+</div>
+
+<script>
+let carrinho = [];
+let valorFrete = 0;
+let subtotalProdutos = 0;
+let prazoEntrega = "";
+
+// FUNÇÕES DE PEDIDOS EM ANDAMENTO (HISTÓRICO)
+function salvarPedidoNoHistorico(cliente, total, itens) {
+    let historico = JSON.parse(localStorage.getItem('idolverse_pedidos')) || [];
+    const novoPedido = {
+        id: Date.now(),
+        data: new Date().toLocaleString(),
+        cliente: cliente,
+        total: total,
+        resumo: itens.substring(0, 60) + "..."
+    };
+    historico.unshift(novoPedido); // Adiciona no topo
+    localStorage.setItem('idolverse_pedidos', JSON.stringify(historico));
+    carregarPedidosHist();
+}
+
+function carregarPedidosHist() {
+    const listaDiv = document.getElementById("listaPedidosCliente");
+    const btnLimpar = document.getElementById("btnLimpar");
+    let historico = JSON.parse(localStorage.getItem('idolverse_pedidos')) || [];
+
+    if(historico.length === 0) {
+        listaDiv.innerHTML = "Nenhum pedido recente.";
+        btnLimpar.style.display = "none";
+        return;
+    }
+
+    btnLimpar.style.display = "inline-block";
+    listaDiv.innerHTML = "";
+    historico.forEach(p => {
+        listaDiv.innerHTML += `
+            <div class="pedido-item">
+                <div class="pedido-data">📅 ${p.data}</div>
+                <strong>Total: R$ ${p.total}</strong><br>
+                <span>${p.resumo}</span>
+            </div>
+        `;
+    });
+}
+
+function limparHistorico() {
+    if(confirm("Deseja limpar seu histórico de pedidos?")) {
+        localStorage.removeItem('idolverse_pedidos');
+        carregarPedidosHist();
+    }
+}
+
+// LOGICA DO CARRINHO
+function addCarrinho(nome, preco, img) {
+    let item = carrinho.find(i => i.nome === nome);
+    if(item) item.qtd++; else carrinho.push({nome, preco, img, qtd: 1});
+    renderCart();
+}
+
+function mudarQtd(nome, operacao) {
+    let itemIndex = carrinho.findIndex(i => i.nome === nome);
+    if(itemIndex !== -1) {
+        if(operacao === 'mais') {
+            carrinho[itemIndex].qtd++;
+        } else if(operacao === 'menos') {
+            carrinho[itemIndex].qtd--;
+            if(carrinho[itemIndex].qtd <= 0) {
+                carrinho.splice(itemIndex, 1);
+            }
+        }
+    }
+    renderCart();
+}
+
+function renderCart() {
+    const lista = document.getElementById("listaCarrinho");
+    lista.innerHTML = "";
+    subtotalProdutos = 0;
+    carrinho.forEach(item => {
+        subtotalProdutos += item.preco * item.qtd;
+        lista.innerHTML += `<div class="item-cart"><img src="${item.img}"><div style="flex:1"><div>${item.nome}</div><div class="qty-wrapper"><button class="btn-qty" onclick="mudarQtd('${item.nome}','menos')">-</button><span style="padding:0 10px">${item.qtd}</span><button class="btn-qty" onclick="mudarQtd('${item.nome}','mais')">+</button></div></div><strong>R$ ${(item.preco * item.qtd).toFixed(2)}</strong></div>`;
+    });
+    document.getElementById("cartCount").innerText = carrinho.reduce((a,b) => a + b.qtd, 0);
+    atualizarTotal();
+}
+
+function calcularFrete() {
+    const cep = document.getElementById("cartCEP").value.replace(/\D/g, "");
+    if(cep.length !== 8) return alert("CEP inválido");
+    document.getElementById("opcoesFrete").style.display = "block";
+    const isLocal = cep.startsWith("6");
+    const precoPAC = isLocal ? 14.90 : 28.50;
+    const precoSEDEX = isLocal ? 26.00 : 52.90;
+    const diasPAC = isLocal ? "5-7 dias úteis" : "12-15 dias úteis";
+    const diasSEDEX = isLocal ? "1-3 dias úteis" : "4-6 dias úteis";
+    document.getElementById("labelPAC").innerText = `PAC - R$ ${precoPAC.toFixed(2)} (${diasPAC})`;
+    document.getElementById("labelSEDEX").innerText = `SEDEX - R$ ${precoSEDEX.toFixed(2)} (${diasSEDEX})`;
+    document.querySelector('input[value="PAC"]').dataset.preco = precoPAC;
+    document.querySelector('input[value="PAC"]').dataset.prazo = diasPAC;
+    document.querySelector('input[value="SEDEX"]').dataset.preco = precoSEDEX;
+    document.querySelector('input[value="SEDEX"]').dataset.prazo = diasSEDEX;
+    atualizarTotal();
+}
+
+function atualizarTotal() {
+    const selecionado = document.querySelector('input[name="tipoFrete"]:checked');
+    if(selecionado && selecionado.dataset.preco) {
+        valorFrete = parseFloat(selecionado.dataset.preco);
+        prazoEntrega = selecionado.dataset.prazo;
+    }
+    const total = subtotalProdutos + valorFrete;
+    document.getElementById("total").innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+}
+
+function finalizar() {
+    const cliente = document.getElementById("cartNome").value;
+    const endereco = document.getElementById("cartEndereco").value;
+    const cid = document.getElementById("cartCidadeEstado").value;
+    const cep = document.getElementById("cartCEP").value;
+    const freteTipo = document.querySelector('input[name="tipoFrete"]:checked')?.value || "SEDEX";
+    
+    if(carrinho.length === 0) return alert("O seu carrinho está vazio!");
+    if(!cliente || !endereco) return alert("Preencha seus dados de entrega!");
+    if(valorFrete === 0) return alert("Calcule o frete antes de finalizar!");
+    
+    const lista = carrinho.map(i => `• ${i.qtd}x ${i.nome} - R$ ${(i.preco * i.qtd).toFixed(2)}`).join('\n');
+    const totalFinal = (subtotalProdutos + valorFrete).toFixed(2);
+    
+    // SALVAR NO HISTORICO LOCAL ANTES DE IR PRO WHATSAPP
+    salvarPedidoNoHistorico(cliente, totalFinal, lista);
+
+    const msg = `*PEDIDO: IdolVerse*\n\n*CLIENTE:* ${cliente}\n*ENDEREÇO:* ${endereco}\n*CIDADE:* ${cid}\n*CEP:* ${cep}\n\n*PRODUTOS:*\n${lista}\n\n*SUBTOTAL:* R$ ${subtotalProdutos.toFixed(2)}\n*FRETE:* ${freteTipo} (R$ ${valorFrete.toFixed(2)})\n*PRAZO ESTIMADO:* ${prazoEntrega}\n*TOTAL:* R$ ${totalFinal}\n\n*OBS:* Itens conforme disponibilidade.`;
+    
+    window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`);
+}
+
+function toggleCarrinho() {
+    const c = document.getElementById("carrinho"), o = document.getElementById("overlay"), b = document.getElementById("cartBtn");
+    const aberto = c.style.right === "0px";
+    if (aberto) {
+        c.style.right = "-100%"; o.style.display = "none"; b.style.display = "flex";
+    } else {
+        c.style.right = "0px"; o.style.display = "block"; b.style.display = "none";
+    }
+}
+
+function buscar(t) {
+    t = t.toLowerCase();
+    document.querySelectorAll(".produto").forEach(p => p.style.display = p.dataset.name.includes(t) ? "flex" : "none");
+}
+
+function filtrarCategoria(el, t) {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    buscar(t);
+}
+
+function toggleDesc(btn) {
+    const desc = btn.nextElementSibling;
+    desc.style.display = (desc.style.display === "block") ? "none" : "block";
+}
+
+function abrirZoom(img) {
+    document.getElementById("imgZoomed").src = img.src;
+    document.getElementById("zoomModal").style.display = "flex";
+}
+
+function atualizarHeader() {
+    const end = document.getElementById("cartEndereco").value;
+    document.getElementById("displayEndereco").innerText = end ? `📍 Enviar para: ${end}` : "📍 Informe o endereço no carrinho >";
+}
+</script>
 </body>
 </html>

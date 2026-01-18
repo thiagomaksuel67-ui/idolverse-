@@ -3,303 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAHAM | Official Store</title>
+    <title>Shopee Clone | Compre Tudo Online</title>
     <style>
-        /* CONFIGURAÇÕES GERAIS */
+        /* RESET E CORES PADRÃO */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, Roboto, sans-serif;
+        }
+
+        :root {
+            --shopee-orange: #ee4d2d;
+            --shopee-light-orange: #ff5722;
+            --bg-gray: #f5f5f5;
         }
 
         body {
-            background-color: #ffffff;
-            color: #000;
-            overflow-x: hidden;
-        }
-
-        /* BARRA DE AVISO */
-        .announcement-bar {
-            background: #000;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            font-size: 10px;
-            letter-spacing: 2px;
-            font-weight: bold;
-            text-transform: uppercase;
+            background-color: var(--bg-gray);
         }
 
         /* HEADER */
-        .main-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 4%;
-            border-bottom: 1px solid #f2f2f2;
+        header {
+            background: linear-gradient(-180deg, #f53d2d, #f63);
+            padding: 10px 0;
             position: sticky;
             top: 0;
-            background: rgba(255, 255, 255, 0.95);
             z-index: 1000;
-            backdrop-filter: blur(5px);
+            color: white;
         }
 
-        .logo h1 {
-            font-size: 28px;
-            letter-spacing: 6px;
-            font-weight: 900;
-            cursor: pointer;
-        }
-
-        .nav-left button {
-            background: none;
-            border: none;
-            font-weight: bold;
-            letter-spacing: 1px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .nav-right a {
-            text-decoration: none;
-            color: #000;
-            margin-left: 15px;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        /* HERO / BANNER */
-        .hero-section {
-            width: 100%;
-            height: 80vh;
-            background-color: #ebebeb; /* Cor de fundo caso a imagem não carregue */
+        .header-top {
             display: flex;
-            align-items: flex-end;
-            padding: 60px 5%;
-            background-image: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop'); 
-            background-size: cover;
-            background-position: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 13px;
+            padding-bottom: 10px;
         }
 
-        .hero-content {
-            color: #fff;
+        .header-main {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
         }
 
-        .hero-content h2 {
-            font-size: clamp(40px, 8vw, 70px);
-            font-weight: 900;
-            letter-spacing: -2px;
-            margin-bottom: 20px;
-            line-height: 1;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 45px;
-            background: #fff;
-            color: #000;
-            text-decoration: none;
+        .logo {
+            font-size: 40px;
             font-weight: bold;
-            font-size: 12px;
-            letter-spacing: 2px;
-            transition: 0.3s;
+            cursor: pointer;
         }
 
-        .cta-button:hover {
-            background: #000;
-            color: #fff;
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+            background: white;
+            padding: 3px;
+            border-radius: 2px;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        }
+
+        .search-container input {
+            flex-grow: 1;
+            border: none;
+            padding: 10px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-container button {
+            background-color: var(--shopee-orange);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* BANNER */
+        .banner-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 10px;
+        }
+
+        .main-banner {
+            background: #d1d1d1;
+            height: 235px;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #666;
+            background-image: url('https://via.placeholder.com/800x235/ee4d2d/ffffff?text=OFERTAS+RELAMPAGO');
+            background-size: cover;
+        }
+
+        .side-banners {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .side-banner {
+            height: 112px;
+            background: #ccc;
+            background-size: cover;
         }
 
         /* GRID DE PRODUTOS */
         .container {
-            padding: 60px 4%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-        }
-
-        .section-header h3 {
-            font-size: 14px;
-            letter-spacing: 2px;
+        .section-title {
+            background: white;
+            padding: 20px;
+            color: var(--shopee-orange);
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 2px solid var(--shopee-orange);
             text-transform: uppercase;
+            margin-bottom: 10px;
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
         }
 
-        @media (min-width: 1024px) {
-            .product-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        /* CARD DO PRODUTO + EFEITO HOVER */
         .product-card {
-            text-decoration: none;
-            color: #000;
-            margin-bottom: 30px;
-        }
-
-        .img-container {
+            background: white;
+            transition: transform 0.1s;
+            cursor: pointer;
+            border: 1px solid transparent;
             position: relative;
-            width: 100%;
-            aspect-ratio: 3/4;
-            overflow: hidden;
-            background-color: #f9f9f9;
         }
 
-        .img-container img {
+        .product-card:hover {
+            transform: translateY(-2px);
+            border: 1px solid var(--shopee-orange);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .product-img {
             width: 100%;
-            height: 100%;
+            aspect-ratio: 1/1;
+            background: #f0f0f0;
             object-fit: cover;
-            position: absolute;
-            transition: opacity 0.5s ease;
-        }
-
-        .img-secondary {
-            opacity: 0;
-        }
-
-        .product-card:hover .img-secondary {
-            opacity: 1;
         }
 
         .product-info {
-            padding-top: 15px;
+            padding: 10px;
         }
 
         .product-name {
             font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
+            line-height: 14px;
+            height: 28px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            margin-bottom: 10px;
         }
 
-        .product-price {
-            font-size: 13px;
-            color: #555;
+        .product-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* FOOTER SIMPLES */
-        footer {
-            padding: 60px 4%;
-            background: #f9f9f9;
-            text-align: center;
-            border-top: 1px solid #eee;
+        .price {
+            color: var(--shopee-orange);
+            font-size: 16px;
         }
 
-        .footer-logo {
-            font-size: 20px;
-            letter-spacing: 5px;
-            font-weight: 900;
-            margin-bottom: 20px;
-        }
-
-        .footer-links {
+        .sold-count {
             font-size: 10px;
-            letter-spacing: 1px;
-            color: #888;
+            color: #777;
+        }
+
+        .free-shipping-badge {
+            background-color: #00bfa5;
+            color: white;
+            font-size: 10px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 1024px) {
+            .product-grid { grid-template-columns: repeat(3, 1fr); }
+            .banner-section { grid-template-columns: 1fr; }
+            .side-banners { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="announcement-bar">
-        Entrega expressa para todo o Brasil
-    </div>
-
-    <header class="main-header">
-        <div class="nav-left">
-            <button>MENU</button>
+    <header>
+        <div class="header-top">
+            <div>Central do Vendedor | Baixe o App | Siga-nos no Instagram</div>
+            <div>Notificações | Ajuda | Cadastrar | Entre Logar</div>
         </div>
-        
-        <div class="logo">
-            <h1>BAHAM</h1>
-        </div>
-
-        <div class="nav-right">
-            <a href="#">BUSCAR</a>
-            <a href="#">CONTA</a>
-            <a href="#">CARRINHO (0)</a>
+        <div class="header-main">
+            <div class="logo">Shopee</div>
+            <div class="search-container">
+                <input type="text" placeholder="Buscar na Shopee agora...">
+                <button>🔍</button>
+            </div>
+            <div class="cart-icon">🛒</div>
         </div>
     </header>
 
-    <section class="hero-section">
-        <div class="hero-content">
-            <h2>SUMMER<br>CORE '26</h2>
-            <a href="#" class="cta-button">COMPRAR AGORA</a>
-        </div>
-    </section>
+    <div class="container">
+        <section class="banner-section">
+            <div class="main-banner"></div>
+            <div class="side-banners">
+                <div class="side-banner" style="background-image: url('https://via.placeholder.com/400x112/ff9e00/ffffff?text=Cupom+R$20')"></div>
+                <div class="side-banner" style="background-image: url('https://via.placeholder.com/400x112/00bfa5/ffffff?text=Frete+Gratis')"></div>
+            </div>
+        </section>
 
-    <main class="container">
-        <div class="section-header">
-            <h3>Novidades</h3>
-            <span style="font-size: 10px; cursor: pointer;">VER TUDO</span>
-        </div>
-
+        <h2 class="section-title">Descoberta Diária</h2>
+        
         <div class="product-grid">
-            <a href="#" class="product-card">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1780&auto=format&fit=crop" class="img-primary">
-                    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1780&auto=format&fit=crop" class="img-secondary">
-                </div>
-                <div class="product-info">
-                    <p class="product-name">Camiseta Essential White</p>
-                    <p class="product-price">R$ 159,00</p>
-                </div>
-            </a>
-
-            <a href="#" class="product-card">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1554568218-0f1715e72254?q=80&w=1887&auto=format&fit=crop" class="img-primary">
-                    <img src="https://images.unsplash.com/photo-1571945153237-4929e783ee4a?q=80&w=1887&auto=format&fit=crop" class="img-secondary">
-                </div>
-                <div class="product-info">
-                    <p class="product-name">Camiseta Oversized Black</p>
-                    <p class="product-price">R$ 179,00</p>
-                </div>
-            </a>
-
-            <a href="#" class="product-card">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=1770&auto=format&fit=crop" class="img-primary">
-                    <img src="https://images.unsplash.com/photo-1591195853730-410a08680650?q=80&w=1770&auto=format&fit=crop" class="img-secondary">
-                </div>
-                <div class="product-info">
-                    <p class="product-name">Shorts Nylon Sand</p>
-                    <p class="product-price">R$ 210,00</p>
-                </div>
-            </a>
-
-            <a href="#" class="product-card">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=1915&auto=format&fit=crop" class="img-primary">
-                    <img src="https://images.unsplash.com/photo-1618354691229-88d47f285158?q=80&w=1915&auto=format&fit=crop" class="img-secondary">
-                </div>
-                <div class="product-info">
-                    <p class="product-name">Boné Baham Strapback</p>
-                    <p class="product-price">R$ 120,00</p>
-                </div>
-            </a>
+            <script>
+                const grid = document.querySelector('.product-grid');
+                for(let i = 1; i <= 12; i++) {
+                    grid.innerHTML += `
+                        <div class="product-card">
+                            <img src="https://picsum.photos/200/200?random=${i}" class="product-img">
+                            <div class="product-info">
+                                <div class="product-name">Produto Incrível da Shopee Modelo ${i} - Qualidade Premium garantida para você</div>
+                                <div class="free-shipping-badge">Frete Grátis</div>
+                                <div class="product-price-row">
+                                    <span class="price">R$ ${ (Math.random() * 100 + 10).toFixed(2) }</span>
+                                    <span class="sold-count">60 vendidos</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            </script>
         </div>
-    </main>
+    </div>
 
-    <footer>
-        <div class="footer-logo">BAHAM</div>
-        <p class="footer-links">POLÍTICA DE PRIVACIDADE | TERMOS DE SERVIÇO | CONTATO</p>
-        <p style="font-size: 9px; margin-top: 20px; color: #bbb;">© 2026 BAHAM CLOTHING. TODOS OS DIREITOS RESERVADOS.</p>
+    <footer style="margin-top: 50px; padding: 40px; text-align: center; background: white; border-top: 4px solid var(--shopee-orange);">
+        <p>© 2026 Shopee. Todos os direitos reservados.</p>
     </footer>
 
 </body>

@@ -14,6 +14,7 @@
   --text-white: #ffffff;
   --violet-deep: #2d1b4d;
   --violet-accent: #8a2be2;
+  --success-green: #2ecc71;
 }
 
 *{box-sizing:border-box}
@@ -113,7 +114,9 @@ header {
 .card {
   background: var(--card-purple); border-radius: 12px; overflow: hidden;
   border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column;
+  transition: transform 0.3s ease;
 }
+.card:hover { transform: translateY(-5px); border-color: var(--primary-pink); }
 .img-container { width: 100%; height: 180px; overflow: hidden; cursor: pointer; }
 .card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
 .card-info { padding: 10px; text-align: center; flex-grow: 1; }
@@ -151,6 +154,10 @@ header {
 .pp-main-price { font-size: 26px; color: var(--primary-pink); font-weight: bold; }
 .pp-installments { font-size: 13px; opacity: 0.7; display: block; }
 
+/* --- NOVO: BADGES DE QUALIDADE --- */
+.quality-badges { display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
+.badge { background: rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 5px; font-size: 10px; display: flex; align-items: center; gap: 5px; border: 1px solid rgba(255,255,255,0.05); }
+
 .pp-label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 10px; color: #aaa; }
 .pp-vars { display: flex; gap: 10px; margin-bottom: 20px; }
 .v-opt { padding: 8px 15px; border: 1px solid #444; border-radius: 8px; font-size: 13px; cursor: pointer; }
@@ -167,6 +174,16 @@ header {
 .pp-shipping { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; }
 .pp-shipping-input { display: flex; gap: 10px; margin-top: 10px; }
 .pp-shipping-input input { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #444; background: #111; color: white; }
+
+/* --- NOVO: TOAST NOTIFICATION --- */
+#toast {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    background: var(--success-green); color: white; padding: 12px 25px;
+    border-radius: 30px; font-weight: bold; font-size: 14px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 5000;
+    display: none; animation: toastFade 0.3s ease;
+}
+@keyframes toastFade { from { top: -50px; opacity: 0; } to { top: 20px; opacity: 1; } }
 
 .custom-order-section {
     background: rgba(255, 79, 216, 0.1); border: 1px solid var(--primary-pink);
@@ -201,11 +218,19 @@ header {
 .cart-footer { padding: 15px; background: var(--bg-dark-deep); border-top: 1px solid var(--primary-pink); overflow-y: auto; padding-bottom: 30px; }
 .cart-inputs input { width: 100%; background: #1c1c3a; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; font-size: 13px; margin-bottom: 8px; }
 
+/* --- NOVO: FOOTER PROFISSIONAL --- */
+.main-footer { background: #111; padding: 40px 20px; margin-top: 50px; border-top: 3px solid var(--primary-pink); }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+.footer-col h4 { color: var(--primary-pink); margin-bottom: 15px; font-size: 16px; }
+.footer-col p, .footer-col a { color: #aaa; font-size: 13px; text-decoration: none; display: block; margin-bottom: 8px; }
+.footer-col a:hover { color: white; }
+.payment-icons { display: flex; gap: 10px; font-size: 24px; filter: grayscale(1); opacity: 0.6; }
+
 #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
 #zoomModal { display: none; position: fixed; z-index: 3000; inset: 0; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
 #imgZoomed { max-width: 90%; max-height: 80%; border-radius: 10px; }
 
-.credits { text-align: center; padding: 20px 0; margin-top: 20px; font-size: 10px; letter-spacing: 1px; color: rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.05); text-transform: uppercase; }
+.credits { text-align: center; padding: 20px 0; margin-top: 0; font-size: 10px; letter-spacing: 1px; color: rgba(255, 255, 255, 0.3); background: #000; text-transform: uppercase; }
 .credits span { color: var(--primary-pink); opacity: 0.5; }
 
 .bug-report-footer {
@@ -215,6 +240,8 @@ header {
 </style>
 </head>
 <body onload="carregarPedidosHist(); carregarCarrinhoLocal(); initProductClicks()">
+
+<div id="toast">✅ Adicionado ao carrinho!</div>
 
 <div id="zoomModal" onclick="this.style.display='none'"><img id="imgZoomed" src=""></div>
 
@@ -232,6 +259,12 @@ header {
         <div class="pp-price-box">
             <span class="pp-main-price" id="ppPrice">R$ 0,00</span>
             <span class="pp-installments">ou em até 3x de <span id="ppParcela">R$ 0,00</span> sem juros</span>
+        </div>
+
+        <div class="quality-badges">
+            <div class="badge">💎 Premium 300g</div>
+            <div class="badge">☀️ Proteção UV</div>
+            <div class="badge">✂️ Cantos Redondos</div>
         </div>
 
         <label class="pp-label">Acabamento</label>
@@ -469,13 +502,39 @@ header {
     <div id="listaPedidosCliente">Nenhum pedido recente.</div>
     <button class="btn-limpar-pedidos" onclick="limparHistorico()" id="btnLimpar" style="display:none;">Limpar Histórico</button>
   </div>
-
-  <div class="credits">Criado por <span>Thiago Maksuel</span> • <span>Marina Angels</span> • <span>Maria Sophya</span></div>
-
-  <div class="bug-report-footer">
-    Se encontrar algum bug no site, entre em contato com <a href="https://wa.me/559188822874">+55 91 8882-2874</a> por whatsapp e reporte o bug. Obrigada!
-  </div>
 </div>
+
+<footer class="main-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Institucional</h4>
+            <a href="#">Sobre a IdolVerse</a>
+            <a href="#">Prazo de Produção</a>
+            <a href="#">Trocas e Devoluções</a>
+        </div>
+        <div class="footer-col">
+            <h4>Suporte</h4>
+            <a href="https://wa.me/5591986122614">WhatsApp de Vendas</a>
+            <a href="#">Rastrear Pedido</a>
+            <a href="#">Dúvidas Frequentes</a>
+        </div>
+        <div class="footer-col">
+            <h4>Formas de Pagamento</h4>
+            <div class="payment-icons">💳 📲 🏦</div>
+            <p style="margin-top:10px">Aceitamos Cartão, Pix e Boleto via WhatsApp.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Nossas Redes</h4>
+            <a href="#">Instagram @IdolVerse</a>
+            <a href="#">TikTok @IdolVerseStore</a>
+        </div>
+    </div>
+    <div class="bug-report-footer" style="text-align: center; margin-top: 30px;">
+        Se encontrar algum bug no site, entre em contato com <a href="https://wa.me/559188822874">+55 91 8882-2874</a>. Obrigada!
+    </div>
+</footer>
+
+<div class="credits">Criado por <span>Thiago Maksuel</span> • <span>Marina Angels</span> • <span>Maria Sophya</span></div>
 
 <button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>
 <div id="overlay" onclick="toggleCarrinho()"></div>
@@ -552,7 +611,7 @@ function abrirPP(nome, preco, img, desc) {
     document.getElementById("ppBuyBtn").onclick = () => {
         for(let i=0; i<pp_currentQty; i++) addCarrinho(nome, preco, img);
         fecharPP();
-        toggleCarrinho();
+        showToast(`✅ ${pp_currentQty}x ${nome} adicionado!`);
     };
 
     document.getElementById("productPage").style.display = "flex";
@@ -583,6 +642,14 @@ function updateDots() {
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
 }
 
+/* --- NOVO: FUNÇÃO TOAST --- */
+function showToast(msg) {
+    const t = document.getElementById("toast");
+    t.innerText = msg;
+    t.style.display = "block";
+    setTimeout(() => { t.style.display = "none"; }, 3000);
+}
+
 /* --- LOGICA PERSISTÊNCIA (LOCALSTORAGE) --- */
 function salvarCarrinhoLocal() {
     localStorage.setItem('idolverse_carrinho_atual', JSON.stringify(carrinho));
@@ -596,7 +663,6 @@ function carregarCarrinhoLocal() {
     }
 }
 
-// FUNÇÕES DE PEDIDOS EM ANDAMENTO (HISTÓRICO)
 function salvarPedidoNoHistorico(cliente, total, itens) {
     let historico = JSON.parse(localStorage.getItem('idolverse_pedidos')) || [];
     const novoPedido = {
@@ -646,8 +712,11 @@ function limparHistorico() {
 function addCarrinho(nome, preco, img) {
     let item = carrinho.find(i => i.nome === nome);
     if(item) item.qtd++; else carrinho.push({nome, preco, img, qtd: 1});
-    salvarCarrinhoLocal(); // SALVA SEMPRE QUE ADICIONA
+    salvarCarrinhoLocal();
     renderCart();
+    if(document.getElementById("productPage").style.display !== "flex") {
+        showToast(`✅ ${nome} adicionado!`);
+    }
 }
 
 function mudarQtd(nome, operacao) {
@@ -662,7 +731,7 @@ function mudarQtd(nome, operacao) {
             }
         }
     }
-    salvarCarrinhoLocal(); // SALVA SEMPRE QUE ALTERA QTD
+    salvarCarrinhoLocal();
     renderCart();
 }
 
@@ -724,9 +793,6 @@ function finalizar() {
     
     salvarPedidoNoHistorico(cliente, totalFinal, lista);
     
-    // OPCIONAL: Limpar o carrinho após a finalização
-    // carrinho = []; salvarCarrinhoLocal(); renderCart();
-
     const msg = `*PEDIDO: IdolVerse*\n\n*CLIENTE:* ${cliente}\n*ENDEREÇO:* ${endereco}\n*CIDADE:* ${cid}\n*CEP:* ${cep}\n\n*PRODUTOS:*\n${lista}\n\n*SUBTOTAL:* R$ ${subtotalProdutos.toFixed(2)}\n*FRETE:* ${freteTipo} (R$ ${valorFrete.toFixed(2)})\n*PRAZO ESTIMADO:* ${prazoEntrega}\n*TOTAL:* R$ ${totalFinal}\n\n*OBS:* Itens conforme disponibilidade.`;
     
     window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`);

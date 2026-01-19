@@ -17,50 +17,24 @@
   --success-green: #2ecc71;
 }
 
-/* HARDWARE ACCELERATION - Otimiza fluidez mobile */
-#carrinho, #productPage, .card, #toast {
-    will-change: transform;
-    backface-visibility: hidden;
-}
-
-/* TEMAS */
-body.tema-bts { --primary-pink: #a020f0; --bg-gradient: linear-gradient(135deg, #1a0b2e, #4b0082); }
-body.tema-bp { --primary-pink: #f8a5c2; --bg-gradient: linear-gradient(135deg, #000000, #333333); }
-body.tema-nj { --primary-pink: #00d2ff; --bg-gradient: linear-gradient(135deg, #1e3c72, #2a5298); }
-
-.theme-selector {
-    position: fixed; left: 10px; bottom: 20px; z-index: 1100;
-    display: flex; flex-direction: column; gap: 10px;
-}
-.theme-dot {
-    width: 25px; height: 25px; border-radius: 50%; border: 2px solid white; cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-*{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+*{box-sizing:border-box}
 body{
   margin:0;
   font-family: 'Segoe UI', Arial, sans-serif;
   background: var(--bg-gradient);
   background-attachment: fixed;
   color: var(--text-white);
-  transition: background 0.5s ease;
-  overflow-x: hidden;
 }
-
-.highlights-section { margin-top: 20px; padding: 0 10px; }
-.highlights-title { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary-pink); margin-bottom: 10px; display: block; font-weight: bold; }
-.highlights-scroll { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 10px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-.highlights-scroll::-webkit-scrollbar { display: none; }
-.high-item { min-width: 140px; height: 140px; border-radius: 15px; position: relative; overflow: hidden; border: 2px solid var(--primary-pink); flex-shrink: 0; cursor: pointer; }
-.high-item img { width: 100%; height: 100%; object-fit: cover; }
-.high-label { position: absolute; bottom: 0; background: rgba(0,0,0,0.7); width: 100%; font-size: 10px; text-align: center; padding: 5px; }
 
 header {
   background: var(--bg-dark-deep);
   padding: 10px 15px 5px 15px;
-  position: sticky; top: 0; z-index: 1000;
-  display: flex; flex-direction: column; gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .header-top { display: flex; align-items: center; gap: 12px; width: 100%; }
@@ -69,36 +43,72 @@ header {
 
 .search-container { flex-grow: 1; position: relative; }
 .search-container input {
-  width: 100%; padding: 10px 12px 10px 38px; border-radius: 25px;
-  border: none; background: #ffffff; color: #333; font-size: 14px;
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  border-radius: 25px;
+  border: none;
+  background: #ffffff;
+  color: #333;
+  font-size: 14px;
 }
 
 .search-container::before {
-  content: '🔍'; position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  content: '🔍';
+  position: absolute;
+  left: 12px; top: 50%; transform: translateY(-50%);
   font-size: 14px; opacity: 0.5;
 }
 
-.location-bar { display: flex; align-items: center; font-size: 11px; color: rgba(255, 255, 255, 0.7); padding: 2px 0; }
+.location-bar {
+  display: flex; align-items: center;
+  font-size: 11px; color: rgba(255, 255, 255, 0.7);
+  padding: 2px 0;
+}
 
-.nav-menu { display: flex; overflow-x: auto; white-space: nowrap; gap: 20px; padding: 8px 0; scrollbar-width: none; }
+.nav-menu {
+  display: flex; overflow-x: auto; white-space: nowrap;
+  gap: 20px; padding: 8px 0; scrollbar-width: none;
+}
 .nav-menu::-webkit-scrollbar { display: none; }
-.nav-item { color: var(--text-white); text-decoration: none; font-size: 13px; font-weight: 500; opacity: 0.8; padding-bottom: 5px; cursor: pointer; }
+
+.nav-item {
+  color: var(--text-white); text-decoration: none;
+  font-size: 13px; font-weight: 500; opacity: 0.8;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
 .nav-item.active { border-bottom: 2px solid var(--primary-pink); opacity: 1; }
 
 #cartBtn { 
-  position: fixed; bottom: 20px; right: 20px; background: var(--primary-pink); 
-  border: none; width: 60px; height: 60px; border-radius: 50%; z-index: 1100; 
-  color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5); font-size: 24px;
+  position: fixed; 
+  bottom: 20px; 
+  right: 20px; 
+  background: var(--primary-pink); 
+  border: none; 
+  width: 60px; 
+  height: 60px; 
+  border-radius: 50%; 
+  z-index: 1100; 
+  color: white; 
+  cursor: pointer; 
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  font-size: 24px;
 }
 
 #cartCount {
-  position: absolute; top: 5px; right: 5px; background: white; color: var(--primary-pink);
-  font-size: 12px; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;
+  position: absolute; top: 5px; right: 5px;
+  background: white; color: var(--primary-pink);
+  font-size: 12px; width: 20px; height: 20px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: bold;
 }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 10px; position: relative; }
-.products { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; contain: layout; }
+.products {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 15px; margin-top: 20px;
+}
 @media (min-width: 768px) { .products { grid-template-columns: repeat(4, 1fr); } }
 
 .card {
@@ -107,24 +117,23 @@ header {
   transition: transform 0.3s ease; position: relative;
 }
 .card:hover { transform: translateY(-5px); border-color: var(--primary-pink); }
-
-.badge-scarcity {
-    position: absolute; bottom: 10px; left: 10px; background: rgba(255, 0, 0, 0.8);
-    color: white; font-size: 9px; padding: 3px 8px; border-radius: 4px; font-weight: bold; z-index: 5;
-}
-.viewing-now { font-size: 9px; color: #ffeb3b; margin-top: 5px; display: flex; align-items: center; justify-content: center; gap: 3px; }
-
-.img-container { width: 100%; height: 180px; overflow: hidden; cursor: pointer; position: relative; background: #222; }
+.img-container { width: 100%; height: 180px; overflow: hidden; cursor: pointer; }
 .card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
 .card-info { padding: 10px; text-align: center; flex-grow: 1; }
 .card-info h3 { font-size: 14px; margin: 5px 0; cursor: pointer; }
 .price { color: #ffb3f0; font-size: 16px; font-weight: bold; }
 
-.card-actions { position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; gap: 8px; z-index: 5; }
+/* NOVOS ESTILOS: FAVORITOS E SHARE */
+.card-actions {
+    position: absolute; top: 10px; right: 10px;
+    display: flex; flex-direction: column; gap: 8px; z-index: 5;
+}
 .action-btn {
-    background: rgba(0,0,0,0.5); color: white; border: none; width: 32px; height: 32px;
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    cursor: pointer; font-size: 14px; backdrop-filter: blur(4px); transition: 0.3s;
+    background: rgba(0,0,0,0.5); color: white; border: none;
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 14px; backdrop-filter: blur(4px);
+    transition: 0.3s;
 }
 .action-btn:hover { background: var(--primary-pink); }
 .fav-active { color: #ff4fd8; }
@@ -134,11 +143,11 @@ header {
 
 .btn-buy { background: var(--primary-pink); color: white; border: none; padding: 8px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; }
 
-/* PRODUCT PAGE */
+/* --- PÁGINA DE PRODUTO --- */
 #productPage {
     position: fixed; inset: 0; background: var(--bg-dark-deep);
     z-index: 2500; display: none; flex-direction: column;
-    overflow-y: auto; animation: ppSlideUp 0.3s ease-out;
+    overflow-y: auto; animation: ppSlideUp 0.4s ease;
 }
 @keyframes ppSlideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
@@ -147,6 +156,7 @@ header {
 
 .pp-carousel-container { width: 100%; position: relative; background: #000; }
 .pp-carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.pp-carousel::-webkit-scrollbar { display: none; }
 .pp-carousel img { min-width: 100%; aspect-ratio: 1/1; object-fit: cover; scroll-snap-align: start; }
 
 .pp-dots { position: absolute; bottom: 15px; width: 100%; display: flex; justify-content: center; gap: 8px; }
@@ -155,44 +165,97 @@ header {
 
 .pp-content { padding: 20px; }
 .pp-title { font-size: 22px; font-weight: bold; margin-bottom: 8px; }
+.pp-price-box { margin-bottom: 20px; }
 .pp-main-price { font-size: 26px; color: var(--primary-pink); font-weight: bold; }
+.pp-installments { font-size: 13px; opacity: 0.7; display: block; }
 
 .quality-badges { display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
 .badge { background: rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 5px; font-size: 10px; display: flex; align-items: center; gap: 5px; border: 1px solid rgba(255,255,255,0.05); }
 
+.pp-label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 10px; color: #aaa; }
 .pp-vars { display: flex; gap: 10px; margin-bottom: 20px; }
 .v-opt { padding: 8px 15px; border: 1px solid #444; border-radius: 8px; font-size: 13px; cursor: pointer; }
 .v-opt.active { border-color: var(--primary-pink); background: rgba(255,79,216,0.1); color: var(--primary-pink); }
 
-/* CARRINHO */
-#carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh; background: var(--violet-deep); z-index: 2000; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; box-shadow: -5px 0 20px rgba(0,0,0,0.8); }
+.pp-qty { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; background: rgba(255,255,255,0.05); width: fit-content; padding: 5px 15px; border-radius: 30px; }
+.pp-qty button { background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 5px 10px; }
+
+.pp-blocks { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 30px; }
+.pp-info-block { padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.pp-info-block h4 { display: flex; align-items: center; gap: 10px; margin: 0 0 10px 0; color: #eee; }
+.pp-info-block p { font-size: 14px; color: #bbb; line-height: 1.6; margin: 0; }
+
+.pp-shipping { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; }
+.pp-shipping-input { display: flex; gap: 10px; margin-top: 10px; }
+.pp-shipping-input input { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #444; background: #111; color: white; }
+
+#toast {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    background: var(--success-green); color: white; padding: 12px 25px;
+    border-radius: 30px; font-weight: bold; font-size: 14px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 5000;
+    display: none; animation: toastFade 0.3s ease;
+}
+@keyframes toastFade { from { top: -50px; opacity: 0; } to { top: 20px; opacity: 1; } }
+
+.custom-order-section {
+    background: rgba(255, 79, 216, 0.1); border: 1px solid var(--primary-pink);
+    border-radius: 15px; padding: 20px; margin: 20px 0; text-align: center;
+}
+.btn-whatsapp-custom {
+    display: inline-block; background: #25d366; color: white;
+    text-decoration: none; padding: 10px 20px; border-radius: 50px;
+    font-weight: bold; font-size: 12px; margin-top: 10px;
+}
+
+.meus-pedidos { background: rgba(0,0,0,0.2); margin: 30px 0; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary-pink); }
+.pedido-item {
+    background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-top: 10px;
+    border-left: 4px solid var(--primary-pink); font-size: 13px;
+}
+.pedido-data { font-size: 10px; opacity: 0.6; }
+.btn-limpar-pedidos { 
+    background: none; border: 1px solid rgba(255,255,255,0.2); color: white; 
+    font-size: 10px; cursor: pointer; padding: 5px 10px; border-radius: 5px; margin-top: 10px;
+}
+
+#carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh; background: var(--violet-deep); z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; box-shadow: -5px 0 20px rgba(0,0,0,0.8); }
 .cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); }
 #listaCarrinho { flex: 1; overflow-y: auto; padding: 15px; }
 
 .item-cart { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; margin-bottom: 10px; }
 .item-cart img { width: 60px; height: 60px; border-radius: 5px; object-fit: cover; }
+.qty-wrapper { display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; width: fit-content; margin-top: 5px; }
+.btn-qty { background: rgba(255,255,255,0.1); border: none; color: white; width: 25px; height: 25px; cursor: pointer; }
 
-.cart-footer { padding: 15px; background: var(--bg-dark-deep); border-top: 1px solid var(--primary-pink); }
+.cart-footer { padding: 15px; background: var(--bg-dark-deep); border-top: 1px solid var(--primary-pink); overflow-y: auto; padding-bottom: 30px; }
 .cart-inputs input { width: 100%; background: #1c1c3a; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; font-size: 13px; margin-bottom: 8px; }
 
-#toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--success-green); color: white; padding: 12px 25px; border-radius: 30px; font-weight: bold; z-index: 5000; display: none; }
-#overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
-
 .main-footer { background: #111; padding: 40px 20px; margin-top: 50px; border-top: 3px solid var(--primary-pink); }
-.credits { text-align: center; padding: 20px 0; font-size: 10px; background: #000; color: rgba(255,255,255,0.3); text-transform: uppercase; }
-.credits span { color: var(--primary-pink); }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+.footer-col h4 { color: var(--primary-pink); margin-bottom: 15px; font-size: 16px; }
+.footer-col p, .footer-col a { color: #aaa; font-size: 13px; text-decoration: none; display: block; margin-bottom: 8px; }
+.footer-col a:hover { color: white; }
+.payment-icons { display: flex; gap: 10px; font-size: 24px; filter: grayscale(1); opacity: 0.6; }
+
+#overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
+#zoomModal { display: none; position: fixed; z-index: 3000; inset: 0; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+#imgZoomed { max-width: 90%; max-height: 80%; border-radius: 10px; }
+
+.credits { text-align: center; padding: 20px 0; margin-top: 0; font-size: 10px; letter-spacing: 1px; color: rgba(255, 255, 255, 0.3); background: #000; text-transform: uppercase; }
+.credits span { color: var(--primary-pink); opacity: 0.5; }
+
+.bug-report-footer {
+  text-align: right; font-size: 9px; color: rgba(255, 255, 255, 0.3); padding: 10px 0; font-style: italic;
+}
+.bug-report-footer a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
 </style>
 </head>
 <body onload="carregarTudo()">
 
-<div class="theme-selector">
-    <div class="theme-dot" style="background:#ff4fd8" onclick="mudarTema('')" title="Padrão"></div>
-    <div class="theme-dot" style="background:#a020f0" onclick="mudarTema('tema-bts')" title="BTS"></div>
-    <div class="theme-dot" style="background:#000" onclick="mudarTema('tema-bp')" title="Blackpink"></div>
-    <div class="theme-dot" style="background:#00d2ff" onclick="mudarTema('tema-nj')" title="NewJeans"></div>
-</div>
-
 <div id="toast">✅ Adicionado ao carrinho!</div>
+
+<div id="zoomModal" onclick="this.style.display='none'"><img id="imgZoomed" src=""></div>
 
 <div id="productPage">
     <div class="pp-header">
@@ -200,27 +263,57 @@ header {
         <span style="font-weight: bold; font-size: 14px;">IdolVerse Store</span>
     </div>
     <div class="pp-carousel-container">
-        <div class="pp-carousel" id="ppSlider"></div>
+        <div class="pp-carousel" id="ppSlider" onscroll="updateDots()"></div>
         <div class="pp-dots" id="ppDots"></div>
     </div>
     <div class="pp-content">
         <h1 class="pp-title" id="ppTitle">Nome</h1>
         <div class="pp-price-box">
             <span class="pp-main-price" id="ppPrice">R$ 0,00</span>
+            <span class="pp-installments">ou em até 3x de <span id="ppParcela">R$ 0,00</span> sem juros</span>
         </div>
+
         <div class="quality-badges">
             <div class="badge">💎 Premium 300g</div>
             <div class="badge">☀️ Proteção UV</div>
             <div class="badge">✂️ Cantos Redondos</div>
         </div>
-        <label style="display:block; font-size:11px; margin:15px 0 10px; color:#aaa;">Acabamento</label>
+
+        <label class="pp-label">Acabamento</label>
         <div class="pp-vars">
-            <div class="v-opt active" onclick="this.parentElement.querySelectorAll('.v-opt').forEach(v=>v.classList.remove('active'));this.classList.add('active')">Brilhante</div>
-            <div class="v-opt" onclick="this.parentElement.querySelectorAll('.v-opt').forEach(v=>v.classList.remove('active'));this.classList.add('active')">Fosco</div>
+            <div class="v-opt active" onclick="selectV(this)">Brilhante</div>
+            <div class="v-opt" onclick="selectV(this)">Fosco</div>
         </div>
+
+        <label class="pp-label">Quantidade</label>
+        <div class="pp-qty">
+            <button onclick="mudarPPQty(-1)">-</button>
+            <span id="ppQty">1</span>
+            <button onclick="mudarPPQty(1)">+</button>
+        </div>
+
         <button class="btn-buy" id="ppBuyBtn" style="padding: 18px; font-size: 15px;">ADICIONAR AO CARRINHO</button>
-        <div class="pp-blocks" style="margin-top:20px; border-top:1px solid #333; padding-top:20px;">
-            <p id="ppDesc" style="font-size:14px; color:#bbb; line-height:1.6;"></p>
+
+        <div class="pp-blocks">
+            <div class="pp-info-block">
+                <label class="pp-label" style="margin-top:0">🚚 Calcular Frete</label>
+                <div class="pp-shipping-input">
+                    <input type="text" id="ppCep" placeholder="00000-000">
+                    <button onclick="alert('Frete calculado! Finalize no carrinho para ver as taxas.')" style="background:var(--primary-pink); border:none; color:white; padding:0 15px; border-radius:8px;">OK</button>
+                </div>
+            </div>
+            <div class="pp-info-block">
+                <h4>✨ Descrição Premium</h4>
+                <p id="ppDesc">Texto da descrição...</p>
+            </div>
+            <div class="pp-info-block">
+                <h4>📦 O que vem no Kit?</h4>
+                <p>O pacote inclui 54 photocards lomo de alta definição, impressos em papel fotográfico 300g com cantos arredondados e proteção UV.</p>
+            </div>
+            <div class="pp-info-block">
+                <h4>💖 Garantia e Mimos</h4>
+                <p>Todos os pedidos acompanham mimos exclusivos. Embalagem reforçada para garantir que sua coleção chegue perfeita.</p>
+            </div>
         </div>
     </div>
 </div>
@@ -228,66 +321,353 @@ header {
 <header>
   <div class="header-top">
     <div class="logo-container"><img src="logo-img.png" alt="Logo" class="logo-img"></div>
-    <div class="search-container"><input type="text" id="mainSearch" placeholder="Buscar no IdolVerse"></div>
+    <div class="search-container"><input type="text" placeholder="Buscar no IdolVerse" onkeyup="buscar(this.value)"></div>
   </div>
   <div class="location-bar">
       <span id="welcomeMsg" style="margin-right: 10px; font-weight: bold; color: var(--primary-pink);"></span>
       <span id="displayEndereco">📍 Informe o endereço no carrinho ></span>
   </div>
   <nav class="nav-menu">
-    <a class="nav-item active" data-filter="">Todos</a>
-    <a class="nav-item" data-filter="kpop">K-pop</a>
-    <a class="nav-item" data-filter="anime">Anime</a>
-    <a class="nav-item" data-filter="favoritos">❤️ Favoritos</a>
+    <a class="nav-item active" onclick="filtrarCategoria(this, '')">Todos</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'kpop')">K-pop</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'anime')">Anime</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'famosos')">Famosos</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'filmes')">Filmes</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'séries')">Séries</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, 'dorama')">Dorama</a>
+    <a class="nav-item" onclick="filtrarFavoritos(this)">❤️ Favoritos</a>
   </nav>
 </header>
 
 <div class="container">
-  <div class="highlights-section">
-      <span class="highlights-title">🔥 Destaques da Semana</span>
-      <div class="highlights-scroll" id="highScroll">
-          <div class="high-item" onclick="abrirPP('Kit BTS', 19.90, 'bts1.jpg', '54 photocards lomo de alta qualidade.')">
-              <img src="bts1.jpg" loading="lazy">
-              <div class="high-label">Mais Vendido</div>
-          </div>
-          <div class="high-item" onclick="abrirPP('Pack BLACKPINK', 21.90, 'blackpink.jpg', '54 photocards lomo exclusivos.')">
-              <img src="blackpink.jpg" loading="lazy">
-              <div class="high-label">Edição Limitada</div>
-          </div>
-      </div>
-  </div>
-
   <div class="products" id="productGrid">
-    <div class="card produto" data-name="bts kpop" data-price="19.90" data-img="bts1.jpg" data-desc="54 photocards lomo de alta qualidade.">
+    <div class="card produto" data-name="bts kpop">
       <div class="card-actions">
-          <button class="action-btn btn-fav">❤️</button>
+          <button class="action-btn" onclick="toggleFavorito(this, 'Kit BTS')">❤️</button>
           <button class="action-btn" onclick="compartilharProduto('Kit BTS')">🔗</button>
       </div>
-      <div class="img-container"><img src="bts1.jpg" loading="lazy"><div class="badge-scarcity">🔥 APENAS 3 RESTANTES</div></div>
-      <div class="card-info">
-          <h3>Kit BTS</h3>
-          <p class="price">R$ 19,90</p>
-          <div class="viewing-now">👁️ 14 vendo agora</div>
-          <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-          <div class="description-text">54 photocards lomo de alta qualidade.</div>
-          <button class="btn-buy">Adicionar</button>
-      </div>
+      <div class="img-container"><img src="bts1.jpg"></div>
+      <div class="card-info"><h3>Kit BTS</h3><p class="price">R$ 19,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">54 photocards lomo de alta qualidade.</div><button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button></div>
     </div>
-
-    <div class="card produto" data-name="blackpink kpop" data-price="21.90" data-img="blackpink.jpg" data-desc="54 photocards lomo exclusivos.">
+    <div class="card produto" data-name="blackpink kpop">
         <div class="card-actions">
-            <button class="action-btn btn-fav">❤️</button>
+            <button class="action-btn" onclick="toggleFavorito(this, 'Pack BLACKPINK')">❤️</button>
             <button class="action-btn" onclick="compartilharProduto('Pack BLACKPINK')">🔗</button>
         </div>
-      <div class="img-container"><img src="blackpink.jpg" loading="lazy"><div class="badge-scarcity">💎 EDIÇÃO RARA</div></div>
-      <div class="card-info">
-          <h3>Pack BLACKPINK</h3>
-          <p class="price">R$ 21,90</p>
-          <div class="viewing-now">👁️ 8 vendo agora</div>
-          <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-          <div class="description-text">54 photocards lomo exclusivos.</div>
-          <button class="btn-buy">Adicionar</button>
-      </div>
+      <div class="img-container"><img src="blackpink.jpg"></div>
+      <div class="card-info"><h3>Pack BLACKPINK</h3><p class="price">R$ 21,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">54 photocards lomo exclusivos.</div><button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="stray kids kpop">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Stray Kids')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Stray Kids')">🔗</button>
+        </div>
+      <div class="img-container"><img src="straykids.jpg"></div>
+      <div class="card-info"><h3>Kit Stray Kids</h3><p class="price">R$ 22,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">54 photocards lomo premium.</div><button class="btn-buy" onclick="addCarrinho('Kit Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="le sserafim kpop">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit LE SSERAFIM')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit LE SSERAFIM')">🔗</button>
+        </div>
+      <div class="img-container"><img src="lesserafim.jpg"></div>
+      <div class="card-info"><h3>Kit LE SSERAFIM</h3><p class="price">R$ 22,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards lomo especiais.</div><button class="btn-buy" onclick="addCarrinho('Kit LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="tomorrow x together txt kpop">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Tomorrow X Together')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Tomorrow X Together')">🔗</button>
+        </div>
+      <div class="img-container"><img src="txt.jpg"></div>
+      <div class="card-info"><h3>Kit Tomorrow X Together</h3><p class="price">R$ 23,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards exclusivos do TXT.</div><button class="btn-buy" onclick="addCarrinho('Kit Tomorrow X Together', 23.90, 'txt.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="twice kpop">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Twice')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Twice')">🔗</button>
+        </div>
+      <div class="img-container"><img src="twice.jpg"></div>
+      <div class="card-info"><h3>Kit Twice</h3><p class="price">R$ 22,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Pack com as 9 integrantes.</div><button class="btn-buy" onclick="addCarrinho('Kit Twice', 22.90, 'twice.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="new jeans kpop">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit New Jeans')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit New Jeans')">🔗</button>
+        </div>
+      <div class="img-container"><img src="newjeans.jpg"></div>
+      <div class="card-info"><h3>Kit New Jeans</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards estilo retrô Bunny.</div><button class="btn-buy" onclick="addCarrinho('Kit New Jeans', 24.90, 'newjeans.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="exo kpop">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit EXO')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit EXO')">🔗</button>
+        </div>
+      <div class="img-container"><img src="exo.jpg"></div>
+      <div class="card-info"><h3>Kit EXO</h3><p class="price">R$ 23,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção lendária do EXO.</div><button class="btn-buy" onclick="addCarrinho('Kit EXO', 23.90, 'exo.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="aespa kpop">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit aespa')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit aespa')">🔗</button>
+        </div>
+      <div class="img-container"><img src="aespa.jpg"></div>
+      <div class="card-info"><h3>Kit aespa</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards conceito Next Level.</div><button class="btn-buy" onclick="addCarrinho('Kit aespa', 24.90, 'aespa.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="neymar famosos">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Pack Neymar Jr')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Pack Neymar Jr')">🔗</button>
+        </div>
+      <div class="img-container"><img src="neymar.jpg"></div>
+      <div class="card-info"><h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção exclusiva do craque.</div><button class="btn-buy" onclick="addCarrinho('Pack Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="taylor swift famosos">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Taylor Swift')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Taylor Swift')">🔗</button>
+        </div>
+      <div class="img-container"><img src="taylor.jpg"></div>
+      <div class="card-info"><h3>Kit Taylor Swift</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards de todas as eras.</div><button class="btn-buy" onclick="addCarrinho('Kit Taylor Swift', 26.90, 'taylor.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="jenna ortega famosos">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Pack Jenna Ortega')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Pack Jenna Ortega')">🔗</button>
+        </div>
+        <div class="img-container"><img src="jenna.jpg"></div>
+        <div class="card-info"><h3>Pack Jenna Ortega</h3><p class="price">R$ 23,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção exclusiva da atriz.</div><button class="btn-buy" onclick="addCarrinho('Pack Jenna Ortega', 23.90, 'jenna.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="eminem famosos">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Eminem')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Eminem')">🔗</button>
+        </div>
+        <div class="img-container"><img src="eminem.jpg"></div>
+        <div class="card-info"><h3>Kit Eminem</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards lendários do Rap.</div><button class="btn-buy" onclick="addCarrinho('Kit Eminem', 25.90, 'eminem.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="bruno mars famosos">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Pack Bruno Mars')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Pack Bruno Mars')">🔗</button>
+        </div>
+        <div class="img-container"><img src="brunomars.jpg"></div>
+        <div class="card-info"><h3>Pack Bruno Mars</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Edição especial Bruninho.</div><button class="btn-buy" onclick="addCarrinho('Pack Bruno Mars', 24.90, 'brunomars.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="ariana grande famosos">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Ariana Grande')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Ariana Grande')">🔗</button>
+        </div>
+        <div class="img-container"><img src="ariana.jpg"></div>
+        <div class="card-info"><h3>Kit Ariana Grande</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards estéticos.</div><button class="btn-buy" onclick="addCarrinho('Kit Ariana Grande', 25.90, 'ariana.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="the weeknd famosos">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit The Weeknd')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit The Weeknd')">🔗</button>
+        </div>
+        <div class="img-container"><img src="theweeknd.jpg"></div>
+        <div class="card-info"><h3>Kit The Weeknd</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">XO Collection.</div><button class="btn-buy" onclick="addCarrinho('Kit The Weeknd', 26.90, 'theweeknd.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="olivia rodrigo famosos">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Olivia Rodrigo')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Olivia Rodrigo')">🔗</button>
+        </div>
+        <div class="img-container"><img src="olivia.jpg"></div>
+        <div class="card-info"><h3>Kit Olivia Rodrigo</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">GUTS & SOUR eras.</div><button class="btn-buy" onclick="addCarrinho('Kit Olivia Rodrigo', 24.90, 'olivia.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="dua lipa famosos">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Pack Dua Lipa')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Pack Dua Lipa')">🔗</button>
+        </div>
+        <div class="img-container"><img src="dualipa.jpg"></div>
+        <div class="card-info"><h3>Pack Dua Lipa</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Radical Optimism Edition.</div><button class="btn-buy" onclick="addCarrinho('Pack Dua Lipa', 25.90, 'dualipa.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="billie eilish famosos">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Billie Eilish')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Billie Eilish')">🔗</button>
+        </div>
+        <div class="img-container"><img src="billie.jpg"></div>
+        <div class="card-info"><h3>Kit Billie Eilish</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards azuis intensos.</div><button class="btn-buy" onclick="addCarrinho('Kit Billie Eilish', 26.90, 'billie.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="your name anime filmes">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Your Name')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Your Name')">🔗</button>
+        </div>
+      <div class="img-container"><img src="yourname.jpg"></div>
+      <div class="card-info"><h3>Kit Your Name</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards do filme de Makoto Shinkai.</div><button class="btn-buy" onclick="addCarrinho('Kit Your Name', 25.90, 'yourname.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="demon slayer anime">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Demon Slayer')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Demon Slayer')">🔗</button>
+        </div>
+      <div class="img-container"><img src="demonslayer.jpg"></div>
+      <div class="card-info"><h3>Kit Demon Slayer</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards dos Hashiras e Tanjiro.</div><button class="btn-buy" onclick="addCarrinho('Kit Demon Slayer', 25.90, 'demonslayer.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="evangelion anime">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Pack Evangelion')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Pack Evangelion')">🔗</button>
+        </div>
+      <div class="img-container"><img src="evangelion.jpg"></div>
+      <div class="card-info"><h3>Pack Evangelion</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Edição Neon Genesis Evangelion.</div><button class="btn-buy" onclick="addCarrinho('Pack Evangelion', 26.90, 'evangelion.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="dragon ball z anime">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Dragon Ball Z')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Dragon Ball Z')">🔗</button>
+        </div>
+      <div class="img-container"><img src="dbz.jpg"></div>
+      <div class="card-info"><h3>Kit Dragon Ball Z</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards da saga Z.</div><button class="btn-buy" onclick="addCarrinho('Kit Dragon Ball Z', 24.90, 'dbz.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="frieren anime">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Frieren')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Frieren')">🔗</button>
+        </div>
+      <div class="img-container"><img src="frieren.jpg"></div>
+      <div class="card-info"><h3>Kit Frieren</h3><p class="price">R$ 27,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Artes belíssimas de Frieren.</div><button class="btn-buy" onclick="addCarrinho('Kit Frieren', 27.90, 'frieren.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="jujutsu kaisen anime">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Jujutsu Kaisen')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Jujutsu Kaisen')">🔗</button>
+        </div>
+      <div class="img-container"><img src="jjk.jpg"></div>
+      <div class="card-info"><h3>Kit Jujutsu Kaisen</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards dos feiticeiros.</div><button class="btn-buy" onclick="addCarrinho('Kit Jujutsu Kaisen', 26.90, 'jjk.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="baki anime">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Baki')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Baki')">🔗</button>
+        </div>
+      <div class="img-container"><img src="baki.jpg"></div>
+      <div class="card-info"><h3>Kit Baki</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção Baki Hanma.</div><button class="btn-buy" onclick="addCarrinho('Kit Baki', 24.90, 'baki.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="jojo anime">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit JoJo Bizarre')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit JoJo Bizarre')">🔗</button>
+        </div>
+      <div class="img-container"><img src="jojo.jpg"></div>
+      <div class="card-info"><h3>Kit JoJo Bizarre</h3><p class="price">R$ 28,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Estilo das gerações Joestar.</div><button class="btn-buy" onclick="addCarrinho('Kit JoJo Bizarre', 28.90, 'jojo.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="dandadan anime">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Dandadan')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Dandadan')">🔗</button>
+        </div>
+      <div class="img-container"><img src="dandadan.jpg"></div>
+      <div class="card-info"><h3>Kit Dandadan</h3><p class="price">R$ 27,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Novos photocards Dandadan.</div><button class="btn-buy" onclick="addCarrinho('Kit Dandadan', 27.90, 'dandadan.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="stranger things filmes séries">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Stranger Things')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Stranger Things')">🔗</button>
+        </div>
+      <div class="img-container"><img src="strangerthings.jpg"></div>
+      <div class="card-info"><h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards temáticos.</div><button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'strangerthings.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="all of us are dead séries dorama">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit All of us are Dead')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit All of us are Dead')">🔗</button>
+        </div>
+      <div class="img-container"><img src="allofusaredead.jpg"></div>
+      <div class="card-info"><h3>Kit All of us are Dead</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Escola infestada de zumbis.</div><button class="btn-buy" onclick="addCarrinho('Kit All of us are Dead', 25.90, 'allofusaredead.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="the 100 séries">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit The 100')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit The 100')">🔗</button>
+        </div>
+      <div class="img-container"><img src="the100.jpg"></div>
+      <div class="card-info"><h3>Kit The 100</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Sobrevivência pós-apocalíptica.</div><button class="btn-buy" onclick="addCarrinho('Kit The 100', 25.90, 'the100.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="weak hero séries dorama">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Weak Hero')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Weak Hero')">🔗</button>
+        </div>
+      <div class="img-container"><img src="weakhero.jpg"></div>
+      <div class="card-info"><h3>Kit Weak Hero</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Drama de ação e superação.</div><button class="btn-buy" onclick="addCarrinho('Kit Weak Hero', 26.90, 'weakhero.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="vis a vis séries">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Vis a Vis')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Vis a Vis')">🔗</button>
+        </div>
+      <div class="img-container"><img src="visavis.jpg"></div>
+      <div class="card-info"><h3>Kit Vis a Vis</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Detentas de Cruz del Sur.</div><button class="btn-buy" onclick="addCarrinho('Kit Vis a Vis', 25.90, 'visavis.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="sweet home séries dorama">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Sweet Home')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Sweet Home')">🔗</button>
+        </div>
+      <div class="img-container"><img src="sweethome.jpg"></div>
+      <div class="card-info"><h3>Kit Sweet Home</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Monstros e heróis.</div><button class="btn-buy" onclick="addCarrinho('Kit Sweet Home', 26.90, 'sweethome.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="enola holmes séries filmes">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Enola Holmes')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Enola Holmes')">🔗</button>
+        </div>
+      <div class="img-container"><img src="enolaholmes.jpg"></div>
+      <div class="card-info"><h3>Kit Enola Holmes</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">A detetive astuta.</div><button class="btn-buy" onclick="addCarrinho('Kit Enola Holmes', 24.90, 'enolaholmes.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="reality z séries">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Reality Z')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Reality Z')">🔗</button>
+        </div>
+      <div class="img-container"><img src="realityz.jpg"></div>
+      <div class="card-info"><h3>Kit Reality Z</h3><p class="price">R$ 23,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Zumbis no reality show.</div><button class="btn-buy" onclick="addCarrinho('Kit Reality Z', 23.90, 'realityz.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="my name séries dorama">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit My Name')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit My Name')">🔗</button>
+        </div>
+      <div class="img-container"><img src="myname.jpg"></div>
+      <div class="card-info"><h3>Kit My Name</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Drama de vingança.</div><button class="btn-buy" onclick="addCarrinho('Kit My Name', 26.90, 'myname.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="outer banks séries">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Outer Banks')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Outer Banks')">🔗</button>
+        </div>
+      <div class="img-container"><img src="outerbanks.jpg"></div>
+      <div class="card-info"><h3>Kit Outer Banks</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Pogues e Kooks.</div><button class="btn-buy" onclick="addCarrinho('Kit Outer Banks', 25.90, 'outerbanks.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="extracurricular séries dorama">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Extracurricular')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Extracurricular')">🔗</button>
+        </div>
+      <div class="img-container"><img src="extracurricular.jpg"></div>
+      <div class="card-info"><h3>Kit Extracurricular</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Drama psicológico coreano.</div><button class="btn-buy" onclick="addCarrinho('Kit Extracurricular', 26.90, 'extracurricular.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="alice in borderland séries dorama">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Alice in Borderland')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Alice in Borderland')">🔗</button>
+        </div>
+      <div class="img-container"><img src="aliceinborderland.jpg"></div>
+      <div class="card-info"><h3>Kit Alice in Borderland</h3><p class="price" >R$ 27,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Jogos mortais de cartas.</div><button class="btn-buy" onclick="addCarrinho('Kit Alice in Borderland', 27.90, 'aliceinborderland.jpg')">Adicionar</button></div>
+    </div>
+    <div class="card produto" data-name="it bem vindos a derry séries filmes">
+        <div class="card-actions">
+            <button class="action-btn" onclick="toggleFavorito(this, 'Kit Welcome to Derry')">❤️</button>
+            <button class="action-btn" onclick="compartilharProduto('Kit Welcome to Derry')">🔗</button>
+        </div>
+      <div class="img-container"><img src="itderry.jpg"></div>
+      <div class="card-info"><h3>Kit Welcome to Derry</h3><p class="price">R$ 28,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Terror no universo IT.</div><button class="btn-buy" onclick="addCarrinho('Kit Welcome to Derry', 28.90, 'itderry.jpg')">Adicionar</button></div>
     </div>
   </div>
 
@@ -296,14 +676,41 @@ header {
       <p>Produzimos fanbox e caixas de photocards personalizadas 💖.</p>
       <a href="https://wa.me/5591986122614" class="btn-whatsapp-custom">CHAMAR NO WHATSAPP</a>
   </div>
+
+  <div class="meus-pedidos">
+    <h3>📋 Pedidos em Andamento</h3>
+    <div id="listaPedidosCliente">Nenhum pedido recente.</div>
+    <button class="btn-limpar-pedidos" onclick="limparHistorico()" id="btnLimpar" style="display:none;">Limpar Histórico</button>
+  </div>
 </div>
 
 <footer class="main-footer">
     <div class="footer-grid">
         <div class="footer-col">
-            <h4>Suporte</h4>
-            <a href="https://wa.me/5591986122614" style="color:#25d366">WhatsApp de Vendas</a>
+            <h4>Institucional</h4>
+            <a href="#">Sobre a IdolVerse</a>
+            <a href="#">Prazo de Produção</a>
+            <a href="#">Trocas e Devoluções</a>
         </div>
+        <div class="footer-col">
+            <h4>Suporte</h4>
+            <a href="https://wa.me/5591986122614">WhatsApp de Vendas</a>
+            <a href="#">Rastrear Pedido</a>
+            <a href="#">Dúvidas Frequentes</a>
+        </div>
+        <div class="footer-col">
+            <h4>Formas de Pagamento</h4>
+            <div class="payment-icons">💳 📲 🏦</div>
+            <p style="margin-top:10px">Aceitamos Cartão, Pix e Boleto via WhatsApp.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Nossas Redes</h4>
+            <a href="#">Instagram @IdolVerse</a>
+            <a href="#">TikTok @IdolVerseStore</a>
+        </div>
+    </div>
+    <div class="bug-report-footer" style="text-align: center; margin-top: 30px;">
+        Se encontrar algum bug no site, entre em contato com <a href="https://wa.me/559188822874">+55 91 8882-2874</a>. Obrigada!
     </div>
 </footer>
 
@@ -315,182 +722,338 @@ header {
 <div id="carrinho">
   <div class="cart-header">
     <h3>Meu Carrinho</h3>
-    <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:32px; color:var(--primary-pink);">&times;</span>
+    <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:32px; padding: 10px; color: var(--primary-pink); font-weight: bold;">&times;</span>
   </div>
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
     <div class="cart-inputs">
-        <input type="text" id="cartNome" placeholder="Seu Nome">
-        <input type="text" id="cartEndereco" placeholder="Endereço">
-        <input type="text" id="cartCEP" placeholder="CEP">
+        <input type="text" id="cartNome" placeholder="Seu Nome" oninput="salvarDadosCliente()">
+        <input type="text" id="cartEndereco" placeholder="Endereço (Rua, Nº, Bairro)" oninput="salvarDadosCliente(); atualizarHeader()">
+        <input type="text" id="cartCidadeEstado" placeholder="Cidade e Estado" oninput="salvarDadosCliente()">
+        <input type="text" id="cartCEP" placeholder="CEP" oninput="salvarDadosCliente()">
+        <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:12px; border-radius:8px; margin-bottom:10px; cursor:pointer; font-weight: bold;">CALCULAR FRETE</button>
+    </div>
+    <div id="opcoesFrete" style="display:none; color:white; font-size:13px; margin-bottom:10px;">
+        <label><input type="radio" name="tipoFrete" value="PAC" onchange="atualizarTotal()"> <span id="labelPAC">PAC</span></label>
+        <label style="margin-left:15px;"><input type="radio" name="tipoFrete" value="SEDEX" checked onchange="atualizarTotal()"> <span id="labelSEDEX">SEDEX</span></label>
     </div>
     <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:20px; margin: 10px 0;">
         <span>Total:</span><span id="total">R$ 0,00</span>
     </div>
-    <button class="btn-buy" style="padding:18px;" onclick="finalizar()">FINALIZAR NO WHATSAPP</button>
+    <button class="btn-buy" style="padding:18px; margin-top:10px; font-size: 14px;" onclick="finalizar()">FINALIZAR NO WHATSAPP</button>
   </div>
 </div>
 
 <script>
-/**
- * OTIMIZAÇÕES SEM REMOÇÃO DE FUNÇÕES
- */
 let carrinho = [];
 let favoritos = JSON.parse(localStorage.getItem('idolverse_favs')) || [];
+let valorFrete = 0;
+let subtotalProdutos = 0;
+let prazoEntrega = "";
+let pp_currentProd = {};
+let pp_currentQty = 1;
 
-// Debounce para Busca (Performance)
-function debounce(fn, delay = 300) {
-    let timer;
-    return (...args) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => fn.apply(this, args), delay);
-    };
+function carregarTudo() {
+    carregarPedidosHist();
+    carregarCarrinhoLocal();
+    carregarDadosCliente();
+    initProductClicks();
+    sincronizarFavoritosUI();
 }
 
-// Event Delegation (Gerencia cliques em cards sem pesar a memória)
-document.getElementById('productGrid').addEventListener('click', (e) => {
-    const card = e.target.closest('.card');
-    if(!card) return;
-
-    const nome = card.dataset.name;
-    const preco = parseFloat(card.dataset.price);
-    const img = card.dataset.img;
-    const desc = card.dataset.desc;
-
-    if(e.target.classList.contains('btn-buy')) {
-        addCarrinho(nome, preco, img);
-    } else if(e.target.classList.contains('btn-fav')) {
-        toggleFavorito(e.target, nome);
-    } else if(e.target.classList.contains('btn-details')) {
-        toggleDesc(e.target);
-    } else if(e.target.tagName === 'IMG' || e.target.tagName === 'H3') {
-        abrirPP(nome, preco, img, desc);
+// --- NOVAS FUNÇÕES: FAVORITOS E SHARE ---
+function toggleFavorito(btn, nome) {
+    const index = favoritos.indexOf(nome);
+    if(index === -1) {
+        favoritos.push(nome);
+        btn.classList.add('fav-active');
+        showToast("❤️ Adicionado aos favoritos!");
+    } else {
+        favoritos.splice(index, 1);
+        btn.classList.remove('fav-active');
     }
-});
+    localStorage.setItem('idolverse_favs', JSON.stringify(favoritos));
+}
+
+function sincronizarFavoritosUI() {
+    document.querySelectorAll('.card.produto').forEach(card => {
+        const nome = card.querySelector('h3').innerText;
+        if(favoritos.includes(nome)) {
+            card.querySelector('.action-btn').classList.add('fav-active');
+        }
+    });
+}
+
+function filtrarFavoritos(el) {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card.produto').forEach(card => {
+        const nome = card.querySelector('h3').innerText;
+        card.style.display = favoritos.includes(nome) ? "flex" : "none";
+    });
+}
+
+function compartilharProduto(nome) {
+    const texto = `Olha esse kit de photocards que encontrei na IdolVerse Store: ${nome}! ✨💖\nVeja aqui: ${window.location.href}`;
+    const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+    window.open(url, '_blank');
+}
+
+// --- FUNÇÕES EXISTENTES ---
+function salvarDadosCliente() {
+    const dados = {
+        nome: document.getElementById("cartNome").value,
+        endereco: document.getElementById("cartEndereco").value,
+        cidade: document.getElementById("cartCidadeEstado").value,
+        cep: document.getElementById("cartCEP").value
+    };
+    localStorage.setItem('idolverse_cliente', JSON.stringify(dados));
+    if(dados.nome) {
+        document.getElementById("welcomeMsg").innerText = `Oi, ${dados.nome.split(' ')[0]}! ✨`;
+    }
+}
+
+function carregarDadosCliente() {
+    const salvo = localStorage.getItem('idolverse_cliente');
+    if(salvo) {
+        const d = JSON.parse(salvo);
+        document.getElementById("cartNome").value = d.nome || "";
+        document.getElementById("cartEndereco").value = d.endereco || "";
+        document.getElementById("cartCidadeEstado").value = d.cidade || "";
+        document.getElementById("cartCEP").value = d.cep || "";
+        if(d.nome) document.getElementById("welcomeMsg").innerText = `Oi, ${d.nome.split(' ')[0]}! ✨`;
+        atualizarHeader();
+    }
+}
+
+function initProductClicks() {
+    document.querySelectorAll('.card.produto').forEach(card => {
+        const img = card.querySelector('img');
+        const h3 = card.querySelector('h3');
+        const openFunc = () => {
+            const nome = h3.innerText;
+            const precoStr = card.querySelector('.price').innerText;
+            const preco = parseFloat(precoStr.replace('R$', '').replace(',', '.'));
+            const imagem = img.src;
+            const desc = card.querySelector('.description-text').innerText;
+            abrirPP(nome, preco, imagem, desc);
+        };
+        img.onclick = openFunc;
+        h3.onclick = openFunc;
+    });
+}
+
+function abrirPP(nome, preco, img, desc) {
+    pp_currentProd = {nome, preco, img};
+    pp_currentQty = 1;
+    document.getElementById("ppTitle").innerText = nome;
+    document.getElementById("ppPrice").innerText = `R$ ${preco.toFixed(2).replace('.', ',')}`;
+    document.getElementById("ppParcela").innerText = `R$ ${(preco/3).toFixed(2).replace('.', ',')}`;
+    document.getElementById("ppDesc").innerText = desc;
+    document.getElementById("ppQty").innerText = pp_currentQty;
+    const slider = document.getElementById("ppSlider");
+    slider.innerHTML = `<img src="${img}"><img src="${img}" style="filter:brightness(1.1)"><img src="${img}" style="filter:contrast(1.1)">`;
+    const dots = document.getElementById("ppDots");
+    dots.innerHTML = '<div class="pp-dot active"></div><div class="pp-dot"></div><div class="pp-dot"></div>';
+    document.getElementById("ppBuyBtn").onclick = () => {
+        for(let i=0; i<pp_currentQty; i++) addCarrinho(nome, preco, img);
+        fecharPP();
+        showToast(`✅ ${pp_currentQty}x ${nome} adicionado!`);
+    };
+    document.getElementById("productPage").style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
+
+function fecharPP() {
+    document.getElementById("productPage").style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+function mudarPPQty(v) {
+    pp_currentQty += v;
+    if(pp_currentQty < 1) pp_currentQty = 1;
+    document.getElementById("ppQty").innerText = pp_currentQty;
+}
+
+function selectV(el) {
+    document.querySelectorAll('.v-opt').forEach(opt => opt.classList.remove('active'));
+    el.classList.add('active');
+}
+
+function updateDots() {
+    const slider = document.getElementById("ppSlider");
+    const dots = document.querySelectorAll('.pp-dot');
+    if(!slider || dots.length === 0) return;
+    const index = Math.round(slider.scrollLeft / slider.offsetWidth);
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+}
+
+function showToast(msg) {
+    const t = document.getElementById("toast");
+    t.innerText = msg;
+    t.style.display = "block";
+    setTimeout(() => { t.style.display = "none"; }, 3000);
+}
+
+function salvarCarrinhoLocal() {
+    localStorage.setItem('idolverse_carrinho_atual', JSON.stringify(carrinho));
+}
+
+function carregarCarrinhoLocal() {
+    const salvo = localStorage.getItem('idolverse_carrinho_atual');
+    if(salvo) {
+        carrinho = JSON.parse(salvo);
+        renderCart();
+    }
+}
+
+function salvarPedidoNoHistorico(cliente, total, itens) {
+    let historico = JSON.parse(localStorage.getItem('idolverse_pedidos')) || [];
+    const novoPedido = {
+        id: Date.now(),
+        data: new Date().toLocaleString(),
+        cliente: cliente,
+        total: total,
+        resumo: itens.substring(0, 60) + "..."
+    };
+    historico.unshift(novoPedido);
+    localStorage.setItem('idolverse_pedidos', JSON.stringify(historico));
+    carregarPedidosHist();
+}
+
+function carregarPedidosHist() {
+    const listaDiv = document.getElementById("listaPedidosCliente");
+    const btnLimpar = document.getElementById("btnLimpar");
+    let historico = JSON.parse(localStorage.getItem('idolverse_pedidos')) || [];
+    if(historico.length === 0) {
+        listaDiv.innerHTML = "Nenhum pedido recente.";
+        btnLimpar.style.display = "none";
+        return;
+    }
+    btnLimpar.style.display = "inline-block";
+    listaDiv.innerHTML = "";
+    historico.forEach(p => {
+        listaDiv.innerHTML += `<div class="pedido-item"><div class="pedido-data">📅 ${p.data}</div><strong>Total: R$ ${p.total}</strong><br><span>${p.resumo}</span></div>`;
+    });
+}
+
+function limparHistorico() {
+    if(confirm("Deseja limpar seu histórico de pedidos?")) {
+        localStorage.removeItem('idolverse_pedidos');
+        carregarPedidosHist();
+    }
+}
 
 function addCarrinho(nome, preco, img) {
     let item = carrinho.find(i => i.nome === nome);
     if(item) item.qtd++; else carrinho.push({nome, preco, img, qtd: 1});
     salvarCarrinhoLocal();
     renderCart();
-    showToast(`✅ Adicionado!`);
+    if(document.getElementById("productPage").style.display !== "flex") {
+        showToast(`✅ ${nome} adicionado!`);
+    }
+}
+
+function mudarQtd(nome, operacao) {
+    let itemIndex = carrinho.findIndex(i => i.nome === nome);
+    if(itemIndex !== -1) {
+        if(operacao === 'mais') { carrinho[itemIndex].qtd++; } 
+        else if(operacao === 'menos') {
+            carrinho[itemIndex].qtd--;
+            if(carrinho[itemIndex].qtd <= 0) carrinho.splice(itemIndex, 1);
+        }
+    }
+    salvarCarrinhoLocal();
+    renderCart();
 }
 
 function renderCart() {
     const lista = document.getElementById("listaCarrinho");
-    const fragment = document.createDocumentFragment();
-    let total = 0;
-
-    carrinho.forEach(item => {
-        total += item.preco * item.qtd;
-        const div = document.createElement('div');
-        div.className = 'item-cart';
-        div.innerHTML = `<img src="${item.img}"><div style="flex:1"><div>${item.nome}</div><div>Qtd: ${item.qtd}</div></div><strong>R$ ${(item.preco * item.qtd).toFixed(2)}</strong>`;
-        fragment.appendChild(div);
-    });
-
+    if(!lista) return;
     lista.innerHTML = "";
-    lista.appendChild(fragment);
-    document.getElementById("cartCount").innerText = carrinho.reduce((a,b) => a + b.qtd, 0);
-    document.getElementById("total").innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
-}
-
-const filtrarOtimizado = debounce((t) => {
-    t = t.toLowerCase();
-    document.querySelectorAll(".produto").forEach(p => {
-        p.style.display = p.dataset.name.includes(t) ? "flex" : "none";
+    subtotalProdutos = 0;
+    carrinho.forEach(item => {
+        subtotalProdutos += item.preco * item.qtd;
+        lista.innerHTML += `<div class="item-cart"><img src="${item.img}"><div style="flex:1"><div>${item.nome}</div><div class="qty-wrapper"><button class="btn-qty" onclick="mudarQtd('${item.nome}','menos')">-</button><span style="padding:0 10px">${item.qtd}</span><button class="btn-qty" onclick="mudarQtd('${item.nome}','mais')">+</button></div></div><strong>R$ ${(item.preco * item.qtd).toFixed(2)}</strong></div>`;
     });
-});
-
-document.getElementById('mainSearch').addEventListener('input', (e) => filtrarOtimizado(e.target.value));
-
-// Funções de Estilo e Modal
-function abrirPP(nome, preco, img, desc) {
-    document.getElementById("ppTitle").innerText = nome;
-    document.getElementById("ppPrice").innerText = `R$ ${preco.toFixed(2).replace('.', ',')}`;
-    document.getElementById("ppDesc").innerText = desc;
-    document.getElementById("ppSlider").innerHTML = `<img src="${img}"><img src="${img}" style="filter:brightness(1.2)">`;
-    document.getElementById("ppBuyBtn").onclick = () => { addCarrinho(nome, preco, img); fecharPP(); };
-    document.getElementById("productPage").style.display = "flex";
+    document.getElementById("cartCount").innerText = carrinho.reduce((a,b) => a + b.qtd, 0);
+    atualizarTotal();
 }
 
-function fecharPP() { document.getElementById("productPage").style.display = "none"; }
-
-function toggleDesc(btn) { 
-    const d = btn.nextElementSibling; d.style.display = d.style.display === "block" ? "none" : "block"; 
+function calcularFrete() {
+    const cep = document.getElementById("cartCEP").value.replace(/\D/g, "");
+    if(cep.length !== 8) return alert("CEP inválido");
+    document.getElementById("opcoesFrete").style.display = "block";
+    const isLocal = cep.startsWith("6");
+    const precoPAC = isLocal ? 14.90 : 28.50;
+    const precoSEDEX = isLocal ? 26.00 : 52.90;
+    const diasPAC = isLocal ? "5-7 dias úteis" : "12-15 dias úteis";
+    const diasSEDEX = isLocal ? "1-3 dias úteis" : "4-6 dias úteis";
+    document.getElementById("labelPAC").innerText = `PAC - R$ ${precoPAC.toFixed(2)} (${diasPAC})`;
+    document.getElementById("labelSEDEX").innerText = `SEDEX - R$ ${precoSEDEX.toFixed(2)} (${diasSEDEX})`;
+    document.querySelector('input[value="PAC"]').dataset.preco = precoPAC;
+    document.querySelector('input[value="PAC"]').dataset.prazo = diasPAC;
+    document.querySelector('input[value="SEDEX"]').dataset.preco = precoSEDEX;
+    document.querySelector('input[value="SEDEX"]').dataset.prazo = diasSEDEX;
+    atualizarTotal();
 }
 
-function toggleFavorito(btn, nome) {
-    const idx = favoritos.indexOf(nome);
-    if(idx === -1) {
-        favoritos.push(nome);
-        btn.classList.add('fav-active');
-    } else {
-        favoritos.splice(idx, 1);
-        btn.classList.remove('fav-active');
+function atualizarTotal() {
+    const selecionado = document.querySelector('input[name="tipoFrete"]:checked');
+    if(selecionado && selecionado.dataset.preco) {
+        valorFrete = parseFloat(selecionado.dataset.preco);
+        prazoEntrega = selecionado.dataset.prazo;
     }
-    localStorage.setItem('idolverse_favs', JSON.stringify(favoritos));
+    const total = subtotalProdutos + valorFrete;
+    const totalEl = document.getElementById("total");
+    if(totalEl) totalEl.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
 }
 
-function mudarTema(tema) {
-    document.body.className = tema;
-    localStorage.setItem('idolverse_tema', tema);
+function finalizar() {
+    const cliente = document.getElementById("cartNome").value;
+    const endereco = document.getElementById("cartEndereco").value;
+    const cid = document.getElementById("cartCidadeEstado").value;
+    const cep = document.getElementById("cartCEP").value;
+    const freteTipo = document.querySelector('input[name="tipoFrete"]:checked')?.value || "SEDEX";
+    if(carrinho.length === 0) return alert("O seu carrinho está vazio!");
+    if(!cliente || !endereco) return alert("Preencha seus dados de entrega!");
+    if(valorFrete === 0) return alert("Calcule o frete antes de finalizar!");
+    const lista = carrinho.map(i => `• ${i.qtd}x ${i.nome} - R$ ${(i.preco * i.qtd).toFixed(2)}`).join('\n');
+    const totalFinal = (subtotalProdutos + valorFrete).toFixed(2);
+    salvarPedidoNoHistorico(cliente, totalFinal, lista);
+    const msg = `*PEDIDO: IdolVerse*\n\n*CLIENTE:* ${cliente}\n*ENDEREÇO:* ${endereco}\n*CIDADE:* ${cid}\n*CEP:* ${cep}\n\n*PRODUTOS:*\n${lista}\n\n*SUBTOTAL:* R$ ${subtotalProdutos.toFixed(2)}\n*FRETE:* ${freteTipo} (R$ ${valorFrete.toFixed(2)})\n*PRAZO ESTIMADO:* ${prazoEntrega}\n*TOTAL:* R$ ${totalFinal}`;
+    window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`);
 }
 
 function toggleCarrinho() {
-    const c = document.getElementById("carrinho");
-    const o = document.getElementById("overlay");
-    const isOpen = c.style.right === "0px";
-    c.style.right = isOpen ? "-100%" : "0px";
-    o.style.display = isOpen ? "none" : "block";
-}
-
-function carregarTudo() {
-    const cartSalvo = localStorage.getItem('idolverse_carrinho_atual');
-    if(cartSalvo) { carrinho = JSON.parse(cartSalvo); renderCart(); }
-    
-    const temaSalvo = localStorage.getItem('idolverse_tema');
-    if(temaSalvo) mudarTema(temaSalvo);
-
-    // Sincroniza UI de favoritos
-    document.querySelectorAll('.card.produto').forEach(card => {
-        if(favoritos.includes(card.dataset.name)) {
-            card.querySelector('.btn-fav').classList.add('fav-active');
-        }
-    });
-}
-
-function salvarCarrinhoLocal() { localStorage.setItem('idolverse_carrinho_atual', JSON.stringify(carrinho)); }
-
-function finalizar() {
-    const nome = document.getElementById("cartNome").value;
-    if(!nome || carrinho.length === 0) return alert("Adicione itens e seu nome!");
-    const msg = encodeURIComponent(`*Pedido IdolVerse*\nNome: ${nome}\nItens:\n${carrinho.map(i => `- ${i.qtd}x ${i.nome}`).join('\n')}`);
-    window.open(`https://wa.me/5591986122614?text=${msg}`);
-}
-
-function compartilharProduto(nome) {
-    window.open(`https://wa.me/?text=${encodeURIComponent('Olha esse kit da IdolVerse: ' + nome)}`);
-}
-
-// Menu de navegação
-document.querySelector('.nav-menu').addEventListener('click', (e) => {
-    if(e.target.dataset.filter !== undefined) {
-        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-        e.target.classList.add('active');
-        const filter = e.target.dataset.filter;
-        if(filter === 'favoritos') {
-            document.querySelectorAll('.produto').forEach(p => p.style.display = favoritos.includes(p.dataset.name) ? 'flex' : 'none');
-        } else {
-            filtrarOtimizado(filter);
-        }
+    const c = document.getElementById("carrinho"), o = document.getElementById("overlay"), b = document.getElementById("cartBtn");
+    const aberto = c.style.right === "0px";
+    if (aberto) {
+        c.style.right = "-100%"; o.style.display = "none"; b.style.display = "flex";
+    } else {
+        c.style.right = "0px"; o.style.display = "block"; b.style.display = "none";
     }
-});
+}
 
-function showToast(msg) {
-    const t = document.getElementById("toast");
-    t.innerText = msg; t.style.display = "block";
-    setTimeout(() => t.style.display = "none", 2500);
+function buscar(t) {
+    t = t.toLowerCase();
+    document.querySelectorAll(".produto").forEach(p => p.style.display = p.dataset.name.includes(t) ? "flex" : "none");
+}
+
+function filtrarCategoria(el, t) {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    buscar(t);
+}
+
+function toggleDesc(btn) {
+    const desc = btn.nextElementSibling;
+    desc.style.display = (desc.style.display === "block") ? "none" : "block";
+}
+
+function atualizarHeader() {
+    const end = document.getElementById("cartEndereco").value;
+    document.getElementById("displayEndereco").innerText = end ? `📍 Enviar para: ${end}` : "📍 Informe o endereço no carrinho >";
 }
 </script>
 </body>

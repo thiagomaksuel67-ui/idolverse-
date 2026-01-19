@@ -125,7 +125,7 @@ header {
 
 .btn-buy { background: var(--primary-pink); color: white; border: none; padding: 8px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; }
 
-/* --- NOVOS ESTILOS PÁGINA DE PRODUTO --- */
+/* --- PÁGINA DE PRODUTO --- */
 #productPage {
     position: fixed; inset: 0; background: var(--bg-dark-deep);
     z-index: 2500; display: none; flex-direction: column;
@@ -167,7 +167,6 @@ header {
 .pp-shipping { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; }
 .pp-shipping-input { display: flex; gap: 10px; margin-top: 10px; }
 .pp-shipping-input input { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #444; background: #111; color: white; }
-/* --- FIM NOVOS ESTILOS --- */
 
 .custom-order-section {
     background: rgba(255, 79, 216, 0.1); border: 1px solid var(--primary-pink);
@@ -215,7 +214,7 @@ header {
 .bug-report-footer a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
 </style>
 </head>
-<body onload="carregarPedidosHist(); initProductClicks()">
+<body onload="carregarPedidosHist(); carregarCarrinhoLocal(); initProductClicks()">
 
 <div id="zoomModal" onclick="this.style.display='none'"><img id="imgZoomed" src=""></div>
 
@@ -329,7 +328,6 @@ header {
       <div class="img-container"><img src="aespa.jpg"></div>
       <div class="card-info"><h3>Kit aespa</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards conceito Next Level.</div><button class="btn-buy" onclick="addCarrinho('Kit aespa', 24.90, 'aespa.jpg')">Adicionar</button></div>
     </div>
-
     <div class="card produto" data-name="neymar famosos">
       <div class="img-container"><img src="neymar.jpg"></div>
       <div class="card-info"><h3>Pack Neymar Jr</h3><p class="price">R$ 24,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Coleção exclusiva do craque.</div><button class="btn-buy" onclick="addCarrinho('Pack Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button></div>
@@ -370,7 +368,6 @@ header {
         <div class="img-container"><img src="billie.jpg"></div>
         <div class="card-info"><h3>Kit Billie Eilish</h3><p class="price">R$ 26,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards azuis intensos.</div><button class="btn-buy" onclick="addCarrinho('Kit Billie Eilish', 26.90, 'billie.jpg')">Adicionar</button></div>
     </div>
-
     <div class="card produto" data-name="your name anime filmes">
       <div class="img-container"><img src="yourname.jpg"></div>
       <div class="card-info"><h3>Kit Your Name</h3><p class="price">R$ 25,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards do filme de Makoto Shinkai.</div><button class="btn-buy" onclick="addCarrinho('Kit Your Name', 25.90, 'yourname.jpg')">Adicionar</button></div>
@@ -407,7 +404,6 @@ header {
       <div class="img-container"><img src="dandadan.jpg"></div>
       <div class="card-info"><h3>Kit Dandadan</h3><p class="price">R$ 27,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Novos photocards Dandadan.</div><button class="btn-buy" onclick="addCarrinho('Kit Dandadan', 27.90, 'dandadan.jpg')">Adicionar</button></div>
     </div>
-
     <div class="card produto" data-name="stranger things filmes séries">
       <div class="img-container"><img src="strangerthings.jpg"></div>
       <div class="card-info"><h3>Kit Stranger Things</h3><p class="price">R$ 29,90</p><button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button><div class="description-text">Photocards temáticos.</div><button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'strangerthings.jpg')">Adicionar</button></div>
@@ -515,7 +511,7 @@ let valorFrete = 0;
 let subtotalProdutos = 0;
 let prazoEntrega = "";
 
-/* --- LOGICA NOVA PÁGINA PRODUTO --- */
+/* --- LOGICA PÁGINA PRODUTO --- */
 let pp_currentProd = {};
 let pp_currentQty = 1;
 
@@ -548,11 +544,8 @@ function abrirPP(nome, preco, img, desc) {
     document.getElementById("ppDesc").innerText = desc;
     document.getElementById("ppQty").innerText = pp_currentQty;
     
-    // Slider
     const slider = document.getElementById("ppSlider");
     slider.innerHTML = `<img src="${img}"><img src="${img}" style="filter:brightness(1.1)"><img src="${img}" style="filter:contrast(1.1)">`;
-    
-    // Dots
     const dots = document.getElementById("ppDots");
     dots.innerHTML = '<div class="pp-dot active"></div><div class="pp-dot"></div><div class="pp-dot"></div>';
     
@@ -585,10 +578,23 @@ function selectV(el) {
 function updateDots() {
     const slider = document.getElementById("ppSlider");
     const dots = document.querySelectorAll('.pp-dot');
+    if(!slider || dots.length === 0) return;
     const index = Math.round(slider.scrollLeft / slider.offsetWidth);
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
 }
-/* --- FIM LOGICA NOVA PÁGINA --- */
+
+/* --- LOGICA PERSISTÊNCIA (LOCALSTORAGE) --- */
+function salvarCarrinhoLocal() {
+    localStorage.setItem('idolverse_carrinho_atual', JSON.stringify(carrinho));
+}
+
+function carregarCarrinhoLocal() {
+    const salvo = localStorage.getItem('idolverse_carrinho_atual');
+    if(salvo) {
+        carrinho = JSON.parse(salvo);
+        renderCart();
+    }
+}
 
 // FUNÇÕES DE PEDIDOS EM ANDAMENTO (HISTÓRICO)
 function salvarPedidoNoHistorico(cliente, total, itens) {
@@ -600,7 +606,7 @@ function salvarPedidoNoHistorico(cliente, total, itens) {
         total: total,
         resumo: itens.substring(0, 60) + "..."
     };
-    historico.unshift(novoPedido); // Adiciona no topo
+    historico.unshift(novoPedido);
     localStorage.setItem('idolverse_pedidos', JSON.stringify(historico));
     carregarPedidosHist();
 }
@@ -640,6 +646,7 @@ function limparHistorico() {
 function addCarrinho(nome, preco, img) {
     let item = carrinho.find(i => i.nome === nome);
     if(item) item.qtd++; else carrinho.push({nome, preco, img, qtd: 1});
+    salvarCarrinhoLocal(); // SALVA SEMPRE QUE ADICIONA
     renderCart();
 }
 
@@ -655,11 +662,13 @@ function mudarQtd(nome, operacao) {
             }
         }
     }
+    salvarCarrinhoLocal(); // SALVA SEMPRE QUE ALTERA QTD
     renderCart();
 }
 
 function renderCart() {
     const lista = document.getElementById("listaCarrinho");
+    if(!lista) return;
     lista.innerHTML = "";
     subtotalProdutos = 0;
     carrinho.forEach(item => {
@@ -695,7 +704,8 @@ function atualizarTotal() {
         prazoEntrega = selecionado.dataset.prazo;
     }
     const total = subtotalProdutos + valorFrete;
-    document.getElementById("total").innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    const totalEl = document.getElementById("total");
+    if(totalEl) totalEl.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
 }
 
 function finalizar() {
@@ -713,6 +723,9 @@ function finalizar() {
     const totalFinal = (subtotalProdutos + valorFrete).toFixed(2);
     
     salvarPedidoNoHistorico(cliente, totalFinal, lista);
+    
+    // OPCIONAL: Limpar o carrinho após a finalização
+    // carrinho = []; salvarCarrinhoLocal(); renderCart();
 
     const msg = `*PEDIDO: IdolVerse*\n\n*CLIENTE:* ${cliente}\n*ENDEREÇO:* ${endereco}\n*CIDADE:* ${cid}\n*CEP:* ${cep}\n\n*PRODUTOS:*\n${lista}\n\n*SUBTOTAL:* R$ ${subtotalProdutos.toFixed(2)}\n*FRETE:* ${freteTipo} (R$ ${valorFrete.toFixed(2)})\n*PRAZO ESTIMADO:* ${prazoEntrega}\n*TOTAL:* R$ ${totalFinal}\n\n*OBS:* Itens conforme disponibilidade.`;
     
@@ -743,6 +756,11 @@ function filtrarCategoria(el, t) {
 function toggleDesc(btn) {
     const desc = btn.nextElementSibling;
     desc.style.display = (desc.style.display === "block") ? "none" : "block";
+}
+
+function atualizarHeader() {
+    const end = document.getElementById("cartEndereco").value;
+    document.getElementById("displayEndereco").innerText = end ? `📍 Enviar para: ${end}` : "📍 Informe o endereço no carrinho >";
 }
 </script>
 </body>

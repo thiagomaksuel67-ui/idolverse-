@@ -433,7 +433,7 @@ header {
 
 <header>
   <div class="header-top">
-    <div class="logo-container"><img src="logo-img.png" alt="Logo IdolVerse" class="logo-img"></div>
+    <div class="logo-container"><img src="logo-img.png" alt="IdolVerse" class="logo-img" onerror="this.outerHTML='<span style=\'font-size:18px;font-weight:bold;color:var(--primary-pink)\'>✨ IdolVerse</span>'"></div>
     <div class="search-container">
       <input type="text" placeholder="Buscar no IdolVerse" onkeyup="buscar(this.value)" aria-label="Buscar produtos">
     </div>
@@ -1088,7 +1088,7 @@ header {
     <a href="https://wa.me/5591986122614" class="btn-whatsapp-custom" target="_blank" rel="noopener">CHAMAR NO WHATSAPP</a>
   </div>
 
-  <div class="meus-pedidos">
+  <div class="meus-pedidos" style="clear:both;">
     <h3>📋 Pedidos em Andamento</h3>
     <div id="listaPedidosCliente">Nenhum pedido recente.</div>
     <button class="btn-limpar-pedidos" onclick="limparHistorico()" id="btnLimpar" style="display:none;">Limpar Histórico</button>
@@ -1408,19 +1408,20 @@ function salvarPedidoNoHistorico(cliente, total, itens) {
 function carregarPedidosHist() {
   const listaDiv = document.getElementById("listaPedidosCliente");
   const btnLimpar = document.getElementById("btnLimpar");
+  if (!listaDiv) return; // segurança extra
   try {
     let historico = JSON.parse(localStorage.getItem('idolverse_pedidos')) || [];
     if (historico.length === 0) {
       listaDiv.innerHTML = "Nenhum pedido recente.";
-      btnLimpar.style.display = "none";
+      if (btnLimpar) btnLimpar.style.display = "none";
       return;
     }
-    btnLimpar.style.display = "inline-block";
+    if (btnLimpar) btnLimpar.style.display = "inline-block";
     listaDiv.innerHTML = historico.map(p => `
       <div class="pedido-item">
-        <div class="pedido-data">📅 ${p.data}</div>
-        <strong>Total: R$ ${p.total}</strong><br>
-        <span>${p.resumo}</span>
+        <div class="pedido-data">📅 ${p.data || ''}</div>
+        <strong>Total: R$ ${p.total || '0,00'}</strong><br>
+        <span>${(p.resumo || '').replace(/</g,'&lt;')}</span>
       </div>
     `).join('');
   } catch(e) {

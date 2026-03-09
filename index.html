@@ -194,7 +194,7 @@ header {
 /* CORREÇÃO DA IMAGEM — tamanho controlado e proporcional */
 .pp-carousel-container {
   width: 100%;
-  max-height: 340px;         /* altura máxima — não fica gigante */
+  height: 320px;
   position: relative;
   background: #0a0a1a;
   display: flex;
@@ -209,28 +209,38 @@ header {
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   width: 100%;
-  max-height: 340px;
+  height: 320px;
 }
 .pp-carousel::-webkit-scrollbar { display: none; }
 
 .pp-carousel img {
   min-width: 100%;
-  max-height: 340px;           /* altura máxima da imagem */
   width: 100%;
-  object-fit: contain;         /* imagem inteira, sem corte, sem esticar */
+  height: 320px;
+  object-fit: cover;
   scroll-snap-align: start;
   background: #0a0a1a;
-  padding: 16px;               /* respiro ao redor da imagem */
+  flex-shrink: 0;
 }
 
-/* Em telas grandes, limita a largura do carousel */
+/* Em telas grandes, aumenta altura do carousel */
 @media (min-width: 600px) {
   .pp-carousel-container,
   .pp-carousel {
-    max-height: 400px;
+    height: 480px;
   }
   .pp-carousel img {
-    max-height: 400px;
+    height: 480px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pp-carousel-container,
+  .pp-carousel {
+    height: 560px;
+  }
+  .pp-carousel img {
+    height: 560px;
   }
 }
 
@@ -1311,7 +1321,7 @@ function abrirPP(nome, preco, img, desc) {
   slider.innerHTML = `
     <img src="${img}" alt="${nome}">
     <img src="tamanho-g.png" alt="Conteúdo do Kit">
-    
+    <img src="${img}" alt="${nome}" style="filter:brightness(1.1) saturate(1.2)">
   `;
 
   const dots = document.getElementById("ppDots");

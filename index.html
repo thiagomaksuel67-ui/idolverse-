@@ -1,8 +1,7 @@
 <!DOCTYPE html>
+<!-- saved from url=(0048)https://thiagomaksuel67-ui.github.io/idolverse-/ -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IdolVerse • Photocards</title>
 
@@ -365,11 +364,11 @@ header {
 }
 </style>
 
-</head>
-<body onload="carregarTudo()">
+<link type="text/css" rel="stylesheet" href="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/css/mcafee_fonts.css"></head>
+<body onload="carregarTudo()" style="overflow: auto;">
 
 <div id="toast">✅ Adicionado ao carrinho!</div>
-<div id="zoomModal" onclick="this.style.display='none'"><img id="imgZoomed" src="" alt="Zoom"></div>
+<div id="zoomModal" onclick="this.style.display=&#39;none&#39;"><img id="imgZoomed" src="https://thiagomaksuel67-ui.github.io/idolverse-/" alt="Zoom"></div>
 
 <!-- ===== PÁGINA DE PRODUTO ===== -->
 
@@ -410,7 +409,7 @@ header {
         <label class="pp-label" style="margin-top:0">🚚 Calcular Frete</label>
         <div class="pp-shipping-input">
           <input type="text" id="ppCep" placeholder="00000-000" maxlength="9">
-          <button onclick="alert('Frete calculado! Finalize no carrinho para ver as taxas.')" style="background:var(--primary-pink); border:none; color:white; padding:0 15px; border-radius:8px; cursor:pointer;">OK</button>
+          <button onclick="alert(&#39;Frete calculado! Finalize no carrinho para ver as taxas.&#39;)" style="background:var(--primary-pink); border:none; color:white; padding:0 15px; border-radius:8px; cursor:pointer;">OK</button>
         </div>
       </div>
       <div class="pp-info-block">
@@ -433,24 +432,24 @@ header {
 
 <header>
   <div class="header-top">
-    <div class="logo-container"><img src="logo-img.png" alt="IdolVerse" class="logo-img" onerror="this.outerHTML='<span style=\'font-size:18px;font-weight:bold;color:var(--primary-pink)\'>✨ IdolVerse</span>'"></div>
+    <div class="logo-container"><img src="./IdolVerse • Photocards_files/logo-img.png" alt="IdolVerse" class="logo-img" onerror="this.outerHTML=&#39;&lt;span style=\&#39;font-size:18px;font-weight:bold;color:var(--primary-pink)\&#39;&gt;✨ IdolVerse&lt;/span&gt;&#39;"></div>
     <div class="search-container">
       <input type="text" placeholder="Buscar no IdolVerse" onkeyup="buscar(this.value)" aria-label="Buscar produtos">
     </div>
   </div>
   <div class="location-bar">
-    <span id="welcomeMsg" style="margin-right: 10px; font-weight: bold; color: var(--primary-pink);"></span>
-    <span id="displayEndereco">📍 Informe o endereço no carrinho &gt;</span>
+    <span id="welcomeMsg" style="margin-right: 10px; font-weight: bold; color: var(--primary-pink);">Oi, thiago! ✨</span>
+    <span id="displayEndereco">📍 Enviar para: R. Dr. Adailson da Silva Rodrigues, 802</span>
   </div>
   <nav class="nav-menu" aria-label="Categorias">
-    <a class="nav-item active" onclick="filtrarCategoria(this, '')">Todos</a>
-    <a class="nav-item" onclick="filtrarCategoria(this, 'kpop')">K-pop</a>
-    <a class="nav-item" onclick="filtrarCategoria(this, 'anime')">Anime</a>
-    <a class="nav-item" onclick="filtrarCategoria(this, 'famosos')">Famosos</a>
-    <a class="nav-item" onclick="filtrarCategoria(this, 'filmes')">Filmes</a>
-    <a class="nav-item" onclick="filtrarCategoria(this, 'séries')">Séries</a>
-    <a class="nav-item" onclick="filtrarCategoria(this, 'dorama')">Dorama</a>
-    <a class="nav-item" onclick="filtrarFavoritos(this)">❤️ Favoritos</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, &#39;&#39;)">Todos</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, &#39;kpop&#39;)">K-pop</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, &#39;anime&#39;)">Anime</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, &#39;famosos&#39;)">Famosos</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, &#39;filmes&#39;)">Filmes</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, &#39;séries&#39;)">Séries</a>
+    <a class="nav-item" onclick="filtrarCategoria(this, &#39;dorama&#39;)">Dorama</a>
+    <a class="nav-item active" onclick="filtrarFavoritos(this)">❤️ Favoritos</a>
   </nav>
 </header>
 
@@ -459,628 +458,626 @@ header {
 <div class="container">
   <div class="products" id="productGrid">
 
-```
 <!-- K-POP -->
-<div class="card produto" data-name="bts kpop">
+<div class="card produto" data-name="bts kpop" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit BTS')" title="Favoritar">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit BTS')" title="Compartilhar">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit BTS&#39;)" title="Favoritar">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit BTS&#39;)" title="Compartilhar">🔗</button>
   </div>
-  <div class="img-container"><img src="bts1.jpg" alt="Kit BTS" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/bts1.jpg" alt="Kit BTS" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit BTS</h3>
     <p class="price">R$ 19,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">54 photocards lomo de alta qualidade.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit BTS', 19.90, 'bts1.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit BTS&#39;, 19.90, &#39;bts1.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="blackpink kpop">
+<div class="card produto" data-name="blackpink kpop" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Pack BLACKPINK')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Pack BLACKPINK')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Pack BLACKPINK&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Pack BLACKPINK&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="blackpink.jpg" alt="Pack BLACKPINK" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/blackpink.jpg" alt="Pack BLACKPINK" loading="lazy"></div>
   <div class="card-info">
     <h3>Pack BLACKPINK</h3>
     <p class="price">R$ 21,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">54 photocards lomo exclusivos.</div>
-    <button class="btn-buy" onclick="addCarrinho('Pack BLACKPINK', 21.90, 'blackpink.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Pack BLACKPINK&#39;, 21.90, &#39;blackpink.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="stray kids kpop">
+<div class="card produto" data-name="stray kids kpop" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Stray Kids')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Stray Kids')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Stray Kids&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Stray Kids&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="straykids.jpg" alt="Kit Stray Kids" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/straykids.jpg" alt="Kit Stray Kids" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Stray Kids</h3>
     <p class="price">R$ 22,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">54 photocards lomo premium.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Stray Kids', 22.90, 'straykids.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Stray Kids&#39;, 22.90, &#39;straykids.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="le sserafim kpop">
+<div class="card produto" data-name="le sserafim kpop" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit LE SSERAFIM')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit LE SSERAFIM')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit LE SSERAFIM&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit LE SSERAFIM&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="lesserafim.jpg" alt="Kit LE SSERAFIM" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/lesserafim.jpg" alt="Kit LE SSERAFIM" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit LE SSERAFIM</h3>
     <p class="price">R$ 22,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Photocards lomo especiais.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit LE SSERAFIM', 22.90, 'lesserafim.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit LE SSERAFIM&#39;, 22.90, &#39;lesserafim.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="tomorrow x together txt kpop">
+<div class="card produto" data-name="tomorrow x together txt kpop" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Tomorrow X Together')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Tomorrow X Together')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Tomorrow X Together&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Tomorrow X Together&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="txt.jpg" alt="Kit Tomorrow X Together" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/txt.jpg" alt="Kit Tomorrow X Together" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Tomorrow X Together</h3>
     <p class="price">R$ 23,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Photocards exclusivos do TXT.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Tomorrow X Together', 23.90, 'txt.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Tomorrow X Together&#39;, 23.90, &#39;txt.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="twice kpop">
+<div class="card produto" data-name="twice kpop" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Twice')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Twice')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Twice&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Twice&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="twice.jpg" alt="Kit Twice" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/twice.jpg" alt="Kit Twice" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Twice</h3>
     <p class="price">R$ 22,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Pack com as 9 integrantes.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Twice', 22.90, 'twice.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Twice&#39;, 22.90, &#39;twice.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="new jeans kpop">
+<div class="card produto" data-name="new jeans kpop" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit New Jeans')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit New Jeans')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit New Jeans&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit New Jeans&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="newjeans.jpg" alt="Kit New Jeans" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/newjeans.jpg" alt="Kit New Jeans" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit New Jeans</h3>
     <p class="price">R$ 24,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Photocards estilo retrô Bunny.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit New Jeans', 24.90, 'newjeans.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit New Jeans&#39;, 24.90, &#39;newjeans.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="exo kpop">
+<div class="card produto" data-name="exo kpop" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit EXO')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit EXO')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit EXO&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit EXO&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="exo.jpg" alt="Kit EXO" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/exo.jpg" alt="Kit EXO" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit EXO</h3>
     <p class="price">R$ 23,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Coleção lendária do EXO.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit EXO', 23.90, 'exo.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit EXO&#39;, 23.90, &#39;exo.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="aespa kpop">
+<div class="card produto" data-name="aespa kpop" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit aespa')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit aespa')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit aespa&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit aespa&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="aespa.jpg" alt="Kit aespa" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/aespa.jpg" alt="Kit aespa" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit aespa</h3>
     <p class="price">R$ 24,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Photocards conceito Next Level.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit aespa', 24.90, 'aespa.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit aespa&#39;, 24.90, &#39;aespa.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
 <!-- FAMOSOS -->
-<div class="card produto" data-name="neymar famosos">
+<div class="card produto" data-name="neymar famosos" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Pack Neymar Jr')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Pack Neymar Jr')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Pack Neymar Jr&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Pack Neymar Jr&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="neymar.jpg" alt="Pack Neymar Jr" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/neymar.jpg" alt="Pack Neymar Jr" loading="lazy"></div>
   <div class="card-info">
     <h3>Pack Neymar Jr</h3>
     <p class="price">R$ 24,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Coleção exclusiva do craque.</div>
-    <button class="btn-buy" onclick="addCarrinho('Pack Neymar Jr', 24.90, 'neymar.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Pack Neymar Jr&#39;, 24.90, &#39;neymar.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="taylor swift famosos">
+<div class="card produto" data-name="taylor swift famosos" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Taylor Swift')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Taylor Swift')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Taylor Swift&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Taylor Swift&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="taylor.jpg" alt="Kit Taylor Swift" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/taylor.jpg" alt="Kit Taylor Swift" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Taylor Swift</h3>
     <p class="price">R$ 26,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Photocards de todas as eras.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Taylor Swift', 26.90, 'taylor.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Taylor Swift&#39;, 26.90, &#39;taylor.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="jenna ortega famosos">
+<div class="card produto" data-name="jenna ortega famosos" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Pack Jenna Ortega')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Pack Jenna Ortega')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Pack Jenna Ortega&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Pack Jenna Ortega&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="jenna.jpg" alt="Pack Jenna Ortega" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/jenna.jpg" alt="Pack Jenna Ortega" loading="lazy"></div>
   <div class="card-info">
     <h3>Pack Jenna Ortega</h3>
     <p class="price">R$ 23,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Coleção exclusiva da atriz.</div>
-    <button class="btn-buy" onclick="addCarrinho('Pack Jenna Ortega', 23.90, 'jenna.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Pack Jenna Ortega&#39;, 23.90, &#39;jenna.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="eminem famosos">
+<div class="card produto" data-name="eminem famosos" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Eminem')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Eminem')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Eminem&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Eminem&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="eminem.jpg" alt="Kit Eminem" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/eminem.jpg" alt="Kit Eminem" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Eminem</h3>
     <p class="price">R$ 25,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Photocards lendários do Rap.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Eminem', 25.90, 'eminem.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Eminem&#39;, 25.90, &#39;eminem.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="bruno mars famosos">
+<div class="card produto" data-name="bruno mars famosos" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Pack Bruno Mars')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Pack Bruno Mars')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Pack Bruno Mars&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Pack Bruno Mars&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="brunomars.jpg" alt="Pack Bruno Mars" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/brunomars.jpg" alt="Pack Bruno Mars" loading="lazy"></div>
   <div class="card-info">
     <h3>Pack Bruno Mars</h3>
     <p class="price">R$ 24,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Edição especial Bruninho.</div>
-    <button class="btn-buy" onclick="addCarrinho('Pack Bruno Mars', 24.90, 'brunomars.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Pack Bruno Mars&#39;, 24.90, &#39;brunomars.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="ariana grande famosos">
+<div class="card produto" data-name="ariana grande famosos" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Ariana Grande')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Ariana Grande')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Ariana Grande&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Ariana Grande&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="ariana.jpg" alt="Kit Ariana Grande" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/ariana.jpg" alt="Kit Ariana Grande" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Ariana Grande</h3>
     <p class="price">R$ 25,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Photocards estéticos.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Ariana Grande', 25.90, 'ariana.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Ariana Grande&#39;, 25.90, &#39;ariana.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="the weeknd famosos">
+<div class="card produto" data-name="the weeknd famosos" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit The Weeknd')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit The Weeknd')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit The Weeknd&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit The Weeknd&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="theweeknd.jpg" alt="Kit The Weeknd" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/theweeknd.jpg" alt="Kit The Weeknd" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit The Weeknd</h3>
     <p class="price">R$ 26,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">XO Collection.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit The Weeknd', 26.90, 'theweeknd.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit The Weeknd&#39;, 26.90, &#39;theweeknd.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="olivia rodrigo famosos">
+<div class="card produto" data-name="olivia rodrigo famosos" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Olivia Rodrigo')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Olivia Rodrigo')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Olivia Rodrigo&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Olivia Rodrigo&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="olivia.jpg" alt="Kit Olivia Rodrigo" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/olivia.jpg" alt="Kit Olivia Rodrigo" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Olivia Rodrigo</h3>
     <p class="price">R$ 24,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
-    <div class="description-text">GUTS & SOUR eras.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Olivia Rodrigo', 24.90, 'olivia.jpg')">Adicionar</button>
+    <div class="description-text">GUTS &amp; SOUR eras.</div>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Olivia Rodrigo&#39;, 24.90, &#39;olivia.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="dua lipa famosos">
+<div class="card produto" data-name="dua lipa famosos" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Pack Dua Lipa')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Pack Dua Lipa')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Pack Dua Lipa&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Pack Dua Lipa&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="dualipa.jpg" alt="Pack Dua Lipa" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/dualipa.jpg" alt="Pack Dua Lipa" loading="lazy"></div>
   <div class="card-info">
     <h3>Pack Dua Lipa</h3>
     <p class="price">R$ 25,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Radical Optimism Edition.</div>
-    <button class="btn-buy" onclick="addCarrinho('Pack Dua Lipa', 25.90, 'dualipa.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Pack Dua Lipa&#39;, 25.90, &#39;dualipa.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="billie eilish famosos">
+<div class="card produto" data-name="billie eilish famosos" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Billie Eilish')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Billie Eilish')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Billie Eilish&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Billie Eilish&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="billie.jpg" alt="Kit Billie Eilish" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/billie.jpg" alt="Kit Billie Eilish" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Billie Eilish</h3>
     <p class="price">R$ 26,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Photocards azuis intensos.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Billie Eilish', 26.90, 'billie.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Billie Eilish&#39;, 26.90, &#39;billie.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
 <!-- ANIME -->
-<div class="card produto" data-name="your name anime filmes">
+<div class="card produto" data-name="your name anime filmes" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Your Name')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Your Name')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Your Name&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Your Name&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="yourname.jpg" alt="Kit Your Name" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/yourname.jpg" alt="Kit Your Name" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Your Name</h3>
     <p class="price">R$ 25,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Photocards do filme de Makoto Shinkai.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Your Name', 25.90, 'yourname.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Your Name&#39;, 25.90, &#39;yourname.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="demon slayer anime">
+<div class="card produto" data-name="demon slayer anime" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Demon Slayer')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Demon Slayer')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Demon Slayer&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Demon Slayer&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="demonslayer.jpg" alt="Kit Demon Slayer" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/demonslayer.jpg" alt="Kit Demon Slayer" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Demon Slayer</h3>
     <p class="price">R$ 25,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Photocards dos Hashiras e Tanjiro.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Demon Slayer', 25.90, 'demonslayer.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Demon Slayer&#39;, 25.90, &#39;demonslayer.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="evangelion anime">
+<div class="card produto" data-name="evangelion anime" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Pack Evangelion')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Pack Evangelion')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Pack Evangelion&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Pack Evangelion&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="evangelion.jpg" alt="Pack Evangelion" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/evangelion.jpg" alt="Pack Evangelion" loading="lazy"></div>
   <div class="card-info">
     <h3>Pack Evangelion</h3>
     <p class="price">R$ 26,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Edição Neon Genesis Evangelion.</div>
-    <button class="btn-buy" onclick="addCarrinho('Pack Evangelion', 26.90, 'evangelion.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Pack Evangelion&#39;, 26.90, &#39;evangelion.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="dragon ball z anime">
+<div class="card produto" data-name="dragon ball z anime" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Dragon Ball Z')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Dragon Ball Z')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Dragon Ball Z&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Dragon Ball Z&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="dbz.jpg" alt="Kit Dragon Ball Z" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/dbz.jpg" alt="Kit Dragon Ball Z" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Dragon Ball Z</h3>
     <p class="price">R$ 24,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Photocards da saga Z.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Dragon Ball Z', 24.90, 'dbz.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Dragon Ball Z&#39;, 24.90, &#39;dbz.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="frieren anime">
+<div class="card produto" data-name="frieren anime" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Frieren')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Frieren')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Frieren&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Frieren&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="frieren.jpg" alt="Kit Frieren" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/frieren.jpg" alt="Kit Frieren" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Frieren</h3>
     <p class="price">R$ 27,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Artes belíssimas de Frieren.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Frieren', 27.90, 'frieren.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Frieren&#39;, 27.90, &#39;frieren.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="jujutsu kaisen anime">
+<div class="card produto" data-name="jujutsu kaisen anime" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Jujutsu Kaisen')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Jujutsu Kaisen')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Jujutsu Kaisen&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Jujutsu Kaisen&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="jjk.jpg" alt="Kit Jujutsu Kaisen" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/jjk.jpg" alt="Kit Jujutsu Kaisen" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Jujutsu Kaisen</h3>
     <p class="price">R$ 26,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Photocards dos feiticeiros.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Jujutsu Kaisen', 26.90, 'jjk.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Jujutsu Kaisen&#39;, 26.90, &#39;jjk.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="baki anime">
+<div class="card produto" data-name="baki anime" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Baki')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Baki')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Baki&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Baki&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="baki.jpg" alt="Kit Baki" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/baki.jpg" alt="Kit Baki" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Baki</h3>
     <p class="price">R$ 24,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Coleção Baki Hanma.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Baki', 24.90, 'baki.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Baki&#39;, 24.90, &#39;baki.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="jojo anime">
+<div class="card produto" data-name="jojo anime" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit JoJo Bizarre')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit JoJo Bizarre')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit JoJo Bizarre&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit JoJo Bizarre&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="jojo.jpg" alt="Kit JoJo Bizarre" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/jojo.jpg" alt="Kit JoJo Bizarre" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit JoJo Bizarre</h3>
     <p class="price">R$ 28,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Estilo das gerações Joestar.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit JoJo Bizarre', 28.90, 'jojo.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit JoJo Bizarre&#39;, 28.90, &#39;jojo.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="dandadan anime">
+<div class="card produto" data-name="dandadan anime" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Dandadan')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Dandadan')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Dandadan&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Dandadan&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="dandadan.jpg" alt="Kit Dandadan" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/dandadan.jpg" alt="Kit Dandadan" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Dandadan</h3>
     <p class="price">R$ 27,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Novos photocards Dandadan.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Dandadan', 27.90, 'dandadan.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Dandadan&#39;, 27.90, &#39;dandadan.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
 <!-- SÉRIES / FILMES / DORAMA -->
-<div class="card produto" data-name="stranger things filmes séries">
+<div class="card produto" data-name="stranger things filmes séries" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Stranger Things')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Stranger Things')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Stranger Things&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Stranger Things&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="strangerthings.jpg" alt="Kit Stranger Things" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/strangerthings.jpg" alt="Kit Stranger Things" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Stranger Things</h3>
     <p class="price">R$ 29,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Photocards temáticos.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Stranger Things', 29.90, 'strangerthings.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Stranger Things&#39;, 29.90, &#39;strangerthings.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="all of us are dead séries dorama">
+<div class="card produto" data-name="all of us are dead séries dorama" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit All of us are Dead')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit All of us are Dead')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit All of us are Dead&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit All of us are Dead&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="allofusaredead.jpg" alt="Kit All of us are Dead" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/allofusaredead.jpg" alt="Kit All of us are Dead" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit All of us are Dead</h3>
     <p class="price">R$ 25,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Escola infestada de zumbis.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit All of us are Dead', 25.90, 'allofusaredead.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit All of us are Dead&#39;, 25.90, &#39;allofusaredead.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="the 100 séries">
+<div class="card produto" data-name="the 100 séries" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit The 100')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit The 100')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit The 100&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit The 100&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="the100.jpg" alt="Kit The 100" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/the100.jpg" alt="Kit The 100" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit The 100</h3>
     <p class="price">R$ 25,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Sobrevivência pós-apocalíptica.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit The 100', 25.90, 'the100.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit The 100&#39;, 25.90, &#39;the100.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="weak hero séries dorama">
+<div class="card produto" data-name="weak hero séries dorama" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Weak Hero')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Weak Hero')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Weak Hero&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Weak Hero&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="weakhero.jpg" alt="Kit Weak Hero" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/weakhero.jpg" alt="Kit Weak Hero" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Weak Hero</h3>
     <p class="price">R$ 26,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Drama de ação e superação.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Weak Hero', 26.90, 'weakhero.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Weak Hero&#39;, 26.90, &#39;weakhero.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="vis a vis séries">
+<div class="card produto" data-name="vis a vis séries" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Vis a Vis')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Vis a Vis')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Vis a Vis&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Vis a Vis&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="visavis.jpg" alt="Kit Vis a Vis" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/visavis.jpg" alt="Kit Vis a Vis" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Vis a Vis</h3>
     <p class="price">R$ 25,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Detentas de Cruz del Sur.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Vis a Vis', 25.90, 'visavis.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Vis a Vis&#39;, 25.90, &#39;visavis.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="sweet home séries dorama">
+<div class="card produto" data-name="sweet home séries dorama" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Sweet Home')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Sweet Home')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Sweet Home&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Sweet Home&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="sweethome.jpg" alt="Kit Sweet Home" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/sweethome.jpg" alt="Kit Sweet Home" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Sweet Home</h3>
     <p class="price">R$ 26,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Monstros e heróis.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Sweet Home', 26.90, 'sweethome.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Sweet Home&#39;, 26.90, &#39;sweethome.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="enola holmes séries filmes">
+<div class="card produto" data-name="enola holmes séries filmes" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Enola Holmes')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Enola Holmes')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Enola Holmes&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Enola Holmes&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="enolaholmes.jpg" alt="Kit Enola Holmes" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/enolaholmes.jpg" alt="Kit Enola Holmes" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Enola Holmes</h3>
     <p class="price">R$ 24,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">A detetive astuta.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Enola Holmes', 24.90, 'enolaholmes.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Enola Holmes&#39;, 24.90, &#39;enolaholmes.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="reality z séries">
+<div class="card produto" data-name="reality z séries" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Reality Z')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Reality Z')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Reality Z&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Reality Z&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="realityz.jpg" alt="Kit Reality Z" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/realityz.jpg" alt="Kit Reality Z" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Reality Z</h3>
     <p class="price">R$ 23,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Zumbis no reality show.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Reality Z', 23.90, 'realityz.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Reality Z&#39;, 23.90, &#39;realityz.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="my name séries dorama">
+<div class="card produto" data-name="my name séries dorama" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit My Name')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit My Name')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit My Name&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit My Name&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="myname.jpg" alt="Kit My Name" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/myname.jpg" alt="Kit My Name" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit My Name</h3>
     <p class="price">R$ 26,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Drama de vingança.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit My Name', 26.90, 'myname.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit My Name&#39;, 26.90, &#39;myname.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="outer banks séries">
+<div class="card produto" data-name="outer banks séries" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Outer Banks')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Outer Banks')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Outer Banks&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Outer Banks&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="outerbanks.jpg" alt="Kit Outer Banks" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/outerbanks.jpg" alt="Kit Outer Banks" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Outer Banks</h3>
     <p class="price">R$ 25,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Pogues e Kooks.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Outer Banks', 25.90, 'outerbanks.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Outer Banks&#39;, 25.90, &#39;outerbanks.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="extracurricular séries dorama">
+<div class="card produto" data-name="extracurricular séries dorama" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Extracurricular')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Extracurricular')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Extracurricular&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Extracurricular&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="extracurricular.jpg" alt="Kit Extracurricular" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/extracurricular.jpg" alt="Kit Extracurricular" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Extracurricular</h3>
     <p class="price">R$ 26,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Drama psicológico coreano.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Extracurricular', 26.90, 'extracurricular.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Extracurricular&#39;, 26.90, &#39;extracurricular.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="alice in borderland séries dorama">
+<div class="card produto" data-name="alice in borderland séries dorama" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Alice in Borderland')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Alice in Borderland')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Alice in Borderland&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Alice in Borderland&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="aliceinborderland.jpg" alt="Kit Alice in Borderland" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/aliceinborderland.jpg" alt="Kit Alice in Borderland" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Alice in Borderland</h3>
     <p class="price">R$ 27,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Jogos mortais de cartas.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Alice in Borderland', 27.90, 'aliceinborderland.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Alice in Borderland&#39;, 27.90, &#39;aliceinborderland.jpg&#39;)">Adicionar</button>
   </div>
 </div>
 
-<div class="card produto" data-name="it bem vindos a derry séries filmes">
+<div class="card produto" data-name="it bem vindos a derry séries filmes" style="display: none;">
   <div class="card-actions">
-    <button class="action-btn" onclick="toggleFavorito(this, 'Kit Welcome to Derry')">❤️</button>
-    <button class="action-btn" onclick="compartilharProduto('Kit Welcome to Derry')">🔗</button>
+    <button class="action-btn" onclick="toggleFavorito(this, &#39;Kit Welcome to Derry&#39;)">❤️</button>
+    <button class="action-btn" onclick="compartilharProduto(&#39;Kit Welcome to Derry&#39;)">🔗</button>
   </div>
-  <div class="img-container"><img src="itderry.jpg" alt="Kit Welcome to Derry" loading="lazy"></div>
+  <div class="img-container"><img src="./IdolVerse • Photocards_files/itderry.jpg" alt="Kit Welcome to Derry" loading="lazy"></div>
   <div class="card-info">
     <h3>Kit Welcome to Derry</h3>
     <p class="price">R$ 28,90</p>
     <button class="btn-details" onclick="toggleDesc(this)">Ver detalhes</button>
     <div class="description-text">Terror no universo IT.</div>
-    <button class="btn-buy" onclick="addCarrinho('Kit Welcome to Derry', 28.90, 'itderry.jpg')">Adicionar</button>
+    <button class="btn-buy" onclick="addCarrinho(&#39;Kit Welcome to Derry&#39;, 28.90, &#39;itderry.jpg&#39;)">Adicionar</button>
   </div>
 </div>
-```
 
-  </div><!-- /products -->
+  <div class="empty-state"><p>❤️ Você ainda não favoritou nenhum produto.</p></div></div><!-- /products -->
 
   <div class="custom-order-section">
     <h3>✨ Encomendas Personalizadas</h3>
@@ -1090,8 +1087,14 @@ header {
 
   <div class="meus-pedidos" style="clear:both;">
     <h3>📋 Pedidos em Andamento</h3>
-    <div id="listaPedidosCliente">Nenhum pedido recente.</div>
-    <button class="btn-limpar-pedidos" onclick="limparHistorico()" id="btnLimpar" style="display:none;">Limpar Histórico</button>
+    <div id="listaPedidosCliente">
+      <div class="pedido-item">
+        <div class="pedido-data">📅 08/03/2026, 21:22:45</div>
+        <strong>Total: R$ 48,90</strong><br>
+        <span>• 1x Kit Stray Kids - R$ 22,90</span>
+      </div>
+    </div>
+    <button class="btn-limpar-pedidos" onclick="limparHistorico()" id="btnLimpar" style="display: inline-block;">Limpar Histórico</button>
   </div>
 </div><!-- /container -->
 
@@ -1101,15 +1104,15 @@ header {
   <div class="footer-grid">
     <div class="footer-col">
       <h4>Institucional</h4>
-      <a href="#">Sobre a IdolVerse</a>
-      <a href="#">Prazo de Produção</a>
-      <a href="#">Trocas e Devoluções</a>
+      <a href="https://thiagomaksuel67-ui.github.io/idolverse-/#">Sobre a IdolVerse</a>
+      <a href="https://thiagomaksuel67-ui.github.io/idolverse-/#">Prazo de Produção</a>
+      <a href="https://thiagomaksuel67-ui.github.io/idolverse-/#">Trocas e Devoluções</a>
     </div>
     <div class="footer-col">
       <h4>Suporte</h4>
       <a href="https://wa.me/5591986122614" target="_blank" rel="noopener">WhatsApp de Vendas</a>
-      <a href="#">Rastrear Pedido</a>
-      <a href="#">Dúvidas Frequentes</a>
+      <a href="https://thiagomaksuel67-ui.github.io/idolverse-/#">Rastrear Pedido</a>
+      <a href="https://thiagomaksuel67-ui.github.io/idolverse-/#">Dúvidas Frequentes</a>
     </div>
     <div class="footer-col">
       <h4>Formas de Pagamento</h4>
@@ -1118,8 +1121,8 @@ header {
     </div>
     <div class="footer-col">
       <h4>Nossas Redes</h4>
-      <a href="#">Instagram @IdolVerse</a>
-      <a href="#">TikTok @IdolVerseStore</a>
+      <a href="https://thiagomaksuel67-ui.github.io/idolverse-/#">Instagram @IdolVerse</a>
+      <a href="https://thiagomaksuel67-ui.github.io/idolverse-/#">TikTok @IdolVerseStore</a>
     </div>
   </div>
   <div class="bug-report-footer" style="text-align: center; margin-top: 30px;">
@@ -1131,18 +1134,18 @@ header {
 
 <!-- ===== BOTÃO CARRINHO ===== -->
 
-<button id="cartBtn" onclick="toggleCarrinho()" aria-label="Abrir carrinho">🛒 <span id="cartCount">0</span></button>
+<button id="cartBtn" onclick="toggleCarrinho()" aria-label="Abrir carrinho" style="display: flex;">🛒 <span id="cartCount">0</span></button>
 
-<div id="overlay" onclick="toggleCarrinho()"></div>
+<div id="overlay" onclick="toggleCarrinho()" style="display: none;"></div>
 
 <!-- ===== PAINEL DO CARRINHO ===== -->
 
-<div id="carrinho" role="dialog" aria-label="Carrinho de compras">
+<div id="carrinho" role="dialog" aria-label="Carrinho de compras" style="right: -100%;">
   <div class="cart-header">
     <h3>Meu Carrinho</h3>
-    <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:32px; padding: 10px; color: var(--primary-pink); font-weight: bold;" aria-label="Fechar carrinho">&times;</span>
+    <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:32px; padding: 10px; color: var(--primary-pink); font-weight: bold;" aria-label="Fechar carrinho">×</span>
   </div>
-  <div id="listaCarrinho"></div>
+  <div id="listaCarrinho"><p style="text-align:center; opacity:0.5; margin-top:30px;">Seu carrinho está vazio 🛒</p></div>
   <div class="cart-footer">
     <div class="cart-inputs">
       <input type="text" id="cartNome" placeholder="Seu Nome" oninput="salvarDadosCliente()">
@@ -1153,7 +1156,7 @@ header {
     </div>
     <div id="opcoesFrete" style="display:none; color:white; font-size:13px; margin-bottom:10px;">
       <label><input type="radio" name="tipoFrete" value="PAC" onchange="atualizarTotal()"> <span id="labelPAC">PAC</span></label>
-      <label style="margin-left:15px;"><input type="radio" name="tipoFrete" value="SEDEX" checked onchange="atualizarTotal()"> <span id="labelSEDEX">SEDEX</span></label>
+      <label style="margin-left:15px;"><input type="radio" name="tipoFrete" value="SEDEX" checked="" onchange="atualizarTotal()"> <span id="labelSEDEX">SEDEX</span></label>
     </div>
     <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:20px; margin: 10px 0;">
       <span>Total:</span><span id="total">R$ 0,00</span>
@@ -1639,5 +1642,74 @@ function atualizarHeader() {
 }
 </script>
 
-</body>
-</html>
+
+
+<span id="PING_CONTENT_DLS_POPUP" style="display: none;"></span><div style="background-color: transparent; border: none; bottom: 15px; display: block; margin: 0px; opacity: 1; padding: 0px; position: fixed; right: 15px; z-index: 2147483647;"><template shadowrootmode="closed"><style>/*!
+ * 
+ *     MCAFEE RESTRICTED CONFIDENTIAL
+ *     Copyright (c) 2026 McAfee, LLC
+ *
+ *     The source code contained or described herein and all documents related
+ *     to the source code ("Material") are owned by McAfee or its
+ *     suppliers or licensors. Title to the Material remains with McAfee
+ *     or its suppliers and licensors. The Material contains trade
+ *     secrets and proprietary and confidential information of McAfee or its
+ *     suppliers and licensors. The Material is protected by worldwide copyright
+ *     and trade secret laws and treaty provisions. No part of the Material may
+ *     be used, copied, reproduced, modified, published, uploaded, posted,
+ *     transmitted, distributed, or disclosed in any way without McAfee's prior
+ *     express written permission.
+ *
+ *     No license under any patent, copyright, trade secret or other intellectual
+ *     property right is granted to or conferred upon you by disclosure or
+ *     delivery of the Materials, either expressly, by implication, inducement,
+ *     estoppel or otherwise. Any license under such intellectual property rights
+ *     must be expressed and approved by McAfee in writing.
+ *
+ */
+@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Thin.ttf") format("truetype");font-weight:100;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-ThinItalic.ttf") format("truetype");font-weight:100;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-ExtraLight.ttf") format("truetype");font-weight:200;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-ExtraLightItalic.ttf") format("truetype");font-weight:200;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Light.ttf") format("truetype");font-weight:300;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-LightItalic.ttf") format("truetype");font-weight:300;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Regular.ttf") format("truetype");font-weight:400;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Italic.ttf") format("truetype");font-weight:400;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Medium.ttf") format("truetype");font-weight:500;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-MediumItalic.ttf") format("truetype");font-weight:500;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-SemiBoldItalic.ttf") format("truetype");font-weight:600;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Bold.ttf") format("truetype");font-weight:700;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-BoldItalic.ttf") format("truetype");font-weight:700;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-ExtraBold.ttf") format("truetype");font-weight:800;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-ExtraBoldItalic.ttf") format("truetype");font-weight:800;font-style:italic}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-Black.ttf") format("truetype");font-weight:900;font-style:normal}@font-face{font-family:"McAfeePoppins";src:url("../../../fonts/Poppins-BlackItalic.ttf") format("truetype");font-weight:900;font-style:italic}*{border:0;box-sizing:border-box;font:inherit;font-family:"McAfeePoppins",Helvetica,Arial;font-size:100%;margin:0;padding:0;vertical-align:baseline;outline:none}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}html,body{background-color:#f5f6fa;font-family:"McAfeePoppins",Helvetica,Arial;line-height:1;height:100%;width:100%}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:"";content:none}table{border-collapse:collapse;border-spacing:0}b{font-weight:bold}img{display:block}.dls__container{align-items:center;display:flex;margin:0 auto;margin-top:50px;position:relative}.dls__popup__expanded{align-items:center;overflow:hidden;border-radius:100px;cursor:pointer;display:flex;left:0;padding:15px;position:absolute;height:95px;width:383px;background-color:#fff;transition:all .3s ease-in-out}.dls__popup__expanded .dls__icon{height:65px;width:73px}.content{margin-left:12px}.content .content__images{display:flex;align-items:center;width:250px}.content .content__images .seperator__line{margin-left:5px;margin-right:10px}.content .content__images #dls_close_icon{cursor:pointer;margin-left:auto;margin-right:0px}.content p{font-family:"McAfeePoppins",Helvetica,Arial;font-weight:"400";font-size:14px;line-height:20px;margin-top:8px;color:#4258ff;width:250px;cursor:pointer}.shield{overflow:hidden;box-shadow:0px 2px 4px 0px rgba(33,41,52,.12),0px -1px 2px 0px rgba(0,0,0,.08);align-items:center;border-radius:100px;bottom:0;display:flex;height:95px;justify-content:center;position:absolute;right:0;width:383px;transition:all .3s ease-in-out}.shield__circle{display:flex;justify-content:center;align-items:center;width:55px;height:55px;background-color:#c01818;transition:all .6s ease-in-out .2s;z-index:1;opacity:0}
+
+/*# sourceMappingURL=../sourceMap/chrome/css/download_scan_popup.css.map*/</style><div class="dls__container">
+  <div class="shield" style="height: 115px; opacity: 0.1; display: none;">
+    <div class="shield__circle">
+      <img src="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/images/download_scan/mcafee_logo_white.svg?secret=oi3vmf" x-mcsrc="" id="dls_ballon_icon" x-mcsrcparsed="true">
+    </div>
+    <div class="dls__popup__expanded">
+      <img src="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/images/download_scan/download_scan_icon.svg?secret=oi3vmf" x-mcsrc="" class="dls__icon" x-mcsrcparsed="true">
+      <div class="content">
+        <div class="content__images">
+          <img src="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/images/download_scan/mcafee_logo_red.svg?secret=oi3vmf" x-mcsrc="" id="dls_mcafee_logo" x-mcsrcparsed="true">
+          <img src="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/images/download_scan/seperator_line.svg?secret=oi3vmf" x-mcsrc="" class="seperator__line" x-mcsrcparsed="true">
+          <img src="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/images/download_scan/webadvisor.svg?secret=oi3vmf" x-mcsrc="" x-mcsrcparsed="true">
+          <img src="chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/images/download_scan/close-outline.svg?secret=oi3vmf" x-mcsrc="" id="dls_close_icon" x-mcsrcparsed="true">
+        </div>
+        <p id="download_scan_popup_expanded_descriptions">Estamos varrendo seu download. Você será avisado se houver algum problema.</p>
+      </div>
+    </div>
+  </div>
+</div><style>/*!
+ * 
+ *     MCAFEE RESTRICTED CONFIDENTIAL
+ *     Copyright (c) 2026 McAfee, LLC
+ *
+ *     The source code contained or described herein and all documents related
+ *     to the source code ("Material") are owned by McAfee or its
+ *     suppliers or licensors. Title to the Material remains with McAfee
+ *     or its suppliers and licensors. The Material contains trade
+ *     secrets and proprietary and confidential information of McAfee or its
+ *     suppliers and licensors. The Material is protected by worldwide copyright
+ *     and trade secret laws and treaty provisions. No part of the Material may
+ *     be used, copied, reproduced, modified, published, uploaded, posted,
+ *     transmitted, distributed, or disclosed in any way without McAfee's prior
+ *     express written permission.
+ *
+ *     No license under any patent, copyright, trade secret or other intellectual
+ *     property right is granted to or conferred upon you by disclosure or
+ *     delivery of the Materials, either expressly, by implication, inducement,
+ *     estoppel or otherwise. Any license under such intellectual property rights
+ *     must be expressed and approved by McAfee in writing.
+ *
+ */
+.mc-interactive-balloon{position:absolute;right:-50px;bottom:8px;box-shadow:rgba(0,0,0,.12) 0px 0px 10px;height:40px;width:40px;background:#1671ee;border-radius:20px;display:flex;justify-content:center;align-items:center}
+
+/*# sourceMappingURL=../sourceMap/chrome/css/interactive_balloon.css.map*/</style></template></div></body></html>

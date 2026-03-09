@@ -194,7 +194,8 @@ header {
 /* CORREÇÃO DA IMAGEM — tamanho controlado e proporcional */
 .pp-carousel-container {
   width: 100%;
-  height: 320px;
+  aspect-ratio: 1 / 1;
+  max-height: 420px;
   position: relative;
   background: #0a0a1a;
   display: flex;
@@ -209,38 +210,32 @@ header {
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   width: 100%;
-  height: 320px;
+  height: 100%;
 }
 .pp-carousel::-webkit-scrollbar { display: none; }
 
 .pp-carousel img {
   min-width: 100%;
   width: 100%;
-  height: 320px;
-  object-fit: cover;
+  height: 100%;
+  object-fit: contain;
   scroll-snap-align: start;
   background: #0a0a1a;
   flex-shrink: 0;
+  padding: 12px;
 }
 
-/* Em telas grandes, aumenta altura do carousel */
 @media (min-width: 600px) {
-  .pp-carousel-container,
-  .pp-carousel {
-    height: 480px;
-  }
-  .pp-carousel img {
-    height: 480px;
+  .pp-carousel-container {
+    aspect-ratio: 4 / 3;
+    max-height: 500px;
   }
 }
 
 @media (min-width: 1024px) {
-  .pp-carousel-container,
-  .pp-carousel {
-    height: 560px;
-  }
-  .pp-carousel img {
-    height: 560px;
+  .pp-carousel-container {
+    aspect-ratio: 16 / 9;
+    max-height: 560px;
   }
 }
 

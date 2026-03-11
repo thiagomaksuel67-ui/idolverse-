@@ -125,7 +125,7 @@ header {
 .action-btn { background: rgba(0,0,0,0.6); color: white; border: none; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); transition: 0.2s; }
 .fav-active { color: #ff4fd8; }
 
-/* ===== PÁGINA DE PRODUTO (MODAL) ===== */
+/* ===== PÁGINA DE PRODUTO ===== */
 #productPage { position: fixed; inset: 0; background: var(--bg-dark-deep); z-index: 3000; display: none; flex-direction: column; overflow-y: auto; }
 .pp-header { position: sticky; top: 0; background: var(--bg-dark-deep); padding: 15px 20px; display: flex; align-items: center; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .pp-back { background: none; border: none; color: white; font-size: 28px; cursor: pointer; margin-right: 15px; }
@@ -138,21 +138,17 @@ header {
 .pp-thumbnails img { width: 65px; height: 65px; object-fit: cover; border-radius: 8px; cursor: pointer; opacity: 0.5; border: 2px solid transparent; }
 .pp-thumbnails img.active { opacity: 1; border-color: var(--primary-pink); }
 
-/* Qualidade Grid */
-.quality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 15px 0; }
-.q-item { background: rgba(255,255,255,0.05); padding: 8px; border-radius: 8px; font-size: 10px; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.05); }
-
 .pix-info-badge { background: rgba(50, 188, 173, 0.1); border: 1px solid var(--pix-color); padding: 10px 15px; border-radius: 10px; display: flex; align-items: center; gap: 12px; margin: 15px 0; }
 .pix-info-badge img { width: 22px; height: 22px; }
 .pix-info-badge span { color: var(--pix-color); font-size: 13px; font-weight: 700; }
 
-@media (min-width: 900px) {
-    .pp-main-layout { flex-direction: row; gap: 40px; padding-top: 30px; }
-    .pp-visuals { width: 50%; }
-    .pp-info { width: 50%; }
-}
+/* Grade de Qualidade */
+.quality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 15px 0; }
+.q-item { background: rgba(255,255,255,0.05); padding: 8px; border-radius: 8px; font-size: 10px; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.05); }
 
-/* ===== CENTRAL DO CLIENTE (PERFIL) ===== */
+@media (min-width: 900px) { .pp-main-layout { flex-direction: row; gap: 40px; padding-top: 30px; } .pp-visuals { width: 50%; } .pp-info { width: 50%; } }
+
+/* ===== CENTRAL DO CLIENTE ===== */
 #profilePage { position: fixed; inset: 0; background: var(--bg-dark-deep); z-index: 5000; display: none; flex-direction: column; overflow-y: auto; }
 .profile-container { max-width: 600px; margin: 0 auto; width: 100%; padding: 20px; }
 .profile-header { text-align: center; padding: 40px 0; background: linear-gradient(to bottom, #2d1b4d, var(--bg-dark-deep)); border-radius: 0 0 40px 40px; border-bottom: 2px solid var(--primary-pink); }
@@ -171,56 +167,14 @@ header {
 .item-cart { display: flex; align-items: center; gap: 15px; background: #1c1c3a; padding: 15px; border-radius: 15px; margin-bottom: 12px; }
 .item-cart img { width: 65px; height: 65px; border-radius: 8px; object-fit: cover; }
 .cart-footer { padding: 25px; background: #0a0a1a; border-top: 2px solid var(--primary-pink); }
+.cart-notice { background: rgba(255, 79, 216, 0.1); color: var(--primary-pink); padding: 10px; border-radius: 8px; font-size: 11px; text-align: center; margin-bottom: 15px; border: 1px dashed var(--primary-pink); }
 
-/* ===== RODAPÉ PROFISSIONAL (NOVO) ===== */
-.main-footer {
-    background: #0a0a1a;
-    padding: 60px 20px 20px;
-    border-top: 2px solid var(--primary-pink);
-    margin-top: 80px;
-}
-.footer-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-}
-.footer-col h4 {
-    color: var(--primary-pink);
-    font-size: 14px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-}
-.footer-col p, .footer-col a {
-    color: #888;
-    font-size: 14px;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 12px;
-    transition: 0.3s;
-}
-.footer-col a:hover { color: var(--primary-pink); padding-left: 5px; }
-.social-links { display: flex; gap: 15px; margin-top: 10px; }
-.social-btn {
-    background: #1c1c3a;
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 18px; border: 1px solid #333;
-}
-.social-btn:hover { border-color: var(--primary-pink); background: var(--primary-pink); }
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 50px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    font-size: 11px;
-    color: #444;
-}
+/* ===== RODAPÉ ===== */
+.main-footer { background: #0a0a1a; padding: 60px 20px 20px; border-top: 2px solid var(--primary-pink); margin-top: 80px; }
+.footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+.footer-col h4 { color: var(--primary-pink); font-size: 14px; font-weight: 900; margin-bottom: 25px; text-transform: uppercase; }
+.footer-col p, .footer-col a { color: #888; font-size: 14px; text-decoration: none; display: block; margin-bottom: 12px; }
+.footer-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 11px; color: #444; }
 
 /* ===== AUXILIARES ===== */
 #toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: var(--success-green); color: white; padding: 12px 30px; border-radius: 50px; font-weight: bold; z-index: 9999; display: none; }
@@ -230,8 +184,9 @@ header {
 
 .custom-order-section { background: linear-gradient(rgba(255, 79, 216, 0.1), rgba(255, 79, 216, 0.05)); border: 1px solid var(--primary-pink); border-radius: 20px; padding: 40px 20px; margin: 40px 0; text-align: center; }
 .btn-whatsapp { background: #25d366; color: white; padding: 15px 30px; border-radius: 50px; font-weight: 800; text-decoration: none; display: inline-block; margin-top: 15px; border: none; cursor: pointer; }
-
 .btn-buy-card { background: var(--primary-pink); color: white; border: none; padding: 10px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; margin-top: 10px; }
+.credits { text-align: center; padding: 30px; background: #0a0a1a; font-size: 11px; color: #555; }
+.credits span { color: var(--primary-pink); font-weight: bold; }
 </style>
 </head>
 
@@ -245,7 +200,7 @@ header {
 <div id="profilePage">
     <div class="pp-header">
         <button onclick="fecharPerfil()" style="background:none; border:none; color:white; font-size:28px; cursor:pointer;">←</button>
-        <span style="font-weight: 800; margin-left: 15px; letter-spacing: 1px;">ÁREA DO CLIENTE</span>
+        <span style="font-weight: 800; margin-left: 15px; letter-spacing: 1px;">MINHA CONTA</span>
     </div>
     
     <div class="profile-header">
@@ -256,37 +211,19 @@ header {
 
     <div class="profile-container">
         <div class="profile-section">
-            <h3>👤 Meu Cadastro</h3>
-            <div class="input-group">
-                <label>Nome Completo</label>
-                <input type="text" id="profNome" placeholder="Digite seu nome...">
-            </div>
+            <h3>👤 Dados Pessoais</h3>
+            <div class="input-group"><label>Nome Completo</label><input type="text" id="profNome" placeholder="Seu nome..."></div>
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px">
-                <div class="input-group">
-                    <label>Nascimento</label>
-                    <input type="date" id="profNasc">
-                </div>
-                <div class="input-group">
-                    <label>WhatsApp</label>
-                    <input type="text" id="profZap" placeholder="(00) 00000-0000">
-                </div>
+                <div class="input-group"><label>Nascimento</label><input type="date" id="profNasc"></div>
+                <div class="input-group"><label>WhatsApp</label><input type="text" id="profZap" placeholder="(00) 00000-0000"></div>
             </div>
-            <div class="input-group">
-                <label>Grupo Favorito 💖</label>
-                <input type="text" id="profFav" placeholder="Ex: BTS, Stray Kids...">
-            </div>
+            <div class="input-group"><label>Grupo Favorito 💖</label><input type="text" id="profFav" placeholder="Ex: BTS, Stray Kids..."></div>
         </div>
 
         <div class="profile-section">
             <h3>📍 Endereço de Entrega</h3>
-            <div class="input-group">
-                <label>Endereço Completo</label>
-                <input type="text" id="profEnd" placeholder="Rua, Número, Bairro, Cidade">
-            </div>
-            <div class="input-group">
-                <label>CEP</label>
-                <input type="text" id="profCep" placeholder="00000-000">
-            </div>
+            <div class="input-group"><label>Endereço Completo</label><input type="text" id="profEnd" placeholder="Rua, Número, Bairro, Cidade"></div>
+            <div class="input-group"><label>CEP</label><input type="text" id="profCep" placeholder="00000-000"></div>
             <button onclick="salvarPerfil()" style="width:100%; background:var(--primary-pink); color:white; border:none; padding:16px; border-radius:12px; font-weight:800; cursor:pointer; box-shadow: 0 5px 15px rgba(255, 79, 216, 0.3);">SALVAR PERFIL</button>
         </div>
 
@@ -305,7 +242,7 @@ header {
         <span style="font-size:22px; font-weight:900; color:var(--primary-pink); letter-spacing: -1px;">IDOLVERSE</span>
     </div>
     <div class="search-container">
-      <input type="text" placeholder="Pesquisar kits, grupos ou artistas..." onkeyup="buscar(this.value)">
+      <input type="text" placeholder="Pesquisar kits, artistas ou animes..." onkeyup="buscar(this.value)">
     </div>
     <button class="user-btn" onclick="abrirPerfil()">
         <span id="userBtnLabel">Entrar</span> 👤
@@ -322,15 +259,11 @@ header {
 </header>
 
 <div class="container">
-  
   <div class="welcome-hero" id="welcomeBanner">
       <h1>Bem-vindo à IdolVerse Store</h1>
       <p>Sua paixão em forma de Photocard • Qualidade Premium ✨</p>
   </div>
-
   <div class="products" id="productGrid"></div>
-
-  <!-- PERSONALIZADOS -->
   <div class="custom-order-section">
     <h2 style="color:var(--primary-pink); margin:0 0 10px 0;">🎨 Encomenda Personalizada</h2>
     <p>Monte o kit perfeito com as fotos que você escolher! 💖</p>
@@ -355,7 +288,7 @@ header {
             <div id="ppPrice" style="font-size: 34px; color:var(--primary-pink); font-weight:900; margin:15px 0;">R$ 0,00</div>
             
             <div class="pix-info-badge">
-                <img src="meu-pix.png">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94Pix.svg" alt="PIX">
                 <span>Aceitamos PIX de todos os bancos</span>
             </div>
 
@@ -370,6 +303,10 @@ header {
             </div>
 
             <p id="ppDesc" style="color:#bbb; line-height:1.7; font-size: 15px;"></p>
+            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; margin: 20px 0; font-size: 13px; border: 1px solid rgba(255,255,255,0.05);">
+                <strong>Este Kit contém 73 itens (Tamanho G):</strong><br>
+                25 Mini Fotos • 3 Tirinhas • 9 Cards Verso • 6 Polaroids • 6 Mini Fotos • 1 Pingente • 8 Mini Posters • 1 Carteirinha • 1 Marca Página • 1 Docinho • 12 Fotos Plastificadas.
+            </div>
             <button class="btn-whatsapp" id="ppAddBtn" style="width:100%; background:var(--primary-pink); border-radius:12px; text-align:center;">ADICIONAR AO CARRINHO</button>
         </div>
     </div>
@@ -382,11 +319,9 @@ header {
   <div class="cart-header"><h3>Meu Carrinho</h3><span onclick="toggleCarrinho()" style="cursor:pointer; font-size:32px; color:var(--primary-pink)">×</span></div>
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
-    <div style="background: rgba(255, 79, 216, 0.1); padding: 10px; border-radius: 8px; font-size: 11px; text-align: center; margin-bottom: 15px; border: 1px dashed var(--primary-pink);">
-        📌 O pagamento e a produção serão validados via WhatsApp.
-    </div>
+    <div class="cart-notice">📌 O pagamento e produção serão validados via WhatsApp.</div>
     <div class="cart-inputs">
-        <p style="font-size:11px; opacity:0.6; margin-bottom:10px;">🚚 Entrega em: <strong id="cartEndResumo">Defina no Perfil</strong></p>
+        <p style="font-size:11px; opacity:0.6; margin-bottom:12px;">🚚 Enviando para: <strong id="cartEndResumo">Defina no Perfil</strong></p>
         <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:14px; border-radius:12px; margin-bottom:15px; cursor:pointer; font-weight:bold;">CALCULAR FRETE 🚚</button>
     </div>
     <div id="freteResult" style="display:none; background: rgba(255,255,255,0.05); padding:15px; border-radius:12px; margin-bottom:15px;">
@@ -398,97 +333,94 @@ header {
   </div>
 </div>
 
-<!-- RODAPÉ -->
 <footer class="main-footer">
     <div class="footer-grid">
         <div class="footer-col">
             <h4>INSTITUCIONAL</h4>
-            <a href="#">Sobre a IdolVerse</a>
+            <a href="#">Sobre a Loja</a>
             <a href="#">Prazo de Produção</a>
             <a href="#">Trocas e Devoluções</a>
-            <a href="#">Política de Privacidade</a>
         </div>
         <div class="footer-col">
-            <h4>SUPORTE E CONTATO</h4>
+            <h4>CONTATO</h4>
             <p>✉️ thiagomaksuel67@gmail.com</p>
             <p>📱 WhatsApp: (91) 98612-2614</p>
-            <p>📍 Belém - Pará (Enviamos para todo o Brasil)</p>
-            <p>🕒 Atendimento: Seg a Sex • 09h às 18h</p>
+            <p>📍 Belém - PA (Brasil)</p>
         </div>
         <div class="footer-col">
             <h4>SIGA A GENTE</h4>
-            <p>Fique por dentro das novidades e mimos exclusivos!</p>
-            <div class="social-links">
-                <a href="#" class="social-btn">📸</a>
-                <a href="#" class="social-btn">🎵</a>
-            </div>
-            <p style="margin-top: 20px; font-size: 11px;">Instagram: @IdolVerse</p>
-            <p style="font-size: 11px;">TikTok: @IdolVerseStore</p>
+            <p>Novidades diárias e mimos exclusivos!</p>
+            <p>Instagram: @IdolVerse</p>
+            <p>TikTok: @IdolVerseStore</p>
         </div>
     </div>
-    <div class="footer-bottom">
-        <p>© 2024 IdolVerse Store. Desenvolvido por Thiago Maksuel. Todos os direitos reservados.</p>
-        <p style="margin-top: 5px; opacity: 0.3;">Suporte Técnico: +55 91 8882-2874</p>
-    </div>
+    <div class="footer-bottom">© 2024 IdolVerse Store. Desenvolvido por Thiago Maksuel. Suporte: +55 91 8882-2874</div>
 </footer>
 
 <script>
-// ===== BANCO DE DADOS E CONFIGURAÇÃO =====
+// ===== BANCO DE DADOS (VALORES DE MERCADO PARA 73 ITENS) =====
 const FOTO_TAMANHO_G = 'tamanho-g.jpg';
 let carrinho = [];
 let favoritos = [];
 let usuario = { n: '', e: '', c: '', z: '', nas: '', fav: '' };
 
 const database = [
-  { id: 1, cat: 'kpop', name: 'Kit BTS', price: 19.90, img: 'bts1.jpg', desc: '54 photocards lomo de alta definição do BTS.' },
-  { id: 2, cat: 'kpop', name: 'Pack BLACKPINK', price: 21.90, img: 'blackpink.jpg', desc: 'Edição luxo BLACKPINK.' },
-  { id: 3, cat: 'kpop', name: 'Kit Stray Kids', price: 22.90, img: 'straykids.jpg', desc: 'Stray Kids Premium.' },
-  { id: 4, cat: 'kpop', name: 'Kit LE SSERAFIM', price: 22.90, img: 'lesserafim.jpg', desc: 'Conceito LE SSERAFIM.' },
-  { id: 5, cat: 'kpop', name: 'Kit Tomorrow X Together', price: 23.90, img: 'txt.jpg', desc: 'TXT Oficial.' },
-  { id: 6, cat: 'kpop', name: 'Kit Twice', price: 22.90, img: 'twice.jpg', desc: 'Twice Coleção.' },
-  { id: 7, cat: 'kpop', name: 'Kit New Jeans', price: 24.90, img: 'newjeans.jpg', desc: 'New Jeans Bunny.' },
-  { id: 8, cat: 'kpop', name: 'Kit EXO', price: 23.90, img: 'exo.jpg', desc: 'EXO Lendário.' },
-  { id: 9, cat: 'kpop', name: 'Kit aespa', price: 24.90, img: 'aespa.jpg', desc: 'aespa Next Level.' },
-  { id: 10, cat: 'famosos', name: 'Pack Neymar Jr', price: 24.90, img: 'neymar.jpg', desc: 'Neymar Jr.' },
-  { id: 11, cat: 'famosos', name: 'Kit Taylor Swift', price: 26.90, img: 'taylor.jpg', desc: 'Taylor Swift Eras.' },
-  { id: 12, cat: 'famosos', name: 'Pack Jenna Ortega', price: 23.90, img: 'jenna.jpg', desc: 'Jenna Ortega.' },
-  { id: 13, cat: 'famosos', name: 'Kit Eminem', price: 25.90, img: 'eminem.jpg', desc: 'Eminem Rap.' },
-  { id: 14, cat: 'famosos', name: 'Pack Bruno Mars', price: 24.90, img: 'brunomars.jpg', desc: 'Bruno Mars.' },
-  { id: 15, cat: 'famosos', name: 'Kit Ariana Grande', price: 25.90, img: 'ariana.jpg', desc: 'Ariana Grande.' },
-  { id: 16, cat: 'famosos', name: 'Kit The Weeknd', price: 26.90, img: 'theweeknd.jpg', desc: 'The Weeknd.' },
-  { id: 17, cat: 'famosos', name: 'Kit Olivia Rodrigo', price: 24.90, img: 'olivia.jpg', desc: 'Olivia Rodrigo.' },
-  { id: 18, cat: 'famosos', name: 'Pack Dua Lipa', price: 25.90, img: 'dualipa.jpg', desc: 'Dua Lipa.' },
-  { id: 19, cat: 'famosos', name: 'Kit Billie Eilish', price: 26.90, img: 'billie.jpg', desc: 'Billie Eilish.' },
-  { id: 20, cat: 'anime', name: 'Kit Your Name', price: 25.90, img: 'yourname.jpg', desc: 'Your Name.' },
-  { id: 21, cat: 'anime', name: 'Kit Demon Slayer', price: 25.90, img: 'demonslayer.jpg', desc: 'Demon Slayer.' },
-  { id: 22, cat: 'anime', name: 'Pack Evangelion', price: 26.90, img: 'evangelion.jpg', desc: 'Evangelion.' },
-  { id: 23, cat: 'anime', name: 'Kit Dragon Ball Z', price: 24.90, img: 'dbz.jpg', desc: 'Dragon Ball Z.' },
-  { id: 24, cat: 'anime', name: 'Kit Frieren', price: 27.90, img: 'frieren.jpg', desc: 'Frieren.' },
-  { id: 25, cat: 'anime', name: 'Kit Jujutsu Kaisen', price: 26.90, img: 'jjk.jpg', desc: 'Jujutsu Kaisen.' },
-  { id: 26, cat: 'anime', name: 'Kit Baki', price: 24.90, img: 'baki.jpg', desc: 'Baki Hanma.' },
-  { id: 27, cat: 'anime', name: 'Kit JoJo Bizarre', price: 28.90, img: 'jojo.jpg', desc: 'JoJo Bizarre.' },
-  { id: 28, cat: 'anime', name: 'Kit Dandadan', price: 27.90, img: 'dandadan.jpg', desc: 'Dandadan.' },
-  { id: 30, cat: 'séries', name: 'Kit Stranger Things', price: 29.90, img: 'strangerthings.jpg', desc: 'Stranger Things.' },
-  { id: 31, cat: 'séries', name: 'Kit All of us are Dead', price: 25.90, img: 'allofusaredead.jpg', desc: 'All of us are Dead.' },
-  { id: 32, cat: 'séries', name: 'Kit The 100', price: 25.90, img: 'the100.jpg', desc: 'The 100.' },
-  { id: 33, cat: 'séries', name: 'Kit Weak Hero', price: 26.90, img: 'weakhero.jpg', desc: 'Weak Hero.' },
-  { id: 34, cat: 'séries', name: 'Kit Vis a Vis', price: 25.90, img: 'visavis.jpg', desc: 'Vis a Vis.' },
-  { id: 35, cat: 'séries', name: 'Kit Sweet Home', price: 26.90, img: 'sweethome.jpg', desc: 'Sweet Home.' },
-  { id: 36, cat: 'séries', name: 'Kit Enola Holmes', price: 24.90, img: 'enolaholmes.jpg', desc: 'Enola Holmes.' },
-  { id: 37, cat: 'séries', name: 'Kit Reality Z', price: 23.90, img: 'realityz.jpg', desc: 'Reality Z.' },
-  { id: 38, cat: 'séries', name: 'Kit My Name', price: 26.90, img: 'myname.jpg', desc: 'My Name.' },
-  { id: 39, cat: 'séries', name: 'Kit Outer Banks', price: 25.90, img: 'outerbanks.jpg', desc: 'Outer Banks.' },
-  { id: 40, cat: 'séries', name: 'Kit Extracurricular', price: 26.90, img: 'extracurricular.jpg', desc: 'Extracurricular.' },
-  { id: 41, cat: 'séries', name: 'Kit Alice in Borderland', price: 27.90, img: 'aliceinborderland.jpg', desc: 'Alice in Borderland.' },
-  { id: 42, cat: 'séries', name: 'Kit Welcome to Derry', price: 28.90, img: 'itderry.jpg', desc: 'Welcome to Derry.' }
+  // K-POP - Média R$ 54,90
+  { id: 1, cat: 'kpop', name: 'Kit BTS (73 Itens)', price: 54.90, img: 'bts1.jpg', desc: 'Kit premium completo do BTS com fotos de todas as eras.' },
+  { id: 2, cat: 'kpop', name: 'Pack BLACKPINK (73 Itens)', price: 54.90, img: 'blackpink.jpg', desc: 'Pack luxo BLACKPINK com fotos exclusivas das integrantes.' },
+  { id: 3, cat: 'kpop', name: 'Kit Stray Kids (73 Itens)', price: 59.90, img: 'straykids.jpg', desc: 'Coleção premium Stray Kids com acabamento alto brilho.' },
+  { id: 4, cat: 'kpop', name: 'Kit LE SSERAFIM (73 Itens)', price: 54.90, img: 'lesserafim.jpg', desc: 'Conceito Fearless LE SSERAFIM em alta definição.' },
+  { id: 5, cat: 'kpop', name: 'Kit TXT (73 Itens)', price: 54.90, img: 'txt.jpg', desc: 'Fotos oficiais e mimos exclusivos Tomorrow X Together.' },
+  { id: 6, cat: 'kpop', name: 'Kit Twice (73 Itens)', price: 54.90, img: 'twice.jpg', desc: 'Coleção especial com as 9 integrantes do grupo Twice.' },
+  { id: 7, cat: 'kpop', name: 'Kit New Jeans (73 Itens)', price: 59.90, img: 'newjeans.jpg', desc: 'Estética Bunny Y2K em photocards premium.' },
+  { id: 8, cat: 'kpop', name: 'Kit EXO (73 Itens)', price: 54.90, img: 'exo.jpg', desc: 'Coleção lendária do grupo EXO para colecionadores.' },
+  { id: 9, cat: 'kpop', name: 'Kit aespa (73 Itens)', price: 59.90, img: 'aespa.jpg', desc: 'Mundo virtual aespa em impressão HD Premium.' },
+
+  // FAMOSOS - Média R$ 59,90
+  { id: 10, cat: 'famosos', name: 'Pack Neymar Jr (73 Itens)', price: 59.90, img: 'neymar.jpg', desc: 'Pack exclusivo do craque Neymar Jr.' },
+  { id: 11, cat: 'famosos', name: 'Kit Taylor Swift (73 Itens)', price: 64.90, img: 'taylor.jpg', desc: 'The Eras Tour Collection - Um card para cada álbum da Taylor.' },
+  { id: 12, cat: 'famosos', name: 'Pack Jenna Ortega (73 Itens)', price: 59.90, img: 'jenna.jpg', desc: 'Cenas icônicas e ensaios da Jenna Ortega.' },
+  { id: 13, cat: 'famosos', name: 'Kit Eminem (73 Itens)', price: 59.90, img: 'eminem.jpg', desc: 'Lenda do Rap em photocards exclusivos e mimos.' },
+  { id: 14, cat: 'famosos', name: 'Pack Bruno Mars (73 Itens)', price: 64.90, img: 'brunomars.jpg', desc: 'Edição especial Bruninho para fãs de carteirinha.' },
+  { id: 15, cat: 'famosos', name: 'Kit Ariana Grande (73 Itens)', price: 59.90, img: 'ariana.jpg', desc: 'Fotos raras e estéticas da diva Ariana Grande.' },
+  { id: 16, cat: 'famosos', name: 'Kit The Weeknd (73 Itens)', price: 64.90, img: 'theweeknd.jpg', desc: 'Universo XO: After Hours e Dawn FM.' },
+  { id: 17, cat: 'famosos', name: 'Kit Olivia Rodrigo (73 Itens)', price: 59.90, img: 'olivia.jpg', desc: 'Estética SOUR e GUTS em photocards plastificados.' },
+  { id: 18, cat: 'famosos', name: 'Pack Dua Lipa (73 Itens)', price: 59.90, img: 'dualipa.jpg', desc: 'Coleção premium da cantora Dua Lipa.' },
+  { id: 19, cat: 'famosos', name: 'Kit Billie Eilish (73 Itens)', price: 64.90, img: 'billie.jpg', desc: 'Estilo único da Billie em fotos de alta qualidade.' },
+
+  // ANIME - Média R$ 49,90
+  { id: 20, cat: 'anime', name: 'Kit Your Name (73 Itens)', price: 49.90, img: 'yourname.jpg', desc: 'Cenas mágicas do filme Your Name.' },
+  { id: 21, cat: 'anime', name: 'Kit Demon Slayer (73 Itens)', price: 54.90, img: 'demonslayer.jpg', desc: 'Tanjiro e Hashiras em photocards premium.' },
+  { id: 22, cat: 'anime', name: 'Pack Evangelion (73 Itens)', price: 54.90, img: 'evangelion.jpg', desc: 'Edição especial Neon Genesis Evangelion.' },
+  { id: 23, cat: 'anime', name: 'Kit Dragon Ball Z (73 Itens)', price: 49.90, img: 'dbz.jpg', desc: 'Coleção saga Z para fãs de Dragon Ball.' },
+  { id: 24, cat: 'anime', name: 'Kit Frieren (73 Itens)', price: 54.90, img: 'frieren.jpg', desc: 'Artes delicadas e mágicas do anime Frieren.' },
+  { id: 25, cat: 'anime', name: 'Kit Jujutsu Kaisen (73 Itens)', price: 54.90, img: 'jjk.jpg', desc: 'Gojo e feiticeiros em impressão HD plastificada.' },
+  { id: 26, cat: 'anime', name: 'Kit Baki (73 Itens)', price: 49.90, img: 'baki.jpg', desc: 'Coleção Baki Hanma para colecionadores.' },
+  { id: 27, cat: 'anime', name: 'Kit JoJo Bizarre (73 Itens)', price: 59.90, img: 'jojo.jpg', desc: 'Estilo e poses fabulosas de JoJo.' },
+  { id: 28, cat: 'anime', name: 'Kit Dandadan (73 Itens)', price: 54.90, img: 'dandadan.jpg', desc: 'Ousadia e ação do novo anime Dandadan.' },
+
+  // SÉRIES/DORAMA - Média R$ 59,90
+  { id: 30, cat: 'séries', name: 'Kit Stranger Things (73 Itens)', price: 64.90, img: 'strangerthings.jpg', desc: 'O mundo invertido em fotos de alta qualidade.' },
+  { id: 31, cat: 'séries', name: 'Kit All of us are Dead (73 Itens)', price: 54.90, img: 'allofusaredead.jpg', desc: 'Dorama de zumbi de sucesso da Netflix.' },
+  { id: 32, cat: 'séries', name: 'Kit The 100 (73 Itens)', price: 54.90, img: 'the100.jpg', desc: 'Série de sobrevivência The 100.' },
+  { id: 33, cat: 'séries', name: 'Kit Weak Hero (73 Itens)', price: 54.90, img: 'weakhero.jpg', desc: 'O melhor do dorama de ação coreano.' },
+  { id: 34, cat: 'séries', name: 'Kit Vis a Vis (73 Itens)', price: 54.90, img: 'visavis.jpg', desc: 'As detentas da Cruz del Sur em cards.' },
+  { id: 35, cat: 'séries', name: 'Kit Sweet Home (73 Itens)', price: 54.90, img: 'sweethome.jpg', desc: 'Dorama de terror Sweet Home.' },
+  { id: 36, cat: 'séries', name: 'Kit Enola Holmes (73 Itens)', price: 54.90, img: 'enolaholmes.jpg', desc: 'Photocards do filme Enola Holmes.' },
+  { id: 37, cat: 'séries', name: 'Kit Reality Z (73 Itens)', price: 49.90, img: 'realityz.jpg', desc: 'Zumbis no reality show brasileiro.' },
+  { id: 38, cat: 'séries', name: 'Kit My Name (73 Itens)', price: 54.90, img: 'myname.jpg', desc: 'Vingança impecável em fotos premium.' },
+  { id: 39, cat: 'séries', name: 'Kit Outer Banks (73 Itens)', price: 54.90, img: 'outerbanks.jpg', desc: 'Pogues vs Kooks em photocards.' },
+  { id: 40, cat: 'séries', name: 'Kit Extracurricular (73 Itens)', price: 54.90, img: 'extracurricular.jpg', desc: 'Dorama coreano Extracurricular.' },
+  { id: 41, cat: 'séries', name: 'Kit Alice in Borderland (73 Itens)', price: 59.90, img: 'aliceinborderland.jpg', desc: 'Sobreviva aos jogos em Tóquio.' },
+  { id: 42, cat: 'séries', name: 'Kit Welcome to Derry (73 Itens)', price: 64.90, img: 'itderry.jpg', desc: 'O terror de IT volta nesta nova série.' }
 ];
 
-// ===== INICIALIZAÇÃO =====
+// ===== LÓGICA DE FUNCIONAMENTO =====
 function carregarTudo() {
   favoritos = JSON.parse(localStorage.getItem('iv_fav_v8')) || [];
   carrinho = JSON.parse(localStorage.getItem('iv_cart_v8')) || [];
   usuario = JSON.parse(localStorage.getItem('iv_user_v8')) || {n:'', e:'', c:'', z:'', nas:'', fav:''};
-
+  
   preencherInputs();
   atualizarDadosNaTela();
   renderizarProdutos(database);
@@ -510,13 +442,9 @@ function atualizarDadosNaTela() {
     document.getElementById('avatarIcon').innerText = (usuario.n || "?").charAt(0).toUpperCase();
     document.getElementById('userBtnLabel').innerText = nomeCurto;
     document.getElementById('cartEndResumo').innerText = usuario.e || "Defina no Perfil";
-    
-    if(usuario.n) {
-        document.getElementById('welcomeBanner').innerHTML = `<h1>Bem-vindo, ${nomeCurto}!</h1><p>Pronto para aumentar sua coleção? ✨</p>`;
-    }
+    if(usuario.n) document.getElementById('welcomeBanner').innerHTML = `<h1>Bem-vindo, ${nomeCurto}!</h1><p>Pronto para aumentar sua coleção? ✨</p>`;
 }
 
-// ===== PERFIL =====
 function abrirPerfil() { document.getElementById('profilePage').style.display = 'flex'; carregarHistorico(); }
 function fecharPerfil() { document.getElementById('profilePage').style.display = 'none'; }
 
@@ -527,15 +455,12 @@ function salvarPerfil() {
     usuario.z = document.getElementById('profZap').value;
     usuario.nas = document.getElementById('profNasc').value;
     usuario.fav = document.getElementById('profFav').value;
-    
     localStorage.setItem('iv_user_v8', JSON.stringify(usuario));
-    atualizarDadosNaTela();
-    showToast("Perfil atualizado! ✨");
+    atualizarDadosNaTela(); showToast("Perfil salvo! ✨");
 }
 
-function logout() { if(confirm("Limpar todos os dados?")){ localStorage.clear(); location.reload(); } }
+function logout() { if(confirm("Limpar dados?")){ localStorage.clear(); location.reload(); } }
 
-// ===== PRODUTOS =====
 function renderizarProdutos(lista) {
   const grid = document.getElementById('productGrid'); grid.innerHTML = '';
   lista.forEach(p => {
@@ -567,7 +492,6 @@ function fecharPP() { document.getElementById('productPage').style.display = 'no
 function changePPImg(el) { document.querySelectorAll('.pp-thumbnails img').forEach(i => i.classList.remove('active')); el.classList.add('active'); document.getElementById('ppImg').src = el.src; }
 function abrirZoom() { document.getElementById('zoomImg').src = document.getElementById('ppImg').src; document.getElementById('zoomModal').style.display = 'flex'; }
 
-// ===== CARRINHO =====
 function addCart(id) {
   const p = database.find(x => x.id === id);
   const item = carrinho.find(i => i.id === id);
@@ -613,47 +537,21 @@ function calcularFrete() {
     document.getElementById('freteResult').style.display = 'block'; atualizarTotal(); 
 }
 
-// ===== FINALIZAÇÃO WHATSAPP =====
 function finalizarPedido() {
-  if(!usuario.n || !usuario.e) return alert("Complete seu perfil de entrega!");
+  if(!usuario.n || !usuario.e) return alert("Complete seu cadastro no perfil!");
   if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
-
-  alert("Confirmado! Agora vamos continuar o atendimento no WhatsApp para validar o pagamento e a produção. ✨");
-
+  
   let subtotal = carrinho.reduce((a,b)=> a + (b.price * b.q), 0);
   let freteValor = (document.getElementById('freteResult').style.display === 'block') ? parseFloat(document.querySelector('input[name="f"]:checked').value) : 0;
   let freteTipo = (freteValor === 15) ? "PAC" : (freteValor === 30 ? "SEDEX" : "A combinar");
   let totalFinal = subtotal + freteValor;
-
   const itensLista = carrinho.map(i => `• ${i.q}x ${i.name} (R$ ${(i.price * i.q).toFixed(2)})`).join('\n');
 
-  const msgProfissional = `🌟 *NOVO PEDIDO - IDOLVERSE STORE* 🌟
----------------------------------------
-👤 *CLIENTE:*
-Nome: ${usuario.n}
-Grupo Fav: ${usuario.fav || 'Não informado'}
-
-📍 *ENTREGA:*
-Endereço: ${usuario.e}
-CEP: ${usuario.c}
-
-📦 *DETALHES DO PEDIDO:*
-${itensLista}
-
----------------------------------------
-💰 *RESUMO FINANCEIRO:*
-Subtotal: R$ ${subtotal.toFixed(2)}
-Frete (${freteTipo}): R$ ${freteValor.toFixed(2)}
-*TOTAL: R$ ${totalFinal.toFixed(2)}*
-
-✨ _Aceitamos PIX de todos os bancos_
----------------------------------------
-Olá! Acabei de realizar meu pedido pelo site. Gostaria de prosseguir com o pagamento e confirmar o prazo de produção.`;
+  const msgProfissional = `🌟 *NOVO PEDIDO - IDOLVERSE STORE* 🌟\n---------------------------------------\n👤 *CLIENTE:*\nNome: ${usuario.n}\nGrupo Fav: ${usuario.fav || 'Não informado'}\n\n📍 *ENTREGA:*\nEndereço: ${usuario.e}\nCEP: ${usuario.c}\n\n📦 *ITENS:*\n${itensLista}\n\n---------------------------------------\n💰 *TOTAL: R$ ${totalFinal.toFixed(2)}*\n(Subtotal: R$ ${subtotal.toFixed(2)} + Frete: R$ ${freteValor.toFixed(2)})\n\nOlá! Acabei de realizar meu pedido pelo site. Gostaria de prosseguir com o pagamento e confirmar o prazo de produção. ✨`;
 
   let hist = JSON.parse(localStorage.getItem('iv_hist_v8')) || [];
   hist.unshift({data: new Date().toLocaleString(), total: `R$ ${totalFinal.toFixed(2)}` });
   localStorage.setItem('iv_hist_v8', JSON.stringify(hist));
-
   window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msgProfissional)}`, '_blank');
 }
 
@@ -662,7 +560,6 @@ function carregarHistorico() {
     document.getElementById('historicoPerfil').innerHTML = hist.length ? hist.map(p => `<div style="padding:10px; border-bottom:1px solid #333"><strong>${p.total}</strong> - ${p.data}</div>`).join('') : "Nenhum pedido.";
 }
 
-// ===== BUSCA E FILTROS =====
 function buscar(t) { renderizarProdutos(database.filter(p => p.name.toLowerCase().includes(t.toLowerCase()))); }
 function filtrarCategoria(el, cat) { 
   document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active')); el.classList.add('active');

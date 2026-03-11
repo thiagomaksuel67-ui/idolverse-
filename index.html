@@ -332,4 +332,240 @@ header {
 </div>
 
 <!-- CARRINHO -->
-<button id=
+<button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>
+<div id="overlay" onclick="toggleCarrinho()"></div>
+<div id="carrinho">
+  <div class="cart-header"><h3>Meu Carrinho</h3><span onclick="toggleCarrinho()" style="cursor:pointer; font-size:32px; color:var(--primary-pink)">×</span></div>
+  <div id="listaCarrinho"></div>
+  <div class="cart-footer">
+    <div class="cart-inputs">
+        <p style="font-size:11px; opacity:0.6; margin-bottom:12px;">🚚 Enviando para: <strong id="cartEndResumo">Defina no Perfil</strong></p>
+        <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:14px; border-radius:12px; margin-bottom:15px; cursor:pointer; font-weight:bold;">CALCULAR FRETE 🚚</button>
+    </div>
+    <div id="freteResult" style="display:none; background: rgba(255,255,255,0.05); padding:15px; border-radius:12px; margin-bottom:15px;">
+        <label style="display:block; margin-bottom:10px;"><input type="radio" name="f" value="15" checked onchange="atualizarTotal()"> PAC - R$ 15,00</label>
+        <label style="display:block;"><input type="radio" name="f" value="30" onchange="atualizarTotal()"> SEDEX - R$ 30,00</label>
+    </div>
+    <div style="display:flex; justify-content:space-between; font-weight:900; font-size:24px; margin-top:10px;"><span>Total:</span><span id="totalTxt">R$ 0,00</span></div>
+    <button class="btn-whatsapp" style="width:100%; margin-top:15px; text-align:center;" onclick="finalizarPedido()">FINALIZAR NO WHATSAPP</button>
+  </div>
+</div>
+
+<div class="credits">CRIADO POR <span>THIAGO MAKSUEL</span> • <span>MARINA ANGELS</span> • <span>MARIA SOPHYA</span></div>
+
+<script>
+// ===== BANCO DE DADOS E CONFIGURAÇÃO =====
+const FOTO_TAMANHO_G = 'tamanho-g.jpg';
+let carrinho = [];
+let favoritos = [];
+let usuario = { n: '', e: '', c: '', z: '', nas: '', fav: '' };
+
+const database = [
+  { id: 1, cat: 'kpop', name: 'Kit BTS', price: 19.90, img: 'bts1.jpg', desc: '54 photocards lomo de alta definição do BTS.' },
+  { id: 2, cat: 'kpop', name: 'Pack BLACKPINK', price: 21.90, img: 'blackpink.jpg', desc: 'Edição luxo BLACKPINK.' },
+  { id: 3, cat: 'kpop', name: 'Kit Stray Kids', price: 22.90, img: 'straykids.jpg', desc: 'Stray Kids Premium.' },
+  { id: 4, cat: 'kpop', name: 'Kit LE SSERAFIM', price: 22.90, img: 'lesserafim.jpg', desc: 'Conceito LE SSERAFIM.' },
+  { id: 5, cat: 'kpop', name: 'Kit Tomorrow X Together', price: 23.90, img: 'txt.jpg', desc: 'TXT Oficial.' },
+  { id: 6, cat: 'kpop', name: 'Kit Twice', price: 22.90, img: 'twice.jpg', desc: 'Twice Coleção.' },
+  { id: 7, cat: 'kpop', name: 'Kit New Jeans', price: 24.90, img: 'newjeans.jpg', desc: 'New Jeans Bunny.' },
+  { id: 8, cat: 'kpop', name: 'Kit EXO', price: 23.90, img: 'exo.jpg', desc: 'EXO Lendário.' },
+  { id: 9, cat: 'kpop', name: 'Kit aespa', price: 24.90, img: 'aespa.jpg', desc: 'aespa Next Level.' },
+  { id: 10, cat: 'famosos', name: 'Pack Neymar Jr', price: 24.90, img: 'neymar.jpg', desc: 'Neymar Jr.' },
+  { id: 11, cat: 'famosos', name: 'Kit Taylor Swift', price: 26.90, img: 'taylor.jpg', desc: 'Taylor Swift Eras.' },
+  { id: 12, cat: 'famosos', name: 'Pack Jenna Ortega', price: 23.90, img: 'jenna.jpg', desc: 'Jenna Ortega.' },
+  { id: 13, cat: 'famosos', name: 'Kit Eminem', price: 25.90, img: 'eminem.jpg', desc: 'Eminem Rap.' },
+  { id: 14, cat: 'famosos', name: 'Pack Bruno Mars', price: 24.90, img: 'brunomars.jpg', desc: 'Bruno Mars.' },
+  { id: 15, cat: 'famosos', name: 'Kit Ariana Grande', price: 25.90, img: 'ariana.jpg', desc: 'Ariana Grande.' },
+  { id: 16, cat: 'famosos', name: 'Kit The Weeknd', price: 26.90, img: 'theweeknd.jpg', desc: 'The Weeknd.' },
+  { id: 17, cat: 'famosos', name: 'Kit Olivia Rodrigo', price: 24.90, img: 'olivia.jpg', desc: 'Olivia Rodrigo.' },
+  { id: 18, cat: 'famosos', name: 'Pack Dua Lipa', price: 25.90, img: 'dualipa.jpg', desc: 'Dua Lipa.' },
+  { id: 19, cat: 'famosos', name: 'Kit Billie Eilish', price: 26.90, img: 'billie.jpg', desc: 'Billie Eilish.' },
+  { id: 20, cat: 'anime', name: 'Kit Your Name', price: 25.90, img: 'yourname.jpg', desc: 'Your Name.' },
+  { id: 21, cat: 'anime', name: 'Kit Demon Slayer', price: 25.90, img: 'demonslayer.jpg', desc: 'Demon Slayer.' },
+  { id: 22, cat: 'anime', name: 'Pack Evangelion', price: 26.90, img: 'evangelion.jpg', desc: 'Evangelion.' },
+  { id: 23, cat: 'anime', name: 'Kit Dragon Ball Z', price: 24.90, img: 'dbz.jpg', desc: 'Dragon Ball Z.' },
+  { id: 24, cat: 'anime', name: 'Kit Frieren', price: 27.90, img: 'frieren.jpg', desc: 'Frieren.' },
+  { id: 25, cat: 'anime', name: 'Kit Jujutsu Kaisen', price: 26.90, img: 'jjk.jpg', desc: 'Jujutsu Kaisen.' },
+  { id: 26, cat: 'anime', name: 'Kit Baki', price: 24.90, img: 'baki.jpg', desc: 'Baki Hanma.' },
+  { id: 27, cat: 'anime', name: 'Kit JoJo Bizarre', price: 28.90, img: 'jojo.jpg', desc: 'JoJo Bizarre.' },
+  { id: 28, cat: 'anime', name: 'Kit Dandadan', price: 27.90, img: 'dandadan.jpg', desc: 'Dandadan.' },
+  { id: 30, cat: 'séries', name: 'Kit Stranger Things', price: 29.90, img: 'strangerthings.jpg', desc: 'Stranger Things.' },
+  { id: 31, cat: 'séries', name: 'Kit All of us are Dead', price: 25.90, img: 'allofusaredead.jpg', desc: 'All of us are Dead.' },
+  { id: 32, cat: 'séries', name: 'Kit The 100', price: 25.90, img: 'the100.jpg', desc: 'The 100.' },
+  { id: 33, cat: 'séries', name: 'Kit Weak Hero', price: 26.90, img: 'weakhero.jpg', desc: 'Weak Hero.' },
+  { id: 34, cat: 'séries', name: 'Kit Vis a Vis', price: 25.90, img: 'visavis.jpg', desc: 'Vis a Vis.' },
+  { id: 35, cat: 'séries', name: 'Kit Sweet Home', price: 26.90, img: 'sweethome.jpg', desc: 'Sweet Home.' },
+  { id: 36, cat: 'séries', name: 'Kit Enola Holmes', price: 24.90, img: 'enolaholmes.jpg', desc: 'Enola Holmes.' },
+  { id: 37, cat: 'séries', name: 'Kit Reality Z', price: 23.90, img: 'realityz.jpg', desc: 'Reality Z.' },
+  { id: 38, cat: 'séries', name: 'Kit My Name', price: 26.90, img: 'myname.jpg', desc: 'My Name.' },
+  { id: 39, cat: 'séries', name: 'Kit Outer Banks', price: 25.90, img: 'outerbanks.jpg', desc: 'Outer Banks.' },
+  { id: 40, cat: 'séries', name: 'Kit Extracurricular', price: 26.90, img: 'extracurricular.jpg', desc: 'Extracurricular.' },
+  { id: 41, cat: 'séries', name: 'Kit Alice in Borderland', price: 27.90, img: 'aliceinborderland.jpg', desc: 'Alice in Borderland.' },
+  { id: 42, cat: 'séries', name: 'Kit Welcome to Derry', price: 28.90, img: 'itderry.jpg', desc: 'Welcome to Derry.' }
+];
+
+// ===== INICIALIZAÇÃO =====
+function carregarTudo() {
+  favoritos = JSON.parse(localStorage.getItem('iv_fav_v7')) || [];
+  carrinho = JSON.parse(localStorage.getItem('iv_cart_v7')) || [];
+  usuario = JSON.parse(localStorage.getItem('iv_user_v7')) || {n:'', e:'', c:'', z:'', nas:'', fav:''};
+
+  preencherInputs();
+  atualizarDadosNaTela();
+  renderizarProdutos(database);
+  renderizarCarrinho();
+}
+
+function preencherInputs() {
+    document.getElementById('profNome').value = usuario.n;
+    document.getElementById('profEnd').value = usuario.e;
+    document.getElementById('profCep').value = usuario.c;
+    document.getElementById('profZap').value = usuario.z;
+    document.getElementById('profNasc').value = usuario.nas;
+    document.getElementById('profFav').value = usuario.fav;
+}
+
+function atualizarDadosNaTela() {
+    const nomeCurto = usuario.n ? usuario.n.split(' ')[0] : "Entrar";
+    document.getElementById('profileNameDisplay').innerText = usuario.n || "Olá, Colecionador";
+    document.getElementById('avatarIcon').innerText = (usuario.n || "?").charAt(0).toUpperCase();
+    document.getElementById('userBtnLabel').innerText = nomeCurto;
+    document.getElementById('cartEndResumo').innerText = usuario.e || "Defina no Perfil";
+    
+    if(usuario.n) {
+        document.getElementById('welcomeBanner').innerHTML = `<h1>Bem-vindo, ${nomeCurto}!</h1><p>Pronto para aumentar sua coleção? ✨</p>`;
+    }
+}
+
+// ===== PERFIL =====
+function abrirPerfil() { document.getElementById('profilePage').style.display = 'flex'; carregarHistorico(); }
+function fecharPerfil() { document.getElementById('profilePage').style.display = 'none'; }
+
+function salvarPerfil() {
+    usuario.n = document.getElementById('profNome').value;
+    usuario.e = document.getElementById('profEnd').value;
+    usuario.c = document.getElementById('profCep').value;
+    usuario.z = document.getElementById('profZap').value;
+    usuario.nas = document.getElementById('profNasc').value;
+    usuario.fav = document.getElementById('profFav').value;
+    
+    localStorage.setItem('iv_user_v7', JSON.stringify(usuario));
+    atualizarDadosNaTela();
+    showToast("Perfil atualizado! ✨");
+}
+
+function logout() { if(confirm("Limpar todos os dados?")){ localStorage.clear(); location.reload(); } }
+
+// ===== PRODUTOS =====
+function renderizarProdutos(lista) {
+  const grid = document.getElementById('productGrid'); grid.innerHTML = '';
+  lista.forEach(p => {
+    const isFav = favoritos.includes(p.name);
+    grid.innerHTML += `
+      <div class="card">
+        <div class="card-actions"><button class="action-btn ${isFav ? 'fav-active' : ''}" onclick="toggleFav(this, '${p.name}')">❤️</button></div>
+        <div class="img-container" onclick="abrirPP(${p.id})"><img src="${p.img}"></div>
+        <div class="card-info">
+          <h3 onclick="abrirPP(${p.id})" style="cursor:pointer; font-size:14px">${p.name}</h3>
+          <p class="price">R$ ${p.price.toFixed(2).replace('.',',')}</p>
+          <button class="btn-buy-card" onclick="addCart(${p.id})">Adicionar</button>
+        </div>
+      </div>`;
+  });
+}
+
+function abrirPP(id) {
+  const p = database.find(x => x.id === id);
+  document.getElementById('ppImg').src = p.img;
+  document.getElementById('ppTitle').innerText = p.name;
+  document.getElementById('ppPrice').innerText = `R$ ${p.price.toFixed(2).replace('.',',')}`;
+  document.getElementById('ppDesc').innerText = p.desc;
+  document.getElementById('ppThumbs').innerHTML = `<img src="${p.img}" class="active" onclick="changePPImg(this)"><img src="${FOTO_TAMANHO_G}" onclick="changePPImg(this)">`;
+  document.getElementById('ppAddBtn').onclick = () => { addCart(p.id); fecharPP(); };
+  document.getElementById('productPage').style.display = 'flex';
+}
+function fecharPP() { document.getElementById('productPage').style.display = 'none'; }
+function changePPImg(el) { document.querySelectorAll('.pp-thumbnails img').forEach(i => i.classList.remove('active')); el.classList.add('active'); document.getElementById('ppImg').src = el.src; }
+function abrirZoom() { document.getElementById('zoomImg').src = document.getElementById('ppImg').src; document.getElementById('zoomModal').style.display = 'flex'; }
+
+// ===== CARRINHO =====
+function addCart(id) {
+  const p = database.find(x => x.id === id);
+  const item = carrinho.find(i => i.id === id);
+  if(item) item.q++; else carrinho.push({...p, q:1});
+  localStorage.setItem('iv_cart_v7', JSON.stringify(carrinho)); renderizarCarrinho(); showToast();
+}
+
+function renderizarCarrinho() {
+  const lista = document.getElementById('listaCarrinho'); lista.innerHTML = '';
+  carrinho.forEach(item => {
+    lista.innerHTML += `
+      <div class="item-cart">
+        <img src="${item.img}">
+        <div style="flex:1">
+          <h4 style="margin:0; font-size:14px;">${item.name}</h4>
+          <div style="margin-top:5px;"><button onclick="updateQ(${item.id},-1)" style="width:25px; cursor:pointer">-</button> <span style="margin:0 10px">${item.q}</span> <button onclick="updateQ(${item.id},1)" style="width:25px; cursor:pointer">+</button></div>
+        </div>
+        <strong>R$ ${(item.price * item.q).toFixed(2).replace('.',',')}</strong>
+      </div>`;
+  });
+  document.getElementById('cartCount').innerText = carrinho.reduce((a,b)=> a+b.q,0); atualizarTotal();
+}
+
+function atualizarTotal() {
+  let sub = carrinho.reduce((a,b)=> a + (b.price * b.q), 0);
+  let frete = (document.getElementById('freteResult').style.display === 'block') ? parseFloat(document.querySelector('input[name="f"]:checked').value) : 0;
+  document.getElementById('totalTxt').innerText = `R$ ${(sub + frete).toFixed(2).replace('.',',')}`;
+}
+
+function updateQ(id, n) {
+  const item = carrinho.find(i => i.id === id); item.q += n;
+  if(item.q <= 0) carrinho = carrinho.filter(i => i.id !== id);
+  localStorage.setItem('iv_cart_v7', JSON.stringify(carrinho)); renderizarCarrinho();
+}
+
+function toggleCarrinho() {
+  const c = document.getElementById('carrinho'); const o = document.getElementById('overlay');
+  const open = c.style.right === '0px'; c.style.right = open ? '-100%' : '0px'; o.style.display = open ? 'none' : 'block';
+}
+
+function calcularFrete() { 
+    if(!usuario.c) return alert("Complete seu CEP no Perfil primeiro!");
+    document.getElementById('freteResult').style.display = 'block'; atualizarTotal(); 
+}
+
+function finalizarPedido() {
+  if(!usuario.n || !usuario.e) return alert("Complete seu perfil de entrega!");
+  if(carrinho.length === 0) return alert("Carrinho vazio!");
+  const lista = carrinho.map(i => `• ${i.q}x ${i.name}`).join('\n');
+  const total = document.getElementById('totalTxt').innerText;
+  const msg = `*PEDIDO IDOLVERSE*\n\n*Cliente:* ${usuario.n}\n*Grupo Fav:* ${usuario.fav}\n*Endereço:* ${usuario.e}\n\n*Itens:*\n${lista}\n\n*Total:* ${total}`;
+  let hist = JSON.parse(localStorage.getItem('iv_hist_v7')) || [];
+  hist.unshift({data: new Date().toLocaleString(), total: total});
+  localStorage.setItem('iv_hist_v7', JSON.stringify(hist));
+  window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function carregarHistorico() {
+    const hist = JSON.parse(localStorage.getItem('iv_hist_v7')) || [];
+    document.getElementById('historicoPerfil').innerHTML = hist.length ? hist.map(p => `<div style="padding:10px; border-bottom:1px solid #333"><strong>${p.total}</strong> - ${p.data}</div>`).join('') : "Nenhum pedido.";
+}
+
+function buscar(t) { renderizarProdutos(database.filter(p => p.name.toLowerCase().includes(t.toLowerCase()))); }
+function filtrarCategoria(el, cat) { 
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active')); el.classList.add('active');
+  renderizarProdutos(cat === '' ? database : database.filter(p => p.cat === cat || p.name.toLowerCase().includes(cat)));
+}
+function filtrarFavoritos(el) { 
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active')); el.classList.add('active');
+    renderizarProdutos(database.filter(p => favoritos.includes(p.name))); 
+}
+function toggleFav(btn, nome) {
+  const idx = favoritos.indexOf(nome); if(idx === -1) { favoritos.push(nome); btn.classList.add('fav-active'); }
+  else { favoritos.splice(idx,1); btn.classList.remove('fav-active'); }
+  localStorage.setItem('iv_favs_v7', JSON.stringify(favoritos));
+}
+function showToast(m) { const t = document.getElementById('toast'); if(m) t.innerText = m; t.style.display = 'block'; setTimeout(()=> t.style.display='none', 2000); }
+</script>
+</body>
+</html>

@@ -139,7 +139,6 @@ header {
 .pp-thumbnails img { width: 65px; height: 65px; object-fit: cover; border-radius: 8px; cursor: pointer; opacity: 0.5; border: 2px solid transparent; }
 .pp-thumbnails img.active { opacity: 1; border-color: var(--primary-pink); }
 
-/* Selo PIX */
 .pix-info-badge {
     background: rgba(50, 188, 173, 0.1);
     border: 1px solid var(--pix-color);
@@ -179,14 +178,25 @@ header {
 .item-cart img { width: 65px; height: 65px; border-radius: 8px; object-fit: cover; }
 .cart-footer { padding: 25px; background: #0a0a1a; border-top: 2px solid var(--primary-pink); }
 
+.cart-notice {
+    background: rgba(255, 79, 216, 0.1);
+    color: var(--primary-pink);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    text-align: center;
+    margin-bottom: 15px;
+    border: 1px dashed var(--primary-pink);
+}
+
 /* ===== AUXILIARES ===== */
 #toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: var(--success-green); color: white; padding: 12px 30px; border-radius: 50px; font-weight: bold; z-index: 9999; display: none; }
 #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: none; z-index: 3500; backdrop-filter: blur(4px); }
-#zoomModal { position: fixed; inset: 0; background: #000; z-index: 6000; display: none; justify-content: center; align-items: center; cursor: zoom-out; }
+#zoomModal { position: fixed; inset: 0; background: #000; z-index: 6000; display: none; justify-content: center; align-items: center; }
 #zoomModal img { max-width: 95%; max-height: 95%; object-fit: contain; }
 
 .custom-order-section { background: linear-gradient(rgba(255, 79, 216, 0.1), rgba(255, 79, 216, 0.05)); border: 1px solid var(--primary-pink); border-radius: 20px; padding: 40px 20px; margin: 40px 0; text-align: center; }
-.btn-whatsapp { background: #25d366; color: white; padding: 15px 30px; border-radius: 50px; font-weight: 800; text-decoration: none; display: inline-block; margin-top: 15px; }
+.btn-whatsapp { background: #25d366; color: white; padding: 15px 30px; border-radius: 50px; font-weight: 800; text-decoration: none; display: inline-block; margin-top: 15px; border: none; cursor: pointer; }
 
 .btn-buy-card { background: var(--primary-pink); color: white; border: none; padding: 10px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; margin-top: 10px; }
 .credits { text-align: center; padding: 30px; background: #0a0a1a; font-size: 11px; color: #555; }
@@ -198,7 +208,6 @@ header {
 
 <div id="toast">✅ Adicionado!</div>
 
-<!-- ZOOM -->
 <div id="zoomModal" onclick="this.style.display='none'"><img id="zoomImg" src=""></div>
 
 <!-- CENTRAL DO CLIENTE -->
@@ -259,7 +268,6 @@ header {
     </div>
 </div>
 
-<!-- HEADER -->
 <header>
   <div class="header-top">
     <div class="logo-container" onclick="location.reload()">
@@ -315,7 +323,6 @@ header {
             <h1 id="ppTitle" style="margin:0; font-size: 26px;">Nome</h1>
             <div id="ppPrice" style="font-size: 34px; color:var(--primary-pink); font-weight:900; margin:15px 0;">R$ 0,00</div>
             
-            <!-- SELO PIX ADICIONADO -->
             <div class="pix-info-badge">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94Pix.svg" alt="PIX">
                 <span>Aceitamos PIX de todos os bancos</span>
@@ -338,6 +345,9 @@ header {
   <div class="cart-header"><h3>Meu Carrinho</h3><span onclick="toggleCarrinho()" style="cursor:pointer; font-size:32px; color:var(--primary-pink)">×</span></div>
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
+    <div class="cart-notice">
+        📌 Após clicar em finalizar, você será redirecionado ao WhatsApp para confirmar o pagamento.
+    </div>
     <div class="cart-inputs">
         <p style="font-size:11px; opacity:0.6; margin-bottom:12px;">🚚 Enviando para: <strong id="cartEndResumo">Defina no Perfil</strong></p>
         <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:14px; border-radius:12px; margin-bottom:15px; cursor:pointer; font-weight:bold;">CALCULAR FRETE 🚚</button>
@@ -406,9 +416,9 @@ const database = [
 
 // ===== INICIALIZAÇÃO =====
 function carregarTudo() {
-  favoritos = JSON.parse(localStorage.getItem('iv_fav_v7')) || [];
-  carrinho = JSON.parse(localStorage.getItem('iv_cart_v7')) || [];
-  usuario = JSON.parse(localStorage.getItem('iv_user_v7')) || {n:'', e:'', c:'', z:'', nas:'', fav:''};
+  favoritos = JSON.parse(localStorage.getItem('iv_fav_v8')) || [];
+  carrinho = JSON.parse(localStorage.getItem('iv_cart_v8')) || [];
+  usuario = JSON.parse(localStorage.getItem('iv_user_v8')) || {n:'', e:'', c:'', z:'', nas:'', fav:''};
 
   preencherInputs();
   atualizarDadosNaTela();
@@ -449,7 +459,7 @@ function salvarPerfil() {
     usuario.nas = document.getElementById('profNasc').value;
     usuario.fav = document.getElementById('profFav').value;
     
-    localStorage.setItem('iv_user_v7', JSON.stringify(usuario));
+    localStorage.setItem('iv_user_v8', JSON.stringify(usuario));
     atualizarDadosNaTela();
     showToast("Perfil atualizado! ✨");
 }
@@ -493,7 +503,7 @@ function addCart(id) {
   const p = database.find(x => x.id === id);
   const item = carrinho.find(i => i.id === id);
   if(item) item.q++; else carrinho.push({...p, q:1});
-  localStorage.setItem('iv_cart_v7', JSON.stringify(carrinho)); renderizarCarrinho(); showToast();
+  localStorage.setItem('iv_cart_v8', JSON.stringify(carrinho)); renderizarCarrinho(); showToast();
 }
 
 function renderizarCarrinho() {
@@ -521,7 +531,7 @@ function atualizarTotal() {
 function updateQ(id, n) {
   const item = carrinho.find(i => i.id === id); item.q += n;
   if(item.q <= 0) carrinho = carrinho.filter(i => i.id !== id);
-  localStorage.setItem('iv_cart_v7', JSON.stringify(carrinho)); renderizarCarrinho();
+  localStorage.setItem('iv_cart_v8', JSON.stringify(carrinho)); renderizarCarrinho();
 }
 
 function toggleCarrinho() {
@@ -534,20 +544,55 @@ function calcularFrete() {
     document.getElementById('freteResult').style.display = 'block'; atualizarTotal(); 
 }
 
+// ===== FINALIZAÇÃO WHATSAPP PROFISSIONAL =====
 function finalizarPedido() {
-  if(!usuario.n || !usuario.e) return alert("Complete seu perfil de entrega!");
-  if(carrinho.length === 0) return alert("Carrinho vazio!");
-  const lista = carrinho.map(i => `• ${i.q}x ${i.name}`).join('\n');
-  const total = document.getElementById('totalTxt').innerText;
-  const msg = `*PEDIDO IDOLVERSE*\n\n*Cliente:* ${usuario.n}\n*Grupo Fav:* ${usuario.fav}\n*Endereço:* ${usuario.e}\n\n*Itens:*\n${lista}\n\n*Total:* ${total}`;
-  let hist = JSON.parse(localStorage.getItem('iv_hist_v7')) || [];
-  hist.unshift({data: new Date().toLocaleString(), total: total});
-  localStorage.setItem('iv_hist_v7', JSON.stringify(hist));
-  window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`, '_blank');
+  if(!usuario.n || !usuario.e) return alert("Por favor, complete seu cadastro no Perfil antes de finalizar!");
+  if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
+
+  // Mensagem de Redirecionamento
+  alert("Confirmado! Agora vamos continuar o atendimento no WhatsApp para validar o pagamento e a produção. ✨");
+
+  let subtotal = carrinho.reduce((a,b)=> a + (b.price * b.q), 0);
+  let freteValor = (document.getElementById('freteResult').style.display === 'block') ? parseFloat(document.querySelector('input[name="f"]:checked').value) : 0;
+  let freteTipo = (freteValor === 15) ? "PAC" : (freteValor === 30 ? "SEDEX" : "A combinar");
+  let totalFinal = subtotal + freteValor;
+
+  const itensLista = carrinho.map(i => `• ${i.q}x ${i.name} (R$ ${(i.price * i.q).toFixed(2)})`).join('\n');
+
+  const msgProfissional = `🌟 *NOVO PEDIDO - IDOLVERSE STORE* 🌟
+---------------------------------------
+👤 *CLIENTE:*
+Nome: ${usuario.n}
+Grupo Fav: ${usuario.fav || 'Não informado'}
+WhatsApp: ${usuario.z || 'Não informado'}
+
+📍 *ENTREGA:*
+Endereço: ${usuario.e}
+CEP: ${usuario.c}
+
+📦 *DETALHES DO PEDIDO:*
+${itensLista}
+
+---------------------------------------
+💰 *RESUMO FINANCEIRO:*
+Subtotal: R$ ${subtotal.toFixed(2)}
+Frete (${freteTipo}): R$ ${freteValor.toFixed(2)}
+*TOTAL: R$ ${totalFinal.toFixed(2)}*
+
+✨ _Aceitamos PIX de todos os bancos_
+---------------------------------------
+Olá! Acabei de realizar meu pedido pelo site. Gostaria de prosseguir com o pagamento e confirmar o prazo de produção.`;
+
+  // Salva no Histórico
+  let hist = JSON.parse(localStorage.getItem('iv_hist_v8')) || [];
+  hist.unshift({data: new Date().toLocaleString(), total: `R$ ${totalFinal.toFixed(2)}` });
+  localStorage.setItem('iv_hist_v8', JSON.stringify(hist));
+
+  window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msgProfissional)}`, '_blank');
 }
 
 function carregarHistorico() {
-    const hist = JSON.parse(localStorage.getItem('iv_hist_v7')) || [];
+    const hist = JSON.parse(localStorage.getItem('iv_hist_v8')) || [];
     document.getElementById('historicoPerfil').innerHTML = hist.length ? hist.map(p => `<div style="padding:10px; border-bottom:1px solid #333"><strong>${p.total}</strong> - ${p.data}</div>`).join('') : "Nenhum pedido.";
 }
 
@@ -563,7 +608,7 @@ function filtrarFavoritos(el) {
 function toggleFav(btn, nome) {
   const idx = favoritos.indexOf(nome); if(idx === -1) { favoritos.push(nome); btn.classList.add('fav-active'); }
   else { favoritos.splice(idx,1); btn.classList.remove('fav-active'); }
-  localStorage.setItem('iv_favs_v7', JSON.stringify(favoritos));
+  localStorage.setItem('iv_favs_v8', JSON.stringify(favoritos));
 }
 function showToast(m) { const t = document.getElementById('toast'); if(m) t.innerText = m; t.style.display = 'block'; setTimeout(()=> t.style.display='none', 2000); }
 </script>

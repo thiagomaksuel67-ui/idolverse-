@@ -127,7 +127,7 @@ header {
 
 .btn-buy { background: var(--primary-pink); color: white; border: none; padding: 10px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; }
 
-/* ===== PÁGINA DE PRODUTO (MODAL COM FOCO NA IMAGEM) ===== */
+/* ===== PÁGINA DE PRODUTO (MODAL COM CARROSSEL) ===== */
 #productPage {
   position: fixed; inset: 0; background: var(--bg-dark-deep);
   z-index: 2500; display: none; flex-direction: column; overflow-y: auto;
@@ -135,13 +135,15 @@ header {
 .pp-header { position: sticky; top: 0; background: var(--bg-dark-deep); padding: 15px; display: flex; align-items: center; z-index: 20; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .pp-back { background: none; border: none; color: white; font-size: 24px; cursor: pointer; margin-right: 15px; }
 
-.pp-image-container {
-  width: 100%; display: flex; justify-content: center; align-items: center;
-  background: #0a0a1a; padding: 30px 10px;
+/* Galeria de imagens no Modal */
+.pp-gallery {
+  width: 100%; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; 
+  background: #0a0a1a; padding: 20px 0; scrollbar-width: none;
 }
-.pp-image-container img {
-  max-width: 100%; max-height: 500px; border-radius: 15px;
-  box-shadow: 0 15px 50px rgba(0,0,0,0.6); object-fit: contain;
+.pp-gallery::-webkit-scrollbar { display: none; }
+.pp-gallery img {
+  min-width: 100%; max-height: 450px; object-fit: contain; 
+  scroll-snap-align: center; padding: 0 10px;
 }
 
 .pp-content { padding: 20px; max-width: 700px; margin: 0 auto; width: 100%; }
@@ -149,7 +151,7 @@ header {
 .pp-price { font-size: 32px; color: var(--primary-pink); font-weight: bold; }
 
 .quality-badges { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
-.badge { background: rgba(255,255,255,0.1); padding: 6px 12px; border-radius: 6px; font-size: 11px; display: flex; align-items: center; gap: 5px; }
+.badge { background: rgba(255,255,255,0.1); padding: 6px 12px; border-radius: 6px; font-size: 11px; display: flex; align-items: center; gap: 5px; border: 1px solid rgba(255,255,255,0.1); }
 
 /* ===== CARRINHO ===== */
 #carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh; background: var(--violet-deep); z-index: 2000; transition: right 0.4s; display: flex; flex-direction: column; }
@@ -180,24 +182,31 @@ header {
     <button class="pp-back" onclick="fecharPP()">✕</button>
     <span style="font-weight: bold;">IdolVerse Store</span>
   </div>
-  <div class="pp-image-container">
-    <img id="ppImg" src="" alt="Produto">
+  
+  <!-- Galeria Deslizável -->
+  <div class="pp-gallery" id="ppGallery">
+    <img id="ppImg" src="" alt="Capa do Kit">
+    <img src="input_file_0.jpeg" alt="Conteúdo do Tamanho G">
   </div>
+  
+  <p style="text-align: center; font-size: 10px; opacity: 0.5; margin-top: 5px;">Swipe para ver o que vem no kit ➔</p>
+
   <div class="pp-content">
     <h1 class="pp-title" id="ppTitle">Nome do Kit</h1>
     <div class="pp-price" id="ppPrice">R$ 0,00</div>
     <p style="opacity:0.7; font-size:13px; margin-bottom:20px;">Ou em até 3x sem juros no cartão</p>
     
     <div class="quality-badges">
+      <div class="badge">📦 73 Itens inclusos</div>
       <div class="badge">💎 Papel Premium 300g</div>
       <div class="badge">☀️ Proteção Anti-UV</div>
       <div class="badge">✂️ Bordas Arredondadas</div>
-      <div class="badge">✨ Impressão HD</div>
     </div>
 
     <div style="margin: 25px 0;">
-      <h4 style="color: var(--primary-pink); margin-bottom: 8px;">Sobre este Kit:</h4>
+      <h4 style="color: var(--primary-pink); margin-bottom: 8px;">✨ Detalhes do Produto:</h4>
       <p id="ppDesc" style="color: #bbb; line-height: 1.6; font-size: 15px;"></p>
+      <p style="color: #bbb; font-size: 14px; margin-top: 10px;">• O kit contém 73 itens (fotos, polaroids, posters e mais) conforme imagem acima.</p>
     </div>
 
     <button class="btn-buy" id="ppAddBtn" style="padding: 18px; font-size: 16px;">ADICIONAR AO MEU CARRINHO</button>
@@ -282,7 +291,7 @@ header {
 </div>
 
 <script>
-// ===== BANCO DE DADOS COMPLETO (41 PRODUTOS RESTAURADOS) =====
+// ===== BANCO DE DADOS COMPLETO (41 PRODUTOS) =====
 const database = [
   // K-POP
   { id: 1, cat: 'kpop', name: 'Kit BTS', price: 19.90, img: 'bts1.jpg', desc: '54 photocards lomo de alta definição do BTS.' },
@@ -390,6 +399,10 @@ function abrirPP(id) {
   document.getElementById('ppPrice').innerText = `R$ ${p.price.toFixed(2).replace('.',',')}`;
   document.getElementById('ppDesc').innerText = p.desc;
   document.getElementById('ppAddBtn').onclick = () => { addCart(p.id); fecharPP(); };
+  
+  // Reseta o scroll da galeria para o início
+  document.getElementById('ppGallery').scrollLeft = 0;
+  
   document.getElementById('productPage').style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }

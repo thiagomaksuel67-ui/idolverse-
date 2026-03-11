@@ -116,13 +116,12 @@ header {
 }
 .card:hover { transform: translateY(-8px); border-color: var(--primary-pink); box-shadow: var(--shadow); }
 .img-container { width: 100%; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; background: #000; }
-.img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-.card:hover img { transform: scale(1.08); }
+.img-container img { width: 100%; height: 100%; object-fit: cover; }
 .card-info { padding: 12px; }
 .price { color: #ffb3f0; font-size: 17px; font-weight: 800; }
 
 .card-actions { position: absolute; top: 10px; right: 10px; z-index: 5; }
-.action-btn { background: rgba(0,0,0,0.6); color: white; border: none; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); transition: 0.2s; }
+.action-btn { background: rgba(0,0,0,0.6); color: white; border: none; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
 .fav-active { color: #ff4fd8; }
 
 /* ===== PÁGINA DE PRODUTO ===== */
@@ -142,7 +141,6 @@ header {
 .pix-info-badge img { width: 22px; height: 22px; }
 .pix-info-badge span { color: var(--pix-color); font-size: 13px; font-weight: 700; }
 
-/* Grade de Qualidade */
 .quality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 15px 0; }
 .q-item { background: rgba(255,255,255,0.05); padding: 8px; border-radius: 8px; font-size: 10px; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.05); }
 
@@ -200,7 +198,7 @@ header {
 <div id="profilePage">
     <div class="pp-header">
         <button onclick="fecharPerfil()" style="background:none; border:none; color:white; font-size:28px; cursor:pointer;">←</button>
-        <span style="font-weight: 800; margin-left: 15px; letter-spacing: 1px;">MINHA CONTA</span>
+        <span style="font-weight: 800; margin-left: 15px; letter-spacing: 1px;">ÁREA DO CLIENTE</span>
     </div>
     
     <div class="profile-header">
@@ -211,24 +209,42 @@ header {
 
     <div class="profile-container">
         <div class="profile-section">
-            <h3>👤 Dados Pessoais</h3>
-            <div class="input-group"><label>Nome Completo</label><input type="text" id="profNome" placeholder="Seu nome..."></div>
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px">
-                <div class="input-group"><label>Nascimento</label><input type="date" id="profNasc"></div>
-                <div class="input-group"><label>WhatsApp</label><input type="text" id="profZap" placeholder="(00) 00000-0000"></div>
+            <h3>👤 Meu Cadastro</h3>
+            <div class="input-group">
+                <label>Nome Completo</label>
+                <input type="text" id="profNome" placeholder="Digite seu nome...">
             </div>
-            <div class="input-group"><label>Grupo Favorito 💖</label><input type="text" id="profFav" placeholder="Ex: BTS, Stray Kids..."></div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px">
+                <div class="input-group">
+                    <label>Nascimento</label>
+                    <input type="date" id="profNasc">
+                </div>
+                <div class="input-group">
+                    <label>WhatsApp</label>
+                    <input type="text" id="profZap" placeholder="(00) 00000-0000">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Grupo / Artista Favorito 💖</label>
+                <input type="text" id="profFav" placeholder="Ex: BTS, Stray Kids...">
+            </div>
         </div>
 
         <div class="profile-section">
             <h3>📍 Endereço de Entrega</h3>
-            <div class="input-group"><label>Endereço Completo</label><input type="text" id="profEnd" placeholder="Rua, Número, Bairro, Cidade"></div>
-            <div class="input-group"><label>CEP</label><input type="text" id="profCep" placeholder="00000-000"></div>
-            <button onclick="salvarPerfil()" style="width:100%; background:var(--primary-pink); color:white; border:none; padding:16px; border-radius:12px; font-weight:800; cursor:pointer; box-shadow: 0 5px 15px rgba(255, 79, 216, 0.3);">SALVAR PERFIL</button>
+            <div class="input-group">
+                <label>Endereço Completo</label>
+                <input type="text" id="profEnd" placeholder="Rua, Número, Bairro, Cidade">
+            </div>
+            <div class="input-group">
+                <label>CEP</label>
+                <input type="text" id="profCep" placeholder="00000-000">
+            </div>
+            <button onclick="salvarPerfil()" style="width:100%; background:var(--primary-pink); color:white; border:none; padding:16px; border-radius:12px; font-weight:800; cursor:pointer; box-shadow: 0 5px 15px rgba(255, 79, 216, 0.3);">SALVAR ALTERAÇÕES</button>
         </div>
 
         <div class="profile-section">
-            <h3>📋 Meus Pedidos</h3>
+            <h3>📋 Histórico de Pedidos</h3>
             <div id="historicoPerfil" style="font-size: 13px; opacity: 0.7;">Nenhum pedido registrado.</div>
         </div>
         
@@ -242,7 +258,7 @@ header {
         <span style="font-size:22px; font-weight:900; color:var(--primary-pink); letter-spacing: -1px;">IDOLVERSE</span>
     </div>
     <div class="search-container">
-      <input type="text" placeholder="Pesquisar kits, artistas ou animes..." onkeyup="buscar(this.value)">
+      <input type="text" placeholder="Buscar no IdolVerse..." onkeyup="buscar(this.value)">
     </div>
     <button class="user-btn" onclick="abrirPerfil()">
         <span id="userBtnLabel">Entrar</span> 👤
@@ -259,14 +275,18 @@ header {
 </header>
 
 <div class="container">
+  
   <div class="welcome-hero" id="welcomeBanner">
       <h1>Bem-vindo à IdolVerse Store</h1>
       <p>Sua paixão em forma de Photocard • Qualidade Premium ✨</p>
   </div>
+
   <div class="products" id="productGrid"></div>
+
+  <!-- PERSONALIZADOS -->
   <div class="custom-order-section">
     <h2 style="color:var(--primary-pink); margin:0 0 10px 0;">🎨 Encomenda Personalizada</h2>
-    <p>Monte o kit perfeito com as fotos que você escolher! 💖</p>
+    <p>Monte o kit perfeito com as fotos que você mais ama! Nós produzimos com carinho e qualidade premium. 💖</p>
     <a href="https://wa.me/5591986122614" target="_blank" class="btn-whatsapp">CHAMAR NO WHATSAPP</a>
   </div>
 </div>
@@ -304,7 +324,7 @@ header {
 
             <p id="ppDesc" style="color:#bbb; line-height:1.7; font-size: 15px;"></p>
             <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; margin: 20px 0; font-size: 13px; border: 1px solid rgba(255,255,255,0.05);">
-                <strong>Este Kit contém 73 itens (Tamanho G):</strong><br>
+                <strong>Conteúdo do Kit (73 itens):</strong><br>
                 25 Mini Fotos • 3 Tirinhas • 9 Cards Verso • 6 Polaroids • 6 Mini Fotos • 1 Pingente • 8 Mini Posters • 1 Carteirinha • 1 Marca Página • 1 Docinho • 12 Fotos Plastificadas.
             </div>
             <button class="btn-whatsapp" id="ppAddBtn" style="width:100%; background:var(--primary-pink); border-radius:12px; text-align:center;">ADICIONAR AO CARRINHO</button>
@@ -319,9 +339,9 @@ header {
   <div class="cart-header"><h3>Meu Carrinho</h3><span onclick="toggleCarrinho()" style="cursor:pointer; font-size:32px; color:var(--primary-pink)">×</span></div>
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
-    <div class="cart-notice">📌 O pagamento e produção serão validados via WhatsApp.</div>
+    <div class="cart-notice">📌 O pagamento e a produção serão validados via WhatsApp.</div>
     <div class="cart-inputs">
-        <p style="font-size:11px; opacity:0.6; margin-bottom:12px;">🚚 Enviando para: <strong id="cartEndResumo">Defina no Perfil</strong></p>
+        <p style="font-size:11px; opacity:0.6; margin-bottom:12px;">🚚 Entrega em: <strong id="cartEndResumo">Defina no Perfil</strong></p>
         <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:14px; border-radius:12px; margin-bottom:15px; cursor:pointer; font-weight:bold;">CALCULAR FRETE 🚚</button>
     </div>
     <div id="freteResult" style="display:none; background: rgba(255,255,255,0.05); padding:15px; border-radius:12px; margin-bottom:15px;">
@@ -337,7 +357,7 @@ header {
     <div class="footer-grid">
         <div class="footer-col">
             <h4>INSTITUCIONAL</h4>
-            <a href="#">Sobre a Loja</a>
+            <a href="#">Sobre a IdolVerse</a>
             <a href="#">Prazo de Produção</a>
             <a href="#">Trocas e Devoluções</a>
         </div>
@@ -345,7 +365,7 @@ header {
             <h4>CONTATO</h4>
             <p>✉️ thiagomaksuel67@gmail.com</p>
             <p>📱 WhatsApp: (91) 98612-2614</p>
-            <p>📍 Belém - PA (Brasil)</p>
+            <p>📍 Belém - Pará (Brasil)</p>
         </div>
         <div class="footer-col">
             <h4>SIGA A GENTE</h4>
@@ -358,73 +378,69 @@ header {
 </footer>
 
 <script>
-// ===== BANCO DE DADOS (VALORES DE MERCADO PARA 73 ITENS) =====
+// ===== BANCO DE DADOS (PREÇOS ACESSÍVEIS) =====
 const FOTO_TAMANHO_G = 'tamanho-g.jpg';
 let carrinho = [];
 let favoritos = [];
 let usuario = { n: '', e: '', c: '', z: '', nas: '', fav: '' };
 
 const database = [
-  // K-POP - Média R$ 54,90
-  { id: 1, cat: 'kpop', name: 'Kit BTS (73 Itens)', price: 54.90, img: 'bts1.jpg', desc: 'Kit premium completo do BTS com fotos de todas as eras.' },
-  { id: 2, cat: 'kpop', name: 'Pack BLACKPINK (73 Itens)', price: 54.90, img: 'blackpink.jpg', desc: 'Pack luxo BLACKPINK com fotos exclusivas das integrantes.' },
-  { id: 3, cat: 'kpop', name: 'Kit Stray Kids (73 Itens)', price: 59.90, img: 'straykids.jpg', desc: 'Coleção premium Stray Kids com acabamento alto brilho.' },
-  { id: 4, cat: 'kpop', name: 'Kit LE SSERAFIM (73 Itens)', price: 54.90, img: 'lesserafim.jpg', desc: 'Conceito Fearless LE SSERAFIM em alta definição.' },
-  { id: 5, cat: 'kpop', name: 'Kit TXT (73 Itens)', price: 54.90, img: 'txt.jpg', desc: 'Fotos oficiais e mimos exclusivos Tomorrow X Together.' },
-  { id: 6, cat: 'kpop', name: 'Kit Twice (73 Itens)', price: 54.90, img: 'twice.jpg', desc: 'Coleção especial com as 9 integrantes do grupo Twice.' },
-  { id: 7, cat: 'kpop', name: 'Kit New Jeans (73 Itens)', price: 59.90, img: 'newjeans.jpg', desc: 'Estética Bunny Y2K em photocards premium.' },
-  { id: 8, cat: 'kpop', name: 'Kit EXO (73 Itens)', price: 54.90, img: 'exo.jpg', desc: 'Coleção lendária do grupo EXO para colecionadores.' },
-  { id: 9, cat: 'kpop', name: 'Kit aespa (73 Itens)', price: 59.90, img: 'aespa.jpg', desc: 'Mundo virtual aespa em impressão HD Premium.' },
+  // K-POP - R$ 32,90
+  { id: 1, cat: 'kpop', name: 'Kit BTS (73 Itens)', price: 32.90, img: 'bts1.jpg', desc: 'Kit completo premium do BTS.' },
+  { id: 2, cat: 'kpop', name: 'Pack BLACKPINK (73 Itens)', price: 32.90, img: 'blackpink.jpg', desc: 'Pack luxo BLACKPINK exclusivo.' },
+  { id: 3, cat: 'kpop', name: 'Kit Stray Kids (73 Itens)', price: 34.90, img: 'straykids.jpg', desc: 'Coleção premium Stray Kids.' },
+  { id: 4, cat: 'kpop', name: 'Kit LE SSERAFIM (73 Itens)', price: 32.90, img: 'lesserafim.jpg', desc: 'Conceito LE SSERAFIM em alta definição.' },
+  { id: 5, cat: 'kpop', name: 'Kit TXT (73 Itens)', price: 32.90, img: 'txt.jpg', desc: 'Fotos oficiais e mimos Tomorrow X Together.' },
+  { id: 6, cat: 'kpop', name: 'Kit Twice (73 Itens)', price: 32.90, img: 'twice.jpg', desc: 'Coleção especial grupo Twice.' },
+  { id: 7, cat: 'kpop', name: 'Kit New Jeans (73 Itens)', price: 34.90, img: 'newjeans.jpg', desc: 'Estética Bunny Y2K premium.' },
+  { id: 8, cat: 'kpop', name: 'Kit EXO (73 Itens)', price: 32.90, img: 'exo.jpg', desc: 'Coleção lendária do grupo EXO.' },
+  { id: 9, cat: 'kpop', name: 'Kit aespa (73 Itens)', price: 34.90, img: 'aespa.jpg', desc: 'Mundo virtual aespa em HD.' },
 
-  // FAMOSOS - Média R$ 59,90
-  { id: 10, cat: 'famosos', name: 'Pack Neymar Jr (73 Itens)', price: 59.90, img: 'neymar.jpg', desc: 'Pack exclusivo do craque Neymar Jr.' },
-  { id: 11, cat: 'famosos', name: 'Kit Taylor Swift (73 Itens)', price: 64.90, img: 'taylor.jpg', desc: 'The Eras Tour Collection - Um card para cada álbum da Taylor.' },
-  { id: 12, cat: 'famosos', name: 'Pack Jenna Ortega (73 Itens)', price: 59.90, img: 'jenna.jpg', desc: 'Cenas icônicas e ensaios da Jenna Ortega.' },
-  { id: 13, cat: 'famosos', name: 'Kit Eminem (73 Itens)', price: 59.90, img: 'eminem.jpg', desc: 'Lenda do Rap em photocards exclusivos e mimos.' },
-  { id: 14, cat: 'famosos', name: 'Pack Bruno Mars (73 Itens)', price: 64.90, img: 'brunomars.jpg', desc: 'Edição especial Bruninho para fãs de carteirinha.' },
-  { id: 15, cat: 'famosos', name: 'Kit Ariana Grande (73 Itens)', price: 59.90, img: 'ariana.jpg', desc: 'Fotos raras e estéticas da diva Ariana Grande.' },
-  { id: 16, cat: 'famosos', name: 'Kit The Weeknd (73 Itens)', price: 64.90, img: 'theweeknd.jpg', desc: 'Universo XO: After Hours e Dawn FM.' },
-  { id: 17, cat: 'famosos', name: 'Kit Olivia Rodrigo (73 Itens)', price: 59.90, img: 'olivia.jpg', desc: 'Estética SOUR e GUTS em photocards plastificados.' },
-  { id: 18, cat: 'famosos', name: 'Pack Dua Lipa (73 Itens)', price: 59.90, img: 'dualipa.jpg', desc: 'Coleção premium da cantora Dua Lipa.' },
-  { id: 19, cat: 'famosos', name: 'Kit Billie Eilish (73 Itens)', price: 64.90, img: 'billie.jpg', desc: 'Estilo único da Billie em fotos de alta qualidade.' },
+  // FAMOSOS - R$ 34,90
+  { id: 10, cat: 'famosos', name: 'Pack Neymar Jr (73 Itens)', price: 34.90, img: 'neymar.jpg', desc: 'Melhores momentos do Neymar Jr.' },
+  { id: 11, cat: 'famosos', name: 'Kit Taylor Swift (73 Itens)', price: 39.90, img: 'taylor.jpg', desc: 'The Eras Tour Collection.' },
+  { id: 12, cat: 'famosos', name: 'Pack Jenna Ortega (73 Itens)', price: 34.90, img: 'jenna.jpg', desc: 'Cenas e ensaios da Jenna Ortega.' },
+  { id: 13, cat: 'famosos', name: 'Kit Eminem (73 Itens)', price: 34.90, img: 'eminem.jpg', desc: 'Photocards exclusivos Eminem.' },
+  { id: 14, cat: 'famosos', name: 'Pack Bruno Mars (73 Itens)', price: 39.90, img: 'brunomars.jpg', desc: 'Edição especial Bruninho.' },
+  { id: 15, cat: 'famosos', name: 'Kit Ariana Grande (73 Itens)', price: 34.90, img: 'ariana.jpg', desc: 'Fotos raras Ariana Grande.' },
+  { id: 16, cat: 'famosos', name: 'Kit The Weeknd (73 Itens)', price: 39.90, img: 'theweeknd.jpg', desc: 'Universo XO Premium.' },
+  { id: 17, cat: 'famosos', name: 'Kit Olivia Rodrigo (73 Itens)', price: 34.90, img: 'olivia.jpg', desc: 'Estética SOUR e GUTS.' },
+  { id: 18, cat: 'famosos', name: 'Pack Dua Lipa (73 Itens)', price: 34.90, img: 'dualipa.jpg', desc: 'Coleção premium Dua Lipa.' },
+  { id: 19, cat: 'famosos', name: 'Kit Billie Eilish (73 Itens)', price: 39.90, img: 'billie.jpg', desc: 'Estilo marcante Billie Eilish.' },
 
-  // ANIME - Média R$ 49,90
-  { id: 20, cat: 'anime', name: 'Kit Your Name (73 Itens)', price: 49.90, img: 'yourname.jpg', desc: 'Cenas mágicas do filme Your Name.' },
-  { id: 21, cat: 'anime', name: 'Kit Demon Slayer (73 Itens)', price: 54.90, img: 'demonslayer.jpg', desc: 'Tanjiro e Hashiras em photocards premium.' },
-  { id: 22, cat: 'anime', name: 'Pack Evangelion (73 Itens)', price: 54.90, img: 'evangelion.jpg', desc: 'Edição especial Neon Genesis Evangelion.' },
-  { id: 23, cat: 'anime', name: 'Kit Dragon Ball Z (73 Itens)', price: 49.90, img: 'dbz.jpg', desc: 'Coleção saga Z para fãs de Dragon Ball.' },
-  { id: 24, cat: 'anime', name: 'Kit Frieren (73 Itens)', price: 54.90, img: 'frieren.jpg', desc: 'Artes delicadas e mágicas do anime Frieren.' },
-  { id: 25, cat: 'anime', name: 'Kit Jujutsu Kaisen (73 Itens)', price: 54.90, img: 'jjk.jpg', desc: 'Gojo e feiticeiros em impressão HD plastificada.' },
-  { id: 26, cat: 'anime', name: 'Kit Baki (73 Itens)', price: 49.90, img: 'baki.jpg', desc: 'Coleção Baki Hanma para colecionadores.' },
-  { id: 27, cat: 'anime', name: 'Kit JoJo Bizarre (73 Itens)', price: 59.90, img: 'jojo.jpg', desc: 'Estilo e poses fabulosas de JoJo.' },
-  { id: 28, cat: 'anime', name: 'Kit Dandadan (73 Itens)', price: 54.90, img: 'dandadan.jpg', desc: 'Ousadia e ação do novo anime Dandadan.' },
+  // ANIME - R$ 29,90
+  { id: 20, cat: 'anime', name: 'Kit Your Name (73 Itens)', price: 29.90, img: 'yourname.jpg', desc: 'Cenas mágicas Your Name.' },
+  { id: 21, cat: 'anime', name: 'Kit Demon Slayer (73 Itens)', price: 32.90, img: 'demonslayer.jpg', desc: 'Tanjiro e Hashiras premium.' },
+  { id: 22, cat: 'anime', name: 'Pack Evangelion (73 Itens)', price: 32.90, img: 'evangelion.jpg', desc: 'Edição Neon Genesis.' },
+  { id: 23, cat: 'anime', name: 'Kit Dragon Ball Z (73 Itens)', price: 29.90, img: 'dbz.jpg', desc: 'Coleção saga Z completa.' },
+  { id: 24, cat: 'anime', name: 'Kit Frieren (73 Itens)', price: 32.90, img: 'frieren.jpg', desc: 'Artes do anime Frieren.' },
+  { id: 25, cat: 'anime', name: 'Kit Jujutsu Kaisen (73 Itens)', price: 32.90, img: 'jjk.jpg', desc: 'Gojo e feiticeiros HD.' },
+  { id: 26, cat: 'anime', name: 'Kit Baki (73 Itens)', price: 29.90, img: 'baki.jpg', desc: 'Coleção Baki Hanma.' },
+  { id: 27, cat: 'anime', name: 'Kit JoJo Bizarre (73 Itens)', price: 34.90, img: 'jojo.jpg', desc: 'Poses fabulosas de JoJo.' },
+  { id: 28, cat: 'anime', name: 'Kit Dandadan (73 Itens)', price: 32.90, img: 'dandadan.jpg', desc: 'Novo anime Dandadan.' },
 
-  // SÉRIES/DORAMA - Média R$ 59,90
-  { id: 30, cat: 'séries', name: 'Kit Stranger Things (73 Itens)', price: 64.90, img: 'strangerthings.jpg', desc: 'O mundo invertido em fotos de alta qualidade.' },
-  { id: 31, cat: 'séries', name: 'Kit All of us are Dead (73 Itens)', price: 54.90, img: 'allofusaredead.jpg', desc: 'Dorama de zumbi de sucesso da Netflix.' },
-  { id: 32, cat: 'séries', name: 'Kit The 100 (73 Itens)', price: 54.90, img: 'the100.jpg', desc: 'Série de sobrevivência The 100.' },
-  { id: 33, cat: 'séries', name: 'Kit Weak Hero (73 Itens)', price: 54.90, img: 'weakhero.jpg', desc: 'O melhor do dorama de ação coreano.' },
-  { id: 34, cat: 'séries', name: 'Kit Vis a Vis (73 Itens)', price: 54.90, img: 'visavis.jpg', desc: 'As detentas da Cruz del Sur em cards.' },
-  { id: 35, cat: 'séries', name: 'Kit Sweet Home (73 Itens)', price: 54.90, img: 'sweethome.jpg', desc: 'Dorama de terror Sweet Home.' },
-  { id: 36, cat: 'séries', name: 'Kit Enola Holmes (73 Itens)', price: 54.90, img: 'enolaholmes.jpg', desc: 'Photocards do filme Enola Holmes.' },
-  { id: 37, cat: 'séries', name: 'Kit Reality Z (73 Itens)', price: 49.90, img: 'realityz.jpg', desc: 'Zumbis no reality show brasileiro.' },
-  { id: 38, cat: 'séries', name: 'Kit My Name (73 Itens)', price: 54.90, img: 'myname.jpg', desc: 'Vingança impecável em fotos premium.' },
-  { id: 39, cat: 'séries', name: 'Kit Outer Banks (73 Itens)', price: 54.90, img: 'outerbanks.jpg', desc: 'Pogues vs Kooks em photocards.' },
-  { id: 40, cat: 'séries', name: 'Kit Extracurricular (73 Itens)', price: 54.90, img: 'extracurricular.jpg', desc: 'Dorama coreano Extracurricular.' },
-  { id: 41, cat: 'séries', name: 'Kit Alice in Borderland (73 Itens)', price: 59.90, img: 'aliceinborderland.jpg', desc: 'Sobreviva aos jogos em Tóquio.' },
-  { id: 42, cat: 'séries', name: 'Kit Welcome to Derry (73 Itens)', price: 64.90, img: 'itderry.jpg', desc: 'O terror de IT volta nesta nova série.' }
+  // SÉRIES/DORAMA - R$ 34,90
+  { id: 30, cat: 'séries', name: 'Kit Stranger Things (73 Itens)', price: 39.90, img: 'strangerthings.jpg', desc: 'Hawkins em alta definição.' },
+  { id: 31, cat: 'séries', name: 'Kit All of us are Dead (73 Itens)', price: 32.90, img: 'allofusaredead.jpg', desc: 'Dorama de zumbi Netflix.' },
+  { id: 32, cat: 'séries', name: 'Kit The 100 (73 Itens)', price: 32.90, img: 'the100.jpg', desc: 'Sobrevivência The 100.' },
+  { id: 33, cat: 'séries', name: 'Kit Weak Hero (73 Itens)', price: 32.90, img: 'weakhero.jpg', desc: 'Dorama coreano Weak Hero.' },
+  { id: 34, cat: 'séries', name: 'Kit Vis a Vis (73 Itens)', price: 32.90, img: 'visavis.jpg', desc: 'Detentas Cruz del Sur.' },
+  { id: 35, cat: 'séries', name: 'Kit Sweet Home (73 Itens)', price: 32.90, img: 'sweethome.jpg', desc: 'Terror Sweet Home.' },
+  { id: 36, cat: 'séries', name: 'Kit Enola Holmes (73 Itens)', price: 32.90, img: 'enolaholmes.jpg', desc: 'Filme Enola Holmes.' },
+  { id: 37, cat: 'séries', name: 'Kit Reality Z (73 Itens)', price: 29.90, img: 'realityz.jpg', desc: 'Zumbis Reality Z.' },
+  { id: 38, cat: 'séries', name: 'Kit My Name (73 Itens)', price: 32.90, img: 'myname.jpg', desc: 'Vingança My Name.' },
+  { id: 39, cat: 'séries', name: 'Kit Outer Banks (73 Itens)', price: 32.90, img: 'outerbanks.jpg', desc: 'Pogues vs Kooks.' },
+  { id: 40, cat: 'séries', name: 'Kit Extracurricular (73 Itens)', price: 32.90, img: 'extracurricular.jpg', desc: 'Coreano Extracurricular.' },
+  { id: 41, cat: 'séries', name: 'Kit Alice in Borderland (73 Itens)', price: 34.90, img: 'aliceinborderland.jpg', desc: 'Jogos em Tóquio.' },
+  { id: 42, cat: 'séries', name: 'Kit Welcome to Derry (73 Itens)', price: 39.90, img: 'itderry.jpg', desc: 'Terror de IT série.' }
 ];
 
 // ===== LÓGICA DE FUNCIONAMENTO =====
 function carregarTudo() {
-  favoritos = JSON.parse(localStorage.getItem('iv_fav_v8')) || [];
-  carrinho = JSON.parse(localStorage.getItem('iv_cart_v8')) || [];
-  usuario = JSON.parse(localStorage.getItem('iv_user_v8')) || {n:'', e:'', c:'', z:'', nas:'', fav:''};
-  
-  preencherInputs();
-  atualizarDadosNaTela();
-  renderizarProdutos(database);
-  renderizarCarrinho();
+  favoritos = JSON.parse(localStorage.getItem('iv_fav_v9')) || [];
+  carrinho = JSON.parse(localStorage.getItem('iv_cart_v9')) || [];
+  usuario = JSON.parse(localStorage.getItem('iv_user_v9')) || {n:'', e:'', c:'', z:'', nas:'', fav:''};
+  preencherInputs(); atualizarDadosNaTela(); renderizarProdutos(database); renderizarCarrinho();
 }
 
 function preencherInputs() {
@@ -455,7 +471,7 @@ function salvarPerfil() {
     usuario.z = document.getElementById('profZap').value;
     usuario.nas = document.getElementById('profNasc').value;
     usuario.fav = document.getElementById('profFav').value;
-    localStorage.setItem('iv_user_v8', JSON.stringify(usuario));
+    localStorage.setItem('iv_user_v9', JSON.stringify(usuario));
     atualizarDadosNaTela(); showToast("Perfil salvo! ✨");
 }
 
@@ -488,6 +504,7 @@ function abrirPP(id) {
   document.getElementById('ppAddBtn').onclick = () => { addCart(p.id); fecharPP(); };
   document.getElementById('productPage').style.display = 'flex';
 }
+
 function fecharPP() { document.getElementById('productPage').style.display = 'none'; }
 function changePPImg(el) { document.querySelectorAll('.pp-thumbnails img').forEach(i => i.classList.remove('active')); el.classList.add('active'); document.getElementById('ppImg').src = el.src; }
 function abrirZoom() { document.getElementById('zoomImg').src = document.getElementById('ppImg').src; document.getElementById('zoomModal').style.display = 'flex'; }
@@ -496,7 +513,7 @@ function addCart(id) {
   const p = database.find(x => x.id === id);
   const item = carrinho.find(i => i.id === id);
   if(item) item.q++; else carrinho.push({...p, q:1});
-  localStorage.setItem('iv_cart_v8', JSON.stringify(carrinho)); renderizarCarrinho(); showToast();
+  localStorage.setItem('iv_cart_v9', JSON.stringify(carrinho)); renderizarCarrinho(); showToast();
 }
 
 function renderizarCarrinho() {
@@ -524,7 +541,7 @@ function atualizarTotal() {
 function updateQ(id, n) {
   const item = carrinho.find(i => i.id === id); item.q += n;
   if(item.q <= 0) carrinho = carrinho.filter(i => i.id !== id);
-  localStorage.setItem('iv_cart_v8', JSON.stringify(carrinho)); renderizarCarrinho();
+  localStorage.setItem('iv_cart_v9', JSON.stringify(carrinho)); renderizarCarrinho();
 }
 
 function toggleCarrinho() {
@@ -538,9 +555,11 @@ function calcularFrete() {
 }
 
 function finalizarPedido() {
-  if(!usuario.n || !usuario.e) return alert("Complete seu cadastro no perfil!");
+  if(!usuario.n || !usuario.e) return alert("Complete seu perfil de entrega!");
   if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
-  
+
+  alert("Confirmado! Agora vamos continuar o atendimento no WhatsApp para validar o pagamento e a produção. ✨");
+
   let subtotal = carrinho.reduce((a,b)=> a + (b.price * b.q), 0);
   let freteValor = (document.getElementById('freteResult').style.display === 'block') ? parseFloat(document.querySelector('input[name="f"]:checked').value) : 0;
   let freteTipo = (freteValor === 15) ? "PAC" : (freteValor === 30 ? "SEDEX" : "A combinar");
@@ -549,14 +568,14 @@ function finalizarPedido() {
 
   const msgProfissional = `🌟 *NOVO PEDIDO - IDOLVERSE STORE* 🌟\n---------------------------------------\n👤 *CLIENTE:*\nNome: ${usuario.n}\nGrupo Fav: ${usuario.fav || 'Não informado'}\n\n📍 *ENTREGA:*\nEndereço: ${usuario.e}\nCEP: ${usuario.c}\n\n📦 *ITENS:*\n${itensLista}\n\n---------------------------------------\n💰 *TOTAL: R$ ${totalFinal.toFixed(2)}*\n(Subtotal: R$ ${subtotal.toFixed(2)} + Frete: R$ ${freteValor.toFixed(2)})\n\nOlá! Acabei de realizar meu pedido pelo site. Gostaria de prosseguir com o pagamento e confirmar o prazo de produção. ✨`;
 
-  let hist = JSON.parse(localStorage.getItem('iv_hist_v8')) || [];
+  let hist = JSON.parse(localStorage.getItem('iv_hist_v9')) || [];
   hist.unshift({data: new Date().toLocaleString(), total: `R$ ${totalFinal.toFixed(2)}` });
-  localStorage.setItem('iv_hist_v8', JSON.stringify(hist));
+  localStorage.setItem('iv_hist_v9', JSON.stringify(hist));
   window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msgProfissional)}`, '_blank');
 }
 
 function carregarHistorico() {
-    const hist = JSON.parse(localStorage.getItem('iv_hist_v8')) || [];
+    const hist = JSON.parse(localStorage.getItem('iv_hist_v9')) || [];
     document.getElementById('historicoPerfil').innerHTML = hist.length ? hist.map(p => `<div style="padding:10px; border-bottom:1px solid #333"><strong>${p.total}</strong> - ${p.data}</div>`).join('') : "Nenhum pedido.";
 }
 
@@ -572,7 +591,7 @@ function filtrarFavoritos(el) {
 function toggleFav(btn, nome) {
   const idx = favoritos.indexOf(nome); if(idx === -1) { favoritos.push(nome); btn.classList.add('fav-active'); }
   else { favoritos.splice(idx,1); btn.classList.remove('fav-active'); }
-  localStorage.setItem('iv_favs_v8', JSON.stringify(favoritos));
+  localStorage.setItem('iv_favs_v9', JSON.stringify(favoritos));
 }
 function showToast(m) { const t = document.getElementById('toast'); if(m) t.innerText = m; t.style.display = 'block'; setTimeout(()=> t.style.display='none', 2000); }
 </script>

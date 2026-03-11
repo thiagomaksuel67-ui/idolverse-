@@ -76,7 +76,6 @@ header {
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: 0.3s;
 }
 
 .nav-menu {
@@ -139,16 +138,11 @@ header {
 .pp-thumbnails img { width: 65px; height: 65px; object-fit: cover; border-radius: 8px; cursor: pointer; opacity: 0.5; border: 2px solid transparent; }
 .pp-thumbnails img.active { opacity: 1; border-color: var(--primary-pink); }
 
-.pix-info-badge {
-    background: rgba(50, 188, 173, 0.1);
-    border: 1px solid var(--pix-color);
-    padding: 10px 15px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 15px 0;
-}
+/* Qualidade Grid */
+.quality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 15px 0; }
+.q-item { background: rgba(255,255,255,0.05); padding: 8px; border-radius: 8px; font-size: 10px; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.05); }
+
+.pix-info-badge { background: rgba(50, 188, 173, 0.1); border: 1px solid var(--pix-color); padding: 10px 15px; border-radius: 10px; display: flex; align-items: center; gap: 12px; margin: 15px 0; }
 .pix-info-badge img { width: 22px; height: 22px; }
 .pix-info-badge span { color: var(--pix-color); font-size: 13px; font-weight: 700; }
 
@@ -178,29 +172,66 @@ header {
 .item-cart img { width: 65px; height: 65px; border-radius: 8px; object-fit: cover; }
 .cart-footer { padding: 25px; background: #0a0a1a; border-top: 2px solid var(--primary-pink); }
 
-.cart-notice {
-    background: rgba(255, 79, 216, 0.1);
+/* ===== RODAPÉ PROFISSIONAL (NOVO) ===== */
+.main-footer {
+    background: #0a0a1a;
+    padding: 60px 20px 20px;
+    border-top: 2px solid var(--primary-pink);
+    margin-top: 80px;
+}
+.footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+.footer-col h4 {
     color: var(--primary-pink);
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 11px;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+.footer-col p, .footer-col a {
+    color: #888;
+    font-size: 14px;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 12px;
+    transition: 0.3s;
+}
+.footer-col a:hover { color: var(--primary-pink); padding-left: 5px; }
+.social-links { display: flex; gap: 15px; margin-top: 10px; }
+.social-btn {
+    background: #1c1c3a;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 18px; border: 1px solid #333;
+}
+.social-btn:hover { border-color: var(--primary-pink); background: var(--primary-pink); }
+
+.footer-bottom {
     text-align: center;
-    margin-bottom: 15px;
-    border: 1px dashed var(--primary-pink);
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 11px;
+    color: #444;
 }
 
 /* ===== AUXILIARES ===== */
 #toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: var(--success-green); color: white; padding: 12px 30px; border-radius: 50px; font-weight: bold; z-index: 9999; display: none; }
 #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: none; z-index: 3500; backdrop-filter: blur(4px); }
-#zoomModal { position: fixed; inset: 0; background: #000; z-index: 6000; display: none; justify-content: center; align-items: center; }
+#zoomModal { position: fixed; inset: 0; background: #000; z-index: 6000; display: none; justify-content: center; align-items: center; cursor: zoom-out; }
 #zoomModal img { max-width: 95%; max-height: 95%; object-fit: contain; }
 
 .custom-order-section { background: linear-gradient(rgba(255, 79, 216, 0.1), rgba(255, 79, 216, 0.05)); border: 1px solid var(--primary-pink); border-radius: 20px; padding: 40px 20px; margin: 40px 0; text-align: center; }
 .btn-whatsapp { background: #25d366; color: white; padding: 15px 30px; border-radius: 50px; font-weight: 800; text-decoration: none; display: inline-block; margin-top: 15px; border: none; cursor: pointer; }
 
 .btn-buy-card { background: var(--primary-pink); color: white; border: none; padding: 10px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; margin-top: 10px; }
-.credits { text-align: center; padding: 30px; background: #0a0a1a; font-size: 11px; color: #555; }
-.credits span { color: var(--primary-pink); font-weight: bold; }
 </style>
 </head>
 
@@ -214,7 +245,7 @@ header {
 <div id="profilePage">
     <div class="pp-header">
         <button onclick="fecharPerfil()" style="background:none; border:none; color:white; font-size:28px; cursor:pointer;">←</button>
-        <span style="font-weight: 800; margin-left: 15px; letter-spacing: 1px;">MINHA CONTA</span>
+        <span style="font-weight: 800; margin-left: 15px; letter-spacing: 1px;">ÁREA DO CLIENTE</span>
     </div>
     
     <div class="profile-header">
@@ -225,10 +256,10 @@ header {
 
     <div class="profile-container">
         <div class="profile-section">
-            <h3>👤 Dados Pessoais</h3>
+            <h3>👤 Meu Cadastro</h3>
             <div class="input-group">
                 <label>Nome Completo</label>
-                <input type="text" id="profNome" placeholder="Seu nome...">
+                <input type="text" id="profNome" placeholder="Digite seu nome...">
             </div>
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px">
                 <div class="input-group">
@@ -247,7 +278,7 @@ header {
         </div>
 
         <div class="profile-section">
-            <h3>📍 Endereço para Envio</h3>
+            <h3>📍 Endereço de Entrega</h3>
             <div class="input-group">
                 <label>Endereço Completo</label>
                 <input type="text" id="profEnd" placeholder="Rua, Número, Bairro, Cidade">
@@ -328,11 +359,17 @@ header {
                 <span>Aceitamos PIX de todos os bancos</span>
             </div>
 
-            <p id="ppDesc" style="color:#bbb; line-height:1.7; font-size: 15px;"></p>
-            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; margin: 20px 0; font-size: 13px; border: 1px solid rgba(255,255,255,0.05);">
-                <strong>Conteúdo do Kit (73 itens):</strong><br>
-                25 Mini Fotos • 3 Tirinhas • 9 Cards Verso • 6 Polaroids • 6 Mini Fotos • 1 Pingente • 8 Mini Posters • 1 Carteirinha • 1 Marca Página • 1 Docinho • 12 Fotos Plastificadas.
+            <h4 style="color: var(--primary-pink); margin: 20px 0 10px 0;">🛡️ Qualidade Profissional:</h4>
+            <div class="quality-grid">
+                <div class="q-item">💎 <span>Papel Premium 300g</span></div>
+                <div class="q-item">🛡️ <span>Plastificado/Laminado</span></div>
+                <div class="q-item">🎨 <span>Impressão Ultra HD</span></div>
+                <div class="q-item">✂️ <span>Bordas Arredondadas</span></div>
+                <div class="q-item">☀️ <span>Proteção Anti-UV</span></div>
+                <div class="q-item">💖 <span>Mimos inclusos</span></div>
             </div>
+
+            <p id="ppDesc" style="color:#bbb; line-height:1.7; font-size: 15px;"></p>
             <button class="btn-whatsapp" id="ppAddBtn" style="width:100%; background:var(--primary-pink); border-radius:12px; text-align:center;">ADICIONAR AO CARRINHO</button>
         </div>
     </div>
@@ -345,11 +382,11 @@ header {
   <div class="cart-header"><h3>Meu Carrinho</h3><span onclick="toggleCarrinho()" style="cursor:pointer; font-size:32px; color:var(--primary-pink)">×</span></div>
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
-    <div class="cart-notice">
-        📌 Após clicar em finalizar, você será redirecionado ao WhatsApp para confirmar o pagamento.
+    <div style="background: rgba(255, 79, 216, 0.1); padding: 10px; border-radius: 8px; font-size: 11px; text-align: center; margin-bottom: 15px; border: 1px dashed var(--primary-pink);">
+        📌 O pagamento e a produção serão validados via WhatsApp.
     </div>
     <div class="cart-inputs">
-        <p style="font-size:11px; opacity:0.6; margin-bottom:12px;">🚚 Enviando para: <strong id="cartEndResumo">Defina no Perfil</strong></p>
+        <p style="font-size:11px; opacity:0.6; margin-bottom:10px;">🚚 Entrega em: <strong id="cartEndResumo">Defina no Perfil</strong></p>
         <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:14px; border-radius:12px; margin-bottom:15px; cursor:pointer; font-weight:bold;">CALCULAR FRETE 🚚</button>
     </div>
     <div id="freteResult" style="display:none; background: rgba(255,255,255,0.05); padding:15px; border-radius:12px; margin-bottom:15px;">
@@ -361,7 +398,39 @@ header {
   </div>
 </div>
 
-<div class="credits">CRIADO POR <span>THIAGO MAKSUEL</span> • <span>MARINA ANGELS</span> • <span>MARIA SOPHYA</span></div>
+<!-- RODAPÉ -->
+<footer class="main-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>INSTITUCIONAL</h4>
+            <a href="#">Sobre a IdolVerse</a>
+            <a href="#">Prazo de Produção</a>
+            <a href="#">Trocas e Devoluções</a>
+            <a href="#">Política de Privacidade</a>
+        </div>
+        <div class="footer-col">
+            <h4>SUPORTE E CONTATO</h4>
+            <p>✉️ thiagomaksuel67@gmail.com</p>
+            <p>📱 WhatsApp: (91) 98612-2614</p>
+            <p>📍 Belém - Pará (Enviamos para todo o Brasil)</p>
+            <p>🕒 Atendimento: Seg a Sex • 09h às 18h</p>
+        </div>
+        <div class="footer-col">
+            <h4>SIGA A GENTE</h4>
+            <p>Fique por dentro das novidades e mimos exclusivos!</p>
+            <div class="social-links">
+                <a href="#" class="social-btn">📸</a>
+                <a href="#" class="social-btn">🎵</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 11px;">Instagram: @IdolVerse</p>
+            <p style="font-size: 11px;">TikTok: @IdolVerseStore</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2024 IdolVerse Store. Desenvolvido por Thiago Maksuel. Todos os direitos reservados.</p>
+        <p style="margin-top: 5px; opacity: 0.3;">Suporte Técnico: +55 91 8882-2874</p>
+    </div>
+</footer>
 
 <script>
 // ===== BANCO DE DADOS E CONFIGURAÇÃO =====
@@ -544,12 +613,11 @@ function calcularFrete() {
     document.getElementById('freteResult').style.display = 'block'; atualizarTotal(); 
 }
 
-// ===== FINALIZAÇÃO WHATSAPP PROFISSIONAL =====
+// ===== FINALIZAÇÃO WHATSAPP =====
 function finalizarPedido() {
-  if(!usuario.n || !usuario.e) return alert("Por favor, complete seu cadastro no Perfil antes de finalizar!");
+  if(!usuario.n || !usuario.e) return alert("Complete seu perfil de entrega!");
   if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
 
-  // Mensagem de Redirecionamento
   alert("Confirmado! Agora vamos continuar o atendimento no WhatsApp para validar o pagamento e a produção. ✨");
 
   let subtotal = carrinho.reduce((a,b)=> a + (b.price * b.q), 0);
@@ -564,7 +632,6 @@ function finalizarPedido() {
 👤 *CLIENTE:*
 Nome: ${usuario.n}
 Grupo Fav: ${usuario.fav || 'Não informado'}
-WhatsApp: ${usuario.z || 'Não informado'}
 
 📍 *ENTREGA:*
 Endereço: ${usuario.e}
@@ -583,7 +650,6 @@ Frete (${freteTipo}): R$ ${freteValor.toFixed(2)}
 ---------------------------------------
 Olá! Acabei de realizar meu pedido pelo site. Gostaria de prosseguir com o pagamento e confirmar o prazo de produção.`;
 
-  // Salva no Histórico
   let hist = JSON.parse(localStorage.getItem('iv_hist_v8')) || [];
   hist.unshift({data: new Date().toLocaleString(), total: `R$ ${totalFinal.toFixed(2)}` });
   localStorage.setItem('iv_hist_v8', JSON.stringify(hist));
@@ -596,6 +662,7 @@ function carregarHistorico() {
     document.getElementById('historicoPerfil').innerHTML = hist.length ? hist.map(p => `<div style="padding:10px; border-bottom:1px solid #333"><strong>${p.total}</strong> - ${p.data}</div>`).join('') : "Nenhum pedido.";
 }
 
+// ===== BUSCA E FILTROS =====
 function buscar(t) { renderizarProdutos(database.filter(p => p.name.toLowerCase().includes(t.toLowerCase()))); }
 function filtrarCategoria(el, cat) { 
   document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active')); el.classList.add('active');

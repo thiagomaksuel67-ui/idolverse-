@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IdolVerse • Loja Oficial de Photocards</title>
+<title>IdolVerse • Photocards Premium</title>
 
 <style>
 :root {
@@ -43,9 +43,7 @@ header {
 }
 
 .header-top { display: flex; align-items: center; gap: 12px; width: 100%; }
-.logo-container { cursor: pointer; flex-shrink: 0; transition: transform 0.2s; }
-.logo-container:hover { transform: scale(1.05); }
-
+.logo-container { cursor: pointer; flex-shrink: 0; }
 .search-container { flex-grow: 1; position: relative; }
 .search-container input {
   width: 100%;
@@ -64,10 +62,17 @@ header {
   font-size: 16px; opacity: 0.5;
 }
 
-.location-bar {
-  display: flex; align-items: center;
-  font-size: 11px; color: rgba(255, 255, 255, 0.7);
-  padding: 5px 0;
+.user-btn {
+    background: var(--card-purple);
+    border: 1px solid var(--primary-pink);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .nav-menu {
@@ -75,143 +80,91 @@ header {
   gap: 20px; padding: 10px 0; scrollbar-width: none;
 }
 .nav-menu::-webkit-scrollbar { display: none; }
-
 .nav-item {
   color: var(--text-white); text-decoration: none;
   font-size: 13px; font-weight: 600; opacity: 0.7;
   padding-bottom: 5px; cursor: pointer; transition: 0.2s;
 }
 .nav-item.active { border-bottom: 3px solid var(--primary-pink); opacity: 1; }
-.nav-item:hover { opacity: 1; }
 
-/* ===== GRID DE PRODUTOS ===== */
+/* ===== GRID PRODUTOS ===== */
 .container { max-width: 1200px; margin: 0 auto; padding: 15px; }
 .products {
   display: grid; grid-template-columns: repeat(2, 1fr);
   gap: 15px; margin-top: 20px;
 }
 @media (min-width: 768px) { .products { grid-template-columns: repeat(4, 1fr); } }
-@media (min-width: 1024px) { .products { grid-template-columns: repeat(5, 1fr); } }
 
 .card {
   background: var(--card-purple); border-radius: 15px; overflow: hidden;
   border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative;
+  transition: 0.3s; position: relative;
 }
-.card:hover { transform: translateY(-8px); border-color: var(--primary-pink); box-shadow: var(--shadow); }
+.card:hover { transform: translateY(-8px); border-color: var(--primary-pink); }
+.img-container { width: 100%; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; }
+.img-container img { width: 100%; height: 100%; object-fit: cover; }
+.card-info { padding: 12px; }
+.price { color: #ffb3f0; font-size: 17px; font-weight: 800; }
 
-.img-container { width: 100%; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; background: #111; }
-.card img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-.card:hover img { transform: scale(1.1); }
-
-.card-info { padding: 12px; text-align: left; display: flex; flex-direction: column; gap: 4px; }
-.card-info h3 { font-size: 13px; margin: 0; font-weight: 500; height: 38px; overflow: hidden; color: #eee; }
-.price { color: #ffb3f0; font-size: 17px; font-weight: 800; margin: 4px 0; }
-
-.card-actions { position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; gap: 8px; z-index: 5; }
-.action-btn { background: rgba(0,0,0,0.6); color: white; border: none; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(5px); transition: 0.2s; }
-.action-btn:hover { background: var(--primary-pink); transform: scale(1.1); }
+.card-actions { position: absolute; top: 10px; right: 10px; z-index: 5; display: flex; flex-direction: column; gap: 5px; }
+.action-btn { background: rgba(0,0,0,0.6); color: white; border: none; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
 .fav-active { color: #ff4fd8; }
 
-.btn-buy-card { background: var(--primary-pink); color: white; border: none; padding: 10px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; margin-top: 5px; transition: 0.2s; }
-.btn-buy-card:active { transform: scale(0.95); }
-
-/* ===== PÁGINA DE PRODUTO (MODAL) ===== */
-#productPage {
-  position: fixed; inset: 0; background: var(--bg-dark-deep);
-  z-index: 3000; display: none; flex-direction: column; overflow-y: auto;
+/* ===== MODAL PERFIL ===== */
+#profilePage {
+    position: fixed; inset: 0; background: var(--bg-dark-deep);
+    z-index: 5000; display: none; flex-direction: column; overflow-y: auto;
 }
-.pp-header { position: sticky; top: 0; background: var(--bg-dark-deep); padding: 15px 20px; display: flex; align-items: center; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
-.pp-back { background: none; border: none; color: white; font-size: 28px; cursor: pointer; margin-right: 15px; }
+.profile-container { max-width: 600px; margin: 0 auto; width: 100%; padding: 20px; }
+.profile-header { text-align: center; padding: 40px 0; background: #2d1b4d; border-radius: 0 0 30px 30px; }
+.profile-avatar { width: 80px; height: 80px; background: var(--primary-pink); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: bold; }
+.profile-section { background: rgba(255,255,255,0.03); padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; font-size: 11px; color: #aaa; margin-bottom: 5px; }
+.input-group input { width: 100%; background: #1c1c3a; border: 1px solid #333; color: white; padding: 12px; border-radius: 10px; outline: none; }
 
+/* ===== PÁGINA DE PRODUTO PROFISSIONAL ===== */
+#productPage { position: fixed; inset: 0; background: var(--bg-dark-deep); z-index: 3000; display: none; flex-direction: column; overflow-y: auto; }
+.pp-header { position: sticky; top: 0; background: var(--bg-dark-deep); padding: 15px; display: flex; align-items: center; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .pp-main-layout { display: flex; flex-direction: column; max-width: 1100px; margin: 0 auto; width: 100%; padding: 20px; }
-
-.pp-visuals { width: 100%; display: flex; flex-direction: column; gap: 15px; }
-.pp-image-viewer { 
-    width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 15px; 
-    display: flex; justify-content: center; align-items: center; overflow: hidden; 
-    cursor: zoom-in; position: relative; border: 1px solid rgba(255,255,255,0.1);
-}
+.pp-visuals { width: 100%; }
+.pp-image-viewer { width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 15px; display: flex; justify-content: center; align-items: center; overflow: hidden; cursor: zoom-in; }
 .pp-image-viewer img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
-.pp-thumbnails { display: flex; gap: 10px; justify-content: center; overflow-x: auto; padding-bottom: 10px; }
-.pp-thumbnails img { 
-    width: 70px; height: 70px; object-fit: cover; border-radius: 8px; cursor: pointer; 
-    border: 2px solid transparent; opacity: 0.6; transition: 0.3s;
-}
-.pp-thumbnails img.active { border-color: var(--primary-pink); opacity: 1; transform: scale(1.05); }
-
-.pp-info { width: 100%; padding: 10px 0; }
-.pp-title { font-size: 24px; font-weight: 800; margin-bottom: 10px; line-height: 1.2; }
-.pp-price { font-size: 34px; color: var(--primary-pink); font-weight: 900; margin: 15px 0 5px 0; }
-.pp-installments { opacity: 0.6; font-size: 14px; margin-bottom: 25px; display: block; }
-
-.pp-buy-section { 
-    background: rgba(255,255,255,0.03); padding: 20px; border-radius: 15px; 
-    border: 1px solid rgba(255,255,255,0.05); margin-bottom: 30px;
-}
+.pp-thumbnails { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
+.pp-thumbnails img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; opacity: 0.5; border: 2px solid transparent; }
+.pp-thumbnails img.active { opacity: 1; border-color: var(--primary-pink); }
 
 @media (min-width: 900px) {
-    .pp-main-layout { flex-direction: row; gap: 40px; padding-top: 40px; }
-    .pp-visuals { width: 55%; position: sticky; top: 100px; height: fit-content; }
-    .pp-info { width: 45%; }
+    .pp-main-layout { flex-direction: row; gap: 40px; }
+    .pp-visuals { width: 50%; }
+    .pp-info { width: 50%; }
 }
 
-.quality-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
-.badge { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; font-size: 11px; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.05); }
-
-/* ===== CARRINHO PROFISSIONAL ===== */
-#cartBtn { position: fixed; bottom: 25px; right: 25px; background: var(--primary-pink); border: none; width: 65px; height: 65px; border-radius: 50%; z-index: 2000; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 20px rgba(255, 79, 216, 0.4); font-size: 26px; transition: 0.3s; }
-#cartBtn:hover { transform: scale(1.1); }
-#cartCount { position: absolute; top: 5px; right: 5px; background: white; color: var(--primary-pink); font-size: 12px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid var(--primary-pink); }
+/* ===== CARRINHO ===== */
+#cartBtn { position: fixed; bottom: 25px; right: 25px; background: var(--primary-pink); border: none; width: 65px; height: 65px; border-radius: 50%; z-index: 2000; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); font-size: 26px; }
+#cartCount { position: absolute; top: 5px; right: 5px; background: white; color: var(--primary-pink); font-size: 11px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
 #carrinho { 
     position: fixed; top: 0; right: -100%; width: 100%; max-width: 480px; height: 100vh; 
-    background: #111122; z-index: 4000; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
-    display: flex; flex-direction: column; box-shadow: -10px 0 50px rgba(0,0,0,0.8);
+    background: #111122; z-index: 4000; transition: 0.5s; display: flex; flex-direction: column; box-shadow: -10px 0 50px rgba(0,0,0,0.8);
 }
-.cart-header { padding: 25px; display: flex; justify-content: space-between; align-items: center; background: #0a0a1a; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.cart-header { padding: 25px; display: flex; justify-content: space-between; align-items: center; background: #0a0a1a; }
 #listaCarrinho { flex: 1; overflow-y: auto; padding: 20px; }
+.item-cart { display: flex; align-items: center; gap: 15px; background: #1c1c3a; padding: 15px; border-radius: 15px; margin-bottom: 15px; }
+.item-cart img { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; }
 
-.item-cart { 
-    display: flex; align-items: center; gap: 15px; background: #1c1c3a; 
-    padding: 15px; border-radius: 15px; margin-bottom: 15px; 
-    border: 1px solid rgba(255,255,255,0.03);
-}
-.item-cart img { width: 75px; height: 75px; border-radius: 10px; object-fit: cover; }
-.qty-controls { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
-.qty-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #555; background: none; color: white; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
-
-.cart-footer { 
-    padding: 25px; background: #0a0a1a; border-top: 2px solid var(--primary-pink);
-}
-.cart-inputs input { width: 100%; background: #1c1c3a; border: 1px solid #333; color: white; padding: 14px; border-radius: 12px; margin-bottom: 10px; outline: none; }
-
-.frete-module { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; margin-bottom: 15px; }
-.frete-option { 
-    display: flex; align-items: center; justify-content: space-between; 
-    background: #1c1c3a; padding: 12px; border-radius: 10px; margin-top: 8px; 
-    cursor: pointer; border: 2px solid transparent;
-}
-.frete-option input { display: none; }
-.frete-option:has(input:checked) { border-color: var(--primary-pink); background: rgba(255, 79, 216, 0.1); }
-
-.cart-summary { margin: 15px 0; font-size: 14px; color: #aaa; }
-.summary-line { display: flex; justify-content: space-between; margin-bottom: 5px; }
-.summary-total { font-size: 24px; font-weight: 900; color: #fff; margin-top: 10px; border-top: 1px solid #333; padding-top: 10px; }
-
-.btn-finalizar { 
-    width: 100%; background: #25d366; color: white; border: none; padding: 18px; 
-    border-radius: 15px; font-size: 16px; font-weight: 800; cursor: pointer; 
-    display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s;
-}
+.cart-footer { padding: 25px; background: #0a0a1a; border-top: 2px solid var(--primary-pink); }
+.summary-total { font-size: 24px; font-weight: 900; margin-top: 10px; border-top: 1px solid #333; padding-top: 10px; }
+.btn-finalizar { width: 100%; background: #25d366; color: white; border: none; padding: 18px; border-radius: 15px; font-size: 16px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
 /* ===== AUXILIARES ===== */
 #toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: var(--success-green); color: white; padding: 12px 30px; border-radius: 50px; font-weight: bold; z-index: 9999; display: none; }
 #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: none; z-index: 3500; backdrop-filter: blur(4px); }
-#zoomModal { position: fixed; inset: 0; background: #000; z-index: 5000; display: none; justify-content: center; align-items: center; cursor: zoom-out; }
+#zoomModal { position: fixed; inset: 0; background: #000; z-index: 6000; display: none; justify-content: center; align-items: center; }
 #zoomModal img { max-width: 95%; max-height: 95%; object-fit: contain; }
 
+.custom-order-section { background: rgba(255, 79, 216, 0.1); border: 1px solid var(--primary-pink); border-radius: 20px; padding: 30px; margin: 40px 0; text-align: center; }
+.btn-buy-card { background: var(--primary-pink); color: white; border: none; padding: 10px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; font-size: 12px; margin-top: 10px; }
 .credits { text-align: center; padding: 25px; background: #0a0a1a; font-size: 11px; color: #555; }
 .credits span { color: var(--primary-pink); }
 </style>
@@ -221,48 +174,37 @@ header {
 
 <div id="toast">✅ Adicionado ao carrinho!</div>
 
+<!-- ZOOM -->
 <div id="zoomModal" onclick="this.style.display='none'">
-    <img id="zoomImg" src="" alt="Zoom">
+    <img id="zoomImg" src="">
 </div>
 
-<!-- PÁGINA DO PRODUTO (MODAL) -->
-<div id="productPage">
-  <div class="pp-header">
-    <button class="pp-back" onclick="fecharPP()">←</button>
-    <span style="font-weight: 800; font-size: 16px;">IDOLVERSE STORE</span>
-  </div>
-  
-  <div class="pp-main-layout">
-    <div class="pp-visuals">
-        <div class="pp-image-viewer" onclick="abrirZoom()">
-            <img id="ppImg" src="" alt="Produto Principal">
-        </div>
-        <div class="pp-thumbnails" id="ppThumbs"></div>
+<!-- PERFIL -->
+<div id="profilePage">
+    <div class="pp-header">
+        <button onclick="fecharPerfil()" style="background:none; border:none; color:white; font-size:24px; cursor:pointer;">←</button>
+        <span style="font-weight: 800; margin-left: 15px;">MEU PERFIL</span>
     </div>
-
-    <div class="pp-info">
-        <h1 class="pp-title" id="ppTitle">Nome do Kit</h1>
-        <div class="quality-badges">
-            <div class="badge">💎 Premium 300g</div>
-            <div class="badge">☀️ Proteção UV</div>
-            <div class="badge">✂️ Cantos Redondos</div>
-            <div class="badge">📦 Kit Tamanho G</div>
-        </div>
-        <div class="pp-buy-section">
-            <div class="pp-price" id="ppPrice">R$ 0,00</div>
-            <span class="pp-installments">em até 3x sem juros</span>
-            <button class="btn-buy-card" id="ppAddBtn" style="padding: 20px; font-size: 16px; margin-top: 20px;">ADICIONAR AO CARRINHO</button>
-        </div>
-        <div style="margin-top: 30px;">
-            <h4 style="color: var(--primary-pink); margin-bottom: 10px;">✨ O que vem no Kit?</h4>
-            <p id="ppDesc" style="color: #ccc; line-height: 1.7; font-size: 15px;"></p>
-            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; margin-top: 15px; font-size: 14px; border: 1px solid rgba(255,255,255,0.05);">
-                <strong>Este é um Kit Tamanho G (73 itens):</strong><br>
-                25 Mini Fotos • 3 Tirinhas • 9 Cards Verso • 6 Polaroids • 6 Mini Fotos • 1 Pingente • 8 Mini Posters • 1 Carteirinha • 1 Marca Página • 1 Docinho • 12 Fotos Plastificadas.
-            </div>
-        </div>
+    <div class="profile-header">
+        <div class="profile-avatar" id="avatarIcon">?</div>
+        <h2 id="profileNameDisplay" style="margin:0">Visitante</h2>
+        <p id="profileStatus" style="font-size: 12px; opacity: 0.6;">Nível: Membro IdolVerse ✨</p>
     </div>
-  </div>
+    <div class="profile-container">
+        <div class="profile-section">
+            <h3>👤 Informações</h3>
+            <div class="input-group"><label>Nome</label><input type="text" id="profNome" oninput="atualizarPerfilUI()"></div>
+            <div class="input-group"><label>WhatsApp</label><input type="text" id="profZap"></div>
+            <div class="input-group"><label>Endereço de Entrega</label><input type="text" id="profEnd"></div>
+            <div class="input-group"><label>CEP</label><input type="text" id="profCep"></div>
+            <button onclick="salvarPerfil()" style="width:100%; background:var(--primary-pink); color:white; border:none; padding:15px; border-radius:10px; font-weight:bold; cursor:pointer;">SALVAR DADOS</button>
+        </div>
+        <div class="profile-section">
+            <h3>📋 Histórico</h3>
+            <div id="historicoPerfil" style="font-size: 13px; opacity: 0.8;">Nenhum pedido recente.</div>
+        </div>
+        <button onclick="logout()" style="width:100%; background:none; border:1px solid #ff4f4f; color:#ff4f4f; padding:10px; border-radius:10px; cursor:pointer; margin-bottom: 50px;">Limpar todos os dados</button>
+    </div>
 </div>
 
 <header>
@@ -273,10 +215,12 @@ header {
     <div class="search-container">
       <input type="text" placeholder="Pesquisar kits..." onkeyup="buscar(this.value)">
     </div>
+    <button class="user-btn" onclick="abrirPerfil()">
+        <span id="userBtnLabel">Entrar</span> 👤
+    </button>
   </div>
   <div class="location-bar">
-    <span id="welcomeMsg" style="font-weight: bold; color: var(--primary-pink);">Oi! ✨</span>
-    <span id="displayEndereco">📍 Entrega: Informe seu endereço</span>
+    <span id="welcomeMsg">Olá! Bem-vindo ✨</span>
   </div>
   <nav class="nav-menu">
     <a class="nav-item active" onclick="filtrarCategoria(this, '')">Todos</a>
@@ -290,55 +234,71 @@ header {
 
 <div class="container">
   <div class="products" id="productGrid"></div>
-  <div class="meus-pedidos">
-    <h3>📋 Meus Pedidos</h3>
-    <div id="listaPedidosCliente"></div>
-    <button onclick="limparHistorico()" style="background:none; border:1px solid #444; color:#888; padding:8px 15px; border-radius:8px; margin-top:20px; cursor:pointer; font-size:11px;">Limpar Histórico</button>
+
+  <!-- SEÇÃO DE PERSONALIZADOS (RESTAURADA) -->
+  <div class="custom-order-section">
+    <h2 style="color:var(--primary-pink); margin:0 0 10px 0;">🎨 Fanbox Personalizada</h2>
+    <p>Monte o kit perfeito com as fotos que você mais ama! Nós produzimos com qualidade premium. 💖</p>
+    <a href="https://wa.me/5591986122614" target="_blank" class="btn-finalizar" style="max-width:300px; margin:20px auto;">PEDIR NO WHATSAPP</a>
   </div>
 </div>
 
+<!-- PRODUTO MODAL -->
+<div id="productPage">
+    <div class="pp-header">
+        <button onclick="fecharPP()" style="background:none; border:none; color:white; font-size:24px; cursor:pointer;">←</button>
+        <span style="font-weight: 800; margin-left: 15px;">DETALHES DO KIT</span>
+    </div>
+    <div class="pp-main-layout">
+        <div class="pp-visuals">
+            <div class="pp-image-viewer" onclick="abrirZoom()"><img id="ppImg" src=""></div>
+            <div class="pp-thumbnails" id="ppThumbs"></div>
+            <p style="text-align: center; font-size: 11px; opacity: 0.5; margin-top: 10px;">Toque na imagem para ampliar 🔍</p>
+        </div>
+        <div class="pp-info">
+            <h1 id="ppTitle" style="margin:0; font-size: 26px;">Nome</h1>
+            <div id="ppPrice" style="font-size: 32px; color:var(--primary-pink); font-weight:900; margin:15px 0;">R$ 0,00</div>
+            <p id="ppDesc" style="color:#bbb; line-height:1.7; font-size: 15px;"></p>
+            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; margin: 20px 0; font-size: 13px; border: 1px solid rgba(255,255,255,0.05);">
+                <strong>Conteúdo do Kit Tamanho G:</strong><br>
+                25 Mini Fotos • 3 Tirinhas • 9 Cards Verso • 6 Polaroids • 6 Mini Fotos • 1 Pingente • 8 Mini Posters • 1 Carteirinha • 1 Marca Página • 1 Docinho • 12 Fotos Plastificadas.
+            </div>
+            <button class="btn-finalizar" id="ppAddBtn" style="background:var(--primary-pink)">ADICIONAR AO CARRINHO</button>
+        </div>
+    </div>
+</div>
+
+<!-- CARRINHO -->
 <button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>
 <div id="overlay" onclick="toggleCarrinho()"></div>
-
 <div id="carrinho">
-  <div class="cart-header">
-    <h3 style="margin:0">Meu Carrinho</h3>
-    <span onclick="toggleCarrinho()" style="cursor:pointer; font-size:32px; color:var(--primary-pink)">×</span>
-  </div>
+  <div class="cart-header"><h3>Meu Carrinho</h3><span onclick="toggleCarrinho()" style="cursor:pointer; font-size:32px; color:var(--primary-pink)">×</span></div>
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
     <div class="cart-inputs">
-      <input type="text" id="cartNome" placeholder="Seu Nome Completo" oninput="salvarDados()">
-      <input type="text" id="cartEnd" placeholder="Endereço de Entrega" oninput="salvarDados()">
-      <input type="text" id="cartCep" placeholder="CEP" oninput="salvarDados()">
-      <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:12px; border-radius:10px; margin-bottom:15px; cursor:pointer; font-weight:bold;">CALCULAR FRETE</button>
+        <p style="font-size:11px; opacity:0.6; margin-bottom:10px;">📦 Enviando para: <strong id="cartEndResumo">Defina no Perfil</strong></p>
+        <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:12px; border-radius:10px; margin-bottom:15px; cursor:pointer; font-weight:bold;">CALCULAR FRETE 🚚</button>
     </div>
-    <div id="freteResult" class="frete-module" style="display:none;">
-        <label class="frete-option">
-            <span><input type="radio" name="f" value="15" checked onchange="atualizarTotal()"> PAC</span>
-            <strong>R$ 15,00</strong>
-        </label>
-        <label class="frete-option">
-            <span><input type="radio" name="f" value="30" onchange="atualizarTotal()"> SEDEX</span>
-            <strong>R$ 30,00</strong>
-        </label>
+    <div id="freteResult" style="display:none; background: rgba(255,255,255,0.05); padding:15px; border-radius:12px; margin-bottom:15px;">
+        <label style="display:block; margin-bottom:8px;"><input type="radio" name="f" value="15" checked onchange="atualizarTotal()"> PAC - R$ 15,00</label>
+        <label style="display:block;"><input type="radio" name="f" value="30" onchange="atualizarTotal()"> SEDEX - R$ 30,00</label>
     </div>
-    <div class="cart-summary">
-        <div class="summary-line"><span>Subtotal:</span> <span id="subtotalTxt">R$ 0,00</span></div>
-        <div class="summary-total"><span>Total:</span> <span id="totalTxt">R$ 0,00</span></div>
-    </div>
+    <div class="summary-total" style="display:flex; justify-content:space-between"><span>Total:</span><span id="totalTxt">R$ 0,00</span></div>
     <button class="btn-finalizar" onclick="finalizarPedido()">FINALIZAR NO WHATSAPP</button>
   </div>
 </div>
 
+<div class="credits">CRIADO POR <span>THIAGO MAKSUEL</span> • <span>MARINA ANGELS</span> • <span>MARIA SOPHYA</span></div>
+
 <script>
 // ===== BANCO DE DADOS E CONFIGURAÇÃO =====
-const FOTO_TAMANHO_G = 'tamanho-g.jpg'; // <--- JÁ ALTERADO PARA VOCÊ!
+const FOTO_TAMANHO_G = 'tamanho-g.jpg'; // <-- NOME DA SUA IMAGEM
 let carrinho = [];
 let favoritos = [];
+let usuario = { n: '', e: '', c: '', z: '' };
 
 const database = [
-  { id: 1, cat: 'kpop', name: 'Kit BTS', price: 19.90, img: 'bts1.jpg', desc: '54 photocards lomo do BTS.' },
+  { id: 1, cat: 'kpop', name: 'Kit BTS', price: 19.90, img: 'bts1.jpg', desc: '54 photocards lomo de alta definição do BTS.' },
   { id: 2, cat: 'kpop', name: 'Pack BLACKPINK', price: 21.90, img: 'blackpink.jpg', desc: 'Edição luxo BLACKPINK.' },
   { id: 3, cat: 'kpop', name: 'Kit Stray Kids', price: 22.90, img: 'straykids.jpg', desc: 'Stray Kids Premium.' },
   { id: 4, cat: 'kpop', name: 'Kit LE SSERAFIM', price: 22.90, img: 'lesserafim.jpg', desc: 'Conceito LE SSERAFIM.' },
@@ -382,26 +342,20 @@ const database = [
 ];
 
 function carregarTudo() {
-  favoritos = JSON.parse(localStorage.getItem('iv_favs_v3')) || [];
-  carrinho = JSON.parse(localStorage.getItem('iv_cart_v3')) || [];
-  const user = JSON.parse(localStorage.getItem('iv_user_v3'));
-  if(user) {
-    document.getElementById('cartNome').value = user.n || '';
-    document.getElementById('cartEnd').value = user.e || '';
-    document.getElementById('cartCep').value = user.c || '';
-  }
-  renderizarProdutos(database); renderizarCarrinho(); carregarHistorico();
+  favoritos = JSON.parse(localStorage.getItem('iv_fav_v5')) || [];
+  carrinho = JSON.parse(localStorage.getItem('iv_cart_v5')) || [];
+  usuario = JSON.parse(localStorage.getItem('iv_user_v5')) || {n:'', e:'', c:'', z:''};
+  atualizarPerfilUI(); renderizarProdutos(database); renderizarCarrinho();
 }
 
 function renderizarProdutos(lista) {
-  const grid = document.getElementById('productGrid');
-  grid.innerHTML = '';
+  const grid = document.getElementById('productGrid'); grid.innerHTML = '';
   lista.forEach(p => {
     const isFav = favoritos.includes(p.name);
     grid.innerHTML += `
       <div class="card">
         <div class="card-actions"><button class="action-btn ${isFav ? 'fav-active' : ''}" onclick="toggleFav(this, '${p.name}')">❤️</button></div>
-        <div class="img-container" onclick="abrirPP(${p.id})"><img src="${p.img}" loading="lazy"></div>
+        <div class="img-container" onclick="abrirPP(${p.id})"><img src="${p.img}"></div>
         <div class="card-info">
           <h3 onclick="abrirPP(${p.id})">${p.name}</h3>
           <p class="price">R$ ${p.price.toFixed(2).replace('.',',')}</p>
@@ -417,25 +371,44 @@ function abrirPP(id) {
   document.getElementById('ppTitle').innerText = p.name;
   document.getElementById('ppPrice').innerText = `R$ ${p.price.toFixed(2).replace('.',',')}`;
   document.getElementById('ppDesc').innerText = p.desc;
-  const thumbs = document.getElementById('ppThumbs');
-  thumbs.innerHTML = `<img src="${p.img}" class="active" onclick="changePPImg(this)"><img src="${FOTO_TAMANHO_G}" onclick="changePPImg(this)">`;
+  document.getElementById('ppThumbs').innerHTML = `<img src="${p.img}" class="active" onclick="changePPImg(this)"><img src="${FOTO_TAMANHO_G}" onclick="changePPImg(this)">`;
   document.getElementById('ppAddBtn').onclick = () => { addCart(p.id); fecharPP(); };
   document.getElementById('productPage').style.display = 'flex';
 }
 
-function changePPImg(el) {
-    document.querySelectorAll('.pp-thumbnails img').forEach(i => i.classList.remove('active'));
-    el.classList.add('active'); document.getElementById('ppImg').src = el.src;
+function fecharPP() { document.getElementById('productPage').style.display = 'none'; document.body.style.overflow = 'auto'; }
+function changePPImg(el) { document.querySelectorAll('.pp-thumbnails img').forEach(i => i.classList.remove('active')); el.classList.add('active'); document.getElementById('ppImg').src = el.src; }
+function abrirZoom() { document.getElementById('zoomImg').src = document.getElementById('ppImg').src; document.getElementById('zoomModal').style.display = 'flex'; }
+
+function abrirPerfil() { document.getElementById('profilePage').style.display = 'flex'; carregarHistorico(); }
+function fecharPerfil() { document.getElementById('profilePage').style.display = 'none'; }
+
+function salvarPerfil() {
+    usuario.n = document.getElementById('profNome').value;
+    usuario.e = document.getElementById('profEnd').value;
+    usuario.c = document.getElementById('profCep').value;
+    usuario.z = document.getElementById('profZap').value;
+    localStorage.setItem('iv_user_v5', JSON.stringify(usuario));
+    atualizarPerfilUI(); showToast("Perfil salvo!");
 }
 
-function fecharPP() { document.getElementById('productPage').style.display = 'none'; }
-function abrirZoom() { document.getElementById('zoomImg').src = document.getElementById('ppImg').src; document.getElementById('zoomModal').style.display = 'flex'; }
+function atualizarPerfilUI() {
+    document.getElementById('profNome').value = usuario.n;
+    document.getElementById('profEnd').value = usuario.e;
+    document.getElementById('profCep').value = usuario.c;
+    document.getElementById('profZap').value = usuario.z;
+    document.getElementById('profileNameDisplay').innerText = usuario.n || "Visitante";
+    document.getElementById('avatarIcon').innerText = (usuario.n || "?").charAt(0).toUpperCase();
+    document.getElementById('userBtnLabel').innerText = usuario.n ? usuario.n.split(' ')[0] : "Entrar";
+    document.getElementById('welcomeMsg').innerText = usuario.n ? `Oi, ${usuario.n.split(' ')[0]}! ✨` : "Olá! Bem-vindo ✨";
+    document.getElementById('cartEndResumo').innerText = usuario.e || "Defina no Perfil";
+}
 
 function addCart(id) {
   const p = database.find(x => x.id === id);
   const item = carrinho.find(i => i.id === id);
   if(item) item.q++; else carrinho.push({...p, q:1});
-  saveCart(); renderizarCarrinho(); showToast();
+  localStorage.setItem('iv_cart_v5', JSON.stringify(carrinho)); renderizarCarrinho(); showToast();
 }
 
 function renderizarCarrinho() {
@@ -444,10 +417,9 @@ function renderizarCarrinho() {
     lista.innerHTML += `
       <div class="item-cart">
         <img src="${item.img}">
-        <div class="item-cart-info">
-          <h4>${item.name}</h4>
-          <div class="item-cart-price">R$ ${item.price.toFixed(2).replace('.',',')}</div>
-          <div class="qty-controls"><button class="qty-btn" onclick="updateQ(${item.id},-1)">-</button><span>${item.q}</span><button class="qty-btn" onclick="updateQ(${item.id},1)">+</button></div>
+        <div style="flex:1">
+          <h4 style="margin:0; font-size:14px;">${item.name}</h4>
+          <div style="margin-top:5px;"><button onclick="updateQ(${item.id},-1)">-</button> <span style="margin:0 10px">${item.q}</span> <button onclick="updateQ(${item.id},1)">+</button></div>
         </div>
         <strong>R$ ${(item.price * item.q).toFixed(2).replace('.',',')}</strong>
       </div>`;
@@ -457,18 +429,14 @@ function renderizarCarrinho() {
 
 function atualizarTotal() {
   let sub = carrinho.reduce((a,b)=> a + (b.price * b.q), 0);
-  let frete = 0;
-  if(document.getElementById('freteResult').style.display === 'block') {
-    frete = parseFloat(document.querySelector('input[name="f"]:checked').value);
-  }
-  document.getElementById('subtotalTxt').innerText = `R$ ${sub.toFixed(2).replace('.',',')}`;
+  let frete = (document.getElementById('freteResult').style.display === 'block') ? parseFloat(document.querySelector('input[name="f"]:checked').value) : 0;
   document.getElementById('totalTxt').innerText = `R$ ${(sub + frete).toFixed(2).replace('.',',')}`;
 }
 
 function updateQ(id, n) {
   const item = carrinho.find(i => i.id === id); item.q += n;
   if(item.q <= 0) carrinho = carrinho.filter(i => i.id !== id);
-  saveCart(); renderizarCarrinho();
+  localStorage.setItem('iv_cart_v5', JSON.stringify(carrinho)); renderizarCarrinho();
 }
 
 function toggleCarrinho() {
@@ -476,38 +444,44 @@ function toggleCarrinho() {
   const open = c.style.right === '0px'; c.style.right = open ? '-100%' : '0px'; o.style.display = open ? 'none' : 'block';
 }
 
+function calcularFrete() { 
+    if(!usuario.c) return alert("Informe seu CEP no perfil!");
+    document.getElementById('freteResult').style.display = 'block'; atualizarTotal(); 
+}
+
+function finalizarPedido() {
+  if(!usuario.n || !usuario.e) return alert("Complete seu perfil!");
+  if(carrinho.length === 0) return alert("Carrinho vazio!");
+  const lista = carrinho.map(i => `• ${i.q}x ${i.name}`).join('\n');
+  const total = document.getElementById('totalTxt').innerText;
+  const msg = `*PEDIDO IDOLVERSE*\n\n*Cliente:* ${usuario.n}\n*Endereço:* ${usuario.e}\n\n*Itens:*\n${lista}\n\n*Total:* ${total}`;
+  let hist = JSON.parse(localStorage.getItem('iv_hist_v5')) || [];
+  hist.unshift({data: new Date().toLocaleString(), total});
+  localStorage.setItem('iv_hist_v5', JSON.stringify(hist));
+  window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function carregarHistorico() {
+    const hist = JSON.parse(localStorage.getItem('iv_hist_v5')) || [];
+    document.getElementById('historicoPerfil').innerHTML = hist.length ? hist.map(p => `<div style="padding:10px; border-bottom:1px solid #333"><strong>${p.total}</strong> - ${p.data}</div>`).join('') : "Nenhum pedido.";
+}
+
 function buscar(t) { renderizarProdutos(database.filter(p => p.name.toLowerCase().includes(t.toLowerCase()))); }
 function filtrarCategoria(el, cat) { 
   document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active')); el.classList.add('active');
   renderizarProdutos(cat === '' ? database : database.filter(p => p.cat === cat || p.name.toLowerCase().includes(cat)));
 }
-function filtrarFavoritos(el) { renderizarProdutos(database.filter(p => favoritos.includes(p.name))); }
+function filtrarFavoritos(el) { 
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active')); el.classList.add('active');
+    renderizarProdutos(database.filter(p => favoritos.includes(p.name))); 
+}
 function toggleFav(btn, nome) {
   const idx = favoritos.indexOf(nome); if(idx === -1) { favoritos.push(nome); btn.classList.add('fav-active'); }
   else { favoritos.splice(idx,1); btn.classList.remove('fav-active'); }
-  localStorage.setItem('iv_favs_v3', JSON.stringify(favoritos));
+  localStorage.setItem('iv_fav_v5', JSON.stringify(favoritos));
 }
-function salvarDados() {
-  const n = document.getElementById('cartNome').value; const e = document.getElementById('cartEnd').value; const c = document.getElementById('cartCep').value;
-  localStorage.setItem('iv_user_v3', JSON.stringify({n,e,c}));
-}
-function calcularFrete() { document.getElementById('freteResult').style.display = 'block'; atualizarTotal(); }
-function showToast() { document.getElementById('toast').style.display = 'block'; setTimeout(()=> document.getElementById('toast').style.display='none', 2000); }
-function saveCart() { localStorage.setItem('iv_cart_v3', JSON.stringify(carrinho)); }
-
-function finalizarPedido() {
-  const user = JSON.parse(localStorage.getItem('iv_user_v3'));
-  if(!user || !user.n || !user.e || carrinho.length === 0) return alert("Dados incompletos!");
-  const lista = carrinho.map(i => `• ${i.q}x ${i.name}`).join('\n');
-  const msg = `*PEDIDO IDOLVERSE*\n\n*Cliente:* ${user.n}\n*Endereço:* ${user.e}\n\n*Itens:*\n${lista}\n\n*Total:* ${document.getElementById('totalTxt').innerText}`;
-  window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`, '_blank');
-}
-
-function carregarHistorico() {
-    const hist = JSON.parse(localStorage.getItem('iv_hist_v3')) || [];
-    document.getElementById('listaPedidosCliente').innerHTML = hist.map(p => `<div class="pedido-item"><strong>${p.total}</strong> - ${p.data}</div>`).join('');
-}
-function limparHistorico() { localStorage.removeItem('iv_hist_v3'); location.reload(); }
+function showToast(m) { const t = document.getElementById('toast'); if(m) t.innerText = m; t.style.display = 'block'; setTimeout(()=> t.style.display='none', 2000); }
+function logout() { localStorage.clear(); location.reload(); }
 </script>
 </body>
 </html>

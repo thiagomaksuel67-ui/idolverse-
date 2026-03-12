@@ -54,9 +54,9 @@ header {
 
 .user-btn { background: var(--primary-pink); color: white; width: 40px; height: 40px; border-radius: 10px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-.nav-menu { display: flex; overflow-x: auto; gap: 15px; padding: 12px 0 0; scrollbar-width: none; }
+.nav-menu { display: flex; overflow-x: auto; gap: 15px; padding: 12px 0 0; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .nav-menu::-webkit-scrollbar { display: none; }
-.nav-item { color: #888; text-decoration: none; font-size: 11px; font-weight: 700; cursor: pointer; text-transform: uppercase; white-space: nowrap; }
+.nav-item { color: #888; text-decoration: none; font-size: 11px; font-weight: 700; cursor: pointer; text-transform: uppercase; white-space: nowrap; padding-bottom: 5px; }
 .nav-item.active { color: var(--primary-pink); border-bottom: 2px solid var(--primary-pink); }
 
 /* ===== BANNER ===== */
@@ -68,8 +68,8 @@ header {
 }
 .welcome-hero h1 { font-size: 22px; font-weight: 800; margin: 0; }
 
-/* ===== GRID PRODUTOS (BOUTIQUE) ===== */
-.container { max-width: 1200px; margin: 0 auto; padding-bottom: 80px; }
+/* ===== GRID PRODUTOS ===== */
+.container { max-width: 1200px; margin: 0 auto; padding-bottom: 50px; }
 .products { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 15px; }
 @media (min-width: 768px) { .products { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
 
@@ -83,44 +83,51 @@ header {
 .card-info h3 { font-size: 12px; margin: 0; height: 34px; overflow: hidden; color: #fff; font-weight: 600; }
 .price { color: var(--primary-pink); font-size: 16px; font-weight: 800; display: block; margin: 5px 0; }
 .btn-buy-card { background: #fff; color: #000; border: none; padding: 10px; border-radius: 8px; width: 100%; font-weight: 800; font-size: 10px; cursor: pointer; }
+.action-btn { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.5); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5; }
 
 /* ===== PÁGINA DE PRODUTO ===== */
-#productPage { position: fixed; inset: 0; background: var(--bg-dark); z-index: 3000; display: none; flex-direction: column; overflow-y: auto; }
+#productPage { position: fixed; inset: 0; background: var(--bg-dark); z-index: 3000; display: none; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .pp-header { position: sticky; top: 0; background: #0a0a14; padding: 15px; display: flex; align-items: center; border-bottom: 1px solid var(--border); }
 .pp-main { display: flex; flex-direction: column; max-width: 1000px; margin: 0 auto; padding: 15px; width: 100%; }
-.pp-image-viewer { width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 15px; display: flex; justify-content: center; align-items: center; overflow: hidden; border: 1px solid var(--border); cursor: zoom-in; }
+.pp-image-viewer { width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 15px; overflow: hidden; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: zoom-in; }
 .pp-image-viewer img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .pp-thumbnails { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
 .pp-thumbnails img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; opacity: 0.5; border: 2px solid transparent; cursor: pointer; }
 .pp-thumbnails img.active { opacity: 1; border-color: var(--primary-pink); }
 
+.pix-badge { background: rgba(50, 188, 173, 0.1); border: 1px solid var(--pix-color); padding: 10px; border-radius: 10px; display: flex; align-items: center; gap: 8px; margin: 15px 0; font-size: 11px; color: var(--pix-color); font-weight: bold; }
 .quality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 15px 0; }
 .q-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; display: flex; align-items: center; gap: 8px; font-size: 10px; border: 1px solid var(--border); }
 
-/* ===== CARRINHO COM CHECKOUT ===== */
+/* ===== CARRINHO OTIMIZADO ===== */
 #carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 450px; height: 100vh; background: #0f0f1e; z-index: 4000; transition: 0.4s ease; display: flex; flex-direction: column; }
 .cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
-#listaCarrinho { flex: 1; overflow-y: auto; padding: 15px; }
+#listaCarrinho { flex: 1; overflow-y: auto; padding: 15px; -webkit-overflow-scrolling: touch; }
 .item-cart { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; margin-bottom: 10px; border: 1px solid var(--border); }
 .item-cart img { width: 55px; height: 55px; border-radius: 8px; object-fit: cover; }
 
 .cart-footer { padding: 20px; background: #05050a; border-top: 2px solid var(--primary-pink); overflow-y: auto; }
 .checkout-group { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 15px; border: 1px solid var(--border); margin-bottom: 15px; }
-.checkout-group h4 { font-size: 11px; color: var(--primary-pink); margin: 0 0 10px 0; text-transform: uppercase; font-weight: 800; }
-.cart-input { width: 100%; background: #1c1c3a; border: 1px solid #333; color: white; padding: 12px; border-radius: 10px; margin-bottom: 8px; font-size: 13px; -webkit-appearance: none; }
-
-.coupon-box { display: flex; gap: 8px; margin-bottom: 15px; }
-.coupon-box input { flex: 1; background: #1c1c3a; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; font-size: 12px; text-transform: uppercase; }
-.coupon-box button { background: var(--violet-accent); color: white; border: none; padding: 0 15px; border-radius: 8px; font-weight: bold; font-size: 11px; cursor: pointer; }
+.checkout-group h4 { font-size: 11px; color: var(--primary-pink); margin: 0 0 12px 0; text-transform: uppercase; font-weight: 800; }
+.cart-input { width: 100%; background: #1c1c3a; border: 1px solid #333; color: white; padding: 12px; border-radius: 10px; margin-bottom: 8px; font-size: 13px; font-family: 'Montserrat', sans-serif; }
 
 .frete-card { display: flex; justify-content: space-between; align-items: center; background: #16162d; padding: 10px; border-radius: 10px; margin-top: 5px; cursor: pointer; border: 1px solid transparent; font-size: 12px; }
 .frete-card input { display: none; }
 .frete-card:has(input:checked) { border-color: var(--primary-pink); background: rgba(255, 79, 216, 0.1); }
 
-/* ===== ÁREA DO CLIENTE ===== */
-#profilePage { position: fixed; inset: 0; background: var(--bg-dark); z-index: 5000; display: none; flex-direction: column; overflow-y: auto; }
-.profile-header { text-align: center; padding: 40px 0; background: #16162d; border-radius: 0 0 25px 25px; border-bottom: 2px solid var(--primary-pink); }
-.avatar-large { width: 70px; height: 70px; background: var(--primary-pink); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; }
+.coupon-box { display: flex; gap: 8px; margin: 15px 0; }
+.coupon-box input { flex: 1; background: #1c1c3a; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; font-size: 12px; text-transform: uppercase; }
+.coupon-box button { background: #333; color: white; border: none; padding: 0 15px; border-radius: 8px; font-weight: bold; font-size: 11px; cursor: pointer; }
+
+/* ===== RODAPÉ PROFISSIONAL ===== */
+.main-footer { background: #05050a; padding: 50px 20px; border-top: 1px solid var(--border); margin-top: 50px; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 1100px; margin: 0 auto; }
+@media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(3, 1fr); text-align: left; } }
+.footer-col { text-align: center; }
+@media (min-width: 768px) { .footer-col { text-align: left; } }
+.footer-col h4 { color: var(--primary-pink); font-size: 13px; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+.footer-col p, .footer-col a { color: #888; font-size: 13px; text-decoration: none; display: block; margin-bottom: 12px; transition: 0.3s; }
+.footer-col a:hover { color: var(--primary-pink); }
 
 /* ===== AUXILIARES ===== */
 #cartBtn { position: fixed; bottom: 20px; right: 20px; background: var(--primary-pink); width: 60px; height: 60px; border-radius: 50%; z-index: 2000; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 5px 15px rgba(255, 79, 216, 0.4); border: none; color: white; cursor: pointer; }
@@ -130,15 +137,10 @@ header {
 #zoomModal { position: fixed; inset: 0; background: #000; z-index: 6000; display: none; justify-content: center; align-items: center; cursor: zoom-out; }
 #zoomModal img { max-width: 95%; max-height: 95%; object-fit: contain; }
 
-.btn-finalizar { background: #25d366; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 800; width: 100%; cursor: pointer; font-size: 15px; }
-.zap-float { position: fixed; bottom: 20px; left: 20px; background: #25d366; width: 55px; height: 55px; border-radius: 50%; z-index: 2000; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.4); }
-
-.main-footer { background: #05050a; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 30px; }
-.footer-grid { display: grid; grid-template-columns: 1fr; gap: 30px; text-align: center; }
-@media (min-width: 600px) { .footer-grid { grid-template-columns: repeat(3, 1fr); text-align: left; } }
-.footer-col h4 { color: var(--primary-pink); font-size: 12px; margin-bottom: 15px; }
-.footer-col p, .footer-col a { color: #888; font-size: 12px; text-decoration: none; display: block; margin-bottom: 8px; }
-.credits { text-align: center; padding: 20px; background: #05050a; font-size: 9px; color: #333; letter-spacing: 1px; border-top: 1px solid #111; }
+.btn-finalizar { background: #25d366; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 800; width: 100%; cursor: pointer; font-size: 15px; transition: 0.3s; }
+.btn-finalizar:hover { background: #1eb954; }
+.credits { text-align: center; padding: 25px; background: #05050a; font-size: 10px; color: #333; letter-spacing: 1px; border-top: 1px solid #111; }
+.credits span { color: var(--primary-pink); font-weight: bold; }
 </style>
 </head>
 
@@ -148,22 +150,23 @@ header {
 <div id="zoomModal" onclick="this.style.display='none'"><img id="zoomImg" src=""></div>
 <div id="overlay" onclick="toggleCarrinho()"></div>
 
-<a href="https://wa.me/5591986122614" target="_blank" class="zap-float">
+<!-- WHATSAPP FLUTUANTE -->
+<a href="https://wa.me/5591986122614" target="_blank" style="position:fixed; bottom:20px; left:20px; background:#25d366; width:55px; height:55px; border-radius:50%; z-index:2000; display:flex; align-items:center; justify-content:center; box-shadow:0 5px 20px rgba(0,0,0,0.4);">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30">
 </a>
 
 <!-- ÁREA DO CLIENTE -->
 <div id="profilePage">
-    <div class="pp-header"><button onclick="fecharPerfil()" style="background:none; border:none; color:white; font-size:24px;">←</button><span style="font-weight: 800; margin-left: 10px; font-size: 14px;">PERFIL</span></div>
-    <div class="profile-header"><div class="avatar-large" id="avatarIcon">?</div><h2 id="profileNameDisplay" style="margin:0; font-size: 18px;">Visitante</h2></div>
-    <div style="max-width:500px; margin:0 auto; padding:15px;">
-        <div style="background:rgba(255,255,255,0.05); padding:20px; border-radius:20px; margin-bottom:15px; border:1px solid var(--border);">
-            <h3 style="font-size:12px; color:var(--primary-pink); margin:0 0 15px 0;">👤 MEUS DADOS</h3>
+    <div class="pp-header"><button onclick="fecharPerfil()" style="background:none; border:none; color:white; font-size:24px;">←</button><span style="font-weight: 800; margin-left: 10px; font-size: 14px;">MEU PERFIL</span></div>
+    <div style="text-align:center; padding:30px 0; background:#16162d;"><div id="avatarIcon" style="width:70px; height:70px; background:var(--primary-pink); border-radius:50%; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:800;">?</div><h2 id="profileNameDisplay" style="margin:0; font-size: 18px;">Visitante</h2></div>
+    <div class="profile-container">
+        <div class="profile-section">
+            <h3 style="font-size:11px; color:var(--primary-pink); margin:0 0 15px 0;">👤 DADOS DA CONTA</h3>
             <div class="input-group"><label>Nome Completo</label><input type="text" id="profNome" placeholder="Seu nome" oninput="salvarTudoAoDigitar()"></div>
             <div class="input-group"><label>WhatsApp</label><input type="text" id="profZap" placeholder="(91) 00000-0000" oninput="salvarTudoAoDigitar()"></div>
             <div class="input-group"><label>Bias Favorito</label><input type="text" id="profFav" placeholder="Ex: BTS, SKZ..." oninput="salvarTudoAoDigitar()"></div>
         </div>
-        <button onclick="logout()" style="width:100%; background:none; border:1px solid #333; color:#444; padding:10px; border-radius:10px; font-size: 11px;">Limpar tudo</button>
+        <button onclick="logout()" style="width:100%; background:none; border:1px solid #333; color:#444; padding:10px; border-radius:10px; font-size: 11px;">Limpar todos os dados</button>
     </div>
 </div>
 
@@ -184,13 +187,13 @@ header {
 </header>
 
 <div class="container">
-  <div class="welcome-hero" id="welcomeBanner"><h1>IdolVerse Store</h1><p>Sua boutique premium de Photocards ✨</p></div>
+  <div class="welcome-hero" id="welcomeBanner"><h1>IdolVerse Store</h1><p>Boutique Premium de Photocards ✨</p></div>
   <div class="products" id="productGrid"></div>
   
   <div style="background: #16162d; border: 1px solid var(--primary-pink); border-radius: 20px; padding: 30px 15px; margin: 40px 15px; text-align: center;">
     <h2 style="color:var(--primary-pink); margin:0 0 10px 0; font-size: 18px; font-weight: 800;">🎨 Encomenda Personalizada</h2>
-    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px;">Use suas próprias fotos favoritas!</p>
-    <a href="https://wa.me/5591986122614" target="_blank" class="btn-finalizar" style="max-width:250px; margin:0 auto; text-decoration:none; display:block; text-align:center;">PEDIR NO WHATSAPP</a>
+    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px;">Transforme suas fotos em photocards premium!</p>
+    <a href="https://wa.me/5591986122614" target="_blank" class="btn-finalizar" style="max-width:280px; margin:0 auto; text-decoration:none; display:block; text-align:center;">PEDIR NO WHATSAPP</a>
   </div>
 </div>
 
@@ -201,7 +204,6 @@ header {
         <div class="pp-visuals">
             <div class="pp-image-viewer" onclick="abrirZoom()"><img id="ppImg" src=""></div>
             <div class="pp-thumbnails" id="ppThumbs"></div>
-            <p style="text-align: center; font-size: 10px; opacity: 0.4; margin-top: 10px;">Toque para ampliar 🔍</p>
         </div>
         <div class="pp-info">
             <h1 id="ppTitle" style="margin:0; font-size: 22px; font-weight: 800;">Nome</h1>
@@ -230,7 +232,7 @@ header {
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
     
-    <!-- CHECKOUT INTEGRADO COM AUTO-SAVE -->
+    <!-- CHECKOUT DE ENDEREÇO IGUAL AO SITE -->
     <div class="checkout-group">
         <h4>📦 Dados de Entrega</h4>
         <input type="text" id="cartEnd" class="cart-input" placeholder="Rua e Bairro" oninput="salvarTudoAoDigitar()">
@@ -238,7 +240,7 @@ header {
             <input type="text" id="cartNum" class="cart-input" placeholder="Nº" oninput="salvarTudoAoDigitar()">
             <input type="text" id="cartCep" class="cart-input" placeholder="00000-000" maxlength="9" oninput="salvarTudoAoDigitar()">
         </div>
-        <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:10px; border-radius:8px; font-weight:bold; font-size: 11px; cursor:pointer;">CALCULAR FRETE</button>
+        <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:10px; border-radius:10px; font-weight:bold; font-size: 11px; cursor:pointer;">CALCULAR FRETE</button>
     </div>
 
     <div id="freteResult" style="display:none; background: rgba(255,255,255,0.05); padding:10px; border-radius:10px; margin-bottom: 12px;">
@@ -249,19 +251,33 @@ header {
     </div>
 
     <div class="coupon-box"><input type="text" id="cupomInput" placeholder="CUPOM: BEMVINDO10"><button onclick="aplicarCupom()">OK</button></div>
-    <div style="display:flex; justify-content:space-between; font-weight:800; font-size:20px;"><span>Total</span><span id="totalTxt">R$ 0,00</span></div>
-    <button class="btn-finalizar" style="margin-top:10px" onclick="finalizarPedido()">FINALIZAR NO WHATSAPP</button>
+    <div style="display:flex; justify-content:space-between; font-weight:800; font-size:22px; margin-bottom: 5px;"><span>TOTAL</span><span id="totalTxt">R$ 0,00</span></div>
+    <button class="btn-finalizar" onclick="finalizarPedido()">FINALIZAR NO WHATSAPP</button>
   </div>
 </div>
 
 <footer class="main-footer">
     <div class="footer-grid">
-        <div class="footer-col"><h4>LOJA</h4><a href="#">Sobre</a><a href="#">Produção</a></div>
-        <div class="footer-col"><h4>CONTATO</h4><p>✉️ thiagomaksuel67@gmail.com</p><p>📱 (91) 98612-2614</p></div>
-        <div class="footer-col"><h4>REDES</h4><p>@IdolVerse</p><p>@IdolVerseStore</p></div>
+        <div class="footer-col">
+            <h4>Institucional</h4>
+            <a href="#">Sobre a IdolVerse</a>
+            <a href="#">Prazo de Produção</a>
+            <a href="#">Trocas e Devoluções</a>
+        </div>
+        <div class="footer-col">
+            <h4>Suporte</h4>
+            <p>✉️ thiagomaksuel67@gmail.com</p>
+            <p>📱 WhatsApp: (91) 98612-2614</p>
+            <p>🕒 Seg a Sex: 09h às 18h</p>
+        </div>
+        <div class="footer-col">
+            <h4>Redes Sociais</h4>
+            <a href="#">Instagram @IdolVerse</a>
+            <a href="#">TikTok @IdolVerseStore</a>
+        </div>
     </div>
 </footer>
-<p class="credits">DESIGN BY THIAGO MAKSUEL • ANGELS • SOPHYA</p>
+<div class="credits">DESIGN BY <span>THIAGO MAKSUEL</span> • <span>ANGELS</span> • <span>SOPHYA</span></div>
 
 <script>
 const FOTO_TAMANHO_G = 'tamanho-g.jpg';
@@ -279,7 +295,7 @@ const database = [
   { id: 6, cat: 'kpop', name: 'Kit Twice (73 Itens)', price: 32.90, img: 'twice.jpg', desc: 'Coleção especial grupo Twice.' },
   { id: 7, cat: 'kpop', name: 'Kit New Jeans (73 Itens)', price: 34.90, img: 'newjeans.jpg', desc: 'Estética Bunny Y2K.' },
   { id: 8, cat: 'kpop', name: 'Kit EXO (73 Itens)', price: 32.90, img: 'exo.jpg', desc: 'Coleção lendária grupo EXO.' },
-  { id: 9, cat: 'kpop', name: 'Kit aespa (73 Itens)', price: 34.90, img: 'aespa.jpg', desc: 'aespa Next Level HD.' },
+  { id: 9, cat: 'kpop', name: 'Kit aespa (73 Itens)', price: 34.90, img: 'aespa.jpg', desc: 'Mundo virtual aespa HD.' },
   { id: 10, cat: 'famosos', name: 'Pack Neymar Jr (73 Itens)', price: 34.90, img: 'neymar.jpg', desc: 'Neymar Jr moments.' },
   { id: 11, cat: 'famosos', name: 'Kit Taylor Swift (73 Itens)', price: 39.90, img: 'taylor.jpg', desc: 'Taylor Swift Eras.' },
   { id: 12, cat: 'famosos', name: 'Pack Jenna Ortega (73 Itens)', price: 34.90, img: 'jenna.jpg', desc: 'Jenna Ortega.' },
@@ -319,43 +335,26 @@ function carregarTudo() {
   carrinho = JSON.parse(localStorage.getItem('iv_cart_v10')) || [];
   usuario = JSON.parse(localStorage.getItem('iv_user_v10')) || { n: '', e: '', num: '', c: '', z: '', fav: '' };
   
-  preencherTudo();
+  document.getElementById('profNome').value = usuario.n || '';
+  document.getElementById('profZap').value = usuario.z || '';
+  document.getElementById('profFav').value = usuario.fav || '';
+  document.getElementById('cartEnd').value = usuario.e || '';
+  document.getElementById('cartNum').value = usuario.num || '';
+  document.getElementById('cartCep').value = usuario.c || '';
+  
+  atualizarLabels();
   renderizarProdutos(database); 
   renderizarCarrinho();
-}
-
-function preencherTudo() {
-    document.getElementById('profNome').value = usuario.n || '';
-    document.getElementById('profZap').value = usuario.z || '';
-    document.getElementById('profFav').value = usuario.fav || '';
-    document.getElementById('profEnd').value = usuario.e || '';
-    document.getElementById('profNum').value = usuario.num || '';
-    document.getElementById('profCep').value = usuario.c || '';
-    document.getElementById('cartEnd').value = usuario.e || '';
-    document.getElementById('cartNum').value = usuario.num || '';
-    document.getElementById('cartCep').value = usuario.c || '';
-    atualizarLabels();
 }
 
 function salvarTudoAoDigitar() {
     usuario.n = document.getElementById('profNome').value;
     usuario.z = document.getElementById('profZap').value;
     usuario.fav = document.getElementById('profFav').value;
-    
-    // Pega do carrinho se houver alteração lá
-    usuario.e = document.getElementById('cartEnd').value || document.getElementById('profEnd').value;
-    usuario.num = document.getElementById('cartNum').value || document.getElementById('profNum').value;
-    usuario.c = document.getElementById('cartCep').value || document.getElementById('profCep').value;
-    
+    usuario.e = document.getElementById('cartEnd').value;
+    usuario.num = document.getElementById('cartNum').value;
+    usuario.c = document.getElementById('cartCep').value;
     localStorage.setItem('iv_user_v10', JSON.stringify(usuario));
-    
-    // Atualiza espelhos
-    document.getElementById('profEnd').value = usuario.e;
-    document.getElementById('profNum').value = usuario.num;
-    document.getElementById('profCep').value = usuario.c;
-    document.getElementById('cartEnd').value = usuario.e;
-    document.getElementById('cartNum').value = usuario.num;
-    document.getElementById('cartCep').value = usuario.c;
     atualizarLabels();
 }
 
@@ -370,12 +369,7 @@ function renderizarProdutos(lista) {
   const grid = document.getElementById('productGrid'); grid.innerHTML = '';
   lista.forEach(p => {
     const isFav = favoritos.includes(p.name);
-    grid.innerHTML += `
-      <div class="card">
-        <div class="card-actions"><button class="action-btn" style="color:${isFav?'#ff4fd8':'#fff'}" onclick="toggleFav(this, '${p.name}')">❤️</button></div>
-        <div class="img-container" onclick="abrirPP(${p.id})"><img src="${p.img}" loading="lazy"></div>
-        <div class="card-info"><h3>${p.name}</h3><span class="price">R$ ${p.price.toFixed(2).replace('.',',')}</span><button class="btn-buy-card" onclick="addCart(${p.id})">COMPRAR</button></div>
-      </div>`;
+    grid.innerHTML += `<div class="card"><div class="card-actions"><button class="action-btn" style="color:${isFav?'#ff4fd8':'#fff'}" onclick="toggleFav(this, '${p.name}')">❤️</button></div><div class="img-container" onclick="abrirPP(${p.id})"><img src="${p.img}"></div><div class="card-info"><h3>${p.name}</h3><span class="price">R$ ${p.price.toFixed(2).replace('.',',')}</span><button class="btn-buy-card" onclick="addCart(${p.id})">COMPRAR</button></div></div>`;
   });
 }
 
@@ -445,21 +439,21 @@ function toggleCarrinho() {
 
 function aplicarCupom() {
     if(document.getElementById('cupomInput').value.toUpperCase() === 'BEMVINDO10') {
-        desconto = 0.10; alert("Cupom 10% OFF aplicado! 🎫");
+        desconto = 0.10; alert("Cupom aplicado! 🎫");
     } else { alert("Cupom inválido."); }
     atualizarTotal();
 }
 
 function finalizarPedido() {
-  if(!usuario.n || !usuario.e || !usuario.num || !usuario.c) return alert("Por favor, preencha todos os dados de entrega no carrinho!");
+  if(!usuario.n || !usuario.e || !usuario.num || !usuario.c) return alert("Preencha nome e endereço no carrinho!");
   if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
   if(document.getElementById('freteResult').style.display === 'none') return alert("Calcule o frete!");
   
   let freteValor = parseFloat(document.querySelector('input[name="f"]:checked').value);
-  let totalFinal = (carrinho.reduce((a,b)=> a + (b.price * b.q), 0) * (1-desconto)) + freteValor;
+  let totalF = (carrinho.reduce((a,b)=> a + (b.price * b.q), 0) * (1-desconto)) + freteValor;
   const itens = carrinho.map(i => `• ${i.q}x ${i.name}`).join('\n');
 
-  const msg = `🌟 *PEDIDO IDOLVERSE* 🌟
+  const msg = `🌟 *NOVO PEDIDO - IDOLVERSE* 🌟
 --------------------------
 👤 *CLIENTE:* ${usuario.n}
 📍 *ENTREGA:* ${usuario.e}, Nº ${usuario.num}
@@ -469,9 +463,9 @@ function finalizarPedido() {
 ${itens}
 
 🚚 *FRETE:* R$ ${freteValor.toFixed(2)}
-💰 *TOTAL:* R$ ${totalFinal.toFixed(2)}
+💰 *TOTAL:* R$ ${totalF.toFixed(2)}
 --------------------------
-Olá! Gostaria de prosseguir com o pagamento via PIX. ✨`;
+Olá! Gostaria de confirmar meu pedido. ✨`;
   window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`, '_blank');
 }
 

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>IdolVerse • Boutique Oficial de Photocards</title>
 
-<!-- FONTE PREMIUM -->
+<!-- FONTES PREMIUM -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -20,13 +20,13 @@
   --border: rgba(255, 255, 255, 0.1);
 }
 
-/* Reset para Performance Mobile */
+/* Reset de Performance */
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
 
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  background: #0a0a14;
+  background: var(--bg-dark);
   color: var(--text-white);
   line-height: 1.5;
   overflow-x: hidden;
@@ -54,12 +54,12 @@ header {
 
 .user-btn { background: var(--primary-pink); color: white; width: 40px; height: 40px; border-radius: 10px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-.nav-menu { display: flex; overflow-x: auto; gap: 15px; padding: 12px 0 0; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.nav-menu { display: flex; overflow-x: auto; gap: 15px; padding: 12px 0 0; scrollbar-width: none; }
 .nav-menu::-webkit-scrollbar { display: none; }
 .nav-item { color: #888; text-decoration: none; font-size: 11px; font-weight: 700; cursor: pointer; text-transform: uppercase; white-space: nowrap; padding-bottom: 5px; }
 .nav-item.active { color: var(--primary-pink); border-bottom: 2px solid var(--primary-pink); }
 
-/* ===== BANNER ===== */
+/* ===== BANNERS ===== */
 .welcome-hero {
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=60&w=800');
     background-size: cover; background-position: center;
@@ -68,14 +68,14 @@ header {
 }
 .welcome-hero h1 { font-size: 22px; font-weight: 800; margin: 0; }
 
-/* ===== GRID PRODUTOS ===== */
+/* ===== GRID PRODUTOS (BOUTIQUE STYLE) ===== */
 .container { max-width: 1200px; margin: 0 auto; padding-bottom: 80px; }
 .products { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 15px; }
 @media (min-width: 768px) { .products { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
 
 .card {
   background: var(--card-purple); border-radius: 15px; overflow: hidden;
-  border: 1px solid var(--border); position: relative; transition: transform 0.2s;
+  border: 1px solid var(--border); position: relative; transition: 0.2s;
 }
 .img-container { width: 100%; aspect-ratio: 2/3; overflow: hidden; background: #000; cursor: pointer; }
 .img-container img { width: 100%; height: 100%; object-fit: cover; }
@@ -83,35 +83,42 @@ header {
 .card-info h3 { font-size: 12px; margin: 0; height: 34px; overflow: hidden; color: #fff; font-weight: 600; }
 .price { color: var(--primary-pink); font-size: 16px; font-weight: 800; display: block; margin: 5px 0; }
 .btn-buy-card { background: #fff; color: #000; border: none; padding: 10px; border-radius: 8px; width: 100%; font-weight: 800; font-size: 10px; cursor: pointer; }
+.action-btn { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.5); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5; }
 
-/* ===== PÁGINA DE PRODUTO (MODAL) ===== */
-#productPage { position: fixed; inset: 0; background: var(--bg-dark); z-index: 3000; display: none; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+/* ===== PÁGINA DE PRODUTO ===== */
+#productPage { position: fixed; inset: 0; background: var(--bg-dark); z-index: 3000; display: none; flex-direction: column; overflow-y: auto; }
 .pp-header { position: sticky; top: 0; background: #0a0a14; padding: 15px; display: flex; align-items: center; border-bottom: 1px solid var(--border); }
 .pp-main { display: flex; flex-direction: column; max-width: 1000px; margin: 0 auto; padding: 15px; width: 100%; }
-.pp-image-viewer { width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 15px; overflow: hidden; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: zoom-in; }
+.pp-image-viewer { width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 15px; display: flex; justify-content: center; align-items: center; overflow: hidden; border: 1px solid var(--border); cursor: zoom-in; }
 .pp-image-viewer img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .pp-thumbnails { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
-.pp-thumbnails img { width: 65px; height: 65px; object-fit: cover; border-radius: 10px; opacity: 0.5; border: 2px solid transparent; cursor: pointer; }
+.pp-thumbnails img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; opacity: 0.5; border: 2px solid transparent; cursor: pointer; }
 .pp-thumbnails img.active { opacity: 1; border-color: var(--primary-pink); }
 
+.pix-badge { background: rgba(50, 188, 173, 0.1); border: 1px solid var(--pix-color); padding: 10px; border-radius: 10px; display: flex; align-items: center; gap: 8px; margin: 15px 0; font-size: 11px; color: var(--pix-color); font-weight: bold; }
 .quality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 15px 0; }
 .q-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; display: flex; align-items: center; gap: 8px; font-size: 10px; border: 1px solid var(--border); }
 
 @media (min-width: 900px) { .pp-main { flex-direction: row; gap: 40px; padding: 40px; } .pp-visuals { width: 50%; } .pp-info { width: 50%; } }
 
-/* ===== CARRINHO PROFISSIONAL ===== */
+/* ===== CARRINHO COM CHECKOUT E CUPOM ===== */
 #carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 450px; height: 100vh; background: #0f0f1e; z-index: 4000; transition: 0.4s ease; display: flex; flex-direction: column; }
 .cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
-#listaCarrinho { flex: 1; overflow-y: auto; padding: 15px; -webkit-overflow-scrolling: touch; }
-.item-cart { display: flex; align-items: center; gap: 12px; background: #1c1c3a; padding: 12px; border-radius: 12px; margin-bottom: 10px; border: 1px solid var(--border); }
+#listaCarrinho { flex: 1; overflow-y: auto; padding: 15px; }
+.item-cart { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; margin-bottom: 10px; border: 1px solid var(--border); }
 .item-cart img { width: 55px; height: 55px; border-radius: 8px; object-fit: cover; }
 
 .cart-footer { padding: 20px; background: #05050a; border-top: 2px solid var(--primary-pink); }
 .checkout-group { margin-bottom: 15px; }
 .checkout-group h4 { font-size: 11px; color: var(--primary-pink); margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+
 .cart-input { width: 100%; background: #1c1c3a; border: 1px solid #333; color: white; padding: 12px; border-radius: 10px; margin-bottom: 8px; font-size: 13px; -webkit-appearance: none; }
 
-.frete-card { display: flex; justify-content: space-between; align-items: center; background: #1c1c3a; padding: 12px; border-radius: 12px; margin-top: 5px; cursor: pointer; border: 1px solid transparent; }
+.coupon-box { display: flex; gap: 8px; margin-bottom: 15px; }
+.coupon-box input { flex: 1; background: #1c1c3a; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; font-size: 12px; text-transform: uppercase; }
+.coupon-box button { background: var(--violet-accent); color: white; border: none; padding: 0 12px; border-radius: 8px; font-weight: bold; font-size: 11px; cursor: pointer; }
+
+.frete-card { display: flex; justify-content: space-between; align-items: center; background: #1c1c3a; padding: 10px; border-radius: 10px; margin-top: 5px; cursor: pointer; border: 1px solid transparent; font-size: 12px; }
 .frete-card input { display: none; }
 .frete-card:has(input:checked) { border-color: var(--primary-pink); background: rgba(255, 79, 216, 0.1); }
 
@@ -120,7 +127,7 @@ header {
 #cartCount { position: absolute; top: 5px; right: 5px; background: white; color: var(--primary-pink); font-size: 10px; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 #toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--success-green); color: #000; padding: 10px 25px; border-radius: 50px; font-weight: 800; z-index: 9999; display: none; font-size: 12px; }
 #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: none; z-index: 3500; }
-#zoomModal { position: fixed; inset: 0; background: #000; z-index: 6000; display: none; justify-content: center; align-items: center; cursor: zoom-out; }
+#zoomModal { position: fixed; inset: 0; background: #000; z-index: 6000; display: none; justify-content: center; align-items: center; }
 #zoomModal img { max-width: 95%; max-height: 95%; object-fit: contain; }
 
 .btn-finalizar { background: #25d366; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 800; width: 100%; cursor: pointer; font-size: 15px; }
@@ -129,9 +136,11 @@ header {
 .main-footer { background: #05050a; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 30px; text-align: center; }
 .footer-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
 @media (min-width: 600px) { .footer-grid { grid-template-columns: repeat(3, 1fr); text-align: left; } }
-.footer-col h4 { color: var(--primary-pink); font-size: 12px; margin-bottom: 15px; text-transform: uppercase; }
+.footer-col h4 { color: var(--primary-pink); font-size: 12px; margin-bottom: 15px; }
 .footer-col p, .footer-col a { color: #888; font-size: 12px; text-decoration: none; display: block; margin-bottom: 8px; }
-.credits { text-align: center; padding: 20px; background: #05050a; font-size: 9px; color: #333; letter-spacing: 1px; border-top: 1px solid #111; }
+.credits { text-align: center; padding: 20px; background: #05050a; font-size: 9px; color: #333; letter-spacing: 1px; }
+
+#profilePage { position: fixed; inset: 0; background: var(--bg-dark); z-index: 5000; display: none; flex-direction: column; overflow-y: auto; }
 </style>
 </head>
 
@@ -148,15 +157,15 @@ header {
 <!-- ÁREA DO CLIENTE -->
 <div id="profilePage">
     <div class="pp-header"><button onclick="fecharPerfil()" style="background:none; border:none; color:white; font-size:24px;">←</button><span style="font-weight: 800; margin-left: 10px; font-size: 14px;">PERFIL</span></div>
-    <div class="profile-header"><div class="profile-avatar" id="avatarIcon">?</div><h2 id="profileNameDisplay" style="margin:0; font-size: 18px;">Visitante</h2></div>
-    <div class="profile-container">
+    <div style="text-align:center; padding:30px 0; background:#16162d;"><div id="avatarIcon" style="width:70px; height:70px; background:var(--primary-pink); border-radius:50%; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:800;">?</div><h2 id="profileNameDisplay" style="margin:0; font-size: 18px;">Visitante</h2></div>
+    <div style="max-width:500px; margin:0 auto; padding:15px;">
         <div class="profile-section">
-            <h3>👤 Meus Dados</h3>
+            <h3 style="font-size:12px; color:var(--primary-pink); margin:0 0 15px 0;">👤 MEUS DADOS</h3>
             <div class="input-group"><label>Nome Completo</label><input type="text" id="profNome" placeholder="Seu nome" oninput="salvarTudoAoDigitar()"></div>
             <div class="input-group"><label>WhatsApp</label><input type="text" id="profZap" placeholder="(91) 00000-0000" oninput="salvarTudoAoDigitar()"></div>
             <div class="input-group"><label>Bias Favorito</label><input type="text" id="profFav" placeholder="Ex: BTS, SKZ..." oninput="salvarTudoAoDigitar()"></div>
         </div>
-        <button onclick="logout()" style="width:100%; background:none; border:1px solid #333; color:#444; padding:10px; border-radius:10px; font-size: 11px;">Limpar tudo</button>
+        <button onclick="logout()" style="width:100%; background:none; border:1px solid #333; color:#444; padding:10px; border-radius:10px; font-size: 11px;">Limpar todos os dados</button>
     </div>
 </div>
 
@@ -177,12 +186,12 @@ header {
 </header>
 
 <div class="container">
-  <div class="welcome-hero" id="welcomeBanner"><h1>IdolVerse Store</h1><p>Photocards Premium para colecionadores ✨</p></div>
+  <div class="welcome-hero" id="welcomeBanner"><h1>IdolVerse Store</h1><p>Sua boutique premium de Photocards ✨</p></div>
   <div class="products" id="productGrid"></div>
   
   <div style="background: #16162d; border: 1px solid var(--primary-pink); border-radius: 20px; padding: 30px 15px; margin: 40px 15px; text-align: center;">
     <h2 style="color:var(--primary-pink); margin:0 0 10px 0; font-size: 18px; font-weight: 800;">🎨 Encomenda Personalizada</h2>
-    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px;">Crie seu kit exclusivo com suas fotos!</p>
+    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px;">Use suas próprias fotos favoritas!</p>
     <a href="https://wa.me/5591986122614" target="_blank" class="btn-finalizar" style="max-width:250px; margin:0 auto; text-decoration:none; display:block;">PEDIR NO WHATSAPP</a>
   </div>
 </div>
@@ -200,9 +209,7 @@ header {
             <h1 id="ppTitle" style="margin:0; font-size: 22px; font-weight: 800;">Nome</h1>
             <div id="ppPrice" style="font-size: 28px; color:var(--primary-pink); font-weight:800; margin:10px 0;">R$ 0,00</div>
             
-            <div style="background:rgba(50,188,173,0.1); border:1px solid var(--pix-color); padding:10px; border-radius:10px; color:var(--pix-color); font-weight:bold; font-size:11px; margin-bottom:15px; display:flex; align-items:center; gap:8px;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94Pix.svg" width="18"> Aceitamos PIX de todos os bancos
-            </div>
+            <div class="pix-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94Pix.svg" width="18"> Aceitamos PIX de todos os bancos</div>
 
             <div class="quality-grid">
                 <div class="q-item">💎 <span>Papel 300g</span></div>
@@ -211,6 +218,9 @@ header {
                 <div class="q-item">✂️ <span>Corte Pro</span></div>
             </div>
             <p id="ppDesc" style="color:#aaa; line-height:1.6; font-size: 13px;"></p>
+            <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; margin: 15px 0; font-size: 12px; color: #bbb;">
+                <strong>Conteúdo do Kit:</strong> 73 Itens inclusos (Mini fotos, mimos e mais).
+            </div>
             <button class="btn-finalizar" id="ppAddBtn" style="background:var(--primary-pink); color: white;">ADICIONAR AO CARRINHO</button>
         </div>
     </div>
@@ -219,7 +229,7 @@ header {
 <!-- CARRINHO -->
 <button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>
 <div id="carrinho">
-  <div class="cart-header"><h3 style="font-size: 16px; font-weight: 800; margin:0">MEU CARRINHO</h3><span onclick="toggleCarrinho()" style="cursor:pointer; font-size:28px; color:var(--primary-pink)">×</span></div>
+  <div class="cart-header"><h3 style="font-size: 16px; font-weight: 800; margin:0">CARRINHO</h3><span onclick="toggleCarrinho()" style="cursor:pointer; font-size:28px; color:var(--primary-pink)">×</span></div>
   <div id="listaCarrinho"></div>
   <div class="cart-footer">
     <div class="checkout-group">
@@ -227,15 +237,15 @@ header {
         <input type="text" id="cartEnd" class="cart-input" placeholder="Rua e Bairro" oninput="salvarTudoAoDigitar()">
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
             <input type="text" id="cartNum" class="cart-input" placeholder="Número" oninput="salvarTudoAoDigitar()">
-            <input type="text" id="cartCep" class="cart-input" placeholder="CEP" maxlength="9" oninput="salvarTudoAoDigitar()">
+            <input type="text" id="cartCep" class="cart-input" placeholder="00000-000" maxlength="9" oninput="salvarTudoAoDigitar()">
         </div>
         <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:10px; border-radius:8px; font-weight:bold; font-size: 11px; cursor:pointer;">CALCULAR FRETE</button>
     </div>
     <div id="freteResult" style="display:none; background: rgba(255,255,255,0.05); padding:10px; border-radius:10px; margin-bottom: 12px;">
         <label class="frete-card"><input type="radio" name="f" value="0" id="pacVal" onchange="atualizarTotal()" checked>
-            <div><span style="font-size:12px; font-weight:bold">PAC</span> <small id="pacTime" style="opacity:0.6"></small></div><span id="pacPrice" style="color:var(--primary-pink); font-weight:bold"></span></label>
+            <div><span style="font-size:12px; font-weight:bold">PAC</span> <small id="pacTime" style="opacity:0.6; font-size:10px"></small></div><span id="pacPrice" style="color:var(--primary-pink); font-weight:bold; font-size: 12px;"></span></label>
         <label class="frete-card"><input type="radio" name="f" value="0" id="sedexVal" onchange="atualizarTotal()">
-            <div><span style="font-size:12px; font-weight:bold">SEDEX</span> <small id="sedexTime" style="opacity:0.6"></small></div><span id="sedexPrice" style="color:var(--primary-pink); font-weight:bold"></span></label>
+            <div><span style="font-size:12px; font-weight:bold">SEDEX</span> <small id="sedexTime" style="opacity:0.6; font-size:10px"></small></div><span id="sedexPrice" style="color:var(--primary-pink); font-weight:bold; font-size: 12px;"></span></label>
     </div>
     <div class="coupon-box"><input type="text" id="cupomInput" placeholder="CUPOM: BEMVINDO10"><button onclick="aplicarCupom()">OK</button></div>
     <div style="display:flex; justify-content:space-between; font-weight:800; font-size:20px;"><span>Total</span><span id="totalTxt">R$ 0,00</span></div>
@@ -249,10 +259,11 @@ header {
         <div class="footer-col"><h4>CONTATO</h4><p>✉️ thiagomaksuel67@gmail.com</p><p>📱 (91) 98612-2614</p></div>
         <div class="footer-col"><h4>REDES</h4><p>Instagram: @IdolVerse</p><p>TikTok: @IdolVerseStore</p></div>
     </div>
+    <p class="credits">DESIGN BY THIAGO MAKSUEL • ANGELS • SOPHYA</p>
 </footer>
-<p class="credits">DESIGN BY THIAGO MAKSUEL • ANGELS • SOPHYA</p>
 
 <script>
+// ===== CONFIGURAÇÃO E BANCO DE DADOS =====
 const FOTO_TAMANHO_G = 'tamanho-g.jpg';
 let carrinho = [];
 let favoritos = [];
@@ -303,11 +314,15 @@ const database = [
   { id: 42, cat: 'séries', name: 'Kit Welcome to Derry (73 Itens)', price: 39.90, img: 'itderry.jpg', desc: 'Welcome to Derry IT.' }
 ];
 
+// ===== LÓGICA DE FUNCIONAMENTO =====
 function carregarTudo() {
   favoritos = JSON.parse(localStorage.getItem('iv_fav_v10')) || [];
   carrinho = JSON.parse(localStorage.getItem('iv_cart_v10')) || [];
-  usuario = JSON.parse(localStorage.getItem('iv_user_v10')) || { n:'', e:'', num:'', c:'', z:'', fav:'' };
-  preencherTudo(); renderizarProdutos(database); renderizarCarrinho();
+  usuario = JSON.parse(localStorage.getItem('iv_user_v10')) || { n: '', e: '', num: '', c: '', z: '', fav: '' };
+  
+  preencherTudo();
+  renderizarProdutos(database); 
+  renderizarCarrinho();
 }
 
 function preencherTudo() {
@@ -347,7 +362,7 @@ function renderizarProdutos(lista) {
     grid.innerHTML += `
       <div class="card">
         <div class="card-actions"><button class="action-btn" style="color:${isFav?'#ff4fd8':'#fff'}" onclick="toggleFav(this, '${p.name}')">❤️</button></div>
-        <div class="img-container" onclick="abrirPP(${p.id})"><img src="${p.img}" loading="lazy"></div>
+        <div class="img-container" onclick="abrirPP(${p.id})"><img src="${p.img}"></div>
         <div class="card-info"><h3>${p.name}</h3><span class="price">R$ ${p.price.toFixed(2).replace('.',',')}</span><button class="btn-buy-card" onclick="addCart(${p.id})">COMPRAR</button></div>
       </div>`;
   });
@@ -388,6 +403,13 @@ function updateQ(id, n) {
   localStorage.setItem('iv_cart_v10', JSON.stringify(carrinho)); renderizarCarrinho();
 }
 
+function aplicarCupom() {
+    if(document.getElementById('cupomInput').value.toUpperCase() === 'BEMVINDO10') {
+        desconto = 0.10; alert("Cupom 10% OFF aplicado! 🎫");
+    } else { alert("Cupom inválido."); }
+    atualizarTotal();
+}
+
 function calcularFrete() { 
     const cep = document.getElementById('cartCep').value.replace(/\D/g, "");
     if(cep.length < 8) return alert("Digite um CEP válido!");
@@ -417,26 +439,41 @@ function toggleCarrinho() {
   const open = c.style.right === '0px'; c.style.right = open ? '-100%' : '0px'; o.style.display = open ? 'none' : 'block';
 }
 
-function aplicarCupom() {
-    if(document.getElementById('cupomInput').value.toUpperCase() === 'BEMVINDO10') {
-        desconto = 0.10; alert("Cupom 10% OFF aplicado! 🎫");
-    } else { alert("Cupom inválido."); }
-    atualizarTotal();
-}
-
 function finalizarPedido() {
-  if(!usuario.n || !usuario.e || !usuario.num) return alert("Preencha nome e endereço no carrinho!");
-  if(carrinho.length === 0) return alert("Carrinho vazio!");
+  if(!usuario.n || !usuario.e || !usuario.num || !usuario.c) return alert("Por favor, preencha todos os dados de entrega no carrinho!");
+  if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
   if(document.getElementById('freteResult').style.display === 'none') return alert("Calcule o frete!");
   
   let freteValor = parseFloat(document.querySelector('input[name="f"]:checked').value);
-  let totalFinal = (carrinho.reduce((a,b)=> a + (b.price * b.q), 0) * (1-desconto)) + freteValor;
+  let subtotal = carrinho.reduce((a,b)=> a + (b.price * b.q), 0);
+  let valorDesc = subtotal * desconto;
+  let totalFinal = (subtotal - valorDesc) + freteValor;
   const itens = carrinho.map(i => `• ${i.q}x ${i.name}`).join('\n');
 
-  const msg = `🌟 *NOVO PEDIDO - IDOLVERSE* 🌟\n--------------------------\n👤 *CLIENTE:* ${usuario.n}\n📍 *ENTREGA:* ${usuario.e}, Nº ${usuario.num}\n📮 *CEP:* ${usuario.c}\n\n📦 *PRODUTOS:*\n${itens}\n\n💰 *TOTAL:* R$ ${totalFinal.toFixed(2)}\n--------------------------\nOlá! Acabei de realizar meu pedido pelo site. Gostaria de confirmar meu pedido. ✨`;
+  const msg = `🌟 *NOVO PEDIDO - IDOLVERSE STORE* 🌟
+---------------------------------------
+👤 *CLIENTE:* ${usuario.n}
+📍 *ENTREGA:* ${usuario.e}, Nº ${usuario.num}
+📮 *CEP:* ${usuario.c}
+
+📦 *ITENS DO PEDIDO:*
+${itens}
+
+---------------------------------------
+💰 *RESUMO FINANCEIRO:*
+Subtotal: R$ ${subtotal.toFixed(2)}
+Desconto: R$ ${valorDesc.toFixed(2)}
+Frete: R$ ${freteValor.toFixed(2)}
+*TOTAL: R$ ${totalFinal.toFixed(2)}*
+
+Olá! Gostaria de confirmar meu pedido feito pelo site. ✨`;
+
   window.open(`https://wa.me/5591986122614?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
+function logout() { localStorage.clear(); location.reload(); }
+function abrirPerfil() { document.getElementById('profilePage').style.display = 'flex'; }
+function fecharPerfil() { document.getElementById('profilePage').style.display = 'none'; }
 function buscar(t) { renderizarProdutos(database.filter(p => p.name.toLowerCase().includes(t.toLowerCase()))); }
 function filtrarCategoria(el, cat) { 
   document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active')); el.classList.add('active');
@@ -449,9 +486,6 @@ function toggleFav(btn, nome) {
   localStorage.setItem('iv_fav_v10', JSON.stringify(favoritos));
 }
 function showToast() { document.getElementById('toast').style.display = 'block'; setTimeout(()=> document.getElementById('toast').style.display='none', 2000); }
-function logout() { localStorage.clear(); location.reload(); }
-function abrirPerfil() { document.getElementById('profilePage').style.display = 'flex'; }
-function fecharPerfil() { document.getElementById('profilePage').style.display = 'none'; }
 </script>
 </body>
 </html>

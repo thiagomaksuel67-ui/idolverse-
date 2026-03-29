@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>IdolVerse • Boutique Oficial de Photocards</title>
+<title>IdolVerse • Boutique Oficial</title>
 
+<!-- FONTES PREMIUM -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -19,6 +20,7 @@
   --border: rgba(255, 255, 255, 0.1);
 }
 
+/* Reset e Suavidade Mobile */
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
 
 body {
@@ -39,29 +41,22 @@ header {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 .header-top { display: flex; align-items: center; gap: 10px; width: 100%; }
-.logo { cursor: pointer; font-size: 20px; font-weight: 900; color: var(--primary-pink); letter-spacing: -1.5px; }
+.logo { cursor: pointer; font-size: 22px; font-weight: 900; color: var(--primary-pink); letter-spacing: -1.5px; }
 
 .search-container { flex-grow: 1; position: relative; }
 .search-container input {
-  width: 100%; padding: 10px 10px 10px 35px; border-radius: 12px;
+  width: 100%; padding: 10px 10px 10px 35px; border-radius: 10px;
   border: 1px solid var(--border); background: #1c1c3a; color: #fff; font-size: 14px;
 }
-.search-container::before { content: '🔍'; position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.5; font-size: 14px; }
+.search-container::before { content: '🔍'; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
 
-.user-btn { 
-    background: var(--card-purple); color: white; border: 1px solid var(--primary-pink);
-    padding: 8px 12px; border-radius: 12px; cursor: pointer; font-weight: 700;
-    display: flex; align-items: center; gap: 8px; font-size: 12px;
-}
+.user-btn { background: var(--primary-pink); color: white; width: 42px; height: 42px; border-radius: 10px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-.nav-menu { display: flex; overflow-x: auto; gap: 18px; padding: 12px 0 0; scrollbar-width: none; }
+.nav-menu { display: flex; overflow-x: auto; gap: 18px; padding: 15px 0 5px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .nav-menu::-webkit-scrollbar { display: none; }
-.nav-item { color: #888; text-decoration: none; font-size: 11px; font-weight: 700; cursor: pointer; text-transform: uppercase; white-space: nowrap; padding-bottom: 5px; }
+.nav-item { color: #888; text-decoration: none; font-size: 11px; font-weight: 700; cursor: pointer; text-transform: uppercase; white-space: nowrap; }
 .nav-item.active { color: var(--primary-pink); border-bottom: 2px solid var(--primary-pink); }
 
 /* ===== GRID PRODUTOS ===== */
@@ -75,116 +70,85 @@ header {
 }
 .img-container { width: 100%; aspect-ratio: 2/3; overflow: hidden; background: #000; cursor: pointer; }
 .img-container img { width: 100%; height: 100%; object-fit: cover; }
-
-.card-info { padding: 15px; }
-.card-info h3 { font-size: 12px; margin: 0; height: 36px; overflow: hidden; color: #fff; font-weight: 600; }
-.price { color: var(--primary-pink); font-size: 17px; font-weight: 800; display: block; margin: 5px 0; }
+.card-info { padding: 12px; }
+.card-info h3 { font-size: 12px; margin: 0; height: 34px; overflow: hidden; color: #fff; font-weight: 600; }
+.price { color: var(--primary-pink); font-size: 16px; font-weight: 800; display: block; margin: 5px 0; }
 .btn-buy-card { background: #fff; color: #000; border: none; padding: 10px; border-radius: 10px; width: 100%; font-weight: 800; font-size: 10px; cursor: pointer; }
 
-/* ===== MODAL PRODUTO ===== */
-#productPage { position: fixed; inset: 0; background: var(--bg-dark); z-index: 3000; display: none; flex-direction: column; overflow-y: auto; }
-.pp-header { position: sticky; top: 0; background: #0a0a14; padding: 15px; display: flex; align-items: center; border-bottom: 1px solid var(--border); }
-.pp-main { display: flex; flex-direction: column; max-width: 1000px; margin: 0 auto; padding: 15px; width: 100%; }
-.pp-image-viewer { width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 20px; display: flex; justify-content: center; align-items: center; overflow: hidden; border: 1px solid var(--border); }
-.pp-image-viewer img { max-width: 100%; max-height: 100%; object-fit: contain; }
-.pp-thumbnails { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
-.pp-thumbnails img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; opacity: 0.5; border: 2px solid transparent; }
-.pp-thumbnails img.active { opacity: 1; border-color: var(--primary-pink); }
-
-.upgrade-box { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; margin: 15px 0; border: 1px solid var(--primary-pink); }
-.option-select { display: flex; gap: 10px; margin-top: 8px; }
-.opt-chip { flex: 1; text-align: center; padding: 8px; border-radius: 10px; background: #05050a; border: 1px solid #333; font-size: 11px; cursor: pointer; }
-.opt-chip.active { border-color: var(--primary-pink); background: rgba(255, 79, 216, 0.1); }
-.quality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 15px 0; }
-.q-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; display: flex; align-items: center; gap: 8px; font-size: 10px; }
-
-/* ===== PERFIL DO CLIENTE ===== */
-#profilePage { position: fixed; inset: 0; background: var(--bg-dark); z-index: 5000; display: none; flex-direction: column; overflow-y: auto; }
-.profile-header-card { text-align: center; padding: 50px 0; background: #16162d; border-radius: 0 0 30px 30px; border-bottom: 2px solid var(--primary-pink); }
-.avatar-pro { width: 80px; height: 80px; background: var(--primary-pink); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 800; box-shadow: 0 0 20px rgba(255, 79, 216, 0.4); }
-.profile-card { background: #1c1c3a; padding: 25px; border-radius: 20px; margin: 20px auto; max-width: 500px; width: 90%; border: 1px solid var(--border); }
-.prof-input-group { margin-bottom: 15px; }
-.prof-input-group label { display: block; font-size: 10px; color: #aaa; margin-bottom: 5px; text-transform: uppercase; font-weight: bold; }
-.prof-input { width: 100%; background: #0a0a14; border: 1px solid #333; color: white; padding: 14px; border-radius: 12px; outline: none; transition: 0.3s; font-family: 'Montserrat'; }
-
-/* ===== CARRINHO COM CHECKOUT ===== */
-#carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 450px; height: 100vh; background: #0f0f1e; z-index: 4000; transition: 0.4s ease; display: flex; flex-direction: column; }
+/* ===== CARRINHO COM CHECKOUT E TROCA DE ACABAMENTO ===== */
+#carrinho { position: fixed; top: 0; right: -100%; width: 100%; max-width: 480px; height: 100vh; background: #0f0f1e; z-index: 4000; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; box-shadow: -10px 0 50px rgba(0,0,0,0.8); }
 .cart-header { padding: 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
 #listaCarrinho { flex: 1; overflow-y: auto; padding: 15px; }
-.item-cart { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 15px; margin-bottom: 12px; border: 1px solid var(--border); }
-.item-cart img { width: 65px; height: 65px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
-.cart-notice { background: rgba(255, 79, 216, 0.1); color: var(--primary-pink); padding: 15px; border-radius: 12px; font-size: 11px; text-align: center; margin-bottom: 15px; border: 1px dashed var(--primary-pink); }
 
-.cart-footer { padding: 25px; background: #05050a; border-top: 2px solid var(--primary-pink); overflow-y: auto; }
-.checkout-group { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 15px; border: 1px solid var(--border); margin-bottom: 15px; }
-.checkout-group h4 { font-size: 11px; color: var(--primary-pink); margin: 0 0 10px 0; text-transform: uppercase; font-weight: 800; }
-.frete-card { display: flex; justify-content: space-between; align-items: center; background: #16162d; padding: 12px; border-radius: 12px; margin-top: 8px; cursor: pointer; border: 1px solid transparent; }
+/* Estilo do Item no Carrinho com Seletor */
+.item-cart { display: flex; align-items: flex-start; gap: 12px; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 18px; margin-bottom: 12px; border: 1px solid var(--border); }
+.item-cart img { width: 65px; height: 65px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+.item-cart-details { flex: 1; min-width: 0; }
+.item-cart-details h4 { margin: 0 0 5px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Mini seletor de acabamento dentro do cart */
+.finish-toggle { display: flex; background: #0a0a14; padding: 4px; border-radius: 8px; margin-top: 5px; width: fit-content; border: 1px solid #333; }
+.finish-toggle div { padding: 4px 8px; font-size: 9px; font-weight: 700; border-radius: 6px; cursor: pointer; opacity: 0.5; }
+.finish-toggle .active { background: var(--primary-pink); color: white; opacity: 1; }
+
+.cart-qty-row { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+.cart-qty-row b { color: var(--primary-pink); font-size: 14px; }
+
+/* Checkout & Rodapé */
+.cart-footer { padding: 25px; background: #05050a; border-top: 2px solid var(--primary-pink); overflow-y: auto; max-height: 70vh; }
+.checkout-box { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 15px; border: 1px solid var(--border); margin-bottom: 15px; }
+.checkout-box h4 { font-size: 11px; color: var(--primary-pink); margin: 0 0 10px 0; text-transform: uppercase; font-weight: 800; }
+.cart-input { width: 100%; background: #1c1c3a; border: 1px solid #333; color: white; padding: 12px; border-radius: 10px; margin-bottom: 8px; font-size: 13px; font-family: 'Montserrat', sans-serif; }
+
+.frete-card { display: flex; justify-content: space-between; align-items: center; background: #16162d; padding: 10px; border-radius: 12px; margin-top: 8px; cursor: pointer; border: 1px solid transparent; font-size: 13px; }
 .frete-card input { display: none; }
 .frete-card:has(input:checked) { border-color: var(--primary-pink); background: rgba(255, 79, 216, 0.1); }
 
-/* ===== AUXILIARES ===== */
-#cartBtn { position: fixed; bottom: 25px; right: 25px; background: var(--primary-pink); width: 60px; height: 60px; border-radius: 50%; z-index: 2000; display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; border: none; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.4); }
-#cartCount { position: absolute; top: 5px; right: 5px; background: white; color: var(--primary-pink); font-size: 10px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-#toast { position: fixed; bottom: 35px; left: 50%; transform: translateX(-50%); background: var(--success-green); color: #000; padding: 12px 30px; border-radius: 50px; font-weight: 800; z-index: 9999; display: none; font-size: 13px; }
+/* PÁGINA PRODUTO MODAL */
+#productPage { position: fixed; inset: 0; background: var(--bg-dark); z-index: 3000; display: none; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.pp-header { position: sticky; top: 0; background: #0a0a14; padding: 15px; display: flex; align-items: center; border-bottom: 1px solid var(--border); }
+.pp-main { display: flex; flex-direction: column; max-width: 1000px; margin: 0 auto; padding: 15px; width: 100%; }
+.pp-image-viewer { width: 100%; aspect-ratio: 1/1; background: #000; border-radius: 15px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.pp-image-viewer img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+/* AUXILIARES */
+#cartBtn { position: fixed; bottom: 20px; right: 20px; background: var(--primary-pink); width: 60px; height: 60px; border-radius: 50%; z-index: 2000; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 5px 15px rgba(255, 79, 216, 0.4); border: none; color: white; cursor: pointer; }
+#cartCount { position: absolute; top: 5px; right: 5px; background: white; color: var(--primary-pink); font-size: 10px; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 #overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: none; z-index: 3500; }
-#zoomModal { position: fixed; inset: 0; background: #000; z-index: 6000; display: none; justify-content: center; align-items: center; cursor: zoom-out; }
-#zoomModal img { max-width: 95%; max-height: 95%; object-fit: contain; }
-
-.btn-finalizar { background: #25d366; color: white; border: none; padding: 18px; border-radius: 15px; font-weight: 800; width: 100%; cursor: pointer; font-size: 15px; }
-
-/* TELA SUCESSO PÓS-COMPRA */
-#finishModal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 7000; display: none; align-items: center; justify-content: center; padding: 20px; text-align: center; }
-
+.btn-finalizar { background: #25d366; color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; width: 100%; cursor: pointer; font-size: 15px; transition: 0.3s; }
 .main-footer { background: #05050a; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 30px; text-align: center; }
-.footer-grid { display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 1100px; margin: 0 auto; }
-@media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(3, 1fr); text-align: left; } }
-.footer-col h4 { color: var(--primary-pink); font-size: 12px; margin-bottom: 15px; text-transform: uppercase; }
-.footer-col p, .footer-col a { color: #888; font-size: 12px; text-decoration: none; display: block; margin-bottom: 8px; }
-.credits { text-align: center; padding: 20px; background: #05050a; font-size: 9px; color: #333; letter-spacing: 1px; border-top: 1px solid #111; }
+.credits { text-align: center; padding: 25px; background: #05050a; font-size: 10px; color: #333; }
+#profilePage { position: fixed; inset: 0; background: var(--bg-dark); z-index: 5000; display: none; flex-direction: column; overflow-y: auto; }
 </style>
 </head>
 
-<body>
+<body onload="carregarTudo()">
 
-<div id="toast">✅ Adicionado!</div>
-<div id="zoomModal" onclick="this.style.display='none'"><img id="zoomImg" src=""></div>
+<div id="toast" style="display:none">✅ Adicionado!</div>
+<div id="zoomModal" onclick="this.style.display='none'" style="position:fixed;inset:0;background:#000;z-index:6000;display:none;align-items:center;justify-content:center;"><img id="zoomImg" style="max-width:95%;max-height:95%;"></div>
 <div id="overlay" onclick="toggleCarrinho()"></div>
 
-<!-- MODAL SUCESSO PÓS-COMPRA -->
-<div id="finishModal">
-    <div style="background: #16162d; padding: 40px 20px; border-radius: 25px; border: 1px solid var(--primary-pink); max-width: 400px;">
-        <div style="font-size:40px; margin-bottom:15px;">🛍️✨</div>
-        <h2 style="color:var(--primary-pink);">Tudo Pronto!</h2>
-        <p style="font-size:13px; opacity:0.8; margin-bottom: 25px;">Pedido confirmado no sistema. Vamos agora para o WhatsApp fechar os detalhes do pagamento Pix e envio!</p>
-        <button class="btn-finalizar" onclick="abrirZapReal()">ABRIR O WHATSAPP AGORA</button>
-    </div>
-</div>
-
-<a href="https://wa.me/5591986122614" target="_blank" style="position:fixed; bottom:20px; left:20px; background:#25d366; width:55px; height:55px; border-radius:50%; z-index:2000; display:flex; align-items:center; justify-content:center; box-shadow:0 5px 20px rgba(0,0,0,0.4);"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30"></a>
+<a href="https://wa.me/5591986122614" target="_blank" style="position:fixed;bottom:20px;left:20px;background:#25d366;width:55px;height:55px;border-radius:50%;z-index:2000;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 20px rgba(0,0,0,0.4);"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30"></a>
 
 <!-- ÁREA DO CLIENTE -->
 <div id="profilePage">
     <div class="pp-header"><button onclick="fecharPerfil()" style="background:none; border:none; color:white; font-size:24px;">←</button><span style="font-weight: 800; margin-left: 10px; font-size: 14px;">PERFIL</span></div>
-    <div class="profile-header-card"><div id="avatarIcon" class="avatar-pro">?</div><h2 id="profileNameDisplay" style="margin:0; font-size: 20px;">Visitante</h2></div>
+    <div style="text-align:center; padding:30px 0; background:#16162d;"><div id="avatarIcon" style="width:70px; height:70px; background:var(--primary-pink); border-radius:50%; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:800;">?</div><h2 id="profileNameDisplay" style="margin:0; font-size: 18px;">Visitante</h2></div>
     <div style="max-width:500px; margin:0 auto; padding:15px;">
-        <div class="profile-card">
-            <h3>👤 DADOS PESSOAIS</h3>
-            <div class="prof-input-group"><label>Nome Completo</label><input type="text" id="profNome" class="prof-input" placeholder="Seu nome" oninput="salvarTudoAoDigitar()"></div>
-            <div class="prof-input-group"><label>WhatsApp</label><input type="text" id="profZap" class="prof-input" placeholder="(91) 00000-0000" oninput="salvarTudoAoDigitar()"></div>
-            <div class="prof-input-group"><label>Bias Favorito 💖</label><input type="text" id="profFav" class="prof-input" placeholder="Ex: BTS, SKZ..." oninput="salvarTudoAoDigitar()"></div>
-            <h3 style="margin-top:25px;">📍 ENDEREÇO SALVO</h3>
-            <div class="prof-input-group"><label>Rua e Bairro</label><input type="text" id="profEnd" class="prof-input" placeholder="Rua, Bairro..." oninput="salvarTudoAoDigitar()"></div>
-            <div class="prof-input-group"><label>Número</label><input type="text" id="profNum" class="prof-input" placeholder="123" oninput="salvarTudoAoDigitar()"></div>
-            <div class="prof-input-group"><label>CEP</label><input type="text" id="profCep" class="prof-input" placeholder="00000-000" maxlength="9" oninput="salvarTudoAoDigitar()"></div>
+        <div style="background:rgba(255,255,255,0.05); padding:20px; border-radius:20px; margin-bottom:15px; border:1px solid var(--border);">
+            <h3 style="font-size:12px; color:var(--primary-pink); margin:0 0 15px 0;">👤 MEUS DADOS</h3>
+            <div style="margin-bottom:12px;"><label style="font-size:10px; color:#aaa;">Nome</label><input type="text" id="profNome" class="cart-input" placeholder="Seu nome" oninput="salvarTudoAoDigitar()"></div>
+            <div style="margin-bottom:12px;"><label style="font-size:10px; color:#aaa;">WhatsApp</label><input type="text" id="profZap" class="cart-input" placeholder="(91) 00000-0000" oninput="salvarTudoAoDigitar()"></div>
+            <div><label style="font-size:10px; color:#aaa;">Bias Favorito</label><input type="text" id="profFav" class="cart-input" placeholder="Ex: BTS, SKZ..." oninput="salvarTudoAoDigitar()"></div>
         </div>
-        <button onclick="logout()" style="width:100%; background:none; border:1px solid #333; color:#555; padding:12px; border-radius:12px; font-size: 11px; font-weight: 800; margin-top: 10px; cursor: pointer;">LIMPAR TODOS OS DADOS</button>
+        <button onclick="logout()" style="width:100%; background:none; border:1px solid #333; color:#444; padding:10px; border-radius:10px; font-size: 11px;">Limpar tudo</button>
     </div>
 </div>
 
 <header>
   <div class="header-top">
     <div class="logo" onclick="location.reload()">IDOLVERSE</div>
-    <div class="search-container"><input type="text" placeholder="Pesquisar artistas ou kits..." onkeyup="buscar(this.value)"></div>
+    <div class="search-container"><input type="text" placeholder="Pesquisar..." onkeyup="buscar(this.value)"></div>
     <button class="user-btn" onclick="abrirPerfil()">👤</button>
   </div>
   <nav class="nav-menu">
@@ -193,56 +157,48 @@ header {
     <a class="nav-item" onclick="filtrarCategoria(this, 'anime')">Anime</a>
     <a class="nav-item" onclick="filtrarCategoria(this, 'famosos')">Famosos</a>
     <a class="nav-item" onclick="filtrarCategoria(this, 'séries')">Séries/Filmes</a>
-    <a class="nav-item" onclick="filtrarFavoritos(this)">❤️ Favoritos</a>
   </nav>
 </header>
 
 <div class="container">
-  <div class="welcome-hero" id="welcomeBanner"><h1>IdolVerse Store</h1><p>Sua boutique premium de Photocards ✨</p></div>
   <div class="products" id="productGrid"></div>
-  <div style="background: #16162d; border: 1px solid var(--primary-pink); border-radius: 20px; padding: 30px 15px; margin: 40px 15px; text-align: center;">
-    <h2 style="color:var(--primary-pink); margin:0 0 10px 0; font-size: 18px; font-weight: 800;">🎨 Encomenda Personalizada</h2>
-    <p style="font-size: 13px; opacity: 0.7; margin-bottom: 20px;">Use suas próprias fotos favoritas!</p>
-    <a href="https://wa.me/5591986122614" target="_blank" class="btn-finalizar" style="max-width:250px; margin:0 auto; text-decoration:none; display:block; text-align:center;">PEDIR NO WHATSAPP</a>
-  </div>
 </div>
 
 <!-- MODAL PRODUTO -->
 <div id="productPage">
     <div class="pp-header"><button onclick="fecharPP()" style="background:none; border:none; color:white; font-size:28px;">←</button> <span style="font-weight: 800; font-size: 14px; margin-left: 10px;">DETALHES</span></div>
     <div class="pp-main">
-        <div class="pp-visuals" style="width:100%">
-            <div class="pp-image-viewer" onclick="abrirZoom()"><img id="ppImg" src=""></div>
-            <div class="pp-thumbnails" id="ppThumbs"></div>
-            <p style="text-align: center; font-size: 10px; opacity: 0.4; margin-top: 10px;">Toque para ampliar 🔍</p>
-        </div>
+        <div class="pp-image-viewer" onclick="abrirZoom()"><img id="ppImg" src=""></div>
+        <div id="ppThumbs" style="display:flex; gap:10px; justify-content:center; margin-top:10px;"></div>
         <div class="pp-info">
             <h1 id="ppTitle" style="margin:0; font-size: 22px; font-weight: 800;">Nome</h1>
             <div id="ppPrice" style="font-size: 28px; color:var(--primary-pink); font-weight:800; margin:10px 0;">R$ 23,90</div>
             
-            <div style="background:rgba(50,188,173,0.1); border:1px solid var(--pix-color); padding:10px; border-radius:10px; color:var(--pix-color); font-weight:bold; font-size:11px; margin-bottom:15px; display:flex; align-items:center; gap:8px;"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94Pix.svg" width="18"> Aceitamos PIX de todos os bancos</div>
-
-            <div class="upgrade-box">
-                <div style="font-size:10px; font-weight:800; color:var(--primary-pink)">ESCOLHA O ACABAMENTO:</div>
-                <div class="option-select"><div id="optPadrao" class="opt-chip active" onclick="toggleOption(false)">Padrão 300g</div><div id="optPlast" class="opt-chip" onclick="toggleOption(true)">Plastificado (+ R$ 5,00)</div></div>
+            <div style="background:rgba(50,188,173,0.1); border:1px solid var(--pix-color); padding:10px; border-radius:10px; color:var(--pix-color); font-weight:bold; font-size:11px; margin-bottom:15px; display:flex; align-items:center; gap:8px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94Pix.svg" width="18"> Aceitamos PIX de todos os bancos
             </div>
 
-            <div class="quality-grid"><div class="q-item">💎 Papel 300g</div><div class="q-item">🛡️ Plastificado</div><div class="q-item">🎨 Ultra HD</div><div class="q-item">✂️ Corte Pro</div></div>
+            <div class="quality-grid">
+                <div class="q-item">💎 <span>Papel 300g</span></div>
+                <div class="q-item">🛡️ <span>Plastificado</span></div>
+                <div class="q-item">🎨 <span>Ultra HD</span></div>
+                <div class="q-item">✂️ <span>Corte Laser</span></div>
+            </div>
             <p id="ppDesc" style="color:#aaa; line-height:1.6; font-size: 13px;"></p>
             <button class="btn-finalizar" id="ppAddBtn" style="background:var(--primary-pink); color: white;">ADICIONAR AO CARRINHO</button>
         </div>
     </div>
 </div>
 
-<!-- CARRINHO -->
+<!-- CARRINHO PROFISSIONAL -->
 <button id="cartBtn" onclick="toggleCarrinho()">🛒 <span id="cartCount">0</span></button>
 <div id="carrinho">
   <div class="cart-header"><h3 style="font-size: 16px; font-weight: 800; margin:0">MEU CARRINHO</h3><span onclick="toggleCarrinho()" style="cursor:pointer; font-size:28px; color:var(--primary-pink)">×</span></div>
   <div id="listaCarrinho"></div>
+  
   <div class="cart-footer">
-    <div id="loginMsg" class="cart-notice" onclick="abrirPerfil()">🔒 Acesse sua conta para concluir a compra.</div>
     <div class="checkout-group">
-        <h4>📦 Dados de Entrega</h4>
+        <h4>📦 Endereço de Entrega</h4>
         <input type="text" id="cartEnd" class="cart-input" placeholder="Rua e Bairro" oninput="salvarTudoAoDigitar()">
         <div style="display:grid; grid-template-columns: 1fr 2fr; gap:10px">
             <input type="text" id="cartNum" class="cart-input" placeholder="Nº" oninput="salvarTudoAoDigitar()">
@@ -250,171 +206,191 @@ header {
         </div>
         <button onclick="calcularFrete()" style="width:100%; background:var(--violet-accent); color:white; border:none; padding:12px; border-radius:10px; font-weight:800; font-size: 11px; cursor:pointer;">CALCULAR FRETE</button>
     </div>
+
     <div id="freteResult" style="display:none; background: rgba(255,255,255,0.05); padding:10px; border-radius:10px; margin-bottom: 12px;">
         <label class="frete-card"><input type="radio" name="f" value="0" id="pacVal" onchange="atualizarTotal()" checked><div><span>PAC</span> <small id="pacTime"></small></div><span id="pacPrice" style="color:var(--primary-pink); font-weight:bold"></span></label>
-        <label class="frete-card"><input type="radio" name="f" value="0" id="sedexVal" onchange="atualizarTotal()"><div><span>SEDEX</span> <small id="sedexTime"></small></div><span id="sedexPrice" style="color:var(--primary-pink); font-weight:bold"></span></label>
+        <label class="frete-card"><input type="radio" name="f" value="0" id="sedexVal" onchange="atualizarTotal()"><div><span style="font-weight:bold">SEDEX</span> <small id="sedexTime"></small></div><span id="sedexPrice" style="color:var(--primary-pink); font-weight:bold"></span></label>
     </div>
-    <div style="display:flex; justify-content:space-between; font-weight:800; font-size:20px; margin-bottom: 5px;"><span>TOTAL</span><span id="totalTxt">R$ 0,00</span></div>
-    <button class="btn-finalizar" onclick="finalizarPedido()">FINALIZAR COMPRA</button>
+
+    <div style="display:flex; justify-content:space-between; font-weight:800; font-size:22px;"><span>TOTAL</span><span id="totalTxt">R$ 0,00</span></div>
+    <button class="btn-finalizar" style="margin-top:10px" onclick="finalizarPedido()">FINALIZAR NO WHATSAPP</button>
   </div>
 </div>
-
-<footer class="main-footer">
-    <div class="footer-grid">
-        <div class="footer-col"><h4>LOJA</h4><a href="#">Sobre a IdolVerse</a><a href="#">Prazo de Produção</a></div>
-        <div class="footer-col"><h4>CONTATO</h4><p>✉️ thiagomaksuel67@gmail.com</p><p>📱 (91) 98612-2614</p></div>
-        <div class="footer-col"><h4>REDES</h4><p>Instagram: @IdolVerse</p><p>TikTok: @IdolVerseStore</p></div>
-    </div>
-</footer>
 
 <script>
 const FOTO_TAMANHO_G = 'tamanho-g.jpg';
 let carrinho = []; let favoritos = [];
 let usuario = { n: '', e: '', num: '', c: '', z: '', fav: '' };
-let ppSt = { pl: false }; let finalMsg = "";
 
 const database = [
   { id: 1, cat:'kpop', name:'Kit BTS', price:23.90, img:'bts1.jpg', desc:'Premium BTS.'},
   { id: 2, cat:'kpop', name:'Pack BLACKPINK', price:23.90, img:'blackpink.jpg', desc:'BP luxo.'},
-  { id: 3, cat:'kpop', name:'Kit Stray Kids', price:23.90, img:'straykids.jpg', desc:'SKZ STAY.'},
-  { id: 4, cat:'kpop', name:'Kit LE SSERAFIM', price:23.90, img:'lesserafim.jpg', desc:'HD Kit.'},
+  { id: 3, cat:'kpop', name:'Kit Stray Kids', price:23.90, img:'straykids.jpg', desc:'Stay collection.'},
+  { id: 4, cat:'kpop', name:'Kit LE SSERAFIM', price:23.90, img:'lesserafim.jpg', desc:'HD pack.'},
   { id: 5, cat:'kpop', name:'Kit TXT', price:23.90, img:'txt.jpg', desc:'Tomorrow pack.'},
-  { id: 6, cat:'kpop', name:'Kit Twice', price:23.90, img:'twice.jpg', desc:'Twice Kit.'},
-  { id: 7, cat:'kpop', name:'Kit New Jeans', price:23.90, img:'newjeans.jpg', desc:'Bunny vibes.'},
-  { id: 8, cat:'kpop', name:'Kit EXO', price:23.90, img:'exo.jpg', desc:'Legendary EXO.'},
-  { id: 9, cat:'kpop', name:'Kit aespa', price:23.90, img:'aespa.jpg', desc:'Next level.'},
-  { id: 10, cat:'famosos', name:'Pack Neymar Jr', price:23.90, img:'neymar.jpg', desc:'Neymar pack.'},
-  { id: 11, cat:'famosos', name:'Kit Taylor Swift', price:23.90, img:'taylor.jpg', desc:'Eras tour kit.'},
+  { id: 6, cat:'kpop', name:'Kit Twice', price:23.90, img:'twice.jpg', desc:'Twice members.'},
+  { id: 7, cat:'kpop', name:'Kit New Jeans', price:23.90, img:'newjeans.jpg', desc:'NJ bunny cards.'},
+  { id: 8, cat:'kpop', name:'Kit EXO', price:23.90, img:'exo.jpg', desc:'Legendary collection.'},
+  { id: 9, cat:'kpop', name:'Kit aespa', price:23.90, img:'aespa.jpg', desc:'Next level cards.'},
+  { id: 10, cat:'famosos', name:'Pack Neymar Jr', price:23.90, img:'neymar.jpg', desc:'NJ exclusive.'},
+  { id: 11, cat:'famosos', name:'Kit Taylor Swift', price:23.90, img:'taylor.jpg', desc:'Swiftie Eras Tour.'},
   { id: 12, cat:'famosos', name:'Pack Jenna Ortega', price:23.90, img:'jenna.jpg', desc:'Wandinha.'},
-  { id: 13, cat:'famosos', name:'Kit Eminem', price:23.90, img:'eminem.jpg', desc:'Rap kit.'},
-  { id: 14, cat:'famosos', name:'Pack Bruno Mars', price:23.90, img:'brunomars.jpg', desc:'Bruninho.'},
-  { id: 15, cat:'famosos', name:'Kit Ariana Grande', price:23.90, img:'ariana.jpg', desc:'Ariana kit.'},
+  { id: 13, cat:'famosos', name:'Kit Eminem', price:23.90, img:'eminem.jpg', desc:'Rap collection.'},
+  { id: 14, cat:'famosos', name:'Pack Bruno Mars', price:23.90, img:'brunomars.jpg', desc:'Bruninho pack.'},
+  { id: 15, cat:'famosos', name:'Kit Ariana Grande', price:23.90, img:'ariana.jpg', desc:'Ari mimos.'},
   { id: 16, cat:'famosos', name:'Kit The Weeknd', price:23.90, img:'theweeknd.jpg', desc:'The Weeknd XO.'},
   { id: 17, cat:'famosos', name:'Kit Olivia Rodrigo', price:23.90, img:'olivia.jpg', desc:'SOUR kit.'},
   { id: 18, cat:'famosos', name:'Pack Dua Lipa', price:23.90, img:'dualipa.jpg', desc:'Dua premium.'},
-  { id: 19, cat:'famosos', name:'Kit Billie Eilish', price:23.90, img:'billie.jpg', desc:'Billie pack.'},
+  { id: 19, cat:'famosos', name:'Kit Billie Eilish', price:23.90, img:'billie.jpg', desc:'Blue cards.'},
   { id: 20, cat:'anime', name:'Kit Your Name', price:23.90, img:'yourname.jpg', desc:'Your name scene.'},
-  { id: 21, cat:'anime', name:'Kit Demon Slayer', price:23.90, img:'demonslayer.jpg', desc:'Demon Slayer kit.'},
-  { id: 22, cat:'anime', name:'Pack Evangelion', price:23.90, img:'evangelion.jpg', desc:'Eva pack.'},
-  { id: 23, cat:'anime', name:'Kit Dragon Ball Z', price:23.90, img: 'dbz.jpg', desc: 'Saga Z.' },
-  { id: 24, cat: 'anime', name: 'Kit Frieren', price: 23.90, img: 'frieren.jpg', desc: 'Frieren anime.' },
-  { id: 25, cat: 'anime', name: 'Kit Jujutsu Kaisen', price: 23.90, img: 'jjk.jpg', desc: 'Jujutsu Kaisen.' },
-  { id: 26, cat: 'anime', name: 'Kit Baki', price: 23.90, img: 'baki.jpg', desc: 'Baki Hanma.' },
-  { id: 27, cat: 'anime', name: 'Kit JoJo Bizarre', price: 23.90, img: 'jojo.jpg', desc: 'JoJo Bizarre.' },
-  { id: 28, cat: 'anime', name: 'Kit Dandadan', price: 23.90, img: 'dandadan.jpg', desc: 'Dandadan succes.' },
-  { id: 29, cat: 'anime', name: 'Kit Naruto', price: 23.90, img: 'naruto.jpg', desc: 'Naruto Shippuden.' },
-  { id: 30, cat: 'séries', name: 'Kit Stranger Things', price: 23.90, img: 'strangerthings.jpg', desc: 'Stranger Things.' },
-  { id: 31, cat: 'séries', name: 'Kit All of us are Dead', price: 23.90, img: 'allofusaredead.jpg', desc: 'All of us are Dead.' },
-  { id: 32, cat: 'séries', name: 'Kit The 100', price: 23.90, img: 'the100.jpg', desc: 'The 100 series.' },
-  { id: 33, cat: 'séries', name: 'Kit Weak Hero', price: 23.90, img: 'weakhero.jpg', desc: 'Weak Hero dorama.' },
-  { id: 34, cat: 'séries', name: 'Kit Vis a Vis', price: 23.90, img: 'visavis.jpg', desc: 'Vis a Vis serie.' },
-  { id: 35, cat: 'séries', name: 'Kit Sweet Home', price: 23.90, img: 'sweethome.jpg', desc: 'Sweet Home horror.' },
-  { id: 36, cat: 'séries', name: 'Kit Enola Holmes', price: 23.90, img: 'enolaholmes.jpg', desc: 'Enola movie.' },
-  { id: 37, cat: 'séries', name: 'Kit Reality Z', price: 23.90, img: 'realityz.jpg', desc: 'Zumbis BR.' },
-  { id: 38, cat: 'séries', name: 'Kit My Name', price: 23.90, img: 'myname.jpg', desc: 'My Name revenge.' },
-  { id: 39, cat: 'séries', name: 'Kit Outer Banks', price: 23.90, img: 'outerbanks.jpg', desc: 'Pogues life.' },
-  { id: 40, cat: 'séries', name: 'Kit Extracurricular', price: 23.90, img: 'extracurricular.jpg', desc: 'Coreano dark.' },
-  { id: 41, cat: 'séries', name: 'Kit Alice in Borderland', price: 23.90, img: 'aliceinborderland.jpg', desc: 'Jogos em Tokyo.' },
-  { id: 42, cat: 'séries', name: 'Kit Welcome to Derry', price: 23.90, img: 'itderry.jpg', desc: 'IT terror.' },
-  { id: 43, cat: 'kpop', name: 'Kit Itzy', price: 23.90, img: 'itzy.jpg', desc: 'Midzy special.' }
+  { id: 21, cat:'anime', name:'Kit Demon Slayer', price:23.90, img:'demonslayer.jpg', desc:'Hashiras pack.'},
+  { id: 22, cat:'anime', name:'Pack Evangelion', price:23.90, img:'evangelion.jpg', desc:'Neon Genesis pack.'},
+  { id: 23, cat:'anime', name:'Kit Dragon Ball Z', price:23.90, img: 'dbz.jpg', desc: 'Saga Z cards.' },
+  { id: 24, cat:'anime', name: 'Kit Frieren', price: 23.90, img: 'frieren.jpg', desc: 'Elf anime cards.' },
+  { id: 25, cat:'anime', name: 'Kit Jujutsu Kaisen', price: 23.90, img: 'jjk.jpg', desc: 'Jujutsu kit.' },
+  { id: 26, cat:'anime', name: 'Kit Baki', price: 23.90, img: 'baki.jpg', desc: 'Hanma cards.' },
+  { id: 27, cat:'anime', name: 'Kit JoJo Bizarre', price: 23.90, img: 'jojo.jpg', desc: 'Stands cards.' },
+  { id: 28, cat:'anime', name: 'Kit Dandadan', price: 23.90, img: 'dandadan.jpg', desc: 'Novo sucesso.' },
+  { id: 29, cat:'anime', name: 'Kit Naruto', price: 23.90, img: 'naruto.jpg', desc: 'Ninja kits.' },
+  { id: 30, cat:'séries', name: 'Kit Stranger Things', price: 23.90, img: 'strangerthings.jpg', desc: 'Upside down cards.' },
+  { id: 31, cat:'séries', name: 'Kit All of us are Dead', price: 23.90, img: 'allofusaredead.jpg', desc: 'K-zombie kit.' },
+  { id: 32, cat:'séries', name: 'Kit The 100', price: 23.90, img: 'the100.jpg', desc: 'Survival series.' },
+  { id: 33, cat:'séries', name: 'Kit Weak Hero', price: 23.90, img: 'weakhero.jpg', desc: 'Weak Hero pack.' },
+  { id: 34, cat:'séries', name: 'Kit Vis a Vis', price: 23.90, img: 'visavis.jpg', desc: 'Cruz del sur.' },
+  { id: 35, cat:'séries', name: 'Kit Sweet Home', price: 23.90, img: 'sweethome.jpg', desc: 'Horror pack.' },
+  { id: 36, cat:'séries', name: 'Kit Enola Holmes', price: 23.90, img: 'enolaholmes.jpg', desc: 'Detective cards.' },
+  { id: 37, cat:'séries', name: 'Kit Reality Z', price: 23.90, img: 'realityz.jpg', desc: 'Zombie BR.' },
+  { id: 38, cat:'séries', name: 'Kit My Name', price: 23.90, img: 'myname.jpg', desc: 'Han Sohee noir.' },
+  { id: 39, cat:'séries', name: 'Kit Outer Banks', price: 23.90, img: 'outerbanks.jpg', desc: 'Pogues life.' },
+  { id: 40, cat:'séries', name: 'Kit Extracurricular', price: 23.90, img: 'extracurricular.jpg', desc: 'School crime.' },
+  { id: 41, cat:'séries', name: 'Kit Alice in Borderland', price: 23.90, img: 'aliceinborderland.jpg', desc: 'Games cards.' },
+  { id: 42, cat:'séries', name: 'Kit Welcome to Derry', price: 23.90, img: 'itderry.jpg', desc: 'IT horror.' },
+  { id: 43, cat:'kpop', name: 'Kit Itzy', price: 23.90, img: 'itzy.jpg', desc: 'Itzy collection.' }
 ];
 
 function getEl(id) { return document.getElementById(id); }
 
-document.addEventListener('DOMContentLoaded', carregarTudo);
-
 function carregarTudo() {
-  favoritos = JSON.parse(localStorage.getItem('iv_fav_final_43')) || [];
-  carrinho = JSON.parse(localStorage.getItem('iv_cart_final_43')) || [];
-  usuario = JSON.parse(localStorage.getItem('iv_user_final_43')) || {n:'', e:'', num:'', c:'', z:'', fav:''};
-  preencher(); renderizarProdutos(database); renderizarCarrinho();
-}
+  favoritos = JSON.parse(localStorage.getItem('iv_fav_v21')) || [];
+  carrinho = JSON.parse(localStorage.getItem('iv_cart_v21')) || [];
+  usuario = JSON.parse(localStorage.getItem('iv_user_v21')) || { n: '', e: '', num: '', c: '', z: '', fav: '' };
+  
+  if(getEl('profNome')) getEl('profNome').value = usuario.n;
+  if(getEl('profZap')) getEl('profZap').value = usuario.z;
+  if(getEl('profFav')) getEl('profFav').value = usuario.fav;
+  if(getEl('cartEnd')) getEl('cartEnd').value = usuario.e;
+  if(getEl('cartNum')) getEl('cartNum').value = usuario.num;
+  if(getEl('cartCep')) getEl('cartCep').value = usuario.c;
 
-function preencher() {
-    if(getEl('profNome')) getEl('profNome').value = usuario.n;
-    if(getEl('profZap')) getEl('profZap').value = usuario.z;
-    if(getEl('profFav')) getEl('profFav').value = usuario.fav;
-    if(getEl('profEnd')) getEl('profEnd').value = usuario.e;
-    if(getEl('profNum')) getEl('profNum').value = usuario.num;
-    if(getEl('profCep')) getEl('profCep').value = usuario.c;
-    if(getEl('cartEnd')) getEl('cartEnd').value = usuario.e;
-    if(getEl('cartNum')) getEl('cartNum').value = usuario.num;
-    if(getEl('cartCep')) getEl('cartCep').value = usuario.c;
-    upL();
+  renderizarProdutos(database); 
+  renderizarCarrinho();
+  atualizarLabels();
 }
 
 function salvarTudoAoDigitar() {
-    usuario.n = getEl('profNome').value; usuario.z = getEl('profZap').value;
-    usuario.e = getEl('cartEnd').value || getEl('profEnd').value;
-    usuario.num = getEl('cartNum').value || getEl('profNum').value;
-    usuario.c = getEl('cartCep').value || getEl('profCep').value;
-    usuario.fav = getEl('profFav').value;
-    localStorage.setItem('iv_user_final_43', JSON.stringify(usuario));
-    if(getEl('profEnd')) getEl('profEnd').value = usuario.e;
-    if(getEl('profNum')) getEl('profNum').value = usuario.num;
-    if(getEl('profCep')) getEl('profCep').value = usuario.c;
-    upL(); renderizarCarrinho();
+    usuario.n = getEl('profNome').value; usuario.z = getEl('profZap').value; usuario.fav = getEl('profFav').value;
+    usuario.e = getEl('cartEnd').value; usuario.num = getEl('cartNum').value; usuario.c = getEl('cartCep').value;
+    localStorage.setItem('iv_user_v21', JSON.stringify(usuario));
+    atualizarLabels();
 }
 
-function upL() {
+function atualizarLabels() {
     if(getEl('profileNameDisplay')) getEl('profileNameDisplay').innerText = usuario.n || "Visitante";
     if(getEl('avatarIcon')) getEl('avatarIcon').innerText = (usuario.n || "?").charAt(0).toUpperCase();
     if(getEl('userBtnLabel')) getEl('userBtnLabel').innerText = usuario.n ? usuario.n.split(' ')[0] : "Entrar";
-    if(getEl('loginMsg')) getEl('loginMsg').style.display = (!usuario.n && carrinho.length > 0) ? 'block' : 'none';
+    if(getEl('cartEndResumo')) getEl('cartEndResumo').innerText = usuario.e ? usuario.e + ", Nº " + usuario.num : "Defina no Perfil";
 }
 
-function renderizarProdutos(l) {
-  const g = getEl('productGrid'); if(!g) return;
-  g.innerHTML = ''; l.forEach(p => {
-    const isF = favoritos.includes(p.name);
-    g.innerHTML += `<div class="card"><div class="card-actions"><button class="action-btn" style="color:${isF?'#ff4fd8':'#fff'}" onclick="tF(this,'${p.name}')">❤️</button></div><div class="img-container" onclick="abrirPP(${p.id})"><img src="${p.img}" onerror="this.src='https://placehold.co/300x450?text=Indisponivel'"></div><div class="card-info"><h3>${p.name}</h3><span class="price">R$ 23,90</span><button class="btn-buy-card" onclick="add(${p.id},false)">COMPRAR</button></div></div>`;
+function renderizarProdutos(lista) {
+  const grid = getEl('productGrid'); if(!grid) return;
+  grid.innerHTML = '';
+  lista.forEach(p => {
+    const isFav = favoritos.includes(p.name);
+    grid.innerHTML += `<div class="card"><div style="position:absolute; top:8px; right:8px; z-index:5;"><button onclick="toggleFav(this, '${p.name}')" style="background:rgba(0,0,0,0.5); border:none; color:${isFav?'#ff4fd8':'#fff'}; border-radius:50%; width:30px; height:30px;">❤️</button></div><div class="img-container" onclick="abrirPP(${p.id})"><img src="${p.img}" onerror="this.src='https://placehold.co/300x450?text=Indisponivel'"></div><div class="card-info"><h3>${p.name}</h3><span class="price">R$ ${p.price.toFixed(2).replace('.',',')}</span><button class="btn-buy-card" onclick="addFinal(${p.id}, false)">COMPRAR</button></div></div>`;
   });
 }
 
 function abrirPP(id) {
   const p = database.find(x => x.id === id);
   getEl('ppImg').src = p.img; getEl('ppTitle').innerText = p.name; getEl('ppDesc').innerText = p.desc;
-  tOp(false);
-  getEl('ppThumbs').innerHTML = `<img src="${p.img}" class="active" onclick="chImg(this)"><img src="${FOTO_TAMANHO_G}" onclick="chImg(this)">`;
-  getEl('ppAddBtn').onclick = () => { add(p.id, ppSt.pl); fecharPP(); };
+  getEl('ppThumbs').innerHTML = `<img src="${p.img}" class="active" onclick="document.getElementById('ppImg').src=this.src"><img src="${FOTO_TAMANHO_G}" onclick="document.getElementById('ppImg').src=this.src">`;
+  getEl('ppAddBtn').onclick = () => { addFinal(p.id, false); fecharPP(); };
   getEl('productPage').style.display = 'flex';
 }
-function tOp(v) { ppSt.pl = v; getEl('optPadrao').className = v ? 'opt-chip' : 'opt-chip active'; getEl('optPlast').className = v ? 'opt-chip active' : 'opt-chip'; getEl('ppPrice').innerText = v ? 'R$ 28,90' : 'R$ 23,90'; }
-function chImg(e) { document.querySelectorAll('.pp-thumbnails img').forEach(i => i.classList.remove('active')); e.classList.add('active'); getEl('ppImg').src = e.src; }
+
 function fecharPP() { getEl('productPage').style.display = 'none'; }
 function toggleCarrinho() { const c = getEl('carrinho'); const o = getEl('overlay'); const open = c.style.right === '0px'; c.style.right = open ? '-100%' : '0px'; o.style.display = open ? 'none' : 'block'; }
-function add(id, isP) {
-  const p = database.find(x => x.id === id); const key = id + (isP ? '_P' : '_S'); const exist = carrinho.find(i => i.key === key);
-  if(exist) exist.q++; else carrinho.push({ ...p, key, q:1, isP, pf: isP?28.90:23.90 });
-  localStorage.setItem('iv_cart_final_43', JSON.stringify(carrinho)); renderizarCarrinho(); showToast();
+function addFinal(id, isP) {
+  const p = database.find(x => x.id === id);
+  const cartKey = id + (isP ? '_P' : '_S');
+  const exist = carrinho.find(i => i.cartKey === cartKey);
+  if(exist) exist.q++; else carrinho.push({ ...p, cartKey, q:1, isP, pFinal: isP ? 28.90 : 23.90 });
+  localStorage.setItem('iv_cart_v21', JSON.stringify(carrinho)); renderizarCarrinho(); sToast();
 }
+
 function renderizarCarrinho() {
-  const l = getEl('listaCarrinho'); if(!l) return;
-  l.innerHTML = ''; carrinho.forEach(i => {
-    l.innerHTML += `<div class="item-cart"><img src="${i.img}"><div style="flex:1"><h4 style="margin:0; font-size:12px;">${i.name}</h4><small style="opacity:0.6">${i.isP?'Plastificado':'Papel 300g'}</small><div style="margin-top:5px;"><button onclick="upQ('${i.key}',-1)">-</button><span style="margin:0 10px">${i.q}</span><button onclick="upQ('${i.key}',1)">+</button></div></div><strong>R$ ${(i.pf * i.q).toFixed(2).replace('.',',')}</strong></div>`;
+  const lista = getEl('listaCarrinho'); if(!lista) return;
+  lista.innerHTML = '';
+  carrinho.forEach(item => {
+    lista.innerHTML += `
+      <div class="item-cart">
+        <img src="${item.img}">
+        <div class="item-cart-info">
+          <h4>${item.name}</h4>
+          <div class="finish-toggle">
+            <div class="${!item.isP?'active':''}" onclick="mudarTipo('${item.cartKey}', false)">Padrão</div>
+            <div class="${item.isP?'active':''}" onclick="mudarTipo('${item.cartKey}', true)">Plastificado</div>
+          </div>
+          <div class="cart-qty-row">
+            <div><button onclick="upQ('${item.cartKey}',-1)">-</button><span style="margin:0 8px">${item.q}</span><button onclick="upQ('${item.cartKey}',1)">+</button></div>
+            <b>R$ ${(item.pFinal * item.q).toFixed(2)}</b>
+          </div>
+        </div>
+      </div>`;
   });
   upT();
 }
-function upQ(k, n) { const i = carrinho.find(x => x.key === k); i.q += n; if(i.q <= 0) carrinho = carrinho.filter(x => x.key !== k); localStorage.setItem('iv_cart_final_43', JSON.stringify(carrinho)); renderizarCarrinho(); }
-function calcFrete() { if(!usuario.c) return alert("Complete o CEP!"); getEl('freteResult').style.display = 'block'; let vP = usuario.c.startsWith("6") ? 14.90 : 28.50; let vS = usuario.c.startsWith("6") ? 26.00 : 54.90; getEl('pacPrice').innerText = "R$ " + vP.toFixed(2); getEl('sedexPrice').innerText = "R$ " + vS.toFixed(2); getEl('pacVal').value = vP; getEl('sedexVal').value = vS; upT(); }
-function upT() { let sub = carrinho.reduce((a,b)=> a + (b.pf * b.q), 0); let frete = (getEl('freteResult').style.display === 'block') ? parseFloat(document.querySelector('input[name="f"]:checked').value) : 0; getEl('totalTxt').innerText = `R$ ${(sub + frete).toFixed(2).replace('.',',')}`; getEl('cartCount').innerText = carrinho.reduce((a,b)=>a+b.q,0); }
+
+function mudarTipo(k, status) {
+    const item = carrinho.find(x => x.cartKey === k);
+    item.isP = status;
+    item.pFinal = status ? 28.90 : 23.90;
+    // Precisamos atualizar o cartKey para evitar bugs de id duplicados no filtro posterior
+    localStorage.setItem('iv_cart_v21', JSON.stringify(carrinho)); renderizarCarrinho();
+}
+
+function upQ(k, n) {
+  const i = carrinho.find(x => x.cartKey === k); i.q += n;
+  if(i.q <= 0) carrinho = carrinho.filter(x => x.cartKey !== k);
+  localStorage.setItem('iv_cart_v21', JSON.stringify(carrinho)); renderizarCarrinho();
+}
+
+function calcFrete() { if(!usuario.c) return alert("Preencha o CEP"); getEl('freteResult').style.display = 'block'; upT(); }
+function upT() {
+  let sub = carrinho.reduce((a,b)=> a + (b.pFinal * b.q), 0);
+  let frete = (getEl('freteResult').style.display === 'block') ? parseFloat(document.querySelector('input[name="f"]:checked').value) : 0;
+  getEl('totalTxt').innerText = `R$ ${(sub + frete).toFixed(2).replace('.',',')}`;
+  getEl('cartCount').innerText = carrinho.reduce((a,b)=>a+b.q,0);
+}
 
 function finalizarPedido() {
-  if(!usuario.n || !usuario.e || !usuario.c) return alert("Complete seu cadastro no perfil ou no carrinho!");
-  if(carrinho.length === 0) return alert("Seu carrinho está vazio!");
-  const itens = carrinho.map(i => `• ${i.q}x ${i.name} (${i.isP?'Plastificado':'Papel'})`).join('%0A');
-  finalMsg = `🌟 PEDIDO IDOLVERSE%0A👤 Cliente: ${usuario.n}%0A📍 Entrega: ${usuario.e}, Nº ${usuario.num}%0A📮 CEP: ${usuario.c}%0A📦 Itens:%0A${itens}%0A💰 TOTAL: ${getEl('totalTxt').innerText}`;
-  getEl('finishModal').style.display = 'flex';
+  if(!usuario.n || !usuario.e || !usuario.c) return alert("Complete os dados no carrinho!");
+  const itens = carrinho.map(i => `• ${i.q}x ${i.name} [${i.isP?'Plastificado':'Normal'}]`).join('%0A');
+  window.open(`https://wa.me/5591986122614?text=🌟 PEDIDO IDOLVERSE%0A👤 Cliente: ${usuario.n}%0A📍 Entrega: ${usuario.e}, Nº ${usuario.num}%0A📮 CEP: ${usuario.c}%0A📦 Itens:%0A${itens}%0A💰 Total: ${getEl('totalTxt').innerText}`, '_blank');
 }
-function abrirZapReal() { window.open(`https://wa.me/5591986122614?text=${finalMsg}`, '_blank'); getEl('finishModal').style.display = 'none'; }
-function tF(b,n) { const x = favoritos.indexOf(n); if(x === -1) { favoritos.push(n); b.style.color='#ff4fd8'; } else { favoritos.splice(x,1); b.style.color='#fff'; } localStorage.setItem('iv_fav_final_43', JSON.stringify(favoritos)); }
-function buscar(t) { renderizarProdutos(database.filter(p => p.name.toLowerCase().includes(t.toLowerCase()))); }
-function filtrarCategoria(el, c) { document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active')); el.classList.add('active'); renderizarProdutos(c === '' ? database : database.filter(p => p.cat === c)); }
-function showToast() { getEl('toast').style.display='block'; setTimeout(()=>getEl('toast').style.display='none',2000); }
+
+function toggleFav(btn, nome) {
+  const idx = favoritos.indexOf(nome); if(idx === -1) { favoritos.push(nome); btn.style.color = '#ff4fd8'; }
+  else { favoritos.splice(idx,1); btn.style.color = '#fff'; }
+  localStorage.setItem('iv_fav_v21', JSON.stringify(favoritos));
+}
+function sToast() { getEl('toast').style.display='block'; setTimeout(()=>getEl('toast').style.display='none', 2000); }
 function logout() { localStorage.clear(); location.reload(); }
-function abrirPerfil() { getEl('profilePage').style.display='flex'; }
-function fecharPerfil() { getEl('profilePage').style.display='none'; }
+function abrirPerfil() { getEl('profilePage').style.display = 'flex'; }
+function fecharPerfil() { getEl('profilePage').style.display = 'none'; }
 function abrirZoom() { getEl('zoomImg').src = getEl('ppImg').src; getEl('zoomModal').style.display = 'flex'; }
+function buscar(t) { renderizarProdutos(database.filter(p => p.name.toLowerCase().includes(t.toLowerCase()))); }
+function filtrarCategoria(el, cat) { document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active')); el.classList.add('active'); renderizarProdutos(cat === '' ? database : database.filter(p => p.cat === cat)); }
 </script>
 </body>
 </html>
